@@ -14,6 +14,10 @@
   .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
   @media (max-width: 900px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } }
   .row-hover:hover { background: #16203570 !important; }
+  .nav-btn { cursor: pointer; user-select: none; }
+  .nav-btn:hover { opacity: 0.7; }
+  .nav-btn[disabled] { opacity: 0.25; cursor: default; }
+  .toggle-btn { cursor: pointer; }
 </style>
 </head>
 <body>
@@ -36,7 +40,9 @@
   const { useState, useEffect, useMemo } = React;
 
   // ---------- CONFIG ----------
-  const DATA_URL = "https://raw.githubusercontent.com/DriftAwayPB/BTS-WIP/refs/heads/main/wip-data.json";
+  const BASE_URL = "https://raw.githubusercontent.com/DriftAwayPB/BTS-WIP/refs/heads/main";
+  const MANIFEST_URL = `${BASE_URL}/data/manifest.json`;
+  const monthDataUrl = (key) => `${BASE_URL}/data/${key}.json`;
   const REFRESH_INTERVAL_MS = 5 * 60 * 1000;
   const RELOAD_INTERVAL_MS = 60 * 60 * 1000;
 
@@ -66,6 +72,39 @@
     return day !== 0 && day !== 6;
   }
 
+  const MONTH_NAMES = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  function fmtMonthLabel(key) {
+    const [y, m] = key.split("-").map(Number);
+    return `${MONTH_NAMES[m - 1]} ${y}`;
+  }
+
+  // All weekday (Mon-Fri) ISO dates within a month, given its key "YYYY-MM"
+  function weekdaysInMonthList(monthKey) {
+    const [y, m] = monthKey.split("-").map(Number);
+    const start = new Date(Date.UTC(y, m - 1, 1));
+    const end = new Date(Date.UTC(y, m, 0));
+    const out = [];
+    const cursor = new Date(start);
+    while (cursor <= end) {
+      if (!isWeekdayISO(cursor.toISOString().split("T")[0])) {
+        // skip weekends
+      } else {
+        out.push(cursor.toISOString().split("T")[0]);
+      }
+      cursor.setUTCDate(cursor.getUTCDate() + 1);
+    }
+    return out;
+  }
+
+  // Chunk weekdays into groups of 5 (Mon-Fri "weeks")
+  function chunkIntoWeeks(weekdayList) {
+    const weeks = [];
+    for (let i = 0; i < weekdayList.length; i += 5) {
+      weeks.push(weekdayList.slice(i, i + 5));
+    }
+    return weeks;
+  }
+
   function SectionLabel({ children, accent }) {
     return h("div", { style: { display: "flex", alignItems: "center", gap: 10, marginBottom: 14 } },
       h("div", { style: { width: 6, height: 6, borderRadius: 2, background: accent } }),
@@ -90,6 +129,18 @@
     );
   }
 
+  function NavArrow({ direction, disabled, onClick }) {
+    return h("button", {
+      className: "nav-btn",
+      disabled,
+      onClick,
+      style: {
+        background: "transparent", border: `1px solid ${colors.hairline}`, borderRadius: 6,
+        color: colors.hi, width: 28, height: 28, fontFamily: FONT_MONO, fontSize: 14,
+      }
+    }, direction === "prev" ? "‹" : "›");
+  }
+
   function AccrualChart({ data }) {
     const W = 900, H = 260, padL = 46, padR = 14, padT = 12, padB = 26;
     const innerW = W - padL - padR;
@@ -97,7 +148,7 @@
 
     const maxVal = Math.max(1, ...data.map(d => Math.max(d.cumulative, d.goalPace)));
     const step = data.length > 1 ? innerW / (data.length - 1) : innerW;
-    const barWidth = Math.min(28, (innerW / data.length) * 0.5);
+    const barWidth = Math.min(28, (innerW / Math.max(data.length, 1)) * 0.5);
 
     const xAt = (i) => padL + i * step;
     const yAt = (v) => padT + innerH - (v / maxVal) * innerH;
@@ -131,57 +182,122 @@
   }
 
   function Dashboard() {
-    const [data, setData] = useState(null);
+    const [manifest, setManifest] = useState(null);
+    const [selectedMonth, setSelectedMonth] = useState(null);
+    const [monthData, setMonthData] = useState(null);
     const [lastFetched, setLastFetched] = useState(null);
     const [fetchError, setFetchError] = useState(null);
+    const [viewMode, setViewMode] = useState("month"); // "month" | "week"
+    const [weekIndex, setWeekIndex] = useState(null);
 
-    async function load() {
+    async function loadManifest() {
       try {
-        const res = await fetch(`${DATA_URL}?t=${Date.now()}`);
+        const res = await fetch(`${MANIFEST_URL}?t=${Date.now()}`);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = await res.json();
-        setData(json);
+        setManifest(json);
+        setSelectedMonth((prev) => prev ?? json.latest);
+      } catch (e) {
+        setFetchError(`manifest: ${e.message}`);
+      }
+    }
+
+    async function loadMonth(key) {
+      try {
+        const res = await fetch(`${monthDataUrl(key)}?t=${Date.now()}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
+        setMonthData(json);
         setLastFetched(new Date());
         setFetchError(null);
       } catch (e) {
-        setFetchError(e.message);
+        setFetchError(`${key}: ${e.message}`);
       }
     }
 
     useEffect(() => {
-      load();
-      const dataTimer = setInterval(load, REFRESH_INTERVAL_MS);
+      loadManifest();
       const reloadTimer = setInterval(() => window.location.reload(), RELOAD_INTERVAL_MS);
-      return () => { clearInterval(dataTimer); clearInterval(reloadTimer); };
+      return () => clearInterval(reloadTimer);
     }, []);
 
-    // Cumulative accrual + a goal-pace line that only climbs on weekdays
-    // (flat across weekends), since the shop only bills weekdays.
+    useEffect(() => {
+      if (!selectedMonth) return;
+      loadMonth(selectedMonth);
+      const dataTimer = setInterval(() => loadMonth(selectedMonth), REFRESH_INTERVAL_MS);
+      return () => clearInterval(dataTimer);
+    }, [selectedMonth]);
+
+    // Reset to "month" view and current-ish week whenever the month changes
+    useEffect(() => {
+      setViewMode("month");
+      setWeekIndex(null);
+    }, [selectedMonth]);
+
+    const weeks = useMemo(() => {
+      if (!monthData) return [];
+      return chunkIntoWeeks(weekdaysInMonthList(monthData.month));
+    }, [monthData]);
+
+    // Default week index: the chunk containing currentDate (current month) or the last chunk (closed months)
+    const effectiveWeekIndex = useMemo(() => {
+      if (weekIndex !== null) return weekIndex;
+      if (!monthData || weeks.length === 0) return 0;
+      const idx = weeks.findIndex((wk) => wk.includes(monthData.currentDate));
+      return idx >= 0 ? idx : weeks.length - 1;
+    }, [weekIndex, weeks, monthData]);
+
+    // Builds a chart series for an arbitrary set of weekday dates, filling
+    // in zero-accrual days so bars still appear, with cumulative/goalPace
+    // computed fresh from the start of that range.
     const chartData = useMemo(() => {
-      if (!data) return [];
+      if (!monthData) return [];
+      const dailyGoalPace = monthData.monthGoal / monthData.weekdaysInMonth;
+      const accrualByDate = new Map(monthData.dailyAccrual.map((d) => [d.date, d.accrued]));
+
+      const dates = viewMode === "week" ? (weeks[effectiveWeekIndex] || []) : weekdaysInMonthList(monthData.month);
+
       let running = 0;
       let weekdayCount = 0;
-      const dailyGoalPace = data.monthGoal / data.weekdaysInMonth;
-      return data.dailyAccrual.map((d) => {
-        running += d.accrued;
-        if (isWeekdayISO(d.date)) weekdayCount += 1;
-        return { date: d.date, accrued: d.accrued, cumulative: running, goalPace: Math.round(dailyGoalPace * weekdayCount) };
-      });
-    }, [data]);
+      // For week view, cumulative should still reflect the month-to-date
+      // total carried in from before the visible window, not reset to 0 —
+      // otherwise a mid-month week looks like accrual started at zero.
+      if (viewMode === "week" && dates.length > 0) {
+        const firstVisible = dates[0];
+        for (const d of monthData.dailyAccrual) {
+          if (d.date < firstVisible) running += d.accrued;
+        }
+        const priorWeekdays = weekdaysInMonthList(monthData.month).filter((d) => d < firstVisible);
+        weekdayCount = priorWeekdays.length;
+      }
 
-    if (!data) {
+      return dates.map((date) => {
+        const accrued = accrualByDate.get(date) || 0;
+        running += accrued;
+        if (isWeekdayISO(date)) weekdayCount += 1;
+        return { date, accrued, cumulative: running, goalPace: Math.round(dailyGoalPace * weekdayCount) };
+      });
+    }, [monthData, viewMode, effectiveWeekIndex, weeks]);
+
+    if (!manifest || !monthData) {
       return h("div", { style: { background: colors.bg, minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", color: colors.muted, fontFamily: FONT_MONO } },
         fetchError ? `Error loading data: ${fetchError}` : "Loading WIP data…"
       );
     }
 
-    const mtdTotal = data.dailyAccrual.reduce((s, d) => s + d.accrued, 0);
-    const dailyGoalPace = data.monthGoal / data.weekdaysInMonth;
-    const expectedByToday = dailyGoalPace * data.weekdaysElapsed;
+    const mtdTotal = monthData.dailyAccrual.reduce((s, d) => s + d.accrued, 0);
+    const dailyGoalPace = monthData.monthGoal / monthData.weekdaysInMonth;
+    const expectedByToday = dailyGoalPace * monthData.weekdaysElapsed;
     const paceDelta = mtdTotal - expectedByToday;
     const onPace = paceDelta >= 0;
-    const projectedTotal = data.weekdaysElapsed > 0 ? (mtdTotal / data.weekdaysElapsed) * data.weekdaysInMonth : 0;
-    const weekdaysRemaining = data.weekdaysRemaining;
+    const projectedTotal = monthData.weekdaysElapsed > 0 ? (mtdTotal / monthData.weekdaysElapsed) * monthData.weekdaysInMonth : 0;
+
+    const monthIdx = manifest.months.indexOf(selectedMonth);
+    const canPrevMonth = monthIdx > 0;
+    const canNextMonth = monthIdx >= 0 && monthIdx < manifest.months.length - 1;
+
+    const canPrevWeek = effectiveWeekIndex > 0;
+    const canNextWeek = effectiveWeekIndex < weeks.length - 1;
 
     return h("div", { style: { background: colors.bg, minHeight: "100vh", padding: "28px 24px 60px", fontFamily: FONT_BODY, color: colors.hi } },
 
@@ -189,24 +305,57 @@
         h("div", null,
           h("div", { style: { fontFamily: FONT_DISPLAY, fontWeight: 700, fontSize: 22, letterSpacing: "-0.01em" } }, "WIP Accrual — Month to Goal"),
           h("div", { style: { fontFamily: FONT_MONO, fontSize: 11.5, color: colors.faint, marginTop: 3 } },
-            `SOURCE: CONNECTWISE — BILLABLE TIME ENTRIES · ${fmtMD(data.currentDate)} · weekday ${data.weekdaysElapsed} of ${data.weekdaysInMonth}` +
+            `SOURCE: CONNECTWISE — BILLABLE TIME ENTRIES` +
             (lastFetched ? ` · refreshed ${lastFetched.toLocaleTimeString()}` : "")
           )
         ),
-        data.flagged && data.flagged.length > 0 && h("div", {
+        monthData.flagged && monthData.flagged.length > 0 && h("div", {
           style: { display: "flex", alignItems: "center", gap: 6, padding: "5px 10px", borderRadius: 6, background: "#2A1414", border: `1px solid ${colors.behind}`, fontFamily: FONT_MONO, fontSize: 10.5, color: colors.behind }
-        }, `${data.flagged.length} entries need rate review`)
+        }, `${monthData.flagged.length} entries need rate review`)
+      ),
+
+      // Month navigator
+      h("div", { style: { display: "flex", alignItems: "center", gap: 10, marginBottom: 18 } },
+        h(NavArrow, { direction: "prev", disabled: !canPrevMonth, onClick: () => canPrevMonth && setSelectedMonth(manifest.months[monthIdx - 1]) }),
+        h("div", { style: { fontFamily: FONT_DISPLAY, fontSize: 15, fontWeight: 600, minWidth: 160, textAlign: "center" } }, fmtMonthLabel(monthData.month)),
+        h(NavArrow, { direction: "next", disabled: !canNextMonth, onClick: () => canNextMonth && setSelectedMonth(manifest.months[monthIdx + 1]) }),
+        !monthData.isCurrentMonth && h("span", { style: { fontFamily: FONT_MONO, fontSize: 10.5, color: colors.faint, marginLeft: 6 } }, "(closed month)")
       ),
 
       h("div", { className: "grid-4", style: { marginBottom: 22 } },
-        h(StatTile, { label: "MTD Accrued", value: fmtCurrency(mtdTotal), sub: `of ${fmtCurrency(data.monthGoal)} goal`, accent: colors.finance, glyph: "●" }),
+        h(StatTile, { label: "MTD Accrued", value: fmtCurrency(mtdTotal), sub: `of ${fmtCurrency(monthData.monthGoal)} goal`, accent: colors.finance, glyph: "●" }),
         h(StatTile, { label: "Pace vs Goal", value: `${onPace ? "+" : ""}${fmtCurrency(paceDelta)}`, sub: onPace ? "ahead of pace" : "behind pace", trendUp: onPace, accent: onPace ? colors.finance : colors.behind, glyph: "◆" }),
-        h(StatTile, { label: "Projected Month-End", value: fmtCurrency(projectedTotal), sub: projectedTotal >= data.monthGoal ? "on track to hit goal" : "on track to miss goal", accent: colors.goalLine, glyph: "■" }),
-        h(StatTile, { label: "Weekdays Remaining", value: weekdaysRemaining, sub: `${fmtCurrency((data.monthGoal - mtdTotal) / Math.max(weekdaysRemaining, 1))}/day needed`, accent: colors.bar, glyph: "▲" })
+        h(StatTile, { label: monthData.isCurrentMonth ? "Projected Month-End" : "Final Total", value: fmtCurrency(monthData.isCurrentMonth ? projectedTotal : mtdTotal), sub: (monthData.isCurrentMonth ? projectedTotal : mtdTotal) >= monthData.monthGoal ? "hit goal" : "missed goal", accent: colors.goalLine, glyph: "■" }),
+        h(StatTile, { label: "Weekdays Remaining", value: monthData.weekdaysRemaining, sub: monthData.weekdaysRemaining > 0 ? `${fmtCurrency((monthData.monthGoal - mtdTotal) / monthData.weekdaysRemaining)}/day needed` : "month closed", accent: colors.bar, glyph: "▲" })
       ),
 
       h(Panel, { style: { marginBottom: 22 } },
-        h(SectionLabel, { accent: colors.finance }, "Cumulative accrual vs. goal pace"),
+        h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14, flexWrap: "wrap", gap: 10 } },
+          h(SectionLabel, { accent: colors.finance }, "Cumulative accrual vs. goal pace"),
+          h("div", { style: { display: "flex", alignItems: "center", gap: 10 } },
+            h("div", { style: { display: "flex", border: `1px solid ${colors.hairline}`, borderRadius: 6, overflow: "hidden" } },
+              h("button", {
+                className: "toggle-btn",
+                onClick: () => setViewMode("month"),
+                style: { padding: "5px 12px", fontFamily: FONT_MONO, fontSize: 11, border: "none", background: viewMode === "month" ? colors.hi : "transparent", color: viewMode === "month" ? colors.bg : colors.muted }
+              }, "MONTH"),
+              h("button", {
+                className: "toggle-btn",
+                onClick: () => setViewMode("week"),
+                style: { padding: "5px 12px", fontFamily: FONT_MONO, fontSize: 11, border: "none", background: viewMode === "week" ? colors.hi : "transparent", color: viewMode === "week" ? colors.bg : colors.muted }
+              }, "WEEK")
+            ),
+            viewMode === "week" && h("div", { style: { display: "flex", alignItems: "center", gap: 8 } },
+              h(NavArrow, { direction: "prev", disabled: !canPrevWeek, onClick: () => canPrevWeek && setWeekIndex(effectiveWeekIndex - 1) }),
+              h("span", { style: { fontFamily: FONT_MONO, fontSize: 11, color: colors.muted, minWidth: 90, textAlign: "center" } },
+                weeks[effectiveWeekIndex] && weeks[effectiveWeekIndex].length
+                  ? `${fmtMD(weeks[effectiveWeekIndex][0])}–${fmtMD(weeks[effectiveWeekIndex][weeks[effectiveWeekIndex].length - 1])}`
+                  : ""
+              ),
+              h(NavArrow, { direction: "next", disabled: !canNextWeek, onClick: () => canNextWeek && setWeekIndex(effectiveWeekIndex + 1) })
+            )
+          )
+        ),
         h(AccrualChart, { data: chartData }),
         h("div", { style: { display: "flex", gap: 18, marginTop: 8, fontSize: 12, color: colors.muted } },
           h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 14, height: 2, background: colors.finance } }), "cumulative accrued"),
@@ -222,7 +371,7 @@
             h("div", { key: i, style: { fontFamily: FONT_MONO, fontSize: 10.5, color: colors.faint, textTransform: "uppercase", letterSpacing: "0.08em" } }, label)
           )
         ),
-        data.clientBreakdown.slice().sort((a, b) => b.mtd - a.mtd).map((c, i) =>
+        monthData.clientBreakdown.slice().sort((a, b) => b.mtd - a.mtd).map((c, i) =>
           h("div", { key: i, className: "row-hover", style: { display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 8, padding: "10px 4px", alignItems: "center", borderRadius: 6, fontSize: 14 } },
             h("div", { style: { color: colors.hi } }, c.client),
             h("div", { style: { fontFamily: FONT_MONO, color: colors.muted } }, fmtCurrency(c.mtd)),
