@@ -55,6 +55,17 @@
     return "$" + Math.abs(Math.round(n || 0)).toLocaleString("en-US");
   }
 
+  // "2026-08-03" -> "8/3"
+  function fmtMD(isoDateStr) {
+    const [, m, d] = isoDateStr.split("-");
+    return `${Number(m)}/${Number(d)}`;
+  }
+
+  function isWeekdayISO(isoDateStr) {
+    const day = new Date(isoDateStr + "T00:00:00Z").getUTCDay();
+    return day !== 0 && day !== 6;
+  }
+
   function SectionLabel({ children, accent }) {
     return h("div", { style: { display: "flex", alignItems: "center", gap: 10, marginBottom: 14 } },
       h("div", { style: { width: 6, height: 6, borderRadius: 2, background: accent } }),
@@ -115,7 +126,7 @@
       h("path", { d: goalPath, fill: "none", stroke: colors.goalLine, strokeWidth: "1.5", strokeDasharray: "4 4" }),
       h("path", { d: cumulativePath, fill: "none", stroke: colors.finance, strokeWidth: "2.5" }),
       data.map((d, i) => h("circle", { key: "dot" + i, cx: xAt(i), cy: yAt(d.cumulative), r: "3.5", fill: colors.finance })),
-      data.map((d, i) => h("text", { key: "lbl" + i, x: xAt(i), y: H - 6, textAnchor: "middle", fontFamily: FONT_MONO, fontSize: "10", fill: colors.faint }, d.day))
+      data.map((d, i) => h("text", { key: "lbl" + i, x: xAt(i), y: H - 6, textAnchor: "middle", fontFamily: FONT_MONO, fontSize: "10", fill: colors.faint }, fmtMD(d.date)))
     );
   }
 
@@ -144,13 +155,17 @@
       return () => { clearInterval(dataTimer); clearInterval(reloadTimer); };
     }, []);
 
+    // Cumulative accrual + a goal-pace line that only climbs on weekdays
+    // (flat across weekends), since the shop only bills weekdays.
     const chartData = useMemo(() => {
       if (!data) return [];
       let running = 0;
-      const dailyGoalPace = data.monthGoal / data.daysInMonth;
+      let weekdayCount = 0;
+      const dailyGoalPace = data.monthGoal / data.weekdaysInMonth;
       return data.dailyAccrual.map((d) => {
         running += d.accrued;
-        return { day: `D${d.day}`, accrued: d.accrued, cumulative: running, goalPace: Math.round(dailyGoalPace * d.day) };
+        if (isWeekdayISO(d.date)) weekdayCount += 1;
+        return { date: d.date, accrued: d.accrued, cumulative: running, goalPace: Math.round(dailyGoalPace * weekdayCount) };
       });
     }, [data]);
 
@@ -161,12 +176,12 @@
     }
 
     const mtdTotal = data.dailyAccrual.reduce((s, d) => s + d.accrued, 0);
-    const dailyGoalPace = data.monthGoal / data.daysInMonth;
-    const expectedByToday = dailyGoalPace * data.currentDay;
+    const dailyGoalPace = data.monthGoal / data.weekdaysInMonth;
+    const expectedByToday = dailyGoalPace * data.weekdaysElapsed;
     const paceDelta = mtdTotal - expectedByToday;
     const onPace = paceDelta >= 0;
-    const projectedTotal = (mtdTotal / data.currentDay) * data.daysInMonth;
-    const daysRemaining = data.daysInMonth - data.currentDay;
+    const projectedTotal = data.weekdaysElapsed > 0 ? (mtdTotal / data.weekdaysElapsed) * data.weekdaysInMonth : 0;
+    const weekdaysRemaining = data.weekdaysRemaining;
 
     return h("div", { style: { background: colors.bg, minHeight: "100vh", padding: "28px 24px 60px", fontFamily: FONT_BODY, color: colors.hi } },
 
@@ -174,7 +189,7 @@
         h("div", null,
           h("div", { style: { fontFamily: FONT_DISPLAY, fontWeight: 700, fontSize: 22, letterSpacing: "-0.01em" } }, "WIP Accrual — Month to Goal"),
           h("div", { style: { fontFamily: FONT_MONO, fontSize: 11.5, color: colors.faint, marginTop: 3 } },
-            `SOURCE: CONNECTWISE — BILLABLE TIME ENTRIES · day ${data.currentDay} of ${data.daysInMonth}` +
+            `SOURCE: CONNECTWISE — BILLABLE TIME ENTRIES · ${fmtMD(data.currentDate)} · weekday ${data.weekdaysElapsed} of ${data.weekdaysInMonth}` +
             (lastFetched ? ` · refreshed ${lastFetched.toLocaleTimeString()}` : "")
           )
         ),
@@ -187,7 +202,7 @@
         h(StatTile, { label: "MTD Accrued", value: fmtCurrency(mtdTotal), sub: `of ${fmtCurrency(data.monthGoal)} goal`, accent: colors.finance, glyph: "●" }),
         h(StatTile, { label: "Pace vs Goal", value: `${onPace ? "+" : ""}${fmtCurrency(paceDelta)}`, sub: onPace ? "ahead of pace" : "behind pace", trendUp: onPace, accent: onPace ? colors.finance : colors.behind, glyph: "◆" }),
         h(StatTile, { label: "Projected Month-End", value: fmtCurrency(projectedTotal), sub: projectedTotal >= data.monthGoal ? "on track to hit goal" : "on track to miss goal", accent: colors.goalLine, glyph: "■" }),
-        h(StatTile, { label: "Days Remaining", value: daysRemaining, sub: `${fmtCurrency((data.monthGoal - mtdTotal) / Math.max(daysRemaining, 1))}/day needed`, accent: colors.bar, glyph: "▲" })
+        h(StatTile, { label: "Weekdays Remaining", value: weekdaysRemaining, sub: `${fmtCurrency((data.monthGoal - mtdTotal) / Math.max(weekdaysRemaining, 1))}/day needed`, accent: colors.bar, glyph: "▲" })
       ),
 
       h(Panel, { style: { marginBottom: 22 } },
@@ -195,7 +210,7 @@
         h(AccrualChart, { data: chartData }),
         h("div", { style: { display: "flex", gap: 18, marginTop: 8, fontSize: 12, color: colors.muted } },
           h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 14, height: 2, background: colors.finance } }), "cumulative accrued"),
-          h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 14, height: 2, borderTop: `2px dashed ${colors.goalLine}` } }), "goal pace"),
+          h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 14, height: 2, borderTop: `2px dashed ${colors.goalLine}` } }), "goal pace (weekdays only)"),
           h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 8, height: 8, background: colors.bar, opacity: 0.55 } }), "daily")
         )
       ),
