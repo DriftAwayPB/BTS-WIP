@@ -195,6 +195,7 @@ async function main() {
     dailyAccrual,
     clientBreakdown,
     flagged,
+    _debugSampleEntry: entries[0] || null, // TEMPORARY — remove once rate field is confirmed
   };
 
   const outPath = path.join(__dirname, "wip-data.json");
