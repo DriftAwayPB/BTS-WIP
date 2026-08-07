@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07T14:44:40.229Z",
+  "generatedAt": "2026-08-07T14:56:53.609Z",
   "month": "2026-06",
   "isCurrentMonth": false,
   "monthGoal": 21000,
@@ -10,91 +10,91 @@
   "dailyAccrual": [
     {
       "date": "2026-06-01",
-      "accrued": 1518
+      "accrued": 1072
     },
     {
       "date": "2026-06-02",
-      "accrued": 1281
+      "accrued": 504
     },
     {
       "date": "2026-06-03",
-      "accrued": 857
+      "accrued": 654
     },
     {
       "date": "2026-06-04",
-      "accrued": 843
+      "accrued": 616
     },
     {
       "date": "2026-06-05",
-      "accrued": 1145
+      "accrued": 724
     },
     {
       "date": "2026-06-08",
-      "accrued": 982
+      "accrued": 831
     },
     {
       "date": "2026-06-09",
-      "accrued": 986
+      "accrued": 800
     },
     {
       "date": "2026-06-10",
-      "accrued": 466
+      "accrued": 238
     },
     {
       "date": "2026-06-11",
-      "accrued": 897
+      "accrued": 793
     },
     {
       "date": "2026-06-12",
-      "accrued": 809
+      "accrued": 576
     },
     {
       "date": "2026-06-15",
-      "accrued": 1806
+      "accrued": 1361
     },
     {
       "date": "2026-06-16",
-      "accrued": 804
+      "accrued": 346
     },
     {
       "date": "2026-06-17",
-      "accrued": 539
+      "accrued": 336
     },
     {
       "date": "2026-06-18",
-      "accrued": 588
+      "accrued": 509
     },
     {
       "date": "2026-06-19",
-      "accrued": 919
+      "accrued": 701
     },
     {
       "date": "2026-06-22",
-      "accrued": 456
+      "accrued": 431
     },
     {
       "date": "2026-06-23",
-      "accrued": 1046
+      "accrued": 863
     },
     {
       "date": "2026-06-24",
-      "accrued": 966
+      "accrued": 788
     },
     {
       "date": "2026-06-25",
-      "accrued": 923
+      "accrued": 844
     },
     {
       "date": "2026-06-26",
-      "accrued": 981
+      "accrued": 822
     },
     {
       "date": "2026-06-29",
-      "accrued": 1037
+      "accrued": 789
     },
     {
       "date": "2026-06-30",
-      "accrued": 1298
+      "accrued": 1090
     }
   ],
   "clientBreakdown": [
@@ -107,16 +107,6 @@
       "client": "McLeod Enterprises",
       "mtd": 3293,
       "pctOfGoal": 15.7
-    },
-    {
-      "client": "TerraRoc",
-      "mtd": 2995,
-      "pctOfGoal": 14.3
-    },
-    {
-      "client": "Baird Drywall & Acoustic",
-      "mtd": 2262,
-      "pctOfGoal": 10.8
     },
     {
       "client": "Blink Optometry",
@@ -144,14 +134,14 @@
       "pctOfGoal": 4
     },
     {
-      "client": "Appalachian Bookkeeping",
-      "mtd": 693,
-      "pctOfGoal": 3.3
-    },
-    {
       "client": "Williams Law Firm",
       "mtd": 548,
       "pctOfGoal": 2.6
+    },
+    {
+      "client": "Baird Drywall & Acoustic",
+      "mtd": 491,
+      "pctOfGoal": 2.3
     },
     {
       "client": "Premier Rollertainment",

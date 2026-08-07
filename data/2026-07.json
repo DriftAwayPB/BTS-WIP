@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07T14:44:39.108Z",
+  "generatedAt": "2026-08-07T14:56:52.927Z",
   "month": "2026-07",
   "isCurrentMonth": false,
   "monthGoal": 21000,
@@ -10,35 +10,35 @@
   "dailyAccrual": [
     {
       "date": "2026-07-01",
-      "accrued": 1065
+      "accrued": 788
     },
     {
       "date": "2026-07-02",
-      "accrued": 945
+      "accrued": 866
     },
     {
       "date": "2026-07-03",
-      "accrued": 1392
+      "accrued": 778
     },
     {
       "date": "2026-07-06",
-      "accrued": 1047
+      "accrued": 800
     },
     {
       "date": "2026-07-07",
-      "accrued": 1044
+      "accrued": 638
     },
     {
       "date": "2026-07-08",
-      "accrued": 1178
+      "accrued": 455
     },
     {
       "date": "2026-07-09",
-      "accrued": 1098
+      "accrued": 574
     },
     {
       "date": "2026-07-10",
-      "accrued": 937
+      "accrued": 680
     },
     {
       "date": "2026-07-13",
@@ -46,19 +46,19 @@
     },
     {
       "date": "2026-07-14",
-      "accrued": 780
+      "accrued": 671
     },
     {
       "date": "2026-07-15",
-      "accrued": 646
+      "accrued": 594
     },
     {
       "date": "2026-07-16",
-      "accrued": 976
+      "accrued": 896
     },
     {
       "date": "2026-07-17",
-      "accrued": 952
+      "accrued": 734
     },
     {
       "date": "2026-07-20",
@@ -66,19 +66,19 @@
     },
     {
       "date": "2026-07-21",
-      "accrued": 1145
+      "accrued": 1036
     },
     {
       "date": "2026-07-22",
-      "accrued": 758
+      "accrued": 703
     },
     {
       "date": "2026-07-23",
-      "accrued": 757
+      "accrued": 703
     },
     {
       "date": "2026-07-24",
-      "accrued": 747
+      "accrued": 638
     },
     {
       "date": "2026-07-26",
@@ -86,23 +86,23 @@
     },
     {
       "date": "2026-07-27",
-      "accrued": 981
+      "accrued": 971
     },
     {
       "date": "2026-07-28",
-      "accrued": 1142
+      "accrued": 1108
     },
     {
       "date": "2026-07-29",
-      "accrued": 1400
+      "accrued": 1187
     },
     {
       "date": "2026-07-30",
-      "accrued": 1120
+      "accrued": 1066
     },
     {
       "date": "2026-07-31",
-      "accrued": 1042
+      "accrued": 799
     }
   ],
   "clientBreakdown": [
@@ -122,19 +122,9 @@
       "pctOfGoal": 17.5
     },
     {
-      "client": "Baird Drywall & Acoustic",
-      "mtd": 2153,
-      "pctOfGoal": 10.3
-    },
-    {
       "client": "Blink Optometry",
       "mtd": 1742,
       "pctOfGoal": 8.3
-    },
-    {
-      "client": "TerraRoc",
-      "mtd": 1728,
-      "pctOfGoal": 8.2
     },
     {
       "client": "Elite Home Rentals",
@@ -147,14 +137,14 @@
       "pctOfGoal": 6.3
     },
     {
-      "client": "Appalachian Bookkeeping",
-      "mtd": 916,
-      "pctOfGoal": 4.4
-    },
-    {
       "client": "Williams Law Firm",
       "mtd": 839,
       "pctOfGoal": 4
+    },
+    {
+      "client": "Baird Drywall & Acoustic",
+      "mtd": 327,
+      "pctOfGoal": 1.6
     },
     {
       "client": "SWVA Settlement & Title",

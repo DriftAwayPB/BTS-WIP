@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07T14:44:37.963Z",
+  "generatedAt": "2026-08-07T14:56:52.142Z",
   "month": "2026-08",
   "isCurrentMonth": true,
   "monthGoal": 21000,
@@ -14,15 +14,15 @@
     },
     {
       "date": "2026-08-04",
-      "accrued": 595
+      "accrued": 476
     },
     {
       "date": "2026-08-05",
-      "accrued": 839
+      "accrued": 735
     },
     {
       "date": "2026-08-06",
-      "accrued": 643
+      "accrued": 515
     },
     {
       "date": "2026-08-07",
@@ -46,11 +46,6 @@
       "pctOfGoal": 1.2
     },
     {
-      "client": "Baird Drywall & Acoustic",
-      "mtd": 218,
-      "pctOfGoal": 1
-    },
-    {
       "client": "Elite Home Rentals",
       "mtd": 200,
       "pctOfGoal": 1
@@ -69,11 +64,6 @@
       "client": "Blink Optometry",
       "mtd": 161,
       "pctOfGoal": 0.8
-    },
-    {
-      "client": "Appalachian Bookkeeping",
-      "mtd": 134,
-      "pctOfGoal": 0.6
     },
     {
       "client": "Scott & Bond",
