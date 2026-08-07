@@ -13,6 +13,9 @@
   body { background: #0B1120; }
   .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
   @media (max-width: 900px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+  .chart-row { display: grid; grid-template-columns: 1.7fr 1fr; gap: 14px; align-items: stretch; }
+  @media (max-width: 900px) { .chart-row { grid-template-columns: 1fr; } }
+  .side-metrics { display: flex; flex-direction: column; gap: 14px; }
   .row-hover:hover { background: #16203570 !important; }
   .nav-btn { cursor: pointer; user-select: none; }
   .nav-btn:hover { opacity: 0.7; }
@@ -343,6 +346,14 @@
     const onPace = paceDelta >= 0;
     const projectedTotal = monthData.weekdaysElapsed > 0 ? (mtdTotal / monthData.weekdaysElapsed) * monthData.weekdaysInMonth : 0;
 
+    const totalBilledHours = monthData.totalBilledHours || 0;
+    const avgHourlyRate = totalBilledHours > 0 ? mtdTotal / totalBilledHours : 0;
+    const todayEntry = monthData.dailyAccrual.find((d) => d.date === monthData.currentDate);
+    const todayAccrued = todayEntry ? todayEntry.accrued : 0;
+    const todayGoal = dailyGoalPace;
+    const todayDelta = todayAccrued - todayGoal;
+    const weekdaysAheadBehind = dailyGoalPace > 0 ? paceDelta / dailyGoalPace : 0;
+
     const monthIdx = manifest.months.indexOf(selectedMonth);
     const canPrevMonth = monthIdx > 0;
     const canNextMonth = monthIdx >= 0 && monthIdx < manifest.months.length - 1;
@@ -393,38 +404,65 @@
         h(StatTile, { label: "Weekdays Remaining", value: monthData.weekdaysRemaining, sub: monthData.weekdaysRemaining > 0 ? `${fmtCurrency((monthData.monthGoal - mtdTotal) / monthData.weekdaysRemaining)}/day needed` : "month closed", accent: colors.bar, glyph: "▲" })
       ),
 
-      h(Panel, { style: { marginBottom: 22 } },
-        h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14, flexWrap: "wrap", gap: 10 } },
-          h(SectionLabel, { accent: colors.finance }, "Cumulative accrual vs. goal pace"),
-          h("div", { style: { display: "flex", alignItems: "center", gap: 10 } },
-            h("div", { style: { display: "flex", border: `1px solid ${colors.hairline}`, borderRadius: 6, overflow: "hidden" } },
-              h("button", {
-                className: "toggle-btn",
-                onClick: () => setViewMode("month"),
-                style: { padding: "5px 12px", fontFamily: FONT_MONO, fontSize: 11, border: "none", background: viewMode === "month" ? colors.hi : "transparent", color: viewMode === "month" ? colors.bg : colors.muted }
-              }, "MONTH"),
-              h("button", {
-                className: "toggle-btn",
-                onClick: () => setViewMode("week"),
-                style: { padding: "5px 12px", fontFamily: FONT_MONO, fontSize: 11, border: "none", background: viewMode === "week" ? colors.hi : "transparent", color: viewMode === "week" ? colors.bg : colors.muted }
-              }, "WEEK")
-            ),
-            viewMode === "week" && h("div", { style: { display: "flex", alignItems: "center", gap: 8 } },
-              h(NavArrow, { direction: "prev", disabled: !canPrevWeek, onClick: () => canPrevWeek && setWeekIndex(effectiveWeekIndex - 1) }),
-              h("span", { style: { fontFamily: FONT_MONO, fontSize: 11, color: colors.muted, minWidth: 90, textAlign: "center" } },
-                weeks[effectiveWeekIndex] && weeks[effectiveWeekIndex].length
-                  ? `${fmtMD(weeks[effectiveWeekIndex][0])}–${fmtMD(weeks[effectiveWeekIndex][weeks[effectiveWeekIndex].length - 1])}`
-                  : ""
+      h("div", { className: "chart-row", style: { marginBottom: 22 } },
+        h(Panel, null,
+          h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14, flexWrap: "wrap", gap: 10 } },
+            h(SectionLabel, { accent: colors.finance }, "Cumulative accrual vs. goal pace"),
+            h("div", { style: { display: "flex", alignItems: "center", gap: 10 } },
+              h("div", { style: { display: "flex", border: `1px solid ${colors.hairline}`, borderRadius: 6, overflow: "hidden" } },
+                h("button", {
+                  className: "toggle-btn",
+                  onClick: () => setViewMode("month"),
+                  style: { padding: "5px 12px", fontFamily: FONT_MONO, fontSize: 11, border: "none", background: viewMode === "month" ? colors.hi : "transparent", color: viewMode === "month" ? colors.bg : colors.muted }
+                }, "MONTH"),
+                h("button", {
+                  className: "toggle-btn",
+                  onClick: () => setViewMode("week"),
+                  style: { padding: "5px 12px", fontFamily: FONT_MONO, fontSize: 11, border: "none", background: viewMode === "week" ? colors.hi : "transparent", color: viewMode === "week" ? colors.bg : colors.muted }
+                }, "WEEK")
               ),
-              h(NavArrow, { direction: "next", disabled: !canNextWeek, onClick: () => canNextWeek && setWeekIndex(effectiveWeekIndex + 1) })
+              viewMode === "week" && h("div", { style: { display: "flex", alignItems: "center", gap: 8 } },
+                h(NavArrow, { direction: "prev", disabled: !canPrevWeek, onClick: () => canPrevWeek && setWeekIndex(effectiveWeekIndex - 1) }),
+                h("span", { style: { fontFamily: FONT_MONO, fontSize: 11, color: colors.muted, minWidth: 90, textAlign: "center" } },
+                  weeks[effectiveWeekIndex] && weeks[effectiveWeekIndex].length
+                    ? `${fmtMD(weeks[effectiveWeekIndex][0])}–${fmtMD(weeks[effectiveWeekIndex][weeks[effectiveWeekIndex].length - 1])}`
+                    : ""
+                ),
+                h(NavArrow, { direction: "next", disabled: !canNextWeek, onClick: () => canNextWeek && setWeekIndex(effectiveWeekIndex + 1) })
+              )
             )
+          ),
+          h(AccrualChart, { data: chartData }),
+          h("div", { style: { display: "flex", gap: 18, marginTop: 8, fontSize: 12, color: colors.muted } },
+            h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 14, height: 2, background: colors.finance } }), "cumulative accrued"),
+            h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 14, height: 2, borderTop: `2px dashed ${colors.goalLine}` } }), "goal pace (weekdays only)"),
+            h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 8, height: 8, background: colors.bar, opacity: 0.55 } }), "daily")
           )
         ),
-        h(AccrualChart, { data: chartData }),
-        h("div", { style: { display: "flex", gap: 18, marginTop: 8, fontSize: 12, color: colors.muted } },
-          h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 14, height: 2, background: colors.finance } }), "cumulative accrued"),
-          h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 14, height: 2, borderTop: `2px dashed ${colors.goalLine}` } }), "goal pace (weekdays only)"),
-          h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 8, height: 8, background: colors.bar, opacity: 0.55 } }), "daily")
+        h("div", { className: "side-metrics" },
+          h(StatTile, {
+            label: "Avg Hourly Rate",
+            value: totalBilledHours > 0 ? `${fmtCurrency(avgHourlyRate)}/hr` : "—",
+            sub: `${totalBilledHours.toFixed(2)} billed hrs this month`,
+            accent: colors.finance,
+            glyph: "$"
+          }),
+          h(StatTile, {
+            label: monthData.isCurrentMonth ? "Today vs Daily Goal" : "Last Day vs Daily Goal",
+            value: fmtCurrency(todayAccrued),
+            sub: `of ${fmtCurrency(todayGoal)} daily goal (${todayDelta >= 0 ? "+" : ""}${fmtCurrency(todayDelta)})`,
+            trendUp: todayDelta >= 0,
+            accent: todayDelta >= 0 ? colors.finance : colors.behind,
+            glyph: "→"
+          }),
+          h(StatTile, {
+            label: "Weekdays Ahead/Behind",
+            value: `${weekdaysAheadBehind >= 0 ? "+" : ""}${weekdaysAheadBehind.toFixed(1)}`,
+            sub: weekdaysAheadBehind >= 0 ? "weekdays ahead of pace" : "weekdays behind pace",
+            trendUp: weekdaysAheadBehind >= 0,
+            accent: weekdaysAheadBehind >= 0 ? colors.finance : colors.behind,
+            glyph: "◆"
+          })
         )
       ),
 
