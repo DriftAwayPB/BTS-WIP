@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07T15:26:08.349Z",
+  "generatedAt": "2026-08-07T15:41:40.918Z",
   "month": "2026-06",
   "isCurrentMonth": false,
   "monthGoal": 21000,
@@ -105,112 +105,112 @@
       "daily": [
         {
           "date": "2026-06-01",
-          "hours": 0.15,
+          "hours": 5.5,
           "billed": 238
         },
         {
           "date": "2026-06-02",
-          "hours": 0.69,
+          "hours": 2.75,
           "billed": 119
         },
         {
           "date": "2026-06-03",
-          "hours": 0.19,
+          "hours": 5.75,
           "billed": 249
         },
         {
           "date": "2026-06-04",
-          "hours": 0.65,
+          "hours": 3,
           "billed": 130
         },
         {
           "date": "2026-06-05",
-          "hours": 4.23,
+          "hours": 5.75,
           "billed": 292
         },
         {
           "date": "2026-06-08",
-          "hours": 0.04,
+          "hours": 1.25,
           "billed": 54
         },
         {
           "date": "2026-06-09",
-          "hours": 0.24,
+          "hours": 2,
           "billed": 87
         },
         {
           "date": "2026-06-10",
-          "hours": 0.61,
+          "hours": 1.5,
           "billed": 65
         },
         {
           "date": "2026-06-11",
-          "hours": 0.81,
+          "hours": 4.25,
           "billed": 184
         },
         {
           "date": "2026-06-12",
-          "hours": 0.22,
+          "hours": 2.25,
           "billed": 97
         },
         {
           "date": "2026-06-15",
-          "hours": 10.22,
+          "hours": 12.25,
           "billed": 607
         },
         {
           "date": "2026-06-16",
-          "hours": 0.52,
+          "hours": 1.5,
           "billed": 87
         },
         {
           "date": "2026-06-17",
-          "hours": 4.15,
+          "hours": 6.5,
           "billed": 282
         },
         {
           "date": "2026-06-18",
-          "hours": 3.8,
+          "hours": 5.5,
           "billed": 238
         },
         {
           "date": "2026-06-19",
-          "hours": 0.08,
+          "hours": 3.25,
           "billed": 141
         },
         {
           "date": "2026-06-22",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-23",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-24",
-          "hours": 0.44,
+          "hours": 1.5,
           "billed": 65
         },
         {
           "date": "2026-06-25",
-          "hours": 0.73,
+          "hours": 7.25,
           "billed": 314
         },
         {
           "date": "2026-06-26",
-          "hours": 0.82,
+          "hours": 7,
           "billed": 303
         },
         {
           "date": "2026-06-29",
-          "hours": 4.19,
+          "hours": 7,
           "billed": 368
         },
         {
           "date": "2026-06-30",
-          "hours": 2.73,
+          "hours": 5.25,
           "billed": 271
         }
       ]
@@ -222,62 +222,62 @@
       "daily": [
         {
           "date": "2026-06-01",
-          "hours": 4.65,
+          "hours": 6.75,
           "billed": 292
         },
         {
           "date": "2026-06-02",
-          "hours": 3.73,
+          "hours": 6.25,
           "billed": 271
         },
         {
           "date": "2026-06-03",
-          "hours": 1.58,
+          "hours": 3.75,
           "billed": 184
         },
         {
           "date": "2026-06-04",
-          "hours": 1.39,
+          "hours": 4,
           "billed": 173
         },
         {
           "date": "2026-06-05",
-          "hours": 0.28,
+          "hours": 2.75,
           "billed": 119
         },
         {
           "date": "2026-06-08",
-          "hours": 0.78,
+          "hours": 2.25,
           "billed": 97
         },
         {
           "date": "2026-06-09",
-          "hours": 0.05,
+          "hours": 1.25,
           "billed": 54
         },
         {
           "date": "2026-06-10",
-          "hours": 1.59,
+          "hours": 2.5,
           "billed": 108
         },
         {
           "date": "2026-06-11",
-          "hours": 1.97,
+          "hours": 3.5,
           "billed": 152
         },
         {
           "date": "2026-06-12",
-          "hours": 0.2,
+          "hours": 2.5,
           "billed": 108
         },
         {
           "date": "2026-06-15",
-          "hours": 0.48,
+          "hours": 2.75,
           "billed": 119
         },
         {
           "date": "2026-06-16",
-          "hours": 1.15,
+          "hours": 2.5,
           "billed": 108
         },
         {
@@ -287,47 +287,47 @@
         },
         {
           "date": "2026-06-18",
-          "hours": 1.54,
+          "hours": 2.75,
           "billed": 119
         },
         {
           "date": "2026-06-19",
-          "hours": 0.04,
+          "hours": 2,
           "billed": 87
         },
         {
           "date": "2026-06-22",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-23",
-          "hours": 0.9,
+          "hours": 4,
           "billed": 173
         },
         {
           "date": "2026-06-24",
-          "hours": 1.59,
+          "hours": 2.75,
           "billed": 119
         },
         {
           "date": "2026-06-25",
-          "hours": 4.33,
+          "hours": 7.25,
           "billed": 314
         },
         {
           "date": "2026-06-26",
-          "hours": 4.26,
+          "hours": 7,
           "billed": 303
         },
         {
           "date": "2026-06-29",
-          "hours": 0.31,
+          "hours": 2.5,
           "billed": 108
         },
         {
           "date": "2026-06-30",
-          "hours": 0.94,
+          "hours": 5,
           "billed": 217
         }
       ]
@@ -339,12 +339,12 @@
       "daily": [
         {
           "date": "2026-06-01",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 129
         },
         {
           "date": "2026-06-05",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 129
         },
         {
@@ -354,32 +354,32 @@
         },
         {
           "date": "2026-06-12",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 129
         },
         {
           "date": "2026-06-15",
-          "hours": 0.02,
+          "hours": 0.25,
           "billed": 32
         },
         {
           "date": "2026-06-19",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 129
         },
         {
           "date": "2026-06-23",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 258
         },
         {
           "date": "2026-06-26",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 129
         },
         {
           "date": "2026-06-30",
-          "hours": 0.07,
+          "hours": 2,
           "billed": 258
         }
       ]
@@ -401,22 +401,22 @@
         },
         {
           "date": "2026-06-09",
-          "hours": 2.12,
+          "hours": 2.5,
           "billed": 323
         },
         {
           "date": "2026-06-10",
-          "hours": 0.03,
+          "hours": 0.25,
           "billed": 32
         },
         {
           "date": "2026-06-11",
-          "hours": 0.07,
+          "hours": 0.25,
           "billed": 32
         },
         {
           "date": "2026-06-15",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 129
         },
         {
@@ -436,7 +436,7 @@
         },
         {
           "date": "2026-06-29",
-          "hours": 0.15,
+          "hours": 1.25,
           "billed": 161
         },
         {
@@ -453,97 +453,97 @@
       "daily": [
         {
           "date": "2026-06-01",
-          "hours": 0.04,
+          "hours": 2,
           "billed": 87
         },
         {
           "date": "2026-06-02",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-04",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-05",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-08",
-          "hours": 4.02,
+          "hours": 5,
           "billed": 217
         },
         {
           "date": "2026-06-09",
-          "hours": 0.15,
+          "hours": 1.75,
           "billed": 76
         },
         {
           "date": "2026-06-11",
-          "hours": 0.04,
+          "hours": 1.25,
           "billed": 54
         },
         {
           "date": "2026-06-12",
-          "hours": 0.04,
+          "hours": 1.25,
           "billed": 54
         },
         {
           "date": "2026-06-15",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-16",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-18",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-19",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-22",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-23",
-          "hours": 0.04,
+          "hours": 2,
           "billed": 87
         },
         {
           "date": "2026-06-24",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-25",
-          "hours": 0.5,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-26",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-29",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-30",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         }
       ]
@@ -555,92 +555,92 @@
       "daily": [
         {
           "date": "2026-06-01",
-          "hours": 4.02,
+          "hours": 5,
           "billed": 217
         },
         {
           "date": "2026-06-02",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-04",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-05",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-08",
-          "hours": 0.05,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-09",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-11",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-12",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-15",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-16",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-18",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-19",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-22",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-23",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-25",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-26",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-29",
-          "hours": 0.08,
+          "hours": 1,
           "billed": 43
         },
         {
           "date": "2026-06-30",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 43
         }
       ]
@@ -652,37 +652,37 @@
       "daily": [
         {
           "date": "2026-06-03",
-          "hours": 0.17,
+          "hours": 0.5,
           "billed": 65
         },
         {
           "date": "2026-06-04",
-          "hours": 0.1,
+          "hours": 0.25,
           "billed": 32
         },
         {
           "date": "2026-06-05",
-          "hours": 0.23,
+          "hours": 0.25,
           "billed": 32
         },
         {
           "date": "2026-06-08",
-          "hours": 0.05,
+          "hours": 0.25,
           "billed": 32
         },
         {
           "date": "2026-06-10",
-          "hours": 0.13,
+          "hours": 0.25,
           "billed": 32
         },
         {
           "date": "2026-06-11",
-          "hours": 2.08,
+          "hours": 2.25,
           "billed": 290
         },
         {
           "date": "2026-06-12",
-          "hours": 0.02,
+          "hours": 0.25,
           "billed": 32
         },
         {
@@ -692,12 +692,12 @@
         },
         {
           "date": "2026-06-17",
-          "hours": 0.03,
+          "hours": 0.25,
           "billed": 32
         },
         {
           "date": "2026-06-29",
-          "hours": 0.05,
+          "hours": 0.25,
           "billed": 32
         }
       ]
@@ -709,12 +709,12 @@
       "daily": [
         {
           "date": "2026-06-03",
-          "hours": 0.05,
+          "hours": 0.25,
           "billed": 32
         },
         {
           "date": "2026-06-15",
-          "hours": 0.05,
+          "hours": 1,
           "billed": 129
         },
         {
@@ -724,7 +724,7 @@
         },
         {
           "date": "2026-06-24",
-          "hours": 0.72,
+          "hours": 1,
           "billed": 129
         }
       ]
@@ -736,17 +736,17 @@
       "daily": [
         {
           "date": "2026-06-01",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 109
         },
         {
           "date": "2026-06-02",
-          "hours": 0.04,
+          "hours": 1.25,
           "billed": 27
         },
         {
           "date": "2026-06-03",
-          "hours": 0.65,
+          "hours": 0.75,
           "billed": 27
         },
         {
@@ -756,17 +756,17 @@
         },
         {
           "date": "2026-06-05",
-          "hours": 0.12,
+          "hours": 2.5,
           "billed": 0
         },
         {
           "date": "2026-06-08",
-          "hours": 0.02,
+          "hours": 0.25,
           "billed": 0
         },
         {
           "date": "2026-06-09",
-          "hours": 2.04,
+          "hours": 3.25,
           "billed": 218
         },
         {
@@ -781,12 +781,12 @@
         },
         {
           "date": "2026-06-12",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 0
         },
         {
           "date": "2026-06-16",
-          "hours": 0.15,
+          "hours": 1.25,
           "billed": 0
         },
         {
@@ -801,17 +801,17 @@
         },
         {
           "date": "2026-06-19",
-          "hours": 0.04,
+          "hours": 2,
           "billed": 0
         },
         {
           "date": "2026-06-23",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 0
         },
         {
           "date": "2026-06-24",
-          "hours": 0.52,
+          "hours": 1.5,
           "billed": 109
         },
         {
@@ -821,12 +821,12 @@
         },
         {
           "date": "2026-06-26",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 0
         },
         {
           "date": "2026-06-30",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 0
         }
       ]
@@ -838,7 +838,7 @@
       "daily": [
         {
           "date": "2026-06-03",
-          "hours": 0.44,
+          "hours": 0.75,
           "billed": 97
         },
         {
@@ -848,7 +848,7 @@
         },
         {
           "date": "2026-06-29",
-          "hours": 0.03,
+          "hours": 0.25,
           "billed": 32
         }
       ]
@@ -860,12 +860,12 @@
       "daily": [
         {
           "date": "2026-06-16",
-          "hours": 0.21,
+          "hours": 0.5,
           "billed": 65
         },
         {
           "date": "2026-06-18",
-          "hours": 0.04,
+          "hours": 0.5,
           "billed": 65
         },
         {
@@ -887,7 +887,7 @@
         },
         {
           "date": "2026-06-19",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 129
         }
       ]
@@ -899,12 +899,12 @@
       "daily": [
         {
           "date": "2026-06-11",
-          "hours": 0.07,
+          "hours": 0.25,
           "billed": 37
         },
         {
           "date": "2026-06-12",
-          "hours": 0.28,
+          "hours": 0.75,
           "billed": 112
         }
       ]
@@ -916,7 +916,7 @@
       "daily": [
         {
           "date": "2026-06-19",
-          "hours": 0.02,
+          "hours": 1,
           "billed": 129
         }
       ]
@@ -928,7 +928,7 @@
       "daily": [
         {
           "date": "2026-06-23",
-          "hours": 0.04,
+          "hours": 0.5,
           "billed": 65
         }
       ]
@@ -940,77 +940,77 @@
       "daily": [
         {
           "date": "2026-06-01",
-          "hours": 2.18,
+          "hours": 4.5,
           "billed": 0
         },
         {
           "date": "2026-06-02",
-          "hours": 4.51,
+          "hours": 6.25,
           "billed": 0
         },
         {
           "date": "2026-06-03",
-          "hours": 1.05,
+          "hours": 1.5,
           "billed": 0
         },
         {
           "date": "2026-06-04",
-          "hours": 1.52,
+          "hours": 1.75,
           "billed": 0
         },
         {
           "date": "2026-06-05",
-          "hours": 1.03,
+          "hours": 1.25,
           "billed": 0
         },
         {
           "date": "2026-06-09",
-          "hours": 0.18,
+          "hours": 0.25,
           "billed": 0
         },
         {
           "date": "2026-06-10",
-          "hours": 0.7,
+          "hours": 1.5,
           "billed": 0
         },
         {
           "date": "2026-06-11",
-          "hours": 0.05,
+          "hours": 0.5,
           "billed": 0
         },
         {
           "date": "2026-06-12",
-          "hours": 0.24,
+          "hours": 1.25,
           "billed": 0
         },
         {
           "date": "2026-06-15",
-          "hours": 4.07,
+          "hours": 4.5,
           "billed": 0
         },
         {
           "date": "2026-06-16",
-          "hours": 1.63,
+          "hours": 2.75,
           "billed": 0
         },
         {
           "date": "2026-06-17",
-          "hours": 0.37,
+          "hours": 0.75,
           "billed": 0
         },
         {
           "date": "2026-06-22",
-          "hours": 0.05,
+          "hours": 0.25,
           "billed": 0
         },
         {
           "date": "2026-06-23",
-          "hours": 0.07,
+          "hours": 0.75,
           "billed": 0
         },
         {
           "date": "2026-06-30",
-          "hours": 0.58,
+          "hours": 0.75,
           "billed": 0
         }
       ]
@@ -1022,52 +1022,52 @@
       "daily": [
         {
           "date": "2026-06-05",
-          "hours": 0.02,
+          "hours": 0.25,
           "billed": 0
         },
         {
           "date": "2026-06-08",
-          "hours": 0.11,
+          "hours": 1.25,
           "billed": 0
         },
         {
           "date": "2026-06-09",
-          "hours": 0.02,
+          "hours": 0.25,
           "billed": 0
         },
         {
           "date": "2026-06-10",
-          "hours": 0.18,
+          "hours": 0.25,
           "billed": 0
         },
         {
           "date": "2026-06-18",
-          "hours": 0.05,
+          "hours": 0.25,
           "billed": 0
         },
         {
           "date": "2026-06-24",
-          "hours": 0.69,
+          "hours": 1.25,
           "billed": 0
         },
         {
           "date": "2026-06-25",
-          "hours": 0.02,
+          "hours": 0.25,
           "billed": 0
         },
         {
           "date": "2026-06-26",
-          "hours": 0.12,
+          "hours": 0.5,
           "billed": 0
         },
         {
           "date": "2026-06-29",
-          "hours": 0.58,
+          "hours": 2.5,
           "billed": 0
         },
         {
           "date": "2026-06-30",
-          "hours": 0.18,
+          "hours": 0.25,
           "billed": 0
         }
       ]
