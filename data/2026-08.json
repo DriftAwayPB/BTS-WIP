@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07T14:25:24.432Z",
+  "generatedAt": "2026-08-07T14:32:46.713Z",
   "month": "2026-08",
   "isCurrentMonth": true,
   "monthGoal": 21000,
@@ -26,7 +26,7 @@
     },
     {
       "date": "2026-08-07",
-      "accrued": 13
+      "accrued": 142
     }
   ],
   "clientBreakdown": [
@@ -61,6 +61,11 @@
       "pctOfGoal": 0.8
     },
     {
+      "client": "Blink Optometry",
+      "mtd": 161,
+      "pctOfGoal": 0.8
+    },
+    {
       "client": "Elite Home Rentals",
       "mtd": 150,
       "pctOfGoal": 0.7
@@ -77,11 +82,6 @@
     },
     {
       "client": "Utilis Consulting",
-      "mtd": 32,
-      "pctOfGoal": 0.2
-    },
-    {
-      "client": "Blink Optometry",
       "mtd": 32,
       "pctOfGoal": 0.2
     }
