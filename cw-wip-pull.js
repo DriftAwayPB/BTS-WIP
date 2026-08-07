@@ -1,9 +1,12 @@
 /**
  * cw-wip-pull.js
  *
- * Pulls billable time entries from ConnectWise PSA for the current month,
- * aggregates them by client and by day, and writes wip-data.json in the
- * shape the WIP dashboard expects.
+ * Pulls billable time entries from ConnectWise PSA for the current month
+ * plus the previous HISTORY_MONTHS_BACK months, aggregates each month by
+ * client and by day, and writes one file per month into data/, plus a
+ * data/manifest.json listing which months are available. The dashboard
+ * reads the manifest to populate month navigation, then fetches whichever
+ * month's file it needs.
  *
  * Run manually:   node cw-wip-pull.js
  * Run in CI:       see .github/workflows/pull-wip.yml
@@ -14,7 +17,16 @@
  *   CW_PUBLIC_KEY   API member public key
  *   CW_PRIVATE_KEY  API member private key
  *   CW_CLIENT_ID    Client ID (GUID) registered at developer.connectwise.com
- *   MONTH_GOAL      this month's revenue goal, in dollars, e.g. 135000
+ *   MONTH_GOAL      current month's revenue goal, in dollars, e.g. 24000 —
+ *                   used as the goal for every month unless overridden below
+ *
+ * Optional:
+ *   MONTH_GOALS     JSON object mapping "YYYY-MM" -> goal, to set different
+ *                   goals for past months, e.g. {"2026-07": 21000}. Any
+ *                   month not listed falls back to MONTH_GOAL.
+ *   HISTORY_MONTHS_BACK  how many months of history to keep regenerating
+ *                        besides the current month (default 2, so 3 months
+ *                        total end up in data/).
  */
 
 const fs = require("fs");
@@ -27,6 +39,8 @@ const {
   CW_PRIVATE_KEY,
   CW_CLIENT_ID,
   MONTH_GOAL,
+  MONTH_GOALS,
+  HISTORY_MONTHS_BACK,
 } = process.env;
 
 function assertEnv() {
@@ -44,15 +58,18 @@ function authHeader() {
   return `Basic ${encoded}`;
 }
 
-function monthBounds(date = new Date()) {
-  const start = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), 1));
-  const end = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth() + 1, 0, 23, 59, 59));
-  const daysInMonth = end.getUTCDate();
-  return { start, end, daysInMonth, today: date };
-}
-
 function isoDate(d) {
   return d.toISOString().split("T")[0];
+}
+
+function monthKey(d) {
+  return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}`;
+}
+
+function monthBounds(refDate) {
+  const start = new Date(Date.UTC(refDate.getUTCFullYear(), refDate.getUTCMonth(), 1));
+  const end = new Date(Date.UTC(refDate.getUTCFullYear(), refDate.getUTCMonth() + 1, 0, 23, 59, 59));
+  return { start, end };
 }
 
 function isWeekday(date) {
@@ -62,9 +79,7 @@ function isWeekday(date) {
 
 /**
  * Counts weekdays (Mon–Fri) between two dates, inclusive on both ends.
- * Used instead of raw calendar days since this shop only bills weekdays —
- * a flat monthGoal / daysInMonth pace would understate the daily target
- * needed on the days that actually count.
+ * Used instead of raw calendar days since this shop only bills weekdays.
  */
 function countWeekdays(start, end) {
   let count = 0;
@@ -116,24 +131,9 @@ async function fetchBillableTimeEntries(start, end) {
 }
 
 /**
- * Rate resolution — corrected based on this instance's actual API response:
- *
- * ConnectWise time entries here don't expose a flat `hourlyRate` field.
- * Instead, each entry carries `extendedInvoiceAmount` — the exact dollar
- * value ConnectWise has already computed for that entry, with the full
- * rate hierarchy (including your Company-specific Work Role overrides)
- * baked in. That means we don't need to multiply hours × rate ourselves
- * at all — we just sum extendedInvoiceAmount directly. This is more
- * accurate than a manual hours×rate calc would have been anyway, since
- * it reflects whatever rounding/minimum-increment rules ConnectWise
- * applies internally.
- *
- * `hourlyCost` on an entry is the member's internal cost rate — not a
- * billing figure, don't use it here (useful later for a margin view).
- *
- * Entries can still legitimately have $0 extendedInvoiceAmount despite
- * being marked Billable — e.g. entries not yet marked invoiceReady, or
- * a config gap. Those get flagged rather than silently counted as $0.
+ * Rate resolution: this instance's time entries carry `extendedInvoiceAmount`
+ * — the exact resolved dollar value per entry, rate hierarchy already baked
+ * in. We sum that directly rather than hours × rate.
  */
 function entryValue(entry) {
   return Number(entry.extendedInvoiceAmount) || 0;
@@ -142,7 +142,7 @@ function entryValue(entry) {
 function aggregate(entries, monthGoal) {
   const byDate = new Map(); // "YYYY-MM-DD" -> total
   const byClient = new Map(); // client name -> total
-  const flagged = []; // entries with hours but no invoice amount
+  const flagged = [];
 
   for (const entry of entries) {
     const hours = entry.actualHours ?? entry.hoursBilled ?? 0;
@@ -159,7 +159,7 @@ function aggregate(entries, monthGoal) {
         hours,
         invoiceReady: entry.invoiceReady,
       });
-      continue; // excluded from totals — see flagged[] in output
+      continue;
     }
     if (!value) continue;
 
@@ -185,45 +185,98 @@ function aggregate(entries, monthGoal) {
   return { dailyAccrual, clientBreakdown, flagged };
 }
 
-async function main() {
-  assertEnv();
+function parseMonthGoals() {
+  if (!MONTH_GOALS) return {};
+  try {
+    return JSON.parse(MONTH_GOALS);
+  } catch (e) {
+    console.warn(`⚠ MONTH_GOALS secret isn't valid JSON, ignoring it: ${e.message}`);
+    return {};
+  }
+}
 
-  const { start, end, today } = monthBounds();
-  console.log(`Pulling billable time entries ${isoDate(start)} → ${isoDate(today)}`);
+/**
+ * Pulls and writes one month's file. `today` is only meaningful for the
+ * current month (drives weekdaysElapsed/weekdaysRemaining); past months are
+ * treated as fully closed — elapsed = total, remaining = 0.
+ */
+async function pullMonth({ refDate, today, monthGoalsMap, isCurrentMonth }) {
+  const key = monthKey(refDate);
+  const { start, end } = monthBounds(refDate);
+  const goal = Number(monthGoalsMap[key] ?? MONTH_GOAL);
+
+  console.log(`Pulling ${key}: ${isoDate(start)} → ${isoDate(isCurrentMonth ? today : end)}`);
 
   const entries = await fetchBillableTimeEntries(start, end);
-  console.log(`Fetched ${entries.length} billable time entries`);
+  console.log(`  fetched ${entries.length} billable time entries`);
 
-  const monthGoal = Number(MONTH_GOAL);
-  const { dailyAccrual, clientBreakdown, flagged } = aggregate(entries, monthGoal);
+  const { dailyAccrual, clientBreakdown, flagged } = aggregate(entries, goal);
 
   if (flagged.length) {
-    console.warn(
-      `⚠ ${flagged.length} billable time entries had hours but no resolved hourly rate — ` +
-      `excluded from totals. These are worth checking in ConnectWise (missing rate config for ` +
-      `that work role, or a Fixed Fee entry). See "flagged" in wip-data.json for details.`
-    );
+    console.warn(`  ⚠ ${flagged.length} entries had hours but no invoice amount — excluded, see flagged[]`);
   }
 
   const weekdaysInMonth = countWeekdays(start, end);
-  const weekdaysElapsed = countWeekdays(start, today);
+  const weekdaysElapsed = isCurrentMonth ? countWeekdays(start, today) : weekdaysInMonth;
   const weekdaysRemaining = weekdaysInMonth - weekdaysElapsed;
 
   const output = {
     generatedAt: new Date().toISOString(),
-    monthGoal,
+    month: key,
+    isCurrentMonth,
+    monthGoal: goal,
     weekdaysInMonth,
     weekdaysElapsed,
     weekdaysRemaining,
-    currentDate: isoDate(today),
+    currentDate: isoDate(isCurrentMonth ? today : end),
     dailyAccrual,
     clientBreakdown,
     flagged,
   };
 
-  const outPath = path.join(__dirname, "wip-data.json");
-  fs.writeFileSync(outPath, JSON.stringify(output, null, 2));
-  console.log(`Wrote ${outPath}`);
+  const dataDir = path.join(__dirname, "data");
+  fs.mkdirSync(dataDir, { recursive: true });
+  fs.writeFileSync(path.join(dataDir, `${key}.json`), JSON.stringify(output, null, 2));
+  console.log(`  wrote data/${key}.json`);
+
+  return key;
+}
+
+async function main() {
+  assertEnv();
+
+  const today = new Date();
+  const monthGoalsMap = parseMonthGoals();
+  const historyBack = Number(HISTORY_MONTHS_BACK ?? 2);
+
+  const writtenKeys = [];
+  for (let i = 0; i <= historyBack; i++) {
+    const refDate = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth() - i, 1));
+    const key = await pullMonth({
+      refDate,
+      today,
+      monthGoalsMap,
+      isCurrentMonth: i === 0,
+    });
+    writtenKeys.push(key);
+  }
+
+  // Manifest also picks up any older month files already sitting in data/
+  // from previous runs, so history keeps accumulating beyond historyBack.
+  const dataDir = path.join(__dirname, "data");
+  const existing = fs.readdirSync(dataDir)
+    .filter((f) => /^\d{4}-\d{2}\.json$/.test(f))
+    .map((f) => f.replace(".json", ""));
+
+  const allMonths = Array.from(new Set([...existing, ...writtenKeys])).sort();
+
+  const manifest = {
+    generatedAt: new Date().toISOString(),
+    months: allMonths,
+    latest: writtenKeys[0], // current month
+  };
+  fs.writeFileSync(path.join(dataDir, "manifest.json"), JSON.stringify(manifest, null, 2));
+  console.log(`Wrote data/manifest.json (${allMonths.length} months: ${allMonths.join(", ")})`);
 }
 
 main().catch((err) => {
