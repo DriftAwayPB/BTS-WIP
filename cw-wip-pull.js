@@ -55,6 +55,28 @@ function isoDate(d) {
   return d.toISOString().split("T")[0];
 }
 
+function isWeekday(date) {
+  const day = date.getUTCDay(); // 0 = Sunday, 6 = Saturday
+  return day !== 0 && day !== 6;
+}
+
+/**
+ * Counts weekdays (Mon–Fri) between two dates, inclusive on both ends.
+ * Used instead of raw calendar days since this shop only bills weekdays —
+ * a flat monthGoal / daysInMonth pace would understate the daily target
+ * needed on the days that actually count.
+ */
+function countWeekdays(start, end) {
+  let count = 0;
+  const cursor = new Date(Date.UTC(start.getUTCFullYear(), start.getUTCMonth(), start.getUTCDate()));
+  const endDay = new Date(Date.UTC(end.getUTCFullYear(), end.getUTCMonth(), end.getUTCDate()));
+  while (cursor <= endDay) {
+    if (isWeekday(cursor)) count += 1;
+    cursor.setUTCDate(cursor.getUTCDate() + 1);
+  }
+  return count;
+}
+
 /**
  * Fetches all billable time entries between start and end, handling pagination.
  * CW returns up to 1000 records per page.
@@ -117,8 +139,8 @@ function entryValue(entry) {
   return Number(entry.extendedInvoiceAmount) || 0;
 }
 
-function aggregate(entries, monthGoal, daysInMonth) {
-  const byDay = new Map(); // "1".."31" -> total
+function aggregate(entries, monthGoal) {
+  const byDate = new Map(); // "YYYY-MM-DD" -> total
   const byClient = new Map(); // client name -> total
   const flagged = []; // entries with hours but no invoice amount
 
@@ -141,16 +163,16 @@ function aggregate(entries, monthGoal, daysInMonth) {
     }
     if (!value) continue;
 
-    const day = new Date(entry.timeStart).getUTCDate();
-    byDay.set(day, (byDay.get(day) || 0) + value);
+    const dateKey = isoDate(new Date(entry.timeStart));
+    byDate.set(dateKey, (byDate.get(dateKey) || 0) + value);
 
     const client = entry.company?.name || "Unknown";
     byClient.set(client, (byClient.get(client) || 0) + value);
   }
 
-  const dailyAccrual = Array.from(byDay.entries())
-    .sort((a, b) => a[0] - b[0])
-    .map(([day, accrued]) => ({ day, accrued: Math.round(accrued) }));
+  const dailyAccrual = Array.from(byDate.entries())
+    .sort((a, b) => (a[0] < b[0] ? -1 : 1))
+    .map(([date, accrued]) => ({ date, accrued: Math.round(accrued) }));
 
   const clientBreakdown = Array.from(byClient.entries())
     .map(([client, mtd]) => ({
@@ -166,14 +188,14 @@ function aggregate(entries, monthGoal, daysInMonth) {
 async function main() {
   assertEnv();
 
-  const { start, end, daysInMonth, today } = monthBounds();
+  const { start, end, today } = monthBounds();
   console.log(`Pulling billable time entries ${isoDate(start)} → ${isoDate(today)}`);
 
   const entries = await fetchBillableTimeEntries(start, end);
   console.log(`Fetched ${entries.length} billable time entries`);
 
   const monthGoal = Number(MONTH_GOAL);
-  const { dailyAccrual, clientBreakdown, flagged } = aggregate(entries, monthGoal, daysInMonth);
+  const { dailyAccrual, clientBreakdown, flagged } = aggregate(entries, monthGoal);
 
   if (flagged.length) {
     console.warn(
@@ -183,11 +205,17 @@ async function main() {
     );
   }
 
+  const weekdaysInMonth = countWeekdays(start, end);
+  const weekdaysElapsed = countWeekdays(start, today);
+  const weekdaysRemaining = weekdaysInMonth - weekdaysElapsed;
+
   const output = {
     generatedAt: new Date().toISOString(),
     monthGoal,
-    daysInMonth,
-    currentDay: today.getUTCDate(),
+    weekdaysInMonth,
+    weekdaysElapsed,
+    weekdaysRemaining,
+    currentDate: isoDate(today),
     dailyAccrual,
     clientBreakdown,
     flagged,
