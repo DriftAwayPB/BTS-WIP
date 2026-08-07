@@ -1,23 +1,25 @@
 {
-  "generatedAt": "2026-08-07T10:38:32.424Z",
+  "generatedAt": "2026-08-07T11:32:45.620Z",
   "monthGoal": 24000,
-  "daysInMonth": 31,
-  "currentDay": 7,
+  "weekdaysInMonth": 21,
+  "weekdaysElapsed": 5,
+  "weekdaysRemaining": 16,
+  "currentDate": "2026-08-07",
   "dailyAccrual": [
     {
-      "day": 3,
+      "date": "2026-08-03",
       "accrued": 551
     },
     {
-      "day": 4,
+      "date": "2026-08-04",
       "accrued": 595
     },
     {
-      "day": 5,
+      "date": "2026-08-05",
       "accrued": 839
     },
     {
-      "day": 6,
+      "date": "2026-08-06",
       "accrued": 643
     }
   ],
