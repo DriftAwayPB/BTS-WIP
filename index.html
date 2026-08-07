@@ -46,6 +46,11 @@
   const REFRESH_INTERVAL_MS = 5 * 60 * 1000;
   const RELOAD_INTERVAL_MS = 60 * 60 * 1000;
 
+  const TRIGGER_URL = "https://wip-dashbaord-trigger.pbanks.workers.dev/";
+  const TRIGGER_KEY = "B@nksT3ch"; // <-- fill this in with the TRIGGER_SECRET you set in Cloudflare
+  const FAST_POLL_MS = 10 * 1000;
+  const FAST_POLL_MAX_TRIES = 12; // ~2 minutes of fast polling after a manual trigger
+
   // ---------- Design tokens ----------
   const FONT_DISPLAY = "'Space Grotesk', 'Inter', sans-serif";
   const FONT_BODY = "'Inter', sans-serif";
@@ -189,6 +194,8 @@
     const [fetchError, setFetchError] = useState(null);
     const [viewMode, setViewMode] = useState("month"); // "month" | "week"
     const [weekIndex, setWeekIndex] = useState(null);
+    const [updateState, setUpdateState] = useState("idle"); // "idle" | "triggering" | "waiting" | "error"
+    const [updateMessage, setUpdateMessage] = useState("");
 
     async function loadManifest() {
       try {
@@ -210,8 +217,50 @@
         setMonthData(json);
         setLastFetched(new Date());
         setFetchError(null);
+        return json;
       } catch (e) {
         setFetchError(`${key}: ${e.message}`);
+        return null;
+      }
+    }
+
+    async function handleUpdateClick() {
+      setUpdateState("triggering");
+      setUpdateMessage("Triggering pull…");
+      try {
+        const res = await fetch(TRIGGER_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-Trigger-Key": TRIGGER_KEY },
+        });
+        const body = await res.json().catch(() => ({}));
+        if (!res.ok || !body.ok) {
+          throw new Error(body.error || `HTTP ${res.status}`);
+        }
+
+        setUpdateState("waiting");
+        setUpdateMessage("Pull running — checking for fresh data…");
+
+        const generatedAtBefore = monthData ? monthData.generatedAt : null;
+        let tries = 0;
+        const poll = setInterval(async () => {
+          tries += 1;
+          const fresh = await loadMonth(selectedMonth);
+          const gotNewData = fresh && fresh.generatedAt !== generatedAtBefore;
+          if (gotNewData || tries >= FAST_POLL_MAX_TRIES) {
+            clearInterval(poll);
+            if (gotNewData) {
+              setUpdateState("idle");
+              setUpdateMessage("");
+              loadManifest(); // in case a new month appeared
+            } else {
+              setUpdateState("error");
+              setUpdateMessage("Still processing — check the Actions tab if this takes more than a few minutes.");
+            }
+          }
+        }, FAST_POLL_MS);
+      } catch (e) {
+        setUpdateState("error");
+        setUpdateMessage(`Couldn't trigger update: ${e.message}`);
       }
     }
 
@@ -311,7 +360,20 @@
         ),
         monthData.flagged && monthData.flagged.length > 0 && h("div", {
           style: { display: "flex", alignItems: "center", gap: 6, padding: "5px 10px", borderRadius: 6, background: "#2A1414", border: `1px solid ${colors.behind}`, fontFamily: FONT_MONO, fontSize: 10.5, color: colors.behind }
-        }, `${monthData.flagged.length} entries need rate review`)
+        }, `${monthData.flagged.length} entries need rate review`),
+        h("div", { style: { display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 4 } },
+          h("button", {
+            onClick: handleUpdateClick,
+            disabled: updateState === "triggering" || updateState === "waiting",
+            style: {
+              display: "flex", alignItems: "center", gap: 6, padding: "6px 14px", borderRadius: 6,
+              background: colors.finance, color: colors.bg, border: "none", fontFamily: FONT_MONO,
+              fontSize: 11.5, fontWeight: 600, cursor: (updateState === "triggering" || updateState === "waiting") ? "default" : "pointer",
+              opacity: (updateState === "triggering" || updateState === "waiting") ? 0.6 : 1,
+            }
+          }, updateState === "triggering" ? "Triggering…" : updateState === "waiting" ? "Updating…" : "⟳ Update Now"),
+          updateMessage && h("div", { style: { fontFamily: FONT_MONO, fontSize: 10, color: updateState === "error" ? colors.behind : colors.muted, maxWidth: 220, textAlign: "right" } }, updateMessage)
+        )
       ),
 
       // Month navigator
