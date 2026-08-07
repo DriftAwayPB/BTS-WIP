@@ -27,6 +27,15 @@
  *   HISTORY_MONTHS_BACK  how many months of history to keep regenerating
  *                        besides the current month (default 2, so 3 months
  *                        total end up in data/).
+ *   WORK_TYPE_INCREMENTS  JSON object mapping work type name -> minimum
+ *                        billing increment in hours, e.g.
+ *                        {"Patching": 1, "On Site Regular": 1}. Any work
+ *                        type not listed uses DEFAULT_BILLING_INCREMENT.
+ *                        Entries round UP to the nearest increment (e.g.
+ *                        0.02 actual hours at a 0.25 increment bills 0.25).
+ *   DEFAULT_BILLING_INCREMENT  minimum billing increment in hours for any
+ *                        work type not listed in WORK_TYPE_INCREMENTS
+ *                        (default 0.25).
  */
 
 const fs = require("fs");
@@ -41,6 +50,8 @@ const {
   MONTH_GOAL,
   MONTH_GOALS,
   HISTORY_MONTHS_BACK,
+  WORK_TYPE_INCREMENTS,
+  DEFAULT_BILLING_INCREMENT,
   DEBUG_COMPANY, // TEMPORARY — set to a client name substring to dump sample entries from them
 } = process.env;
 
@@ -156,7 +167,7 @@ function entryValue(entry) {
   return Number(entry.extendedInvoiceAmount) || 0;
 }
 
-function aggregate(entries, monthGoal) {
+function aggregate(entries, monthGoal, incrementsMap) {
   const byDate = new Map(); // "YYYY-MM-DD" -> total billed
   const byClient = new Map(); // client name -> total billed
   const byClientDate = new Map(); // client name -> Map("YYYY-MM-DD" -> { hours, billed })
@@ -187,6 +198,7 @@ function aggregate(entries, monthGoal) {
 
     const dateKey = isoDate(new Date(entry.timeStart));
     const client = entry.company?.name || "Unknown";
+    const billedHours = billedHoursFor(entry, incrementsMap);
 
     byDate.set(dateKey, (byDate.get(dateKey) || 0) + value);
     byClient.set(client, (byClient.get(client) || 0) + value);
@@ -194,7 +206,7 @@ function aggregate(entries, monthGoal) {
     if (!byClientDate.has(client)) byClientDate.set(client, new Map());
     const clientDates = byClientDate.get(client);
     const prior = clientDates.get(dateKey) || { hours: 0, billed: 0 };
-    clientDates.set(dateKey, { hours: prior.hours + hours, billed: prior.billed + value });
+    clientDates.set(dateKey, { hours: prior.hours + billedHours, billed: prior.billed + value });
   }
 
   const dailyAccrual = Array.from(byDate.entries())
@@ -234,12 +246,58 @@ function parseMonthGoals() {
   }
 }
 
+// Known minimum billing increments by work type, per the shop's actual
+// billing rules. WORK_TYPE_INCREMENTS secret can override/extend this.
+const DEFAULT_WORK_TYPE_INCREMENTS = {
+  "Patching": 1,
+  "On Site Regular": 1,
+};
+
+function parseWorkTypeIncrements() {
+  let map = { ...DEFAULT_WORK_TYPE_INCREMENTS };
+  if (WORK_TYPE_INCREMENTS) {
+    try {
+      map = { ...map, ...JSON.parse(WORK_TYPE_INCREMENTS) };
+    } catch (e) {
+      console.warn(`⚠ WORK_TYPE_INCREMENTS secret isn't valid JSON, using defaults only: ${e.message}`);
+    }
+  }
+  return map;
+}
+
+const DEFAULT_INCREMENT = Number(DEFAULT_BILLING_INCREMENT ?? 0.25);
+
+/**
+ * Computes billed-equivalent hours for an entry, per the shop's actual
+ * two-tier billing rule:
+ *   1. Work types with a configured minimum (Patching, On Site Regular =
+ *      1 hour) bill at that minimum for anything at or under it.
+ *   2. Above that minimum, billing rounds UP to the nearest 0.25 hour —
+ *      e.g. 1.3 actual hours on Patching bills as 1.5, not 1.3 and not 2.0.
+ *   3. Work types with no special minimum just use the 0.25 rounding
+ *      throughout (their "minimum" and "increment" are the same value),
+ *      which collapses to the same behavior as before.
+ */
+const SECONDARY_ROUNDING = 0.25; // always the granularity once past the minimum
+
+function billedHoursFor(entry, incrementsMap) {
+  const actual = entry.actualHours ?? entry.hoursBilled ?? 0;
+  if (actual <= 0) return 0;
+  const workTypeName = entry.workType?.name || "";
+  const minimum = incrementsMap[workTypeName] ?? DEFAULT_INCREMENT;
+
+  if (actual <= minimum) return Number(minimum.toFixed(2));
+
+  const units = Math.ceil(actual / SECONDARY_ROUNDING - 1e-9);
+  return Number((units * SECONDARY_ROUNDING).toFixed(2));
+}
+
 /**
  * Pulls and writes one month's file. `today` is only meaningful for the
  * current month (drives weekdaysElapsed/weekdaysRemaining); past months are
  * treated as fully closed — elapsed = total, remaining = 0.
  */
-async function pullMonth({ refDate, today, monthGoalsMap, isCurrentMonth }) {
+async function pullMonth({ refDate, today, monthGoalsMap, isCurrentMonth, incrementsMap }) {
   const key = monthKey(refDate);
   const { start, end } = monthBounds(refDate);
   const goal = Number(monthGoalsMap[key] ?? MONTH_GOAL);
@@ -249,7 +307,7 @@ async function pullMonth({ refDate, today, monthGoalsMap, isCurrentMonth }) {
   const entries = await fetchBillableTimeEntries(start, end);
   console.log(`  fetched ${entries.length} billable time entries`);
 
-  const { dailyAccrual, clientBreakdown, flagged } = aggregate(entries, goal);
+  const { dailyAccrual, clientBreakdown, flagged } = aggregate(entries, goal, incrementsMap);
 
   if (flagged.length) {
     console.warn(`  ⚠ ${flagged.length} entries had hours but no invoice amount — excluded, see flagged[]`);
@@ -307,6 +365,7 @@ async function main() {
 
   const today = new Date();
   const monthGoalsMap = parseMonthGoals();
+  const incrementsMap = parseWorkTypeIncrements();
   const historyBack = Number(HISTORY_MONTHS_BACK ?? 2);
 
   const writtenKeys = [];
@@ -317,6 +376,7 @@ async function main() {
       today,
       monthGoalsMap,
       isCurrentMonth: i === 0,
+      incrementsMap,
     });
     writtenKeys.push(key);
   }
