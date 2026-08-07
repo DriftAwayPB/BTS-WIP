@@ -6,7 +6,6 @@
 <title>WIP Accrual — Banks Technology Services</title>
 <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -31,240 +30,196 @@
   });
 </script>
 
-<script type="text/babel" data-presets="react">
-const { useState, useEffect, useMemo } = React;
+<script>
+(function () {
+  const h = React.createElement;
+  const { useState, useEffect, useMemo } = React;
 
-// ---------- CONFIG ----------
-const DATA_URL = "https://raw.githubusercontent.com/DriftAwayPB/BTS-WIP/refs/heads/main/wip-data.json";
-const REFRESH_INTERVAL_MS = 5 * 60 * 1000;
-const RELOAD_INTERVAL_MS = 60 * 60 * 1000;
+  // ---------- CONFIG ----------
+  const DATA_URL = "https://raw.githubusercontent.com/DriftAwayPB/BTS-WIP/refs/heads/main/wip-data.json";
+  const REFRESH_INTERVAL_MS = 5 * 60 * 1000;
+  const RELOAD_INTERVAL_MS = 60 * 60 * 1000;
 
-// ---------- Design tokens ----------
-const FONT_DISPLAY = "'Space Grotesk', 'Inter', sans-serif";
-const FONT_BODY = "'Inter', sans-serif";
-const FONT_MONO = "'IBM Plex Mono', monospace";
+  // ---------- Design tokens ----------
+  const FONT_DISPLAY = "'Space Grotesk', 'Inter', sans-serif";
+  const FONT_BODY = "'Inter', sans-serif";
+  const FONT_MONO = "'IBM Plex Mono', monospace";
 
-const colors = {
-  bg: "#0B1120", panel: "#121A2B", panelAlt: "#0F1626", hairline: "#1E293B",
-  hi: "#E7ECF5", muted: "#7C8AA5", faint: "#4B5875",
-  finance: "#34D399", behind: "#F87171", goalLine: "#FBBF24", bar: "#60A5FA",
-};
+  const colors = {
+    bg: "#0B1120", panel: "#121A2B", hairline: "#1E293B",
+    hi: "#E7ECF5", muted: "#7C8AA5", faint: "#4B5875",
+    finance: "#34D399", behind: "#F87171", goalLine: "#FBBF24", bar: "#60A5FA",
+  };
 
-function fmtCurrency(n) {
-  return "$" + Math.abs(Math.round(n || 0)).toLocaleString("en-US");
-}
-
-function SectionLabel({ children, accent }) {
-  return (
-    <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
-      <div style={{ width: 6, height: 6, borderRadius: 2, background: accent }} />
-      <span style={{ fontFamily: FONT_MONO, fontSize: 11, letterSpacing: "0.14em", color: colors.muted, textTransform: "uppercase" }}>
-        {children}
-      </span>
-    </div>
-  );
-}
-
-function Panel({ children, style }) {
-  return (
-    <div style={{ background: colors.panel, border: `1px solid ${colors.hairline}`, borderRadius: 10, padding: 18, ...style }}>
-      {children}
-    </div>
-  );
-}
-
-function StatTile({ label, value, sub, accent, glyph, trendUp }) {
-  return (
-    <Panel style={{ display: "flex", flexDirection: "column", gap: 10, minHeight: 108 }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-        <span style={{ fontFamily: FONT_BODY, fontSize: 12.5, color: colors.muted }}>{label}</span>
-        <span style={{ fontSize: 15, color: accent }}>{glyph}</span>
-      </div>
-      <div style={{ fontFamily: FONT_MONO, fontSize: 26, color: colors.hi, fontWeight: 600, lineHeight: 1 }}>{value}</div>
-      {sub && (
-        <div style={{ fontSize: 12, color: colors.muted, fontFamily: FONT_BODY }}>
-          {trendUp === true ? "▲ " : trendUp === false ? "▼ " : ""}{sub}
-        </div>
-      )}
-    </Panel>
-  );
-}
-
-function AccrualChart({ data }) {
-  const W = 900, H = 260, padL = 46, padR = 14, padT = 12, padB = 26;
-  const innerW = W - padL - padR;
-  const innerH = H - padT - padB;
-
-  const maxVal = Math.max(1, ...data.map(d => Math.max(d.cumulative, d.goalPace)));
-  const step = data.length > 1 ? innerW / (data.length - 1) : innerW;
-  const barWidth = Math.min(28, (innerW / data.length) * 0.5);
-
-  const xAt = (i) => padL + i * step;
-  const yAt = (v) => padT + innerH - (v / maxVal) * innerH;
-
-  const cumulativePath = data.map((d, i) => `${i === 0 ? "M" : "L"} ${xAt(i)} ${yAt(d.cumulative)}`).join(" ");
-  const goalPath = data.map((d, i) => `${i === 0 ? "M" : "L"} ${xAt(i)} ${yAt(d.goalPace)}`).join(" ");
-
-  const gridLines = 4;
-  const gridVals = Array.from({ length: gridLines + 1 }, (_, i) => (maxVal / gridLines) * i);
-
-  return (
-    <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "auto", display: "block" }}>
-      {gridVals.map((v, i) => (
-        <g key={i}>
-          <line x1={padL} x2={W - padR} y1={yAt(v)} y2={yAt(v)} stroke={colors.hairline} strokeWidth="1" />
-          <text x={padL - 8} y={yAt(v) + 4} textAnchor="end" fontFamily={FONT_MONO} fontSize="10" fill={colors.faint}>
-            {Math.round(v / 1000)}k
-          </text>
-        </g>
-      ))}
-
-      {data.map((d, i) => (
-        <rect
-          key={i}
-          x={xAt(i) - barWidth / 2}
-          y={yAt(d.accrued)}
-          width={barWidth}
-          height={Math.max(0, yAt(0) - yAt(d.accrued))}
-          fill={colors.bar}
-          opacity="0.55"
-          rx="2"
-        />
-      ))}
-
-      <path d={goalPath} fill="none" stroke={colors.goalLine} strokeWidth="1.5" strokeDasharray="4 4" />
-      <path d={cumulativePath} fill="none" stroke={colors.finance} strokeWidth="2.5" />
-      {data.map((d, i) => (
-        <circle key={i} cx={xAt(i)} cy={yAt(d.cumulative)} r="3.5" fill={colors.finance} />
-      ))}
-
-      {data.map((d, i) => (
-        <text key={i} x={xAt(i)} y={H - 6} textAnchor="middle" fontFamily={FONT_MONO} fontSize="10" fill={colors.faint}>
-          {d.day}
-        </text>
-      ))}
-    </svg>
-  );
-}
-
-function Dashboard() {
-  const [data, setData] = useState(null);
-  const [lastFetched, setLastFetched] = useState(null);
-  const [fetchError, setFetchError] = useState(null);
-
-  async function load() {
-    try {
-      const res = await fetch(`${DATA_URL}?t=${Date.now()}`);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const json = await res.json();
-      setData(json);
-      setLastFetched(new Date());
-      setFetchError(null);
-    } catch (e) {
-      setFetchError(e.message);
-    }
+  function fmtCurrency(n) {
+    return "$" + Math.abs(Math.round(n || 0)).toLocaleString("en-US");
   }
 
-  useEffect(() => {
-    load();
-    const dataTimer = setInterval(load, REFRESH_INTERVAL_MS);
-    const reloadTimer = setInterval(() => window.location.reload(), RELOAD_INTERVAL_MS);
-    return () => { clearInterval(dataTimer); clearInterval(reloadTimer); };
-  }, []);
-
-  const chartData = useMemo(() => {
-    if (!data) return [];
-    let running = 0;
-    const dailyGoalPace = data.monthGoal / data.daysInMonth;
-    return data.dailyAccrual.map((d) => {
-      running += d.accrued;
-      return { day: `D${d.day}`, accrued: d.accrued, cumulative: running, goalPace: Math.round(dailyGoalPace * d.day) };
-    });
-  }, [data]);
-
-  if (!data) {
-    return (
-      <div style={{ background: colors.bg, minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", color: colors.muted, fontFamily: FONT_MONO }}>
-        {fetchError ? `Error loading data: ${fetchError}` : "Loading WIP data…"}
-      </div>
+  function SectionLabel({ children, accent }) {
+    return h("div", { style: { display: "flex", alignItems: "center", gap: 10, marginBottom: 14 } },
+      h("div", { style: { width: 6, height: 6, borderRadius: 2, background: accent } }),
+      h("span", { style: { fontFamily: FONT_MONO, fontSize: 11, letterSpacing: "0.14em", color: colors.muted, textTransform: "uppercase" } }, children)
     );
   }
 
-  const mtdTotal = data.dailyAccrual.reduce((s, d) => s + d.accrued, 0);
-  const dailyGoalPace = data.monthGoal / data.daysInMonth;
-  const expectedByToday = dailyGoalPace * data.currentDay;
-  const paceDelta = mtdTotal - expectedByToday;
-  const onPace = paceDelta >= 0;
-  const projectedTotal = (mtdTotal / data.currentDay) * data.daysInMonth;
-  const daysRemaining = data.daysInMonth - data.currentDay;
+  function Panel({ children, style }) {
+    return h("div", { style: { background: colors.panel, border: `1px solid ${colors.hairline}`, borderRadius: 10, padding: 18, ...style } }, children);
+  }
 
-  return (
-    <div style={{ background: colors.bg, minHeight: "100vh", padding: "28px 24px 60px", fontFamily: FONT_BODY, color: colors.hi }}>
+  function StatTile({ label, value, sub, accent, glyph, trendUp }) {
+    return h(Panel, { style: { display: "flex", flexDirection: "column", gap: 10, minHeight: 108 } },
+      h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start" } },
+        h("span", { style: { fontFamily: FONT_BODY, fontSize: 12.5, color: colors.muted } }, label),
+        h("span", { style: { fontSize: 15, color: accent } }, glyph)
+      ),
+      h("div", { style: { fontFamily: FONT_MONO, fontSize: 26, color: colors.hi, fontWeight: 600, lineHeight: 1 } }, value),
+      sub && h("div", { style: { fontSize: 12, color: colors.muted, fontFamily: FONT_BODY } },
+        (trendUp === true ? "▲ " : trendUp === false ? "▼ " : "") + sub
+      )
+    );
+  }
 
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14, flexWrap: "wrap", gap: 10 }}>
-        <div>
-          <div style={{ fontFamily: FONT_DISPLAY, fontWeight: 700, fontSize: 22, letterSpacing: "-0.01em" }}>
-            WIP Accrual — Month to Goal
-          </div>
-          <div style={{ fontFamily: FONT_MONO, fontSize: 11.5, color: colors.faint, marginTop: 3 }}>
-            SOURCE: CONNECTWISE — BILLABLE TIME ENTRIES · day {data.currentDay} of {data.daysInMonth}
-            {lastFetched ? ` · refreshed ${lastFetched.toLocaleTimeString()}` : ""}
-          </div>
-        </div>
-        {data.flagged && data.flagged.length > 0 && (
-          <div style={{
-            display: "flex", alignItems: "center", gap: 6, padding: "5px 10px", borderRadius: 6,
-            background: "#2A1414", border: `1px solid ${colors.behind}`, fontFamily: FONT_MONO, fontSize: 10.5, color: colors.behind
-          }}>
-            {data.flagged.length} entries need rate review
-          </div>
-        )}
-      </div>
+  function AccrualChart({ data }) {
+    const W = 900, H = 260, padL = 46, padR = 14, padT = 12, padB = 26;
+    const innerW = W - padL - padR;
+    const innerH = H - padT - padB;
 
-      <div className="grid-4" style={{ marginBottom: 22 }}>
-        <StatTile label="MTD Accrued" value={fmtCurrency(mtdTotal)} sub={`of ${fmtCurrency(data.monthGoal)} goal`} accent={colors.finance} glyph="●" />
-        <StatTile
-          label="Pace vs Goal"
-          value={`${onPace ? "+" : ""}${fmtCurrency(paceDelta)}`}
-          sub={onPace ? "ahead of pace" : "behind pace"}
-          trendUp={onPace}
-          accent={onPace ? colors.finance : colors.behind}
-          glyph="◆"
-        />
-        <StatTile label="Projected Month-End" value={fmtCurrency(projectedTotal)} sub={projectedTotal >= data.monthGoal ? "on track to hit goal" : "on track to miss goal"} accent={colors.goalLine} glyph="■" />
-        <StatTile label="Days Remaining" value={daysRemaining} sub={`${fmtCurrency((data.monthGoal - mtdTotal) / Math.max(daysRemaining, 1))}/day needed`} accent={colors.bar} glyph="▲" />
-      </div>
+    const maxVal = Math.max(1, ...data.map(d => Math.max(d.cumulative, d.goalPace)));
+    const step = data.length > 1 ? innerW / (data.length - 1) : innerW;
+    const barWidth = Math.min(28, (innerW / data.length) * 0.5);
 
-      <Panel style={{ marginBottom: 22 }}>
-        <SectionLabel accent={colors.finance}>Cumulative accrual vs. goal pace</SectionLabel>
-        <AccrualChart data={chartData} />
-        <div style={{ display: "flex", gap: 18, marginTop: 8, fontSize: 12, color: colors.muted }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 6 }}><div style={{ width: 14, height: 2, background: colors.finance }} /> cumulative accrued</div>
-          <div style={{ display: "flex", alignItems: "center", gap: 6 }}><div style={{ width: 14, height: 2, borderTop: `2px dashed ${colors.goalLine}` }} /> goal pace</div>
-          <div style={{ display: "flex", alignItems: "center", gap: 6 }}><div style={{ width: 8, height: 8, background: colors.bar, opacity: 0.55 }} /> daily</div>
-        </div>
-      </Panel>
+    const xAt = (i) => padL + i * step;
+    const yAt = (v) => padT + innerH - (v / maxVal) * innerH;
 
-      <SectionLabel accent={colors.bar}>MTD accrual by client</SectionLabel>
-      <Panel>
-        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 8, padding: "0 4px 10px", borderBottom: `1px solid ${colors.hairline}`, marginBottom: 6 }}>
-          {["Client", "MTD Value", "% of Goal"].map((h, i) => (
-            <div key={i} style={{ fontFamily: FONT_MONO, fontSize: 10.5, color: colors.faint, textTransform: "uppercase", letterSpacing: "0.08em" }}>{h}</div>
-          ))}
-        </div>
-        {data.clientBreakdown.slice().sort((a, b) => b.mtd - a.mtd).map((c, i) => (
-          <div key={i} className="row-hover" style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 8, padding: "10px 4px", alignItems: "center", borderRadius: 6, fontSize: 14 }}>
-            <div style={{ color: colors.hi }}>{c.client}</div>
-            <div style={{ fontFamily: FONT_MONO, color: colors.muted }}>{fmtCurrency(c.mtd)}</div>
-            <div style={{ fontFamily: FONT_MONO, color: colors.muted }}>{c.pctOfGoal}%</div>
-          </div>
-        ))}
-      </Panel>
-    </div>
-  );
-}
+    const cumulativePath = data.map((d, i) => `${i === 0 ? "M" : "L"} ${xAt(i)} ${yAt(d.cumulative)}`).join(" ");
+    const goalPath = data.map((d, i) => `${i === 0 ? "M" : "L"} ${xAt(i)} ${yAt(d.goalPace)}`).join(" ");
 
-ReactDOM.createRoot(document.getElementById("root")).render(<Dashboard />);
+    const gridLines = 4;
+    const gridVals = Array.from({ length: gridLines + 1 }, (_, i) => (maxVal / gridLines) * i);
+
+    return h("svg", { viewBox: `0 0 ${W} ${H}`, style: { width: "100%", height: "auto", display: "block" } },
+      gridVals.map((v, i) => h("g", { key: "grid" + i },
+        h("line", { x1: padL, x2: W - padR, y1: yAt(v), y2: yAt(v), stroke: colors.hairline, strokeWidth: "1" }),
+        h("text", { x: padL - 8, y: yAt(v) + 4, textAnchor: "end", fontFamily: FONT_MONO, fontSize: "10", fill: colors.faint }, Math.round(v / 1000) + "k")
+      )),
+      data.map((d, i) => h("rect", {
+        key: "bar" + i,
+        x: xAt(i) - barWidth / 2,
+        y: yAt(d.accrued),
+        width: barWidth,
+        height: Math.max(0, yAt(0) - yAt(d.accrued)),
+        fill: colors.bar,
+        opacity: "0.55",
+        rx: "2",
+      })),
+      h("path", { d: goalPath, fill: "none", stroke: colors.goalLine, strokeWidth: "1.5", strokeDasharray: "4 4" }),
+      h("path", { d: cumulativePath, fill: "none", stroke: colors.finance, strokeWidth: "2.5" }),
+      data.map((d, i) => h("circle", { key: "dot" + i, cx: xAt(i), cy: yAt(d.cumulative), r: "3.5", fill: colors.finance })),
+      data.map((d, i) => h("text", { key: "lbl" + i, x: xAt(i), y: H - 6, textAnchor: "middle", fontFamily: FONT_MONO, fontSize: "10", fill: colors.faint }, d.day))
+    );
+  }
+
+  function Dashboard() {
+    const [data, setData] = useState(null);
+    const [lastFetched, setLastFetched] = useState(null);
+    const [fetchError, setFetchError] = useState(null);
+
+    async function load() {
+      try {
+        const res = await fetch(`${DATA_URL}?t=${Date.now()}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
+        setData(json);
+        setLastFetched(new Date());
+        setFetchError(null);
+      } catch (e) {
+        setFetchError(e.message);
+      }
+    }
+
+    useEffect(() => {
+      load();
+      const dataTimer = setInterval(load, REFRESH_INTERVAL_MS);
+      const reloadTimer = setInterval(() => window.location.reload(), RELOAD_INTERVAL_MS);
+      return () => { clearInterval(dataTimer); clearInterval(reloadTimer); };
+    }, []);
+
+    const chartData = useMemo(() => {
+      if (!data) return [];
+      let running = 0;
+      const dailyGoalPace = data.monthGoal / data.daysInMonth;
+      return data.dailyAccrual.map((d) => {
+        running += d.accrued;
+        return { day: `D${d.day}`, accrued: d.accrued, cumulative: running, goalPace: Math.round(dailyGoalPace * d.day) };
+      });
+    }, [data]);
+
+    if (!data) {
+      return h("div", { style: { background: colors.bg, minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", color: colors.muted, fontFamily: FONT_MONO } },
+        fetchError ? `Error loading data: ${fetchError}` : "Loading WIP data…"
+      );
+    }
+
+    const mtdTotal = data.dailyAccrual.reduce((s, d) => s + d.accrued, 0);
+    const dailyGoalPace = data.monthGoal / data.daysInMonth;
+    const expectedByToday = dailyGoalPace * data.currentDay;
+    const paceDelta = mtdTotal - expectedByToday;
+    const onPace = paceDelta >= 0;
+    const projectedTotal = (mtdTotal / data.currentDay) * data.daysInMonth;
+    const daysRemaining = data.daysInMonth - data.currentDay;
+
+    return h("div", { style: { background: colors.bg, minHeight: "100vh", padding: "28px 24px 60px", fontFamily: FONT_BODY, color: colors.hi } },
+
+      h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14, flexWrap: "wrap", gap: 10 } },
+        h("div", null,
+          h("div", { style: { fontFamily: FONT_DISPLAY, fontWeight: 700, fontSize: 22, letterSpacing: "-0.01em" } }, "WIP Accrual — Month to Goal"),
+          h("div", { style: { fontFamily: FONT_MONO, fontSize: 11.5, color: colors.faint, marginTop: 3 } },
+            `SOURCE: CONNECTWISE — BILLABLE TIME ENTRIES · day ${data.currentDay} of ${data.daysInMonth}` +
+            (lastFetched ? ` · refreshed ${lastFetched.toLocaleTimeString()}` : "")
+          )
+        ),
+        data.flagged && data.flagged.length > 0 && h("div", {
+          style: { display: "flex", alignItems: "center", gap: 6, padding: "5px 10px", borderRadius: 6, background: "#2A1414", border: `1px solid ${colors.behind}`, fontFamily: FONT_MONO, fontSize: 10.5, color: colors.behind }
+        }, `${data.flagged.length} entries need rate review`)
+      ),
+
+      h("div", { className: "grid-4", style: { marginBottom: 22 } },
+        h(StatTile, { label: "MTD Accrued", value: fmtCurrency(mtdTotal), sub: `of ${fmtCurrency(data.monthGoal)} goal`, accent: colors.finance, glyph: "●" }),
+        h(StatTile, { label: "Pace vs Goal", value: `${onPace ? "+" : ""}${fmtCurrency(paceDelta)}`, sub: onPace ? "ahead of pace" : "behind pace", trendUp: onPace, accent: onPace ? colors.finance : colors.behind, glyph: "◆" }),
+        h(StatTile, { label: "Projected Month-End", value: fmtCurrency(projectedTotal), sub: projectedTotal >= data.monthGoal ? "on track to hit goal" : "on track to miss goal", accent: colors.goalLine, glyph: "■" }),
+        h(StatTile, { label: "Days Remaining", value: daysRemaining, sub: `${fmtCurrency((data.monthGoal - mtdTotal) / Math.max(daysRemaining, 1))}/day needed`, accent: colors.bar, glyph: "▲" })
+      ),
+
+      h(Panel, { style: { marginBottom: 22 } },
+        h(SectionLabel, { accent: colors.finance }, "Cumulative accrual vs. goal pace"),
+        h(AccrualChart, { data: chartData }),
+        h("div", { style: { display: "flex", gap: 18, marginTop: 8, fontSize: 12, color: colors.muted } },
+          h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 14, height: 2, background: colors.finance } }), "cumulative accrued"),
+          h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 14, height: 2, borderTop: `2px dashed ${colors.goalLine}` } }), "goal pace"),
+          h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 8, height: 8, background: colors.bar, opacity: 0.55 } }), "daily")
+        )
+      ),
+
+      h(SectionLabel, { accent: colors.bar }, "MTD accrual by client"),
+      h(Panel, null,
+        h("div", { style: { display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 8, padding: "0 4px 10px", borderBottom: `1px solid ${colors.hairline}`, marginBottom: 6 } },
+          ["Client", "MTD Value", "% of Goal"].map((label, i) =>
+            h("div", { key: i, style: { fontFamily: FONT_MONO, fontSize: 10.5, color: colors.faint, textTransform: "uppercase", letterSpacing: "0.08em" } }, label)
+          )
+        ),
+        data.clientBreakdown.slice().sort((a, b) => b.mtd - a.mtd).map((c, i) =>
+          h("div", { key: i, className: "row-hover", style: { display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 8, padding: "10px 4px", alignItems: "center", borderRadius: 6, fontSize: 14 } },
+            h("div", { style: { color: colors.hi } }, c.client),
+            h("div", { style: { fontFamily: FONT_MONO, color: colors.muted } }, fmtCurrency(c.mtd)),
+            h("div", { style: { fontFamily: FONT_MONO, color: colors.muted } }, c.pctOfGoal + "%")
+          )
+        )
+      )
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById("root")).render(h(Dashboard));
+})();
 </script>
 </body>
 </html>
