@@ -196,6 +196,7 @@
     const [weekIndex, setWeekIndex] = useState(null);
     const [updateState, setUpdateState] = useState("idle"); // "idle" | "triggering" | "waiting" | "error"
     const [updateMessage, setUpdateMessage] = useState("");
+    const [expandedClient, setExpandedClient] = useState(null);
 
     async function loadManifest() {
       try {
@@ -281,6 +282,7 @@
     useEffect(() => {
       setViewMode("month");
       setWeekIndex(null);
+      setExpandedClient(null);
     }, [selectedMonth]);
 
     const weeks = useMemo(() => {
@@ -433,13 +435,46 @@
             h("div", { key: i, style: { fontFamily: FONT_MONO, fontSize: 10.5, color: colors.faint, textTransform: "uppercase", letterSpacing: "0.08em" } }, label)
           )
         ),
-        monthData.clientBreakdown.slice().sort((a, b) => b.mtd - a.mtd).map((c, i) =>
-          h("div", { key: i, className: "row-hover", style: { display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 8, padding: "10px 4px", alignItems: "center", borderRadius: 6, fontSize: 14 } },
-            h("div", { style: { color: colors.hi } }, c.client),
-            h("div", { style: { fontFamily: FONT_MONO, color: colors.muted } }, fmtCurrency(c.mtd)),
-            h("div", { style: { fontFamily: FONT_MONO, color: colors.muted } }, c.pctOfGoal + "%")
-          )
-        )
+        monthData.clientBreakdown.slice().sort((a, b) => b.mtd - a.mtd).map((c, i) => {
+          const isOpen = expandedClient === c.client;
+          return h("div", { key: i },
+            h("div", {
+              className: "row-hover",
+              onClick: () => setExpandedClient(isOpen ? null : c.client),
+              style: { display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 8, padding: "10px 4px", alignItems: "center", borderRadius: 6, fontSize: 14, cursor: "pointer" }
+            },
+              h("div", { style: { color: colors.hi, display: "flex", alignItems: "center", gap: 6 } },
+                h("span", { style: { fontSize: 10, color: colors.faint, transform: isOpen ? "rotate(90deg)" : "rotate(0deg)", transition: "transform 0.15s", display: "inline-block" } }, "›"),
+                c.client
+              ),
+              h("div", { style: { fontFamily: FONT_MONO, color: colors.muted } }, fmtCurrency(c.mtd)),
+              h("div", { style: { fontFamily: FONT_MONO, color: colors.muted } }, c.pctOfGoal + "%")
+            ),
+            isOpen && h("div", { style: { padding: "4px 4px 14px 24px" } },
+              (!c.daily || c.daily.length === 0)
+                ? h("div", { style: { fontFamily: FONT_MONO, fontSize: 11.5, color: colors.faint, padding: "8px 0" } }, "No daily detail available.")
+                : h("div", null,
+                    h("div", { style: { display: "grid", gridTemplateColumns: "1.2fr 1fr 1fr", gap: 8, padding: "6px 4px", borderBottom: `1px solid ${colors.hairline}`, marginBottom: 4 } },
+                      ["Date", "Hours", "Billed"].map((label, li) =>
+                        h("div", { key: li, style: { fontFamily: FONT_MONO, fontSize: 9.5, color: colors.faint, textTransform: "uppercase", letterSpacing: "0.06em" } }, label)
+                      )
+                    ),
+                    c.daily.map((d, di) =>
+                      h("div", { key: di, style: { display: "grid", gridTemplateColumns: "1.2fr 1fr 1fr", gap: 8, padding: "6px 4px", fontSize: 12.5 } },
+                        h("div", { style: { color: colors.hi, fontFamily: FONT_MONO } }, fmtMD(d.date)),
+                        h("div", { style: { fontFamily: FONT_MONO, color: colors.muted } }, d.hours.toFixed(2)),
+                        h("div", { style: { fontFamily: FONT_MONO, color: colors.finance } }, fmtCurrency(d.billed))
+                      )
+                    ),
+                    h("div", { style: { display: "grid", gridTemplateColumns: "1.2fr 1fr 1fr", gap: 8, padding: "8px 4px 0", marginTop: 4, borderTop: `1px solid ${colors.hairline}`, fontSize: 12.5, fontWeight: 600 } },
+                      h("div", { style: { color: colors.hi, fontFamily: FONT_MONO } }, "Total"),
+                      h("div", { style: { fontFamily: FONT_MONO, color: colors.hi } }, c.daily.reduce((s, d) => s + d.hours, 0).toFixed(2)),
+                      h("div", { style: { fontFamily: FONT_MONO, color: colors.finance } }, fmtCurrency(c.mtd))
+                    )
+                  )
+            )
+          );
+        })
       )
     );
   }
