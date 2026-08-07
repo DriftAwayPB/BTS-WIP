@@ -454,6 +454,9 @@
               (!c.daily || c.daily.length === 0)
                 ? h("div", { style: { fontFamily: FONT_MONO, fontSize: 11.5, color: colors.faint, padding: "8px 0" } }, "No daily detail available.")
                 : h("div", null,
+                    h("div", { style: { fontFamily: FONT_BODY, fontSize: 10.5, color: colors.faint, padding: "0 4px 6px", fontStyle: "italic" } },
+                      "Hours reflects minimum billing increments (0.25hr default, 1hr for Patching/On Site Regular) — not raw logged time."
+                    ),
                     h("div", { style: { display: "grid", gridTemplateColumns: "1.2fr 1fr 1fr", gap: 8, padding: "6px 4px", borderBottom: `1px solid ${colors.hairline}`, marginBottom: 4 } },
                       ["Date", "Hours", "Billed"].map((label, li) =>
                         h("div", { key: li, style: { fontFamily: FONT_MONO, fontSize: 9.5, color: colors.faint, textTransform: "uppercase", letterSpacing: "0.06em" } }, label)
