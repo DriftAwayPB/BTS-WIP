@@ -1,0 +1,196 @@
+{
+  "generatedAt": "2026-08-07T12:15:47.298Z",
+  "month": "2026-07",
+  "isCurrentMonth": false,
+  "monthGoal": 21000,
+  "weekdaysInMonth": 23,
+  "weekdaysElapsed": 23,
+  "weekdaysRemaining": 0,
+  "currentDate": "2026-07-31",
+  "dailyAccrual": [
+    {
+      "date": "2026-07-01",
+      "accrued": 1065
+    },
+    {
+      "date": "2026-07-02",
+      "accrued": 945
+    },
+    {
+      "date": "2026-07-03",
+      "accrued": 1392
+    },
+    {
+      "date": "2026-07-06",
+      "accrued": 1047
+    },
+    {
+      "date": "2026-07-07",
+      "accrued": 1044
+    },
+    {
+      "date": "2026-07-08",
+      "accrued": 1178
+    },
+    {
+      "date": "2026-07-09",
+      "accrued": 1098
+    },
+    {
+      "date": "2026-07-10",
+      "accrued": 937
+    },
+    {
+      "date": "2026-07-13",
+      "accrued": 780
+    },
+    {
+      "date": "2026-07-14",
+      "accrued": 780
+    },
+    {
+      "date": "2026-07-15",
+      "accrued": 646
+    },
+    {
+      "date": "2026-07-16",
+      "accrued": 976
+    },
+    {
+      "date": "2026-07-17",
+      "accrued": 952
+    },
+    {
+      "date": "2026-07-20",
+      "accrued": 747
+    },
+    {
+      "date": "2026-07-21",
+      "accrued": 1145
+    },
+    {
+      "date": "2026-07-22",
+      "accrued": 758
+    },
+    {
+      "date": "2026-07-23",
+      "accrued": 757
+    },
+    {
+      "date": "2026-07-24",
+      "accrued": 747
+    },
+    {
+      "date": "2026-07-26",
+      "accrued": 87
+    },
+    {
+      "date": "2026-07-27",
+      "accrued": 981
+    },
+    {
+      "date": "2026-07-28",
+      "accrued": 1142
+    },
+    {
+      "date": "2026-07-29",
+      "accrued": 1400
+    },
+    {
+      "date": "2026-07-30",
+      "accrued": 1120
+    },
+    {
+      "date": "2026-07-31",
+      "accrued": 1042
+    }
+  ],
+  "clientBreakdown": [
+    {
+      "client": "Honeytree Early Learning Centers",
+      "mtd": 4041,
+      "pctOfGoal": 19.2
+    },
+    {
+      "client": "McLeod Enterprises",
+      "mtd": 3791,
+      "pctOfGoal": 18.1
+    },
+    {
+      "client": "Fincastle Baptist Church",
+      "mtd": 3677,
+      "pctOfGoal": 17.5
+    },
+    {
+      "client": "Baird Drywall & Acoustic",
+      "mtd": 2153,
+      "pctOfGoal": 10.3
+    },
+    {
+      "client": "Blink Optometry",
+      "mtd": 1742,
+      "pctOfGoal": 8.3
+    },
+    {
+      "client": "TerraRoc",
+      "mtd": 1728,
+      "pctOfGoal": 8.2
+    },
+    {
+      "client": "Elite Home Rentals",
+      "mtd": 1657,
+      "pctOfGoal": 7.9
+    },
+    {
+      "client": "McLeod Family Foundation",
+      "mtd": 1322,
+      "pctOfGoal": 6.3
+    },
+    {
+      "client": "Appalachian Bookkeeping",
+      "mtd": 916,
+      "pctOfGoal": 4.4
+    },
+    {
+      "client": "Williams Law Firm",
+      "mtd": 839,
+      "pctOfGoal": 4
+    },
+    {
+      "client": "SWVA Settlement & Title",
+      "mtd": 258,
+      "pctOfGoal": 1.2
+    },
+    {
+      "client": "Venture Consulting",
+      "mtd": 258,
+      "pctOfGoal": 1.2
+    },
+    {
+      "client": "John McCaleb",
+      "mtd": 97,
+      "pctOfGoal": 0.5
+    },
+    {
+      "client": "Premier Rollertainment",
+      "mtd": 97,
+      "pctOfGoal": 0.5
+    },
+    {
+      "client": "Catchall",
+      "mtd": 97,
+      "pctOfGoal": 0.5
+    },
+    {
+      "client": "Crenshaw Lighting",
+      "mtd": 65,
+      "pctOfGoal": 0.3
+    },
+    {
+      "client": "Utilis Consulting",
+      "mtd": 32,
+      "pctOfGoal": 0.2
+    }
+  ],
+  "flagged": []
+}

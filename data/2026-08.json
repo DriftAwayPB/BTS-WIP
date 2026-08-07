@@ -1,0 +1,86 @@
+{
+  "generatedAt": "2026-08-07T12:15:46.396Z",
+  "month": "2026-08",
+  "isCurrentMonth": true,
+  "monthGoal": 21000,
+  "weekdaysInMonth": 21,
+  "weekdaysElapsed": 5,
+  "weekdaysRemaining": 16,
+  "currentDate": "2026-08-07",
+  "dailyAccrual": [
+    {
+      "date": "2026-08-03",
+      "accrued": 551
+    },
+    {
+      "date": "2026-08-04",
+      "accrued": 595
+    },
+    {
+      "date": "2026-08-05",
+      "accrued": 839
+    },
+    {
+      "date": "2026-08-06",
+      "accrued": 643
+    }
+  ],
+  "clientBreakdown": [
+    {
+      "client": "Honeytree Early Learning Centers",
+      "mtd": 811,
+      "pctOfGoal": 3.9
+    },
+    {
+      "client": "McLeod Enterprises",
+      "mtd": 620,
+      "pctOfGoal": 3
+    },
+    {
+      "client": "McLeod Family Foundation",
+      "mtd": 245,
+      "pctOfGoal": 1.2
+    },
+    {
+      "client": "Baird Drywall & Acoustic",
+      "mtd": 218,
+      "pctOfGoal": 1
+    },
+    {
+      "client": "Fincastle Baptist Church",
+      "mtd": 161,
+      "pctOfGoal": 0.8
+    },
+    {
+      "client": "Premier Rollertainment",
+      "mtd": 161,
+      "pctOfGoal": 0.8
+    },
+    {
+      "client": "Elite Home Rentals",
+      "mtd": 150,
+      "pctOfGoal": 0.7
+    },
+    {
+      "client": "Appalachian Bookkeeping",
+      "mtd": 134,
+      "pctOfGoal": 0.6
+    },
+    {
+      "client": "Scott & Bond",
+      "mtd": 65,
+      "pctOfGoal": 0.3
+    },
+    {
+      "client": "Utilis Consulting",
+      "mtd": 32,
+      "pctOfGoal": 0.2
+    },
+    {
+      "client": "Blink Optometry",
+      "mtd": 32,
+      "pctOfGoal": 0.2
+    }
+  ],
+  "flagged": []
+}
