@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WIP Accrual — Banks Technology Services</title>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/recharts@2.12.7/umd/Recharts.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0B1120; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  @media (max-width: 900px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+  .row-hover:hover { background: #16203570 !important; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" data-presets="react">
+const { useState, useEffect, useMemo } = React;
+const { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } = Recharts;
+
+// ---------- CONFIG ----------
+const DATA_URL = "https://raw.githubusercontent.com/DriftAwayPB/BTS-WIP/refs/heads/main/wip-data.json";
+const REFRESH_INTERVAL_MS = 5 * 60 * 1000; // re-fetch data every 5 minutes
+const RELOAD_INTERVAL_MS = 60 * 60 * 1000; // full page reload every hour (kiosk hygiene)
+
+// ---------- Design tokens ----------
+const FONT_DISPLAY = "'Space Grotesk', 'Inter', sans-serif";
+const FONT_BODY = "'Inter', sans-serif";
+const FONT_MONO = "'IBM Plex Mono', monospace";
+
+const colors = {
+  bg: "#0B1120", panel: "#121A2B", panelAlt: "#0F1626", hairline: "#1E293B",
+  hi: "#E7ECF5", muted: "#7C8AA5", faint: "#4B5875",
+  finance: "#34D399", behind: "#F87171", goalLine: "#FBBF24", bar: "#60A5FA",
+};
+
+function fmtCurrency(n) {
+  return "$" + Math.abs(Math.round(n || 0)).toLocaleString("en-US");
+}
+
+function SectionLabel({ children, accent }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
+      <div style={{ width: 6, height: 6, borderRadius: 2, background: accent }} />
+      <span style={{ fontFamily: FONT_MONO, fontSize: 11, letterSpacing: "0.14em", color: colors.muted, textTransform: "uppercase" }}>
+        {children}
+      </span>
+    </div>
+  );
+}
+
+function Panel({ children, style }) {
+  return (
+    <div style={{ background: colors.panel, border: `1px solid ${colors.hairline}`, borderRadius: 10, padding: 18, ...style }}>
+      {children}
+    </div>
+  );
+}
+
+function StatTile({ label, value, sub, accent, glyph, trendUp }) {
+  return (
+    <Panel style={{ display: "flex", flexDirection: "column", gap: 10, minHeight: 108 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+        <span style={{ fontFamily: FONT_BODY, fontSize: 12.5, color: colors.muted }}>{label}</span>
+        <span style={{ fontSize: 15, color: accent }}>{glyph}</span>
+      </div>
+      <div style={{ fontFamily: FONT_MONO, fontSize: 26, color: colors.hi, fontWeight: 600, lineHeight: 1 }}>{value}</div>
+      {sub && (
+        <div style={{ fontSize: 12, color: colors.muted, fontFamily: FONT_BODY }}>
+          {trendUp === true ? "▲ " : trendUp === false ? "▼ " : ""}{sub}
+        </div>
+      )}
+    </Panel>
+  );
+}
+
+function Dashboard() {
+  const [data, setData] = useState(null);
+  const [lastFetched, setLastFetched] = useState(null);
+  const [fetchError, setFetchError] = useState(null);
+
+  async function load() {
+    try {
+      const res = await fetch(`${DATA_URL}?t=${Date.now()}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const json = await res.json();
+      setData(json);
+      setLastFetched(new Date());
+      setFetchError(null);
+    } catch (e) {
+      setFetchError(e.message);
+    }
+  }
+
+  useEffect(() => {
+    load();
+    const dataTimer = setInterval(load, REFRESH_INTERVAL_MS);
+    const reloadTimer = setInterval(() => window.location.reload(), RELOAD_INTERVAL_MS);
+    return () => { clearInterval(dataTimer); clearInterval(reloadTimer); };
+  }, []);
+
+  const chartData = useMemo(() => {
+    if (!data) return [];
+    let running = 0;
+    const dailyGoalPace = data.monthGoal / data.daysInMonth;
+    return data.dailyAccrual.map((d) => {
+      running += d.accrued;
+      return { day: `D${d.day}`, accrued: d.accrued, cumulative: running, goalPace: Math.round(dailyGoalPace * d.day) };
+    });
+  }, [data]);
+
+  if (!data) {
+    return (
+      <div style={{ background: colors.bg, minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", color: colors.muted, fontFamily: FONT_MONO }}>
+        {fetchError ? `Error loading data: ${fetchError}` : "Loading WIP data…"}
+      </div>
+    );
+  }
+
+  const mtdTotal = data.dailyAccrual.reduce((s, d) => s + d.accrued, 0);
+  const dailyGoalPace = data.monthGoal / data.daysInMonth;
+  const expectedByToday = dailyGoalPace * data.currentDay;
+  const paceDelta = mtdTotal - expectedByToday;
+  const onPace = paceDelta >= 0;
+  const projectedTotal = (mtdTotal / data.currentDay) * data.daysInMonth;
+  const daysRemaining = data.daysInMonth - data.currentDay;
+
+  return (
+    <div style={{ background: colors.bg, minHeight: "100vh", padding: "28px 24px 60px", fontFamily: FONT_BODY, color: colors.hi }}>
+
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14, flexWrap: "wrap", gap: 10 }}>
+        <div>
+          <div style={{ fontFamily: FONT_DISPLAY, fontWeight: 700, fontSize: 22, letterSpacing: "-0.01em" }}>
+            WIP Accrual — Month to Goal
+          </div>
+          <div style={{ fontFamily: FONT_MONO, fontSize: 11.5, color: colors.faint, marginTop: 3 }}>
+            SOURCE: CONNECTWISE — BILLABLE TIME ENTRIES · day {data.currentDay} of {data.daysInMonth}
+            {lastFetched ? ` · refreshed ${lastFetched.toLocaleTimeString()}` : ""}
+          </div>
+        </div>
+        {data.flagged && data.flagged.length > 0 && (
+          <div style={{
+            display: "flex", alignItems: "center", gap: 6, padding: "5px 10px", borderRadius: 6,
+            background: "#2A1414", border: `1px solid ${colors.behind}`, fontFamily: FONT_MONO, fontSize: 10.5, color: colors.behind
+          }}>
+            {data.flagged.length} entries need rate review
+          </div>
+        )}
+      </div>
+
+      <div className="grid-4" style={{ marginBottom: 22 }}>
+        <StatTile label="MTD Accrued" value={fmtCurrency(mtdTotal)} sub={`of ${fmtCurrency(data.monthGoal)} goal`} accent={colors.finance} glyph="●" />
+        <StatTile
+          label="Pace vs Goal"
+          value={`${onPace ? "+" : ""}${fmtCurrency(paceDelta)}`}
+          sub={onPace ? "ahead of pace" : "behind pace"}
+          trendUp={onPace}
+          accent={onPace ? colors.finance : colors.behind}
+          glyph="◆"
+        />
+        <StatTile label="Projected Month-End" value={fmtCurrency(projectedTotal)} sub={projectedTotal >= data.monthGoal ? "on track to hit goal" : "on track to miss goal"} accent={colors.goalLine} glyph="■" />
+        <StatTile label="Days Remaining" value={daysRemaining} sub={`${fmtCurrency((data.monthGoal - mtdTotal) / Math.max(daysRemaining, 1))}/day needed`} accent={colors.bar} glyph="▲" />
+      </div>
+
+      <Panel style={{ marginBottom: 22 }}>
+        <SectionLabel accent={colors.finance}>Cumulative accrual vs. goal pace</SectionLabel>
+        <ResponsiveContainer width="100%" height={260}>
+          <ComposedChart data={chartData} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
+            <CartesianGrid stroke={colors.hairline} vertical={false} />
+            <XAxis dataKey="day" stroke={colors.faint} tick={{ fontFamily: FONT_MONO, fontSize: 11 }} axisLine={false} tickLine={false} />
+            <YAxis stroke={colors.faint} tick={{ fontFamily: FONT_MONO, fontSize: 11 }} axisLine={false} tickLine={false}
+              tickFormatter={(v) => `${Math.round(v / 1000)}k`} width={42} />
+            <Tooltip
+              contentStyle={{ background: colors.panel, border: `1px solid ${colors.hairline}`, borderRadius: 8, fontFamily: FONT_MONO, fontSize: 12 }}
+              formatter={(v, key) => [fmtCurrency(v), key === "cumulative" ? "cumulative accrued" : key === "goalPace" ? "goal pace" : "daily"]}
+            />
+            <Bar dataKey="accrued" barSize={18} radius={[3, 3, 0, 0]} fill={colors.bar} opacity={0.55} />
+            <Line type="monotone" dataKey="cumulative" stroke={colors.finance} strokeWidth={2.5} dot={{ r: 3, fill: colors.finance }} />
+            <Line type="monotone" dataKey="goalPace" stroke={colors.goalLine} strokeWidth={1.5} strokeDasharray="4 4" dot={false} />
+          </ComposedChart>
+        </ResponsiveContainer>
+        <div style={{ display: "flex", gap: 18, marginTop: 8, fontSize: 12, color: colors.muted }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 6 }}><div style={{ width: 14, height: 2, background: colors.finance }} /> cumulative accrued</div>
+          <div style={{ display: "flex", alignItems: "center", gap: 6 }}><div style={{ width: 14, height: 2, borderTop: `2px dashed ${colors.goalLine}` }} /> goal pace</div>
+          <div style={{ display: "flex", alignItems: "center", gap: 6 }}><div style={{ width: 8, height: 8, background: colors.bar, opacity: 0.55 }} /> daily</div>
+        </div>
+      </Panel>
+
+      <SectionLabel accent={colors.bar}>MTD accrual by client</SectionLabel>
+      <Panel>
+        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 8, padding: "0 4px 10px", borderBottom: `1px solid ${colors.hairline}`, marginBottom: 6 }}>
+          {["Client", "MTD Value", "% of Goal"].map((h, i) => (
+            <div key={i} style={{ fontFamily: FONT_MONO, fontSize: 10.5, color: colors.faint, textTransform: "uppercase", letterSpacing: "0.08em" }}>{h}</div>
+          ))}
+        </div>
+        {data.clientBreakdown.slice().sort((a, b) => b.mtd - a.mtd).map((c, i) => (
+          <div key={i} className="row-hover" style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 8, padding: "10px 4px", alignItems: "center", borderRadius: 6, fontSize: 14 }}>
+            <div style={{ color: colors.hi }}>{c.client}</div>
+            <div style={{ fontFamily: FONT_MONO, color: colors.muted }}>{fmtCurrency(c.mtd)}</div>
+            <div style={{ fontFamily: FONT_MONO, color: colors.muted }}>{c.pctOfGoal}%</div>
+          </div>
+        ))}
+      </Panel>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<Dashboard />);
+</script>
+</body>
+</html>
