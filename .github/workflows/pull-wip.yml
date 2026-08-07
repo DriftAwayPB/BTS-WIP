@@ -1,0 +1,40 @@
+name: Pull ConnectWise WIP data
+
+on:
+  schedule:
+    # Runs at 6:00 AM Eastern (10:00 UTC) every weekday
+    - cron: "0 10 * * 1-5"
+  workflow_dispatch: {} # lets you trigger it manually from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  pull-wip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run pull script
+        env:
+          CW_BASE_URL: ${{ secrets.CW_BASE_URL }}
+          CW_COMPANY_ID: ${{ secrets.CW_COMPANY_ID }}
+          CW_PUBLIC_KEY: ${{ secrets.CW_PUBLIC_KEY }}
+          CW_PRIVATE_KEY: ${{ secrets.CW_PRIVATE_KEY }}
+          CW_CLIENT_ID: ${{ secrets.CW_CLIENT_ID }}
+          MONTH_GOAL: ${{ secrets.MONTH_GOAL }}
+        run: node cw-wip-pull.js
+
+      - name: Commit updated data
+        run: |
+          git config user.name "wip-bot"
+          git config user.email "actions@github.com"
+          git add wip-data.json
+          git diff --quiet --cached || git commit -m "Update WIP data ($(date -u +%Y-%m-%d))"
+          git push
