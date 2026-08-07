@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07T15:54:32.789Z",
+  "generatedAt": "2026-08-07T22:45:14.946Z",
   "month": "2026-08",
   "isCurrentMonth": true,
   "monthGoal": 21000,
@@ -26,14 +26,14 @@
     },
     {
       "date": "2026-08-07",
-      "accrued": 192
+      "accrued": 519
     }
   ],
   "clientBreakdown": [
     {
       "client": "Honeytree Early Learning Centers",
-      "mtd": 825,
-      "pctOfGoal": 3.9,
+      "mtd": 888,
+      "pctOfGoal": 4.2,
       "daily": [
         {
           "date": "2026-08-03",
@@ -57,15 +57,15 @@
         },
         {
           "date": "2026-08-07",
-          "hours": 0.25,
-          "billed": 13
+          "hours": 1.5,
+          "billed": 75
         }
       ]
     },
     {
       "client": "McLeod Enterprises",
-      "mtd": 650,
-      "pctOfGoal": 3.1,
+      "mtd": 700,
+      "pctOfGoal": 3.3,
       "daily": [
         {
           "date": "2026-08-03",
@@ -86,13 +86,18 @@
           "date": "2026-08-06",
           "hours": 2.75,
           "billed": 138
+        },
+        {
+          "date": "2026-08-07",
+          "hours": 1,
+          "billed": 50
         }
       ]
     },
     {
       "client": "McLeod Family Foundation",
-      "mtd": 250,
-      "pctOfGoal": 1.2,
+      "mtd": 400,
+      "pctOfGoal": 1.9,
       "daily": [
         {
           "date": "2026-08-03",
@@ -108,6 +113,11 @@
           "date": "2026-08-06",
           "hours": 2.25,
           "billed": 113
+        },
+        {
+          "date": "2026-08-07",
+          "hours": 3,
+          "billed": 150
         }
       ]
     },
@@ -191,8 +201,8 @@
     },
     {
       "client": "Scott & Bond",
-      "mtd": 65,
-      "pctOfGoal": 0.3,
+      "mtd": 129,
+      "pctOfGoal": 0.6,
       "daily": [
         {
           "date": "2026-08-05",
@@ -203,6 +213,11 @@
           "date": "2026-08-06",
           "hours": 0.25,
           "billed": 32
+        },
+        {
+          "date": "2026-08-07",
+          "hours": 0.5,
+          "billed": 65
         }
       ]
     },
@@ -237,6 +252,11 @@
           "date": "2026-08-06",
           "hours": 0.75,
           "billed": 0
+        },
+        {
+          "date": "2026-08-07",
+          "hours": 0.5,
+          "billed": 0
         }
       ]
     },
@@ -259,12 +279,17 @@
           "date": "2026-08-06",
           "hours": 0.5,
           "billed": 0
+        },
+        {
+          "date": "2026-08-07",
+          "hours": 1,
+          "billed": 0
         }
       ]
     }
   ],
   "flagged": [],
-  "totalBilledHours": 41.25,
+  "totalBilledHours": 47,
   "_debugCompanyEntries": [
     {
       "id": 62795,
@@ -321,6 +346,29 @@
       "extendedInvoiceAmount": 54.5,
       "agreementAmount": 54.5,
       "agreementAdjustment": -40.08,
+      "adjustment": 0,
+      "invoiceReady": 0,
+      "agreement": {
+        "id": 15,
+        "name": "Baird - Silver/Gold Split",
+        "type": "Managed Service - Silver",
+        "chargeFirmFlag": false,
+        "_info": {
+          "agreement_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/agreements/15",
+          "typeId": "3"
+        }
+      },
+      "ticketBillingMethod": "A"
+    },
+    {
+      "id": 62844,
+      "ticket": 331224,
+      "timeStart": "2026-08-07T22:39:44Z",
+      "actualHours": 0.02,
+      "billableOption": "Billable",
+      "extendedInvoiceAmount": 109,
+      "agreementAmount": 109,
+      "agreementAdjustment": 0,
       "adjustment": 0,
       "invoiceReady": 0,
       "agreement": {
