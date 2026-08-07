@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07T14:56:52.142Z",
+  "generatedAt": "2026-08-07T15:13:00.393Z",
   "month": "2026-08",
   "isCurrentMonth": true,
   "monthGoal": 21000,
@@ -10,11 +10,11 @@
   "dailyAccrual": [
     {
       "date": "2026-08-03",
-      "accrued": 551
+      "accrued": 570
     },
     {
       "date": "2026-08-04",
-      "accrued": 476
+      "accrued": 495
     },
     {
       "date": "2026-08-05",
@@ -32,17 +32,17 @@
   "clientBreakdown": [
     {
       "client": "Honeytree Early Learning Centers",
-      "mtd": 823,
+      "mtd": 825,
       "pctOfGoal": 3.9
     },
     {
       "client": "McLeod Enterprises",
-      "mtd": 620,
-      "pctOfGoal": 3
+      "mtd": 650,
+      "pctOfGoal": 3.1
     },
     {
       "client": "McLeod Family Foundation",
-      "mtd": 245,
+      "mtd": 250,
       "pctOfGoal": 1.2
     },
     {
