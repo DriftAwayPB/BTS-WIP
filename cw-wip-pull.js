@@ -132,11 +132,27 @@ async function fetchBillableTimeEntries(start, end) {
 }
 
 /**
- * Rate resolution: this instance's time entries carry `extendedInvoiceAmount`
- * — the exact resolved dollar value per entry, rate hierarchy already baked
- * in. We sum that directly rather than hours × rate.
+ * Rate resolution — confirmed against ConnectWise's own Financial Recap
+ * screen on a real Baird ticket (not guessed from field patterns this time):
+ *
+ * When a time entry is applied against an agreement, the ticket's
+ * Financial Recap shows $0.00 billable — the ENTIRE amount sits in the
+ * Agreement Recap instead, regardless of what `agreementAdjustment`
+ * looks like. An earlier version of this function tried to net out a
+ * proportional split using `agreementAdjustment`, based on a consistent
+ * ~73% ratio seen across sample entries — that ratio turned out to be
+ * some internal ConnectWise cost/margin figure, NOT a partial client
+ * billing split. Checked directly against the ticket's own Financial
+ * Recap and it was wrong. Don't reintroduce that without re-verifying
+ * against a real ticket's Financial Recap again.
+ *
+ * The real rule is binary:
+ *   - Entry tied to an agreement (entry.agreement is set) -> $0 billable
+ *     to the client, full stop. It shows up in agreementAmount instead.
+ *   - No agreement -> extendedInvoiceAmount is the real billable value.
  */
 function entryValue(entry) {
+  if (entry.agreement) return 0;
   return Number(entry.extendedInvoiceAmount) || 0;
 }
 
@@ -147,9 +163,13 @@ function aggregate(entries, monthGoal) {
 
   for (const entry of entries) {
     const hours = entry.actualHours ?? entry.hoursBilled ?? 0;
+    const gross = Number(entry.extendedInvoiceAmount) || 0;
     const value = entryValue(entry);
 
-    if (hours > 0 && !value) {
+    if (hours > 0 && !gross) {
+      // No resolved rate at all (gross is missing/zero) — worth checking
+      // in ConnectWise. A $0 *net* value from full agreement coverage is
+      // NOT flagged here — that's expected, not an error.
       flagged.push({
         id: entry.id,
         ticket: entry.chargeToId,
