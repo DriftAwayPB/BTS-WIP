@@ -41,6 +41,7 @@ const {
   MONTH_GOAL,
   MONTH_GOALS,
   HISTORY_MONTHS_BACK,
+  DEBUG_COMPANY, // TEMPORARY — set to a client name substring to dump sample entries from them
 } = process.env;
 
 function assertEnv() {
@@ -233,6 +234,27 @@ async function pullMonth({ refDate, today, monthGoalsMap, isCurrentMonth }) {
     clientBreakdown,
     flagged,
   };
+
+  if (DEBUG_COMPANY) {
+    const matches = entries.filter((e) =>
+      (e.company?.name || "").toLowerCase().includes(DEBUG_COMPANY.toLowerCase())
+    );
+    output._debugCompanyEntries = matches.slice(0, 5).map((e) => ({
+      id: e.id,
+      ticket: e.chargeToId,
+      timeStart: e.timeStart,
+      actualHours: e.actualHours,
+      billableOption: e.billableOption,
+      extendedInvoiceAmount: e.extendedInvoiceAmount,
+      agreementAmount: e.agreementAmount,
+      agreementAdjustment: e.agreementAdjustment,
+      adjustment: e.adjustment,
+      invoiceReady: e.invoiceReady,
+      agreement: e.agreement || null,
+      ticketBillingMethod: e.ticket?._info?.billingMethod || null,
+    }));
+    console.log(`  DEBUG: captured ${output._debugCompanyEntries.length} sample entries for "${DEBUG_COMPANY}"`);
+  }
 
   const dataDir = path.join(__dirname, "data");
   fs.mkdirSync(dataDir, { recursive: true });
