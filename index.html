@@ -350,7 +350,10 @@
     const avgHourlyRate = totalBilledHours > 0 ? mtdTotal / totalBilledHours : 0;
     const todayEntry = monthData.dailyAccrual.find((d) => d.date === monthData.currentDate);
     const todayAccrued = todayEntry ? todayEntry.accrued : 0;
-    const todayGoal = dailyGoalPace;
+    // Same formula as the "$X/day needed" sub-label on the Weekdays
+    // Remaining tile above — dynamic remaining-goal pace, not a flat
+    // monthGoal/weekdaysInMonth split.
+    const todayGoal = monthData.weekdaysRemaining > 0 ? (monthData.monthGoal - mtdTotal) / monthData.weekdaysRemaining : 0;
     const todayDelta = todayAccrued - todayGoal;
     const weekdaysAheadBehind = dailyGoalPace > 0 ? paceDelta / dailyGoalPace : 0;
 
@@ -449,8 +452,10 @@
           }),
           h(StatTile, {
             label: monthData.isCurrentMonth ? "Today vs Daily Goal" : "Last Day vs Daily Goal",
-            value: fmtCurrency(todayAccrued),
-            sub: `of ${fmtCurrency(todayGoal)} daily goal (${todayDelta >= 0 ? "+" : ""}${fmtCurrency(todayDelta)})`,
+            value: `${todayDelta >= 0 ? "+" : "-"}${fmtCurrency(todayDelta)}`,
+            sub: todayDelta >= 0
+              ? `${fmtCurrency(todayAccrued)} billed — over today's goal`
+              : `${fmtCurrency(todayAccrued)} billed — more needed today`,
             trendUp: todayDelta >= 0,
             accent: todayDelta >= 0 ? colors.finance : colors.behind,
             glyph: "→"
