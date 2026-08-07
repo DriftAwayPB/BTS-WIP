@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07T15:19:42.443Z",
+  "generatedAt": "2026-08-07T15:26:06.687Z",
   "month": "2026-08",
   "isCurrentMonth": true,
   "monthGoal": 21000,
@@ -33,47 +33,234 @@
     {
       "client": "Honeytree Early Learning Centers",
       "mtd": 825,
-      "pctOfGoal": 3.9
+      "pctOfGoal": 3.9,
+      "daily": [
+        {
+          "date": "2026-08-03",
+          "hours": 0.1,
+          "billed": 250
+        },
+        {
+          "date": "2026-08-04",
+          "hours": 0.33,
+          "billed": 100
+        },
+        {
+          "date": "2026-08-05",
+          "hours": 4.65,
+          "billed": 313
+        },
+        {
+          "date": "2026-08-06",
+          "hours": 0.83,
+          "billed": 150
+        },
+        {
+          "date": "2026-08-07",
+          "hours": 0.02,
+          "billed": 13
+        }
+      ]
     },
     {
       "client": "McLeod Enterprises",
       "mtd": 650,
-      "pctOfGoal": 3.1
+      "pctOfGoal": 3.1,
+      "daily": [
+        {
+          "date": "2026-08-03",
+          "hours": 2.09,
+          "billed": 163
+        },
+        {
+          "date": "2026-08-04",
+          "hours": 2.57,
+          "billed": 250
+        },
+        {
+          "date": "2026-08-05",
+          "hours": 0.8,
+          "billed": 100
+        },
+        {
+          "date": "2026-08-06",
+          "hours": 1.1,
+          "billed": 138
+        }
+      ]
     },
     {
       "client": "McLeod Family Foundation",
       "mtd": 250,
-      "pctOfGoal": 1.2
+      "pctOfGoal": 1.2,
+      "daily": [
+        {
+          "date": "2026-08-03",
+          "hours": 0.06,
+          "billed": 75
+        },
+        {
+          "date": "2026-08-04",
+          "hours": 0.07,
+          "billed": 63
+        },
+        {
+          "date": "2026-08-06",
+          "hours": 0.34,
+          "billed": 113
+        }
+      ]
     },
     {
       "client": "Elite Home Rentals",
       "mtd": 200,
-      "pctOfGoal": 1
+      "pctOfGoal": 1,
+      "daily": [
+        {
+          "date": "2026-08-03",
+          "hours": 0.02,
+          "billed": 50
+        },
+        {
+          "date": "2026-08-04",
+          "hours": 0.02,
+          "billed": 50
+        },
+        {
+          "date": "2026-08-06",
+          "hours": 0.02,
+          "billed": 50
+        },
+        {
+          "date": "2026-08-07",
+          "hours": 0.02,
+          "billed": 50
+        }
+      ]
     },
     {
       "client": "Fincastle Baptist Church",
       "mtd": 161,
-      "pctOfGoal": 0.8
+      "pctOfGoal": 0.8,
+      "daily": [
+        {
+          "date": "2026-08-03",
+          "hours": 0.1,
+          "billed": 32
+        },
+        {
+          "date": "2026-08-05",
+          "hours": 0.55,
+          "billed": 129
+        }
+      ]
     },
     {
       "client": "Premier Rollertainment",
       "mtd": 161,
-      "pctOfGoal": 0.8
+      "pctOfGoal": 0.8,
+      "daily": [
+        {
+          "date": "2026-08-04",
+          "hours": 0.02,
+          "billed": 32
+        },
+        {
+          "date": "2026-08-05",
+          "hours": 0.5,
+          "billed": 129
+        }
+      ]
     },
     {
       "client": "Blink Optometry",
       "mtd": 161,
-      "pctOfGoal": 0.8
+      "pctOfGoal": 0.8,
+      "daily": [
+        {
+          "date": "2026-08-06",
+          "hours": 0.05,
+          "billed": 32
+        },
+        {
+          "date": "2026-08-07",
+          "hours": 0.02,
+          "billed": 129
+        }
+      ]
     },
     {
       "client": "Scott & Bond",
       "mtd": 65,
-      "pctOfGoal": 0.3
+      "pctOfGoal": 0.3,
+      "daily": [
+        {
+          "date": "2026-08-05",
+          "hours": 0.08,
+          "billed": 32
+        },
+        {
+          "date": "2026-08-06",
+          "hours": 0.02,
+          "billed": 32
+        }
+      ]
     },
     {
       "client": "Utilis Consulting",
       "mtd": 32,
-      "pctOfGoal": 0.2
+      "pctOfGoal": 0.2,
+      "daily": [
+        {
+          "date": "2026-08-05",
+          "hours": 0.02,
+          "billed": 32
+        }
+      ]
+    },
+    {
+      "client": "Appalachian Bookkeeping",
+      "mtd": 0,
+      "pctOfGoal": 0,
+      "daily": [
+        {
+          "date": "2026-08-04",
+          "hours": 0.02,
+          "billed": 0
+        },
+        {
+          "date": "2026-08-05",
+          "hours": 0.5,
+          "billed": 0
+        },
+        {
+          "date": "2026-08-06",
+          "hours": 0.06,
+          "billed": 0
+        }
+      ]
+    },
+    {
+      "client": "Baird Drywall & Acoustic",
+      "mtd": 0,
+      "pctOfGoal": 0,
+      "daily": [
+        {
+          "date": "2026-08-04",
+          "hours": 0.02,
+          "billed": 0
+        },
+        {
+          "date": "2026-08-05",
+          "hours": 0.5,
+          "billed": 0
+        },
+        {
+          "date": "2026-08-06",
+          "hours": 0.5,
+          "billed": 0
+        }
+      ]
     }
   ],
   "flagged": [],

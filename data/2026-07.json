@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07T15:19:44.405Z",
+  "generatedAt": "2026-08-07T15:26:07.537Z",
   "month": "2026-07",
   "isCurrentMonth": false,
   "monthGoal": 21000,
@@ -109,77 +109,996 @@
     {
       "client": "Honeytree Early Learning Centers",
       "mtd": 4041,
-      "pctOfGoal": 19.2
+      "pctOfGoal": 19.2,
+      "daily": [
+        {
+          "date": "2026-07-01",
+          "hours": 0.45,
+          "billed": 108
+        },
+        {
+          "date": "2026-07-02",
+          "hours": 3.66,
+          "billed": 325
+        },
+        {
+          "date": "2026-07-03",
+          "hours": 1.06,
+          "billed": 173
+        },
+        {
+          "date": "2026-07-06",
+          "hours": 0.16,
+          "billed": 152
+        },
+        {
+          "date": "2026-07-07",
+          "hours": 3.56,
+          "billed": 217
+        },
+        {
+          "date": "2026-07-08",
+          "hours": 3.05,
+          "billed": 217
+        },
+        {
+          "date": "2026-07-09",
+          "hours": 1.07,
+          "billed": 173
+        },
+        {
+          "date": "2026-07-10",
+          "hours": 0.39,
+          "billed": 108
+        },
+        {
+          "date": "2026-07-13",
+          "hours": 0.45,
+          "billed": 292
+        },
+        {
+          "date": "2026-07-14",
+          "hours": 4.07,
+          "billed": 271
+        },
+        {
+          "date": "2026-07-15",
+          "hours": 2.81,
+          "billed": 292
+        },
+        {
+          "date": "2026-07-16",
+          "hours": 1.07,
+          "billed": 130
+        },
+        {
+          "date": "2026-07-17",
+          "hours": 0.04,
+          "billed": 87
+        },
+        {
+          "date": "2026-07-20",
+          "hours": 0.06,
+          "billed": 173
+        },
+        {
+          "date": "2026-07-21",
+          "hours": 0.02,
+          "billed": 43
+        },
+        {
+          "date": "2026-07-22",
+          "hours": 1.1,
+          "billed": 282
+        },
+        {
+          "date": "2026-07-23",
+          "hours": 0.56,
+          "billed": 119
+        },
+        {
+          "date": "2026-07-24",
+          "hours": 0.02,
+          "billed": 43
+        },
+        {
+          "date": "2026-07-26",
+          "hours": 2,
+          "billed": 87
+        },
+        {
+          "date": "2026-07-27",
+          "hours": 0.12,
+          "billed": 65
+        },
+        {
+          "date": "2026-07-28",
+          "hours": 0.21,
+          "billed": 32
+        },
+        {
+          "date": "2026-07-29",
+          "hours": 1.47,
+          "billed": 314
+        },
+        {
+          "date": "2026-07-30",
+          "hours": 0.52,
+          "billed": 65
+        },
+        {
+          "date": "2026-07-31",
+          "hours": 0.17,
+          "billed": 271
+        }
+      ]
     },
     {
       "client": "McLeod Enterprises",
       "mtd": 3791,
-      "pctOfGoal": 18.1
+      "pctOfGoal": 18.1,
+      "daily": [
+        {
+          "date": "2026-07-01",
+          "hours": 4.02,
+          "billed": 271
+        },
+        {
+          "date": "2026-07-02",
+          "hours": 1.62,
+          "billed": 325
+        },
+        {
+          "date": "2026-07-03",
+          "hours": 0.12,
+          "billed": 260
+        },
+        {
+          "date": "2026-07-06",
+          "hours": 0.45,
+          "billed": 217
+        },
+        {
+          "date": "2026-07-07",
+          "hours": 0.83,
+          "billed": 141
+        },
+        {
+          "date": "2026-07-08",
+          "hours": 0.64,
+          "billed": 97
+        },
+        {
+          "date": "2026-07-09",
+          "hours": 1.97,
+          "billed": 173
+        },
+        {
+          "date": "2026-07-10",
+          "hours": 1.08,
+          "billed": 119
+        },
+        {
+          "date": "2026-07-13",
+          "hours": 0.22,
+          "billed": 347
+        },
+        {
+          "date": "2026-07-14",
+          "hours": 1.74,
+          "billed": 238
+        },
+        {
+          "date": "2026-07-15",
+          "hours": 1.28,
+          "billed": 65
+        },
+        {
+          "date": "2026-07-16",
+          "hours": 0.76,
+          "billed": 206
+        },
+        {
+          "date": "2026-07-17",
+          "hours": 0.06,
+          "billed": 130
+        },
+        {
+          "date": "2026-07-20",
+          "hours": 1.75,
+          "billed": 173
+        },
+        {
+          "date": "2026-07-21",
+          "hours": 0.11,
+          "billed": 76
+        },
+        {
+          "date": "2026-07-22",
+          "hours": 1.29,
+          "billed": 119
+        },
+        {
+          "date": "2026-07-23",
+          "hours": 0.72,
+          "billed": 292
+        },
+        {
+          "date": "2026-07-24",
+          "hours": 0.06,
+          "billed": 173
+        },
+        {
+          "date": "2026-07-27",
+          "hours": 0.02,
+          "billed": 43
+        },
+        {
+          "date": "2026-07-28",
+          "hours": 0.1,
+          "billed": 11
+        },
+        {
+          "date": "2026-07-29",
+          "hours": 1.28,
+          "billed": 119
+        },
+        {
+          "date": "2026-07-30",
+          "hours": 0.54,
+          "billed": 76
+        },
+        {
+          "date": "2026-07-31",
+          "hours": 0.25,
+          "billed": 119
+        }
+      ]
     },
     {
       "client": "Fincastle Baptist Church",
       "mtd": 3677,
-      "pctOfGoal": 17.5
+      "pctOfGoal": 17.5,
+      "daily": [
+        {
+          "date": "2026-07-01",
+          "hours": 0.08,
+          "billed": 129
+        },
+        {
+          "date": "2026-07-09",
+          "hours": 0.5,
+          "billed": 65
+        },
+        {
+          "date": "2026-07-15",
+          "hours": 0.03,
+          "billed": 129
+        },
+        {
+          "date": "2026-07-16",
+          "hours": 0.13,
+          "billed": 32
+        },
+        {
+          "date": "2026-07-21",
+          "hours": 0.06,
+          "billed": 387
+        },
+        {
+          "date": "2026-07-22",
+          "hours": 1.09,
+          "billed": 194
+        },
+        {
+          "date": "2026-07-23",
+          "hours": 1.5,
+          "billed": 194
+        },
+        {
+          "date": "2026-07-24",
+          "hours": 0.5,
+          "billed": 65
+        },
+        {
+          "date": "2026-07-27",
+          "hours": 0.23,
+          "billed": 161
+        },
+        {
+          "date": "2026-07-28",
+          "hours": 8,
+          "billed": 1032
+        },
+        {
+          "date": "2026-07-29",
+          "hours": 2.34,
+          "billed": 355
+        },
+        {
+          "date": "2026-07-30",
+          "hours": 6,
+          "billed": 774
+        },
+        {
+          "date": "2026-07-31",
+          "hours": 0.19,
+          "billed": 161
+        }
+      ]
     },
     {
       "client": "Blink Optometry",
       "mtd": 1742,
-      "pctOfGoal": 8.3
+      "pctOfGoal": 8.3,
+      "daily": [
+        {
+          "date": "2026-07-01",
+          "hours": 0.02,
+          "billed": 129
+        },
+        {
+          "date": "2026-07-02",
+          "hours": 0.02,
+          "billed": 129
+        },
+        {
+          "date": "2026-07-03",
+          "hours": 0.02,
+          "billed": 129
+        },
+        {
+          "date": "2026-07-07",
+          "hours": 0.05,
+          "billed": 129
+        },
+        {
+          "date": "2026-07-10",
+          "hours": 0.37,
+          "billed": 194
+        },
+        {
+          "date": "2026-07-14",
+          "hours": 0.03,
+          "billed": 32
+        },
+        {
+          "date": "2026-07-15",
+          "hours": 0.5,
+          "billed": 65
+        },
+        {
+          "date": "2026-07-16",
+          "hours": 0.5,
+          "billed": 65
+        },
+        {
+          "date": "2026-07-17",
+          "hours": 0.02,
+          "billed": 129
+        },
+        {
+          "date": "2026-07-24",
+          "hours": 0.02,
+          "billed": 129
+        },
+        {
+          "date": "2026-07-27",
+          "hours": 0.04,
+          "billed": 258
+        },
+        {
+          "date": "2026-07-28",
+          "hours": 0.02,
+          "billed": 32
+        },
+        {
+          "date": "2026-07-29",
+          "hours": 0.02,
+          "billed": 129
+        },
+        {
+          "date": "2026-07-30",
+          "hours": 0.5,
+          "billed": 65
+        },
+        {
+          "date": "2026-07-31",
+          "hours": 0.02,
+          "billed": 129
+        }
+      ]
     },
     {
       "client": "Elite Home Rentals",
       "mtd": 1657,
-      "pctOfGoal": 7.9
+      "pctOfGoal": 7.9,
+      "daily": [
+        {
+          "date": "2026-07-02",
+          "hours": 0.02,
+          "billed": 43
+        },
+        {
+          "date": "2026-07-03",
+          "hours": 0.02,
+          "billed": 43
+        },
+        {
+          "date": "2026-07-06",
+          "hours": 0.11,
+          "billed": 130
+        },
+        {
+          "date": "2026-07-07",
+          "hours": 0.02,
+          "billed": 43
+        },
+        {
+          "date": "2026-07-08",
+          "hours": 0.04,
+          "billed": 54
+        },
+        {
+          "date": "2026-07-09",
+          "hours": 0.37,
+          "billed": 97
+        },
+        {
+          "date": "2026-07-10",
+          "hours": 0.02,
+          "billed": 43
+        },
+        {
+          "date": "2026-07-13",
+          "hours": 0.05,
+          "billed": 87
+        },
+        {
+          "date": "2026-07-14",
+          "hours": 0.04,
+          "billed": 87
+        },
+        {
+          "date": "2026-07-15",
+          "hours": 0.03,
+          "billed": 11
+        },
+        {
+          "date": "2026-07-16",
+          "hours": 0.96,
+          "billed": 152
+        },
+        {
+          "date": "2026-07-17",
+          "hours": 0.04,
+          "billed": 87
+        },
+        {
+          "date": "2026-07-20",
+          "hours": 0.03,
+          "billed": 43
+        },
+        {
+          "date": "2026-07-21",
+          "hours": 0.1,
+          "billed": 217
+        },
+        {
+          "date": "2026-07-23",
+          "hours": 0.02,
+          "billed": 43
+        },
+        {
+          "date": "2026-07-24",
+          "hours": 0.02,
+          "billed": 43
+        },
+        {
+          "date": "2026-07-27",
+          "hours": 6.08,
+          "billed": 303
+        },
+        {
+          "date": "2026-07-29",
+          "hours": 0.02,
+          "billed": 43
+        },
+        {
+          "date": "2026-07-30",
+          "hours": 0.02,
+          "billed": 43
+        },
+        {
+          "date": "2026-07-31",
+          "hours": 0.02,
+          "billed": 43
+        }
+      ]
     },
     {
       "client": "McLeod Family Foundation",
       "mtd": 1322,
-      "pctOfGoal": 6.3
+      "pctOfGoal": 6.3,
+      "daily": [
+        {
+          "date": "2026-07-01",
+          "hours": 0.05,
+          "billed": 22
+        },
+        {
+          "date": "2026-07-02",
+          "hours": 0.02,
+          "billed": 43
+        },
+        {
+          "date": "2026-07-03",
+          "hours": 0.02,
+          "billed": 43
+        },
+        {
+          "date": "2026-07-06",
+          "hours": 0.19,
+          "billed": 76
+        },
+        {
+          "date": "2026-07-07",
+          "hours": 0.02,
+          "billed": 43
+        },
+        {
+          "date": "2026-07-08",
+          "hours": 0.17,
+          "billed": 87
+        },
+        {
+          "date": "2026-07-09",
+          "hours": 0.52,
+          "billed": 65
+        },
+        {
+          "date": "2026-07-10",
+          "hours": 0.18,
+          "billed": 87
+        },
+        {
+          "date": "2026-07-13",
+          "hours": 0.04,
+          "billed": 54
+        },
+        {
+          "date": "2026-07-14",
+          "hours": 0.02,
+          "billed": 43
+        },
+        {
+          "date": "2026-07-16",
+          "hours": 0.09,
+          "billed": 54
+        },
+        {
+          "date": "2026-07-17",
+          "hours": 0.02,
+          "billed": 43
+        },
+        {
+          "date": "2026-07-20",
+          "hours": 0.04,
+          "billed": 87
+        },
+        {
+          "date": "2026-07-21",
+          "hours": 0.1,
+          "billed": 217
+        },
+        {
+          "date": "2026-07-23",
+          "hours": 0.09,
+          "billed": 54
+        },
+        {
+          "date": "2026-07-24",
+          "hours": 0.02,
+          "billed": 43
+        },
+        {
+          "date": "2026-07-27",
+          "hours": 0.02,
+          "billed": 43
+        },
+        {
+          "date": "2026-07-29",
+          "hours": 0.06,
+          "billed": 130
+        },
+        {
+          "date": "2026-07-30",
+          "hours": 0.02,
+          "billed": 43
+        },
+        {
+          "date": "2026-07-31",
+          "hours": 0.02,
+          "billed": 43
+        }
+      ]
     },
     {
       "client": "Williams Law Firm",
       "mtd": 839,
-      "pctOfGoal": 4
+      "pctOfGoal": 4,
+      "daily": [
+        {
+          "date": "2026-07-01",
+          "hours": 0.02,
+          "billed": 129
+        },
+        {
+          "date": "2026-07-03",
+          "hours": 0.05,
+          "billed": 129
+        },
+        {
+          "date": "2026-07-06",
+          "hours": 0.03,
+          "billed": 32
+        },
+        {
+          "date": "2026-07-07",
+          "hours": 0.07,
+          "billed": 32
+        },
+        {
+          "date": "2026-07-10",
+          "hours": 0.34,
+          "billed": 97
+        },
+        {
+          "date": "2026-07-16",
+          "hours": 0.53,
+          "billed": 194
+        },
+        {
+          "date": "2026-07-20",
+          "hours": 0.03,
+          "billed": 129
+        },
+        {
+          "date": "2026-07-27",
+          "hours": 0.4,
+          "billed": 97
+        }
+      ]
     },
     {
       "client": "Baird Drywall & Acoustic",
       "mtd": 327,
-      "pctOfGoal": 1.6
+      "pctOfGoal": 1.6,
+      "daily": [
+        {
+          "date": "2026-07-01",
+          "hours": 0.5,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-02",
+          "hours": 0.5,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-03",
+          "hours": 0.04,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-07",
+          "hours": 0.02,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-08",
+          "hours": 0.5,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-09",
+          "hours": 0.5,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-10",
+          "hours": 0.02,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-14",
+          "hours": 0.03,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-15",
+          "hours": 0.05,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-16",
+          "hours": 0.5,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-17",
+          "hours": 0.1,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-20",
+          "hours": 0.02,
+          "billed": 109
+        },
+        {
+          "date": "2026-07-21",
+          "hours": 0.02,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-22",
+          "hours": 0.52,
+          "billed": 109
+        },
+        {
+          "date": "2026-07-23",
+          "hours": 0.5,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-24",
+          "hours": 0.04,
+          "billed": 109
+        },
+        {
+          "date": "2026-07-29",
+          "hours": 0.52,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-30",
+          "hours": 0.5,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-31",
+          "hours": 0.04,
+          "billed": 0
+        }
+      ]
     },
     {
       "client": "SWVA Settlement & Title",
       "mtd": 258,
-      "pctOfGoal": 1.2
+      "pctOfGoal": 1.2,
+      "daily": [
+        {
+          "date": "2026-07-06",
+          "hours": 0.05,
+          "billed": 129
+        },
+        {
+          "date": "2026-07-17",
+          "hours": 0.02,
+          "billed": 129
+        }
+      ]
     },
     {
       "client": "Venture Consulting",
       "mtd": 258,
-      "pctOfGoal": 1.2
+      "pctOfGoal": 1.2,
+      "daily": [
+        {
+          "date": "2026-07-17",
+          "hours": 0.02,
+          "billed": 129
+        },
+        {
+          "date": "2026-07-20",
+          "hours": 0.03,
+          "billed": 32
+        },
+        {
+          "date": "2026-07-21",
+          "hours": 0.52,
+          "billed": 97
+        }
+      ]
     },
     {
       "client": "John McCaleb",
       "mtd": 97,
-      "pctOfGoal": 0.5
+      "pctOfGoal": 0.5,
+      "daily": [
+        {
+          "date": "2026-07-06",
+          "hours": 0.2,
+          "billed": 32
+        },
+        {
+          "date": "2026-07-07",
+          "hours": 0.2,
+          "billed": 32
+        },
+        {
+          "date": "2026-07-31",
+          "hours": 0.03,
+          "billed": 32
+        }
+      ]
     },
     {
       "client": "Premier Rollertainment",
       "mtd": 97,
-      "pctOfGoal": 0.5
+      "pctOfGoal": 0.5,
+      "daily": [
+        {
+          "date": "2026-07-06",
+          "hours": 0.03,
+          "billed": 32
+        },
+        {
+          "date": "2026-07-15",
+          "hours": 0.03,
+          "billed": 32
+        },
+        {
+          "date": "2026-07-24",
+          "hours": 0.03,
+          "billed": 32
+        }
+      ]
     },
     {
       "client": "Catchall",
       "mtd": 97,
-      "pctOfGoal": 0.5
+      "pctOfGoal": 0.5,
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "hours": 0.1,
+          "billed": 97
+        }
+      ]
     },
     {
       "client": "Crenshaw Lighting",
       "mtd": 65,
-      "pctOfGoal": 0.3
+      "pctOfGoal": 0.3,
+      "daily": [
+        {
+          "date": "2026-07-16",
+          "hours": 0.27,
+          "billed": 65
+        }
+      ]
     },
     {
       "client": "Utilis Consulting",
       "mtd": 32,
-      "pctOfGoal": 0.2
+      "pctOfGoal": 0.2,
+      "daily": [
+        {
+          "date": "2026-07-10",
+          "hours": 0.18,
+          "billed": 32
+        }
+      ]
+    },
+    {
+      "client": "Appalachian Bookkeeping",
+      "mtd": 0,
+      "pctOfGoal": 0,
+      "daily": [
+        {
+          "date": "2026-07-01",
+          "hours": 1,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-02",
+          "hours": 0.13,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-06",
+          "hours": 0.05,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-07",
+          "hours": 0.79,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-08",
+          "hours": 0.98,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-09",
+          "hours": 0.02,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-28",
+          "hours": 0.25,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-29",
+          "hours": 0.04,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-31",
+          "hours": 0.02,
+          "billed": 0
+        }
+      ]
+    },
+    {
+      "client": "TerraRoc",
+      "mtd": 0,
+      "pctOfGoal": 0,
+      "daily": [
+        {
+          "date": "2026-07-03",
+          "hours": 4,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-06",
+          "hours": 2.05,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-07",
+          "hours": 0.1,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-08",
+          "hours": 4,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-09",
+          "hours": 3.32,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-10",
+          "hours": 0.35,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-15",
+          "hours": 0.02,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-16",
+          "hours": 0.18,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-27",
+          "hours": 0.02,
+          "billed": 0
+        },
+        {
+          "date": "2026-07-28",
+          "hours": 0.03,
+          "billed": 0
+        }
+      ]
     }
   ],
   "flagged": [],
