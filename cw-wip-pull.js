@@ -94,44 +94,39 @@ async function fetchBillableTimeEntries(start, end) {
 }
 
 /**
- * Rate resolution — how this actually works:
+ * Rate resolution — corrected based on this instance's actual API response:
  *
- * ConnectWise resolves the full billing-rate hierarchy (Member default ->
- * Work Role default -> Agreement Work Role override -> Company-specific
- * Work Role rate -> ticket/project overrides -> manual override) at the
- * moment a time entry is SAVED, and writes the final resolved number into
- * the entry's `hourlyRate` field. That means a client-specific rate you've
- * set up under Company > Track > Work Roles is already baked into
- * `entry.hourlyRate` by the time it reaches this script — we don't need
- * to re-implement that lookup ourselves.
+ * ConnectWise time entries here don't expose a flat `hourlyRate` field.
+ * Instead, each entry carries `extendedInvoiceAmount` — the exact dollar
+ * value ConnectWise has already computed for that entry, with the full
+ * rate hierarchy (including your Company-specific Work Role overrides)
+ * baked in. That means we don't need to multiply hours × rate ourselves
+ * at all — we just sum extendedInvoiceAmount directly. This is more
+ * accurate than a manual hours×rate calc would have been anyway, since
+ * it reflects whatever rounding/minimum-increment rules ConnectWise
+ * applies internally.
  *
- * Where this can legitimately be missing:
- *   - Entries tied to Fixed Fee billing (no per-hour rate applies)
- *   - Old entries saved before a rate was configured for that work role
- *   - Entries where the tech picked a work role with no rate set anywhere
- *     in the hierarchy (a config gap worth fixing in CW, not papering
- *     over here)
+ * `hourlyCost` on an entry is the member's internal cost rate — not a
+ * billing figure, don't use it here (useful later for a margin view).
  *
- * Rather than silently treating those as $0 (which would just make WIP
- * look artificially low), this script flags them separately so you can
- * go look at the actual entries in ConnectWise.
+ * Entries can still legitimately have $0 extendedInvoiceAmount despite
+ * being marked Billable — e.g. entries not yet marked invoiceReady, or
+ * a config gap. Those get flagged rather than silently counted as $0.
  */
 function entryValue(entry) {
-  const hours = entry.actualHours ?? entry.hoursBilled ?? 0;
-  const rate = entry.hourlyRate ?? 0;
-  return hours * rate;
+  return Number(entry.extendedInvoiceAmount) || 0;
 }
 
 function aggregate(entries, monthGoal, daysInMonth) {
   const byDay = new Map(); // "1".."31" -> total
   const byClient = new Map(); // client name -> total
-  const flagged = []; // entries with hours but no resolved rate
+  const flagged = []; // entries with hours but no invoice amount
 
   for (const entry of entries) {
     const hours = entry.actualHours ?? entry.hoursBilled ?? 0;
     const value = entryValue(entry);
 
-    if (hours > 0 && !entry.hourlyRate) {
+    if (hours > 0 && !value) {
       flagged.push({
         id: entry.id,
         ticket: entry.chargeToId,
@@ -140,6 +135,7 @@ function aggregate(entries, monthGoal, daysInMonth) {
         member: entry.member?.name || "Unknown",
         date: entry.timeStart,
         hours,
+        invoiceReady: entry.invoiceReady,
       });
       continue; // excluded from totals — see flagged[] in output
     }
@@ -195,7 +191,6 @@ async function main() {
     dailyAccrual,
     clientBreakdown,
     flagged,
-    _debugSampleEntry: entries[0] || null, // TEMPORARY — remove once rate field is confirmed
   };
 
   const outPath = path.join(__dirname, "wip-data.json");
