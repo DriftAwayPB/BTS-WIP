@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07T12:15:46.396Z",
+  "generatedAt": "2026-08-07T14:25:24.432Z",
   "month": "2026-08",
   "isCurrentMonth": true,
   "monthGoal": 21000,
@@ -23,12 +23,16 @@
     {
       "date": "2026-08-06",
       "accrued": 643
+    },
+    {
+      "date": "2026-08-07",
+      "accrued": 13
     }
   ],
   "clientBreakdown": [
     {
       "client": "Honeytree Early Learning Centers",
-      "mtd": 811,
+      "mtd": 823,
       "pctOfGoal": 3.9
     },
     {
