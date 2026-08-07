@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07T10:28:29.919Z",
+  "generatedAt": "2026-08-07T10:34:15.035Z",
   "monthGoal": 24000,
   "daysInMonth": 31,
   "currentDay": 7,
@@ -708,5 +708,118 @@
       "date": "2026-08-06T19:51:00Z",
       "hours": 0.02
     }
-  ]
+  ],
+  "_debugSampleEntry": {
+    "id": 62732,
+    "company": {
+      "id": 19563,
+      "identifier": "McleodFamilyFoundation",
+      "name": "McLeod Family Foundation",
+      "_info": {
+        "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19563",
+        "mobileGuid": "690a0720-064f-4d9e-9c2b-144ce73c4a94"
+      }
+    },
+    "companyType": "Client",
+    "chargeToId": 331428,
+    "chargeToType": "ServiceTicket",
+    "member": {
+      "id": 149,
+      "identifier": "PBanks",
+      "name": "Philip Banks",
+      "dailyCapacity": 8,
+      "_info": {
+        "member_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/members/149",
+        "image_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/members/149/image?lm=2026-06-04T12:17:53Z"
+      }
+    },
+    "locationId": 11,
+    "businessUnitId": 1,
+    "businessGroupDesc": "Help Desk",
+    "location": {
+      "id": 11,
+      "name": "Headquarters",
+      "_info": {
+        "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/11"
+      }
+    },
+    "department": {
+      "id": 1,
+      "name": "Help Desk",
+      "_info": {
+        "department_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/departments/1"
+      }
+    },
+    "workType": {
+      "id": 3,
+      "name": "Regular",
+      "utilizationFlag": true,
+      "_info": {
+        "workType_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//time/workTypes/3"
+      }
+    },
+    "workRole": {
+      "id": 5,
+      "name": "Technician",
+      "_info": {
+        "workRole_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//time/workRoles/5"
+      }
+    },
+    "territory": "Banks Technology Services, LLC",
+    "timeStart": "2026-08-03T13:54:00Z",
+    "timeEnd": "2026-08-03T13:55:00Z",
+    "hoursDeduct": 0,
+    "actualHours": 0.02,
+    "billableOption": "Billable",
+    "notes": "Hi Teresa, \nI'll connect here in just a minute to get the printers installed. \n\n\nThanks,\n\n\n\n![\\[image\\]](https://na.myconnectwise.net/v4_6_release/api/newinlineimages/bankstech/301400c1-8959-42f8-aa07-fef695148210/389258f2-bd29-45de-9a50-934d121a06a0)\n\nPhilip L. Banks\nBanks Technology Services\nsupport@banks-tech.com\n540-632-2520\n\n![\\[image\\]](https://na.myconnectwise.net/v4_6_release/api/newinlineimages/bankstech/f2d1c539-b224-4230-9f4f-e3dbba58f6d2/2c24ef54-1848-4cab-8671-53a7bb09dd53)\n[Firewall 101: What every business should know](https://banks-tech.com/post/firewall-101-what-every-business-should-know)",
+    "addToDetailDescriptionFlag": true,
+    "addToInternalAnalysisFlag": false,
+    "addToResolutionFlag": false,
+    "emailResourceFlag": true,
+    "emailContactFlag": true,
+    "emailCcFlag": false,
+    "hourlyCost": "20.00",
+    "enteredBy": "PBanks",
+    "dateEntered": "2026-08-03T13:55:10Z",
+    "mobileGuid": "e427383a-23df-4a36-a6a7-34a5080552bc",
+    "agreementAmount": 0,
+    "agreementAdjustment": 0,
+    "adjustment": 0,
+    "invoiceReady": 1,
+    "timeSheet": {
+      "id": 844,
+      "name": "2026-07-29 to 2026-08-04",
+      "_info": {
+        "timeSheet_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//time/sheets/844"
+      }
+    },
+    "status": "Open",
+    "ticket": {
+      "id": 331428,
+      "summary": "RE: [EXTERNAL]: Re: 410 Printers",
+      "_info": {
+        "ticket_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//service/tickets/331428",
+        "billingMethod": "A",
+        "status": "Pending Client Response"
+      }
+    },
+    "ticketBoard": "Tier 1",
+    "ticketStatus": "Pending Client Response",
+    "ticketType": "MUST CHANGE",
+    "invoiceFlag": true,
+    "extendedInvoiceAmount": 10.8325,
+    "locationName": "Headquarters",
+    "taxCode": {
+      "id": 8,
+      "name": "Tax-State",
+      "_info": {
+        "taxCode_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/taxCodes/8"
+      }
+    },
+    "_info": {
+      "lastUpdated": "2026-08-03T13:55:11Z",
+      "updatedBy": "PBanks",
+      "chargeToMobileGuid": "7566d271-a2ce-434c-9dc7-7abfe7ad417b"
+    }
+  }
 }
