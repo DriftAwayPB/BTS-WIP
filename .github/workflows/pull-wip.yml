@@ -29,12 +29,13 @@ jobs:
           CW_PRIVATE_KEY: ${{ secrets.CW_PRIVATE_KEY }}
           CW_CLIENT_ID: ${{ secrets.CW_CLIENT_ID }}
           MONTH_GOAL: ${{ secrets.MONTH_GOAL }}
+          MONTH_GOALS: ${{ secrets.MONTH_GOALS }}
         run: node cw-wip-pull.js
 
       - name: Commit updated data
         run: |
           git config user.name "wip-bot"
           git config user.email "actions@github.com"
-          git add wip-data.json
+          git add data/
           git diff --quiet --cached || git commit -m "Update WIP data ($(date -u +%Y-%m-%d))"
           git push
