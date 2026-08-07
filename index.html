@@ -50,7 +50,7 @@
   const RELOAD_INTERVAL_MS = 60 * 60 * 1000;
 
   const TRIGGER_URL = "https://wip-dashbaord-trigger.pbanks.workers.dev/";
-  const TRIGGER_KEY = "B@nksT3ch"; // <-- fill this in with the TRIGGER_SECRET you set in Cloudflare
+  const TRIGGER_KEY = "PASTE_YOUR_TRIGGER_SECRET_HERE"; // <-- fill this in with the TRIGGER_SECRET you set in Cloudflare
   const FAST_POLL_MS = 10 * 1000;
   const FAST_POLL_MAX_TRIES = 12; // ~2 minutes of fast polling after a manual trigger
 
@@ -149,7 +149,8 @@
     }, direction === "prev" ? "‹" : "›");
   }
 
-  function AccrualChart({ data }) {
+  function AccrualChart({ data, selectedDate, onDayClick }) {
+    const [hoverIdx, setHoverIdx] = useState(null);
     const W = 900, H = 260, padL = 46, padR = 14, padT = 12, padB = 26;
     const innerW = W - padL - padR;
     const innerH = H - padT - padB;
@@ -167,11 +168,41 @@
     const gridLines = 4;
     const gridVals = Array.from({ length: gridLines + 1 }, (_, i) => (maxVal / gridLines) * i);
 
+    const hovered = hoverIdx !== null ? data[hoverIdx] : null;
+
+    // Tooltip box, positioned near the hovered point but clamped so it
+    // never runs off either edge of the chart.
+    let tooltip = null;
+    if (hovered) {
+      const boxW = 132, boxH = 68, gap = 10;
+      const px = xAt(hoverIdx);
+      const py = yAt(hovered.cumulative);
+      let bx = px + gap;
+      if (bx + boxW > W - padR) bx = px - gap - boxW;
+      let by = py - boxH - gap;
+      if (by < padT) by = py + gap;
+
+      tooltip = h("g", { style: { pointerEvents: "none" } },
+        h("rect", { x: bx, y: by, width: boxW, height: boxH, rx: 6, fill: colors.panel, stroke: colors.hairline, strokeWidth: "1" }),
+        h("text", { x: bx + 10, y: by + 18, fontFamily: FONT_MONO, fontSize: "11", fontWeight: "600", fill: colors.hi }, fmtMD(hovered.date)),
+        h("text", { x: bx + 10, y: by + 33, fontFamily: FONT_MONO, fontSize: "10", fill: colors.bar }, `Daily: ${fmtCurrency(hovered.accrued)}`),
+        h("text", { x: bx + 10, y: by + 47, fontFamily: FONT_MONO, fontSize: "10", fill: colors.finance }, `Cumulative: ${fmtCurrency(hovered.cumulative)}`),
+        h("text", { x: bx + 10, y: by + 61, fontFamily: FONT_MONO, fontSize: "10", fill: colors.goalLine }, `Goal pace: ${fmtCurrency(hovered.goalPace)}`)
+      );
+    }
+
     return h("svg", { viewBox: `0 0 ${W} ${H}`, style: { width: "100%", height: "auto", display: "block" } },
       gridVals.map((v, i) => h("g", { key: "grid" + i },
         h("line", { x1: padL, x2: W - padR, y1: yAt(v), y2: yAt(v), stroke: colors.hairline, strokeWidth: "1" }),
         h("text", { x: padL - 8, y: yAt(v) + 4, textAnchor: "end", fontFamily: FONT_MONO, fontSize: "10", fill: colors.faint }, Math.round(v / 1000) + "k")
       )),
+
+      // Selected-day highlight column, drawn behind the bars
+      selectedDate && data.some((d) => d.date === selectedDate) && (() => {
+        const i = data.findIndex((d) => d.date === selectedDate);
+        return h("rect", { x: xAt(i) - step / 2, y: padT, width: step, height: innerH, fill: colors.hi, opacity: "0.05" });
+      })(),
+
       data.map((d, i) => h("rect", {
         key: "bar" + i,
         x: xAt(i) - barWidth / 2,
@@ -184,8 +215,31 @@
       })),
       h("path", { d: goalPath, fill: "none", stroke: colors.goalLine, strokeWidth: "1.5", strokeDasharray: "4 4" }),
       h("path", { d: cumulativePath, fill: "none", stroke: colors.finance, strokeWidth: "2.5" }),
-      data.map((d, i) => h("circle", { key: "dot" + i, cx: xAt(i), cy: yAt(d.cumulative), r: "3.5", fill: colors.finance })),
-      data.map((d, i) => h("text", { key: "lbl" + i, x: xAt(i), y: H - 6, textAnchor: "middle", fontFamily: FONT_MONO, fontSize: "10", fill: colors.faint }, fmtMD(d.date)))
+      data.map((d, i) => h("circle", {
+        key: "dot" + i, cx: xAt(i), cy: yAt(d.cumulative),
+        r: d.date === selectedDate ? "5" : "3.5",
+        fill: colors.finance,
+        stroke: d.date === selectedDate ? colors.hi : "none",
+        strokeWidth: d.date === selectedDate ? "1.5" : "0",
+      })),
+      data.map((d, i) => h("text", { key: "lbl" + i, x: xAt(i), y: H - 6, textAnchor: "middle", fontFamily: FONT_MONO, fontSize: "10", fill: d.date === selectedDate ? colors.hi : colors.faint }, fmtMD(d.date))),
+
+      // Invisible wide hit-targets — one per day, covering the full column
+      // width so hover/click don't require pixel-perfect aim on a thin bar
+      data.map((d, i) => h("rect", {
+        key: "hit" + i,
+        x: xAt(i) - step / 2,
+        y: padT,
+        width: step,
+        height: innerH,
+        fill: "transparent",
+        style: { cursor: "pointer" },
+        onMouseEnter: () => setHoverIdx(i),
+        onMouseLeave: () => setHoverIdx((prev) => (prev === i ? null : prev)),
+        onClick: () => onDayClick && onDayClick(d.date),
+      })),
+
+      tooltip
     );
   }
 
@@ -200,6 +254,7 @@
     const [updateState, setUpdateState] = useState("idle"); // "idle" | "triggering" | "waiting" | "error"
     const [updateMessage, setUpdateMessage] = useState("");
     const [expandedClient, setExpandedClient] = useState(null);
+    const [selectedDay, setSelectedDay] = useState(null);
 
     async function loadManifest() {
       try {
@@ -234,7 +289,7 @@
       try {
         const res = await fetch(TRIGGER_URL, {
           method: "POST",
-          headers: { "Content-Type": "application/json", "X-Trigger-Key": TRIGGER_KEY },
+          headers: { "Content-Type": "application/json", "X-Trigger-Key": TRIGGER_KEY.trim() },
         });
         const body = await res.json().catch(() => ({}));
         if (!res.ok || !body.ok) {
@@ -286,6 +341,7 @@
       setViewMode("month");
       setWeekIndex(null);
       setExpandedClient(null);
+      setSelectedDay(null);
     }, [selectedMonth]);
 
     const weeks = useMemo(() => {
@@ -332,6 +388,22 @@
         return { date, accrued, cumulative: running, goalPace: Math.round(dailyGoalPace * weekdayCount) };
       });
     }, [monthData, viewMode, effectiveWeekIndex, weeks]);
+
+    // Per-client breakdown for whichever day is clicked on the chart —
+    // derived from the same per-client daily arrays the client-expand
+    // table already uses, just filtered/regrouped by date instead of
+    // by client. No extra data fetch needed.
+    const dayBreakdown = useMemo(() => {
+      if (!selectedDay || !monthData) return [];
+      const rows = [];
+      for (const c of monthData.clientBreakdown) {
+        const match = (c.daily || []).find((d) => d.date === selectedDay);
+        if (match && (match.hours > 0 || match.billed > 0)) {
+          rows.push({ client: c.client, hours: match.hours, billed: match.billed });
+        }
+      }
+      return rows.sort((a, b) => b.billed - a.billed);
+    }, [selectedDay, monthData]);
 
     if (!manifest || !monthData) {
       return h("div", { style: { background: colors.bg, minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", color: colors.muted, fontFamily: FONT_MONO } },
@@ -435,12 +507,17 @@
               )
             )
           ),
-          h(AccrualChart, { data: chartData }),
+          h(AccrualChart, {
+            data: chartData,
+            selectedDate: selectedDay,
+            onDayClick: (date) => setSelectedDay((prev) => (prev === date ? null : date)),
+          }),
           h("div", { style: { display: "flex", gap: 18, marginTop: 8, fontSize: 12, color: colors.muted } },
             h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 14, height: 2, background: colors.finance } }), "cumulative accrued"),
             h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 14, height: 2, borderTop: `2px dashed ${colors.goalLine}` } }), "goal pace (weekdays only)"),
             h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 8, height: 8, background: colors.bar, opacity: 0.55 } }), "daily")
-          )
+          ),
+          h("div", { style: { marginTop: 6, fontSize: 10.5, fontFamily: FONT_MONO, color: colors.faint } }, "Hover a day for values · click a day for client detail")
         ),
         h("div", { className: "side-metrics" },
           h(StatTile, {
@@ -471,7 +548,36 @@
         )
       ),
 
-      h(SectionLabel, { accent: colors.bar }, "MTD accrual by client"),
+      selectedDay && h(Panel, { style: { marginBottom: 22 } },
+        h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 } },
+          h(SectionLabel, { accent: colors.bar }, `Billing by client — ${fmtMD(selectedDay)}`),
+          h("button", {
+            onClick: () => setSelectedDay(null),
+            style: { background: "transparent", border: `1px solid ${colors.hairline}`, borderRadius: 6, color: colors.muted, fontFamily: FONT_MONO, fontSize: 11, padding: "4px 10px", cursor: "pointer" }
+          }, "Close")
+        ),
+        dayBreakdown.length === 0
+          ? h("div", { style: { fontFamily: FONT_MONO, fontSize: 12, color: colors.faint, padding: "8px 0" } }, "No billed activity this day.")
+          : h("div", null,
+              h("div", { style: { display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 8, padding: "0 4px 10px", borderBottom: `1px solid ${colors.hairline}`, marginBottom: 6 } },
+                ["Client", "Hours", "Billed"].map((label, i) =>
+                  h("div", { key: i, style: { fontFamily: FONT_MONO, fontSize: 10.5, color: colors.faint, textTransform: "uppercase", letterSpacing: "0.08em" } }, label)
+                )
+              ),
+              dayBreakdown.map((r, i) =>
+                h("div", { key: i, className: "row-hover", style: { display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 8, padding: "10px 4px", alignItems: "center", borderRadius: 6, fontSize: 14 } },
+                  h("div", { style: { color: colors.hi } }, r.client),
+                  h("div", { style: { fontFamily: FONT_MONO, color: colors.muted } }, r.hours.toFixed(2)),
+                  h("div", { style: { fontFamily: FONT_MONO, color: colors.finance } }, fmtCurrency(r.billed))
+                )
+              ),
+              h("div", { style: { display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 8, padding: "10px 4px 0", marginTop: 4, borderTop: `1px solid ${colors.hairline}`, fontSize: 14, fontWeight: 600 } },
+                h("div", { style: { color: colors.hi } }, "Total"),
+                h("div", { style: { fontFamily: FONT_MONO, color: colors.hi } }, dayBreakdown.reduce((s, r) => s + r.hours, 0).toFixed(2)),
+                h("div", { style: { fontFamily: FONT_MONO, color: colors.finance } }, fmtCurrency(dayBreakdown.reduce((s, r) => s + r.billed, 0)))
+              )
+            )
+      ),
       h(Panel, null,
         h("div", { style: { display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 8, padding: "0 4px 10px", borderBottom: `1px solid ${colors.hairline}`, marginBottom: 6 } },
           ["Client", "MTD Value", "% of Goal"].map((label, i) =>
