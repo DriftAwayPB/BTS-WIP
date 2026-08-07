@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07T14:38:02.613Z",
+  "generatedAt": "2026-08-07T14:44:39.108Z",
   "month": "2026-07",
   "isCurrentMonth": false,
   "monthGoal": 21000,
@@ -192,5 +192,122 @@
       "pctOfGoal": 0.2
     }
   ],
-  "flagged": []
+  "flagged": [],
+  "_debugCompanyEntries": [
+    {
+      "id": 62279,
+      "ticket": 323906,
+      "timeStart": "2026-07-01T19:58:53Z",
+      "actualHours": 0.5,
+      "billableOption": "Billable",
+      "extendedInvoiceAmount": 54.5,
+      "agreementAmount": 54.5,
+      "agreementAdjustment": -40.08,
+      "adjustment": 0,
+      "invoiceReady": 0,
+      "agreement": {
+        "id": 15,
+        "name": "Baird - Silver/Gold Split",
+        "type": "Managed Service - Silver",
+        "chargeFirmFlag": false,
+        "_info": {
+          "agreement_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/agreements/15",
+          "typeId": "3"
+        }
+      },
+      "ticketBillingMethod": "A"
+    },
+    {
+      "id": 62306,
+      "ticket": 325060,
+      "timeStart": "2026-07-07T12:53:32Z",
+      "actualHours": 0.02,
+      "billableOption": "Billable",
+      "extendedInvoiceAmount": 109,
+      "agreementAmount": 109,
+      "agreementAdjustment": -80.16,
+      "adjustment": 0,
+      "invoiceReady": 0,
+      "agreement": {
+        "id": 15,
+        "name": "Baird - Silver/Gold Split",
+        "type": "Managed Service - Silver",
+        "chargeFirmFlag": false,
+        "_info": {
+          "agreement_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/agreements/15",
+          "typeId": "3"
+        }
+      },
+      "ticketBillingMethod": "A"
+    },
+    {
+      "id": 62311,
+      "ticket": 324123,
+      "timeStart": "2026-07-02T12:58:54Z",
+      "actualHours": 0.5,
+      "billableOption": "Billable",
+      "extendedInvoiceAmount": 54.5,
+      "agreementAmount": 54.5,
+      "agreementAdjustment": -40.08,
+      "adjustment": 0,
+      "invoiceReady": 0,
+      "agreement": {
+        "id": 15,
+        "name": "Baird - Silver/Gold Split",
+        "type": "Managed Service - Silver",
+        "chargeFirmFlag": false,
+        "_info": {
+          "agreement_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/agreements/15",
+          "typeId": "3"
+        }
+      },
+      "ticketBillingMethod": "A"
+    },
+    {
+      "id": 62318,
+      "ticket": 324260,
+      "timeStart": "2026-07-03T13:01:51Z",
+      "actualHours": 0.02,
+      "billableOption": "Billable",
+      "extendedInvoiceAmount": 109,
+      "agreementAmount": 109,
+      "agreementAdjustment": -80.16,
+      "adjustment": 0,
+      "invoiceReady": 0,
+      "agreement": {
+        "id": 15,
+        "name": "Baird - Silver/Gold Split",
+        "type": "Managed Service - Silver",
+        "chargeFirmFlag": false,
+        "_info": {
+          "agreement_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/agreements/15",
+          "typeId": "3"
+        }
+      },
+      "ticketBillingMethod": "A"
+    },
+    {
+      "id": 62349,
+      "ticket": 324259,
+      "timeStart": "2026-07-03T21:51:43Z",
+      "actualHours": 0.02,
+      "billableOption": "Billable",
+      "extendedInvoiceAmount": 109,
+      "agreementAmount": 109,
+      "agreementAdjustment": -80.16,
+      "adjustment": 0,
+      "invoiceReady": 0,
+      "agreement": {
+        "id": 15,
+        "name": "Baird - Silver/Gold Split",
+        "type": "Managed Service - Silver",
+        "chargeFirmFlag": false,
+        "_info": {
+          "agreement_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/agreements/15",
+          "typeId": "3"
+        }
+      },
+      "ticketBillingMethod": "A"
+    }
+  ]
 }
