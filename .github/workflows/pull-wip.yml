@@ -30,6 +30,7 @@ jobs:
           CW_CLIENT_ID: ${{ secrets.CW_CLIENT_ID }}
           MONTH_GOAL: ${{ secrets.MONTH_GOAL }}
           MONTH_GOALS: ${{ secrets.MONTH_GOALS }}
+          DEBUG_COMPANY: ${{ secrets.DEBUG_COMPANY }}
         run: node cw-wip-pull.js
 
       - name: Commit updated data
