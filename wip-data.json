@@ -1,1 +1,712 @@
-{}
+{
+  "generatedAt": "2026-08-07T10:28:29.919Z",
+  "monthGoal": 24000,
+  "daysInMonth": 31,
+  "currentDay": 7,
+  "dailyAccrual": [],
+  "clientBreakdown": [],
+  "flagged": [
+    {
+      "id": 62732,
+      "ticket": 331428,
+      "company": "McLeod Family Foundation",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-03T13:54:00Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62733,
+      "ticket": 331428,
+      "company": "McLeod Family Foundation",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-03T14:08:00Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62734,
+      "ticket": 330355,
+      "company": "Fincastle Baptist Church",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-03T18:30:00Z",
+      "hours": 0.1
+    },
+    {
+      "id": 62735,
+      "ticket": 331507,
+      "company": "McLeod Enterprises",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-03T21:17:00Z",
+      "hours": 0.07
+    },
+    {
+      "id": 62736,
+      "ticket": 331559,
+      "company": "McLeod Family Foundation",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-04T12:47:00Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62737,
+      "ticket": 330242,
+      "company": "Appalachian Bookkeeping",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-04T13:59:00Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62738,
+      "ticket": 318103,
+      "company": "Premier Rollertainment",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-04T14:19:00Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62739,
+      "ticket": 331021,
+      "company": "Honeytree Early Learning Centers",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-04T18:11:00Z",
+      "hours": 0.05
+    },
+    {
+      "id": 62740,
+      "ticket": 330976,
+      "company": "McLeod Enterprises",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-03T13:00:00Z",
+      "hours": 2
+    },
+    {
+      "id": 62741,
+      "ticket": 331684,
+      "company": "McLeod Enterprises",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-04T18:26:00Z",
+      "hours": 1.5
+    },
+    {
+      "id": 62742,
+      "ticket": 330268,
+      "company": "McLeod Enterprises",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-04T18:34:00Z",
+      "hours": 0.5
+    },
+    {
+      "id": 62743,
+      "ticket": 330268,
+      "company": "McLeod Enterprises",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-04T18:40:00Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62744,
+      "ticket": 331689,
+      "company": "Honeytree Early Learning Centers",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-04T18:45:00Z",
+      "hours": 0.07
+    },
+    {
+      "id": 62745,
+      "ticket": 331690,
+      "company": "McLeod Enterprises",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-04T18:52:00Z",
+      "hours": 0.03
+    },
+    {
+      "id": 62746,
+      "ticket": 330268,
+      "company": "McLeod Enterprises",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-04T18:45:00Z",
+      "hours": 0.42
+    },
+    {
+      "id": 62747,
+      "ticket": 330268,
+      "company": "McLeod Enterprises",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-04T19:11:00Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62748,
+      "ticket": 331690,
+      "company": "McLeod Enterprises",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-04T19:17:00Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62749,
+      "ticket": 331690,
+      "company": "McLeod Enterprises",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-04T19:18:00Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62750,
+      "ticket": 331691,
+      "company": "Honeytree Early Learning Centers",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-04T19:25:00Z",
+      "hours": 0.07
+    },
+    {
+      "id": 62751,
+      "ticket": 331692,
+      "company": "Honeytree Early Learning Centers",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-04T19:34:00Z",
+      "hours": 0.12
+    },
+    {
+      "id": 62752,
+      "ticket": 331606,
+      "company": "McLeod Enterprises",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-04T19:44:00Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62753,
+      "ticket": 331691,
+      "company": "Honeytree Early Learning Centers",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-05T12:11:00Z",
+      "hours": 0.03
+    },
+    {
+      "id": 62754,
+      "ticket": 331691,
+      "company": "Honeytree Early Learning Centers",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-05T11:00:00Z",
+      "hours": 2
+    },
+    {
+      "id": 62773,
+      "ticket": 330429,
+      "company": "Elite Home Rentals",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-03T13:26:25Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62774,
+      "ticket": 330428,
+      "company": "Honeytree Early Learning Centers",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-03T13:26:48Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62775,
+      "ticket": 330427,
+      "company": "McLeod Enterprises",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-03T13:27:06Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62776,
+      "ticket": 330430,
+      "company": "McLeod Family Foundation",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-03T13:27:23Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62778,
+      "ticket": 331845,
+      "company": "Fincastle Baptist Church",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-05T13:42:00Z",
+      "hours": 0.03
+    },
+    {
+      "id": 62785,
+      "ticket": 331686,
+      "company": "Utilis Consulting",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-05T14:14:00Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62786,
+      "ticket": 330242,
+      "company": "Appalachian Bookkeeping",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-05T15:30:00Z",
+      "hours": 0.5
+    },
+    {
+      "id": 62787,
+      "ticket": 331690,
+      "company": "McLeod Enterprises",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-05T17:45:00Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62788,
+      "ticket": 331691,
+      "company": "Honeytree Early Learning Centers",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-05T17:47:00Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62789,
+      "ticket": 331845,
+      "company": "Fincastle Baptist Church",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-05T17:48:00Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62790,
+      "ticket": 331845,
+      "company": "Fincastle Baptist Church",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-05T17:58:00Z",
+      "hours": 0.5
+    },
+    {
+      "id": 62791,
+      "ticket": 330777,
+      "company": "Honeytree Early Learning Centers",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-05T18:01:00Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62792,
+      "ticket": 331888,
+      "company": "Scott & Bond",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-05T18:03:00Z",
+      "hours": 0.08
+    },
+    {
+      "id": 62793,
+      "ticket": 331895,
+      "company": "McLeod Enterprises",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-05T18:08:00Z",
+      "hours": 0.03
+    },
+    {
+      "id": 62794,
+      "ticket": 331899,
+      "company": "Honeytree Early Learning Centers",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-05T18:11:00Z",
+      "hours": 0.05
+    },
+    {
+      "id": 62795,
+      "ticket": 330647,
+      "company": "Baird Drywall & Acoustic",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-04T18:28:18Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62796,
+      "ticket": 330649,
+      "company": "Elite Home Rentals",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-04T18:29:07Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62797,
+      "ticket": 330646,
+      "company": "Honeytree Early Learning Centers",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-04T18:29:40Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62798,
+      "ticket": 330645,
+      "company": "McLeod Enterprises",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-04T18:30:17Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62799,
+      "ticket": 330648,
+      "company": "McLeod Family Foundation",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-04T18:31:39Z",
+      "hours": 0.05
+    },
+    {
+      "id": 62800,
+      "ticket": 330894,
+      "company": "Baird Drywall & Acoustic",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-05T18:34:46Z",
+      "hours": 0.5
+    },
+    {
+      "id": 62801,
+      "ticket": 330892,
+      "company": "McLeod Enterprises",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-05T18:35:41Z",
+      "hours": 0.5
+    },
+    {
+      "id": 62802,
+      "ticket": 330737,
+      "company": "Honeytree Early Learning Centers",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-03T18:39:00Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62803,
+      "ticket": 330736,
+      "company": "Honeytree Early Learning Centers",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-03T18:40:00Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62804,
+      "ticket": 330734,
+      "company": "Honeytree Early Learning Centers",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-03T18:42:00Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62805,
+      "ticket": 330732,
+      "company": "Honeytree Early Learning Centers",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-03T18:42:00Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62806,
+      "ticket": 331922,
+      "company": "McLeod Family Foundation",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-06T12:13:00Z",
+      "hours": 0.05
+    },
+    {
+      "id": 62807,
+      "ticket": 332039,
+      "company": "McLeod Family Foundation",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-06T12:23:00Z",
+      "hours": 0.27
+    },
+    {
+      "id": 62808,
+      "ticket": 331907,
+      "company": "Appalachian Bookkeeping",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-06T12:40:00Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62809,
+      "ticket": 332042,
+      "company": "McLeod Enterprises",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-06T12:55:00Z",
+      "hours": 0.03
+    },
+    {
+      "id": 62810,
+      "ticket": 318103,
+      "company": "Premier Rollertainment",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-05T19:30:00Z",
+      "hours": 0.5
+    },
+    {
+      "id": 62811,
+      "ticket": 330777,
+      "company": "Honeytree Early Learning Centers",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-05T22:00:00Z",
+      "hours": 0.5
+    },
+    {
+      "id": 62812,
+      "ticket": 330777,
+      "company": "Honeytree Early Learning Centers",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-06T12:58:00Z",
+      "hours": 0.03
+    },
+    {
+      "id": 62813,
+      "ticket": 331872,
+      "company": "Honeytree Early Learning Centers",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-05T22:00:00Z",
+      "hours": 2
+    },
+    {
+      "id": 62814,
+      "ticket": 331690,
+      "company": "McLeod Enterprises",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-05T19:00:00Z",
+      "hours": 0.25
+    },
+    {
+      "id": 62815,
+      "ticket": 329109,
+      "company": "Honeytree Early Learning Centers",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-05T13:10:00Z",
+      "hours": 0.03
+    },
+    {
+      "id": 62816,
+      "ticket": 331081,
+      "company": "Elite Home Rentals",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-06T13:16:53Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62817,
+      "ticket": 331082,
+      "company": "Honeytree Early Learning Centers",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-06T13:18:05Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62818,
+      "ticket": 331079,
+      "company": "McLeod Enterprises",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-06T13:18:28Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62819,
+      "ticket": 331080,
+      "company": "McLeod Family Foundation",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-06T13:19:18Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62820,
+      "ticket": 331075,
+      "company": "McLeod Enterprises",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-06T13:19:41Z",
+      "hours": 0.5
+    },
+    {
+      "id": 62821,
+      "ticket": 331076,
+      "company": "Honeytree Early Learning Centers",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-06T13:20:55Z",
+      "hours": 0.5
+    },
+    {
+      "id": 62822,
+      "ticket": 331078,
+      "company": "Baird Drywall & Acoustic",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-06T13:21:16Z",
+      "hours": 0.5
+    },
+    {
+      "id": 62823,
+      "ticket": 332034,
+      "company": "McLeod Enterprises",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-06T13:22:00Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62824,
+      "ticket": 332035,
+      "company": "Blink Optometry",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-06T13:24:00Z",
+      "hours": 0.05
+    },
+    {
+      "id": 62825,
+      "ticket": 329109,
+      "company": "Honeytree Early Learning Centers",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-06T13:38:00Z",
+      "hours": 0.03
+    },
+    {
+      "id": 62826,
+      "ticket": 329109,
+      "company": "Honeytree Early Learning Centers",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-06T13:30:00Z",
+      "hours": 0.08
+    },
+    {
+      "id": 62827,
+      "ticket": 332030,
+      "company": "Honeytree Early Learning Centers",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-06T13:53:00Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62828,
+      "ticket": 330268,
+      "company": "McLeod Enterprises",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-06T13:35:00Z",
+      "hours": 0.5
+    },
+    {
+      "id": 62829,
+      "ticket": 332042,
+      "company": "McLeod Enterprises",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-06T14:44:00Z",
+      "hours": 0.03
+    },
+    {
+      "id": 62830,
+      "ticket": 330777,
+      "company": "Honeytree Early Learning Centers",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-06T18:44:00Z",
+      "hours": 0.13
+    },
+    {
+      "id": 62831,
+      "ticket": 331907,
+      "company": "Appalachian Bookkeeping",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-06T18:53:00Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62832,
+      "ticket": 331888,
+      "company": "Scott & Bond",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-06T18:55:00Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62833,
+      "ticket": 331691,
+      "company": "Honeytree Early Learning Centers",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-06T18:58:00Z",
+      "hours": 0.02
+    },
+    {
+      "id": 62834,
+      "ticket": 331907,
+      "company": "Appalachian Bookkeeping",
+      "workRole": "Technician",
+      "member": "Philip Banks",
+      "date": "2026-08-06T19:51:00Z",
+      "hours": 0.02
+    }
+  ]
+}
