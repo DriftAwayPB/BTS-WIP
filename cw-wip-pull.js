@@ -157,8 +157,9 @@ function entryValue(entry) {
 }
 
 function aggregate(entries, monthGoal) {
-  const byDate = new Map(); // "YYYY-MM-DD" -> total
-  const byClient = new Map(); // client name -> total
+  const byDate = new Map(); // "YYYY-MM-DD" -> total billed
+  const byClient = new Map(); // client name -> total billed
+  const byClientDate = new Map(); // client name -> Map("YYYY-MM-DD" -> { hours, billed })
   const flagged = [];
 
   for (const entry of entries) {
@@ -182,13 +183,18 @@ function aggregate(entries, monthGoal) {
       });
       continue;
     }
-    if (!value) continue;
+    if (!hours && !value) continue; // nothing meaningful to record
 
     const dateKey = isoDate(new Date(entry.timeStart));
-    byDate.set(dateKey, (byDate.get(dateKey) || 0) + value);
-
     const client = entry.company?.name || "Unknown";
+
+    byDate.set(dateKey, (byDate.get(dateKey) || 0) + value);
     byClient.set(client, (byClient.get(client) || 0) + value);
+
+    if (!byClientDate.has(client)) byClientDate.set(client, new Map());
+    const clientDates = byClientDate.get(client);
+    const prior = clientDates.get(dateKey) || { hours: 0, billed: 0 };
+    clientDates.set(dateKey, { hours: prior.hours + hours, billed: prior.billed + value });
   }
 
   const dailyAccrual = Array.from(byDate.entries())
@@ -196,11 +202,23 @@ function aggregate(entries, monthGoal) {
     .map(([date, accrued]) => ({ date, accrued: Math.round(accrued) }));
 
   const clientBreakdown = Array.from(byClient.entries())
-    .map(([client, mtd]) => ({
-      client,
-      mtd: Math.round(mtd),
-      pctOfGoal: Number(((mtd / monthGoal) * 100).toFixed(1)),
-    }))
+    .map(([client, mtd]) => {
+      const dates = byClientDate.get(client) || new Map();
+      const daily = Array.from(dates.entries())
+        .sort((a, b) => (a[0] < b[0] ? -1 : 1))
+        .map(([date, d]) => ({
+          date,
+          hours: Number(d.hours.toFixed(2)),
+          billed: Math.round(d.billed),
+        }));
+
+      return {
+        client,
+        mtd: Math.round(mtd),
+        pctOfGoal: Number(((mtd / monthGoal) * 100).toFixed(1)),
+        daily,
+      };
+    })
     .sort((a, b) => b.mtd - a.mtd);
 
   return { dailyAccrual, clientBreakdown, flagged };
