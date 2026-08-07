@@ -172,6 +172,7 @@ function aggregate(entries, monthGoal, incrementsMap) {
   const byClient = new Map(); // client name -> total billed
   const byClientDate = new Map(); // client name -> Map("YYYY-MM-DD" -> { hours, billed })
   const flagged = [];
+  let totalBilledHours = 0; // only counts entries with real $ value, not agreement-covered ($0) time
 
   for (const entry of entries) {
     const hours = entry.actualHours ?? entry.hoursBilled ?? 0;
@@ -202,6 +203,7 @@ function aggregate(entries, monthGoal, incrementsMap) {
 
     byDate.set(dateKey, (byDate.get(dateKey) || 0) + value);
     byClient.set(client, (byClient.get(client) || 0) + value);
+    if (value > 0) totalBilledHours += billedHours;
 
     if (!byClientDate.has(client)) byClientDate.set(client, new Map());
     const clientDates = byClientDate.get(client);
@@ -233,7 +235,7 @@ function aggregate(entries, monthGoal, incrementsMap) {
     })
     .sort((a, b) => b.mtd - a.mtd);
 
-  return { dailyAccrual, clientBreakdown, flagged };
+  return { dailyAccrual, clientBreakdown, flagged, totalBilledHours: Number(totalBilledHours.toFixed(2)) };
 }
 
 function parseMonthGoals() {
@@ -307,7 +309,7 @@ async function pullMonth({ refDate, today, monthGoalsMap, isCurrentMonth, increm
   const entries = await fetchBillableTimeEntries(start, end);
   console.log(`  fetched ${entries.length} billable time entries`);
 
-  const { dailyAccrual, clientBreakdown, flagged } = aggregate(entries, goal, incrementsMap);
+  const { dailyAccrual, clientBreakdown, flagged, totalBilledHours } = aggregate(entries, goal, incrementsMap);
 
   if (flagged.length) {
     console.warn(`  ⚠ ${flagged.length} entries had hours but no invoice amount — excluded, see flagged[]`);
@@ -329,6 +331,7 @@ async function pullMonth({ refDate, today, monthGoalsMap, isCurrentMonth, increm
     dailyAccrual,
     clientBreakdown,
     flagged,
+    totalBilledHours,
   };
 
   if (DEBUG_COMPANY) {
