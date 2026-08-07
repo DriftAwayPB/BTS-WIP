@@ -6,7 +6,6 @@
 <title>WIP Accrual — Banks Technology Services</title>
 <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/recharts@2.12.7/umd/Recharts.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -20,15 +19,25 @@
 </head>
 <body>
 <div id="root"></div>
+<div id="fallback-error" style="display:none; color:#F87171; font-family: monospace; padding: 24px; white-space: pre-wrap;"></div>
+
+<script>
+  window.addEventListener("error", function (e) {
+    var el = document.getElementById("fallback-error");
+    if (el) {
+      el.style.display = "block";
+      el.textContent = "Dashboard failed to load:\n" + (e.error ? (e.error.stack || e.error.message) : e.message);
+    }
+  });
+</script>
 
 <script type="text/babel" data-presets="react">
 const { useState, useEffect, useMemo } = React;
-const { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } = Recharts;
 
 // ---------- CONFIG ----------
 const DATA_URL = "https://raw.githubusercontent.com/DriftAwayPB/BTS-WIP/refs/heads/main/wip-data.json";
-const REFRESH_INTERVAL_MS = 5 * 60 * 1000; // re-fetch data every 5 minutes
-const RELOAD_INTERVAL_MS = 60 * 60 * 1000; // full page reload every hour (kiosk hygiene)
+const REFRESH_INTERVAL_MS = 5 * 60 * 1000;
+const RELOAD_INTERVAL_MS = 60 * 60 * 1000;
 
 // ---------- Design tokens ----------
 const FONT_DISPLAY = "'Space Grotesk', 'Inter', sans-serif";
@@ -78,6 +87,63 @@ function StatTile({ label, value, sub, accent, glyph, trendUp }) {
         </div>
       )}
     </Panel>
+  );
+}
+
+function AccrualChart({ data }) {
+  const W = 900, H = 260, padL = 46, padR = 14, padT = 12, padB = 26;
+  const innerW = W - padL - padR;
+  const innerH = H - padT - padB;
+
+  const maxVal = Math.max(1, ...data.map(d => Math.max(d.cumulative, d.goalPace)));
+  const step = data.length > 1 ? innerW / (data.length - 1) : innerW;
+  const barWidth = Math.min(28, (innerW / data.length) * 0.5);
+
+  const xAt = (i) => padL + i * step;
+  const yAt = (v) => padT + innerH - (v / maxVal) * innerH;
+
+  const cumulativePath = data.map((d, i) => `${i === 0 ? "M" : "L"} ${xAt(i)} ${yAt(d.cumulative)}`).join(" ");
+  const goalPath = data.map((d, i) => `${i === 0 ? "M" : "L"} ${xAt(i)} ${yAt(d.goalPace)}`).join(" ");
+
+  const gridLines = 4;
+  const gridVals = Array.from({ length: gridLines + 1 }, (_, i) => (maxVal / gridLines) * i);
+
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "auto", display: "block" }}>
+      {gridVals.map((v, i) => (
+        <g key={i}>
+          <line x1={padL} x2={W - padR} y1={yAt(v)} y2={yAt(v)} stroke={colors.hairline} strokeWidth="1" />
+          <text x={padL - 8} y={yAt(v) + 4} textAnchor="end" fontFamily={FONT_MONO} fontSize="10" fill={colors.faint}>
+            {Math.round(v / 1000)}k
+          </text>
+        </g>
+      ))}
+
+      {data.map((d, i) => (
+        <rect
+          key={i}
+          x={xAt(i) - barWidth / 2}
+          y={yAt(d.accrued)}
+          width={barWidth}
+          height={Math.max(0, yAt(0) - yAt(d.accrued))}
+          fill={colors.bar}
+          opacity="0.55"
+          rx="2"
+        />
+      ))}
+
+      <path d={goalPath} fill="none" stroke={colors.goalLine} strokeWidth="1.5" strokeDasharray="4 4" />
+      <path d={cumulativePath} fill="none" stroke={colors.finance} strokeWidth="2.5" />
+      {data.map((d, i) => (
+        <circle key={i} cx={xAt(i)} cy={yAt(d.cumulative)} r="3.5" fill={colors.finance} />
+      ))}
+
+      {data.map((d, i) => (
+        <text key={i} x={xAt(i)} y={H - 6} textAnchor="middle" fontFamily={FONT_MONO} fontSize="10" fill={colors.faint}>
+          {d.day}
+        </text>
+      ))}
+    </svg>
   );
 }
 
@@ -171,21 +237,7 @@ function Dashboard() {
 
       <Panel style={{ marginBottom: 22 }}>
         <SectionLabel accent={colors.finance}>Cumulative accrual vs. goal pace</SectionLabel>
-        <ResponsiveContainer width="100%" height={260}>
-          <ComposedChart data={chartData} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
-            <CartesianGrid stroke={colors.hairline} vertical={false} />
-            <XAxis dataKey="day" stroke={colors.faint} tick={{ fontFamily: FONT_MONO, fontSize: 11 }} axisLine={false} tickLine={false} />
-            <YAxis stroke={colors.faint} tick={{ fontFamily: FONT_MONO, fontSize: 11 }} axisLine={false} tickLine={false}
-              tickFormatter={(v) => `${Math.round(v / 1000)}k`} width={42} />
-            <Tooltip
-              contentStyle={{ background: colors.panel, border: `1px solid ${colors.hairline}`, borderRadius: 8, fontFamily: FONT_MONO, fontSize: 12 }}
-              formatter={(v, key) => [fmtCurrency(v), key === "cumulative" ? "cumulative accrued" : key === "goalPace" ? "goal pace" : "daily"]}
-            />
-            <Bar dataKey="accrued" barSize={18} radius={[3, 3, 0, 0]} fill={colors.bar} opacity={0.55} />
-            <Line type="monotone" dataKey="cumulative" stroke={colors.finance} strokeWidth={2.5} dot={{ r: 3, fill: colors.finance }} />
-            <Line type="monotone" dataKey="goalPace" stroke={colors.goalLine} strokeWidth={1.5} strokeDasharray="4 4" dot={false} />
-          </ComposedChart>
-        </ResponsiveContainer>
+        <AccrualChart data={chartData} />
         <div style={{ display: "flex", gap: 18, marginTop: 8, fontSize: 12, color: colors.muted }}>
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}><div style={{ width: 14, height: 2, background: colors.finance }} /> cumulative accrued</div>
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}><div style={{ width: 14, height: 2, borderTop: `2px dashed ${colors.goalLine}` }} /> goal pace</div>
