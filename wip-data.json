@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-07T11:32:45.620Z",
-  "monthGoal": 24000,
+  "generatedAt": "2026-08-07T11:35:04.378Z",
+  "monthGoal": 21000,
   "weekdaysInMonth": 21,
   "weekdaysElapsed": 5,
   "weekdaysRemaining": 16,
@@ -27,37 +27,37 @@
     {
       "client": "Honeytree Early Learning Centers",
       "mtd": 811,
-      "pctOfGoal": 3.4
+      "pctOfGoal": 3.9
     },
     {
       "client": "McLeod Enterprises",
       "mtd": 620,
-      "pctOfGoal": 2.6
+      "pctOfGoal": 3
     },
     {
       "client": "McLeod Family Foundation",
       "mtd": 245,
-      "pctOfGoal": 1
+      "pctOfGoal": 1.2
     },
     {
       "client": "Baird Drywall & Acoustic",
       "mtd": 218,
-      "pctOfGoal": 0.9
+      "pctOfGoal": 1
     },
     {
       "client": "Fincastle Baptist Church",
       "mtd": 161,
-      "pctOfGoal": 0.7
+      "pctOfGoal": 0.8
     },
     {
       "client": "Premier Rollertainment",
       "mtd": 161,
-      "pctOfGoal": 0.7
+      "pctOfGoal": 0.8
     },
     {
       "client": "Elite Home Rentals",
       "mtd": 150,
-      "pctOfGoal": 0.6
+      "pctOfGoal": 0.7
     },
     {
       "client": "Appalachian Bookkeeping",
@@ -72,12 +72,12 @@
     {
       "client": "Utilis Consulting",
       "mtd": 32,
-      "pctOfGoal": 0.1
+      "pctOfGoal": 0.2
     },
     {
       "client": "Blink Optometry",
       "mtd": 32,
-      "pctOfGoal": 0.1
+      "pctOfGoal": 0.2
     }
   ],
   "flagged": []
