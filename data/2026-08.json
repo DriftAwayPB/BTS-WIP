@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07T15:41:39.385Z",
+  "generatedAt": "2026-08-07T15:54:32.789Z",
   "month": "2026-08",
   "isCurrentMonth": true,
   "monthGoal": 21000,
@@ -264,6 +264,7 @@
     }
   ],
   "flagged": [],
+  "totalBilledHours": 41.25,
   "_debugCompanyEntries": [
     {
       "id": 62795,
