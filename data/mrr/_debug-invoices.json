@@ -1,0 +1,882 @@
+{
+  "generatedAt": "2026-08-08T13:41:18.625Z",
+  "note": "Field-discovery pass only — date-range pull not yet attempted, waiting to confirm the correct date field name.",
+  "sample": [
+    {
+      "id": 1,
+      "invoiceNumber": "5000",
+      "type": "Agreement",
+      "status": {
+        "id": 13,
+        "name": "Closed",
+        "isClosed": true
+      },
+      "company": {
+        "id": 19408,
+        "identifier": "TrustHouse",
+        "name": "Trust House",
+        "_info": {
+          "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19408"
+        }
+      },
+      "billToCompany": {
+        "id": 19408,
+        "identifier": "TrustHouse",
+        "name": "Trust House",
+        "_info": {
+          "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19408"
+        }
+      },
+      "shipToCompany": {
+        "id": 19408,
+        "identifier": "TrustHouse",
+        "name": "Trust House",
+        "_info": {
+          "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19408"
+        }
+      },
+      "accountNumber": "Trust House Roanoke",
+      "applyToType": "Agreement",
+      "applyToId": 3,
+      "attention": "Betty Scaggs",
+      "shipToAttention": "Betty Scaggs",
+      "billingSite": {
+        "id": 1114,
+        "name": "Main",
+        "_info": {
+          "site_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19408/sites/1114"
+        }
+      },
+      "billingSiteAddressLine1": "404 Elm Ave SW",
+      "billingSiteAddressLine2": "",
+      "billingSiteCity": "Roanoke",
+      "billingSiteState": "VA",
+      "billingSiteZip": "24016",
+      "shippingSite": {
+        "id": 1114,
+        "name": "Main",
+        "_info": {
+          "site_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19408/sites/1114"
+        }
+      },
+      "shippingSiteAddressLine1": "404 Elm Ave SW",
+      "shippingSiteAddressLine2": "",
+      "shippingSiteCity": "Roanoke",
+      "shippingSiteState": "VA",
+      "shippingSiteZip": "24016",
+      "billingTerms": {
+        "id": 2,
+        "name": "Net 15 days"
+      },
+      "reference": "Monthly Billing for December",
+      "customerPO": "",
+      "templateSetupId": 7,
+      "invoiceTemplate": {
+        "id": 13,
+        "name": "MS Agreement Template",
+        "_info": {
+          "invoiceTemplate_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/invoiceTemplates/13"
+        }
+      },
+      "emailTemplateId": 1,
+      "addToBatchEmailList": false,
+      "date": "2015-12-01T00:00:00Z",
+      "restrictDownpaymentFlag": false,
+      "locationId": 11,
+      "location": {
+        "id": 11,
+        "name": "Headquarters",
+        "_info": {
+          "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/11"
+        }
+      },
+      "departmentId": 2,
+      "department": {
+        "id": 2,
+        "name": "Managed Service",
+        "_info": {
+          "department_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/departments/2"
+        }
+      },
+      "territoryId": 2,
+      "territory": {
+        "id": 2,
+        "name": "Banks Technology Services, LLC",
+        "_info": {
+          "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/2"
+        }
+      },
+      "topComment": "",
+      "bottomComment": "",
+      "taxableFlag": false,
+      "taxCode": {
+        "id": 8,
+        "name": "Tax-State",
+        "_info": {
+          "taxCode_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/taxCodes/8"
+        }
+      },
+      "internalNotes": "",
+      "downpaymentPreviouslyTaxedFlag": false,
+      "serviceTotal": 0,
+      "overrideDownPaymentAmountFlag": false,
+      "currency": {
+        "id": 7,
+        "symbol": "$",
+        "currencyCode": "USD",
+        "decimalSeparator": ".",
+        "numberOfDecimals": 2,
+        "thousandsSeparator": ",",
+        "negativeParenthesesFlag": false,
+        "displaySymbolFlag": true,
+        "currencyIdentifier": "USD",
+        "displayIdFlag": false,
+        "rightAlign": false,
+        "name": "US Dollars",
+        "_info": {
+          "currency_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/currencies/7"
+        }
+      },
+      "dueDate": "2015-12-16T00:00:00Z",
+      "expenseTotal": 0,
+      "productTotal": 600,
+      "previousProgressApplied": 0,
+      "serviceAdjustmentAmount": 0,
+      "agreementAmount": 0,
+      "downpaymentApplied": 0,
+      "subtotal": 600,
+      "total": 600,
+      "remainingDownpayment": 0,
+      "salesTax": 0,
+      "adjustmentReason": "",
+      "adjustedBy": "",
+      "closedBy": "PBanks",
+      "payments": 600,
+      "credits": 0,
+      "balance": 0,
+      "specialInvoiceFlag": false,
+      "billingSetupReference": {
+        "id": 2,
+        "name": "Banks Technology Services",
+        "_info": {
+          "billingSetup_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/billingsetups/2"
+        }
+      },
+      "agreement": {
+        "id": 3,
+        "name": "Managed Service - Trust House",
+        "type": "Managed Service - Gold",
+        "_info": {
+          "agreement_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/agreements/3"
+        }
+      },
+      "_info": {
+        "lastUpdated": "2016-06-07T13:51:51Z",
+        "updatedBy": "PBanks",
+        "dateEntered": "2015-12-14T13:08:53Z",
+        "enteredBy": "PBanks",
+        "products_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/products?conditions=invoice/id=1",
+        "timeEntries_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//time/entries?conditions=invoice/id=1",
+        "expenseEntries_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//expense/entries?conditions=invoice/id=1"
+      }
+    },
+    {
+      "id": 6,
+      "invoiceNumber": "5005",
+      "type": "Agreement",
+      "status": {
+        "id": 13,
+        "name": "Closed",
+        "isClosed": true
+      },
+      "company": {
+        "id": 19407,
+        "identifier": "ThorConstruction",
+        "name": "Thor Construction",
+        "_info": {
+          "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19407"
+        }
+      },
+      "billToCompany": {
+        "id": 19407,
+        "identifier": "ThorConstruction",
+        "name": "Thor Construction",
+        "_info": {
+          "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19407"
+        }
+      },
+      "shipToCompany": {
+        "id": 19407,
+        "identifier": "ThorConstruction",
+        "name": "Thor Construction",
+        "_info": {
+          "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19407"
+        }
+      },
+      "accountNumber": "Thor Construction",
+      "applyToType": "Agreement",
+      "applyToId": 6,
+      "attention": "",
+      "shipToAttention": "",
+      "billingSite": {
+        "id": 1113,
+        "name": "Thor Construction",
+        "_info": {
+          "site_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19407/sites/1113"
+        }
+      },
+      "billingSiteAddressLine1": "3313 Plantation Rd.",
+      "billingSiteAddressLine2": "",
+      "billingSiteCity": "Roanoke",
+      "billingSiteState": "VA",
+      "billingSiteZip": "",
+      "shippingSite": {
+        "id": 1113,
+        "name": "Thor Construction",
+        "_info": {
+          "site_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19407/sites/1113"
+        }
+      },
+      "shippingSiteAddressLine1": "3313 Plantation Rd.",
+      "shippingSiteAddressLine2": "",
+      "shippingSiteCity": "Roanoke",
+      "shippingSiteState": "VA",
+      "shippingSiteZip": "",
+      "billingTerms": {
+        "id": 2,
+        "name": "Net 15 days"
+      },
+      "reference": "Monthly Billing for February",
+      "customerPO": "",
+      "templateSetupId": 7,
+      "invoiceTemplate": {
+        "id": 13,
+        "name": "MS Agreement Template",
+        "_info": {
+          "invoiceTemplate_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/invoiceTemplates/13"
+        }
+      },
+      "emailTemplateId": 1,
+      "addToBatchEmailList": false,
+      "date": "2016-02-01T00:00:00Z",
+      "restrictDownpaymentFlag": false,
+      "locationId": 11,
+      "location": {
+        "id": 11,
+        "name": "Headquarters",
+        "_info": {
+          "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/11"
+        }
+      },
+      "departmentId": 1,
+      "department": {
+        "id": 1,
+        "name": "Help Desk",
+        "_info": {
+          "department_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/departments/1"
+        }
+      },
+      "territoryId": 2,
+      "territory": {
+        "id": 2,
+        "name": "Banks Technology Services, LLC",
+        "_info": {
+          "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/2"
+        }
+      },
+      "topComment": "",
+      "bottomComment": "",
+      "taxableFlag": false,
+      "taxCode": {
+        "id": 8,
+        "name": "Tax-State",
+        "_info": {
+          "taxCode_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/taxCodes/8"
+        }
+      },
+      "internalNotes": "",
+      "downpaymentPreviouslyTaxedFlag": false,
+      "serviceTotal": 0,
+      "overrideDownPaymentAmountFlag": false,
+      "currency": {
+        "id": 7,
+        "symbol": "$",
+        "currencyCode": "USD",
+        "decimalSeparator": ".",
+        "numberOfDecimals": 2,
+        "thousandsSeparator": ",",
+        "negativeParenthesesFlag": false,
+        "displaySymbolFlag": true,
+        "currencyIdentifier": "USD",
+        "displayIdFlag": false,
+        "rightAlign": false,
+        "name": "US Dollars",
+        "_info": {
+          "currency_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/currencies/7"
+        }
+      },
+      "dueDate": "2016-02-16T00:00:00Z",
+      "expenseTotal": 0,
+      "productTotal": 99,
+      "previousProgressApplied": 0,
+      "serviceAdjustmentAmount": 0,
+      "agreementAmount": 0,
+      "downpaymentApplied": 0,
+      "subtotal": 99,
+      "total": 99,
+      "remainingDownpayment": 0,
+      "salesTax": 0,
+      "adjustmentReason": "",
+      "adjustedBy": "",
+      "closedBy": "PBanks",
+      "payments": 99,
+      "credits": 0,
+      "balance": 0,
+      "specialInvoiceFlag": false,
+      "billingSetupReference": {
+        "id": 2,
+        "name": "Banks Technology Services",
+        "_info": {
+          "billingSetup_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/billingsetups/2"
+        }
+      },
+      "agreement": {
+        "id": 6,
+        "name": "Managed Anti-Spam",
+        "type": "Managed Anti-Spam",
+        "_info": {
+          "agreement_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/agreements/6"
+        }
+      },
+      "_info": {
+        "lastUpdated": "2016-02-02T18:14:15Z",
+        "updatedBy": "PBanks",
+        "dateEntered": "2016-02-01T13:07:37Z",
+        "enteredBy": "PBanks",
+        "products_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/products?conditions=invoice/id=6",
+        "timeEntries_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//time/entries?conditions=invoice/id=6",
+        "expenseEntries_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//expense/entries?conditions=invoice/id=6"
+      }
+    },
+    {
+      "id": 7,
+      "invoiceNumber": "5006",
+      "type": "Agreement",
+      "status": {
+        "id": 13,
+        "name": "Closed",
+        "isClosed": true
+      },
+      "company": {
+        "id": 19403,
+        "identifier": "HoneytreeEarlyLearning",
+        "name": "Honeytree Early Learning Centers",
+        "_info": {
+          "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19403"
+        }
+      },
+      "billToCompany": {
+        "id": 19403,
+        "identifier": "HoneytreeEarlyLearning",
+        "name": "Honeytree Early Learning Centers",
+        "_info": {
+          "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19403"
+        }
+      },
+      "shipToCompany": {
+        "id": 19403,
+        "identifier": "HoneytreeEarlyLearning",
+        "name": "Honeytree Early Learning Centers",
+        "_info": {
+          "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19403"
+        }
+      },
+      "accountNumber": "Honeytree Early Learning Centers",
+      "applyToType": "Agreement",
+      "applyToId": 4,
+      "attention": "Seth Hillis",
+      "shipToAttention": "Seth Hillis",
+      "billingSite": {
+        "id": 1109,
+        "name": "418 1st St.",
+        "_info": {
+          "site_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19403/sites/1109"
+        }
+      },
+      "billingSiteAddressLine1": "418 1st. St",
+      "billingSiteCity": "Roanoke",
+      "billingSiteState": "VA",
+      "billingSiteZip": "24011",
+      "shippingSite": {
+        "id": 1109,
+        "name": "418 1st St.",
+        "_info": {
+          "site_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19403/sites/1109"
+        }
+      },
+      "shippingSiteAddressLine1": "418 1st. St",
+      "shippingSiteCity": "Roanoke",
+      "shippingSiteState": "VA",
+      "shippingSiteZip": "24011",
+      "billingTerms": {
+        "id": 3,
+        "name": "Due Upon Receipt"
+      },
+      "reference": "Monthly Billing for February",
+      "customerPO": "",
+      "templateSetupId": 7,
+      "invoiceTemplate": {
+        "id": 13,
+        "name": "MS Agreement Template",
+        "_info": {
+          "invoiceTemplate_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/invoiceTemplates/13"
+        }
+      },
+      "emailTemplateId": 1,
+      "addToBatchEmailList": false,
+      "date": "2016-02-01T00:00:00Z",
+      "restrictDownpaymentFlag": false,
+      "locationId": 11,
+      "location": {
+        "id": 11,
+        "name": "Headquarters",
+        "_info": {
+          "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/11"
+        }
+      },
+      "departmentId": 1,
+      "department": {
+        "id": 1,
+        "name": "Help Desk",
+        "_info": {
+          "department_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/departments/1"
+        }
+      },
+      "territoryId": 2,
+      "territory": {
+        "id": 2,
+        "name": "Banks Technology Services, LLC",
+        "_info": {
+          "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/2"
+        }
+      },
+      "topComment": "",
+      "bottomComment": "",
+      "taxableFlag": false,
+      "taxCode": {
+        "id": 8,
+        "name": "Tax-State",
+        "_info": {
+          "taxCode_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/taxCodes/8"
+        }
+      },
+      "internalNotes": "",
+      "downpaymentPreviouslyTaxedFlag": false,
+      "serviceTotal": 0,
+      "overrideDownPaymentAmountFlag": false,
+      "currency": {
+        "id": 7,
+        "symbol": "$",
+        "currencyCode": "USD",
+        "decimalSeparator": ".",
+        "numberOfDecimals": 2,
+        "thousandsSeparator": ",",
+        "negativeParenthesesFlag": false,
+        "displaySymbolFlag": true,
+        "currencyIdentifier": "USD",
+        "displayIdFlag": false,
+        "rightAlign": false,
+        "name": "US Dollars",
+        "_info": {
+          "currency_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/currencies/7"
+        }
+      },
+      "dueDate": "2016-02-01T00:00:00Z",
+      "expenseTotal": 0,
+      "productTotal": 66,
+      "previousProgressApplied": 0,
+      "serviceAdjustmentAmount": 0,
+      "agreementAmount": 0,
+      "downpaymentApplied": 0,
+      "subtotal": 66,
+      "total": 66,
+      "remainingDownpayment": 0,
+      "salesTax": 0,
+      "adjustmentReason": "",
+      "adjustedBy": "",
+      "closedBy": "PBanks",
+      "payments": 66,
+      "credits": 0,
+      "balance": 0,
+      "specialInvoiceFlag": false,
+      "billingSetupReference": {
+        "id": 2,
+        "name": "Banks Technology Services",
+        "_info": {
+          "billingSetup_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/billingsetups/2"
+        }
+      },
+      "agreement": {
+        "id": 4,
+        "name": "Honeytree - EDR",
+        "type": "Managed Antivirus",
+        "_info": {
+          "agreement_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/agreements/4"
+        }
+      },
+      "_info": {
+        "lastUpdated": "2016-02-02T18:14:26Z",
+        "updatedBy": "PBanks",
+        "dateEntered": "2016-02-01T13:07:37Z",
+        "enteredBy": "PBanks",
+        "products_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/products?conditions=invoice/id=7",
+        "timeEntries_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//time/entries?conditions=invoice/id=7",
+        "expenseEntries_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//expense/entries?conditions=invoice/id=7"
+      }
+    },
+    {
+      "id": 8,
+      "invoiceNumber": "5007",
+      "type": "Agreement",
+      "status": {
+        "id": 13,
+        "name": "Closed",
+        "isClosed": true
+      },
+      "company": {
+        "id": 19405,
+        "identifier": "MHMasonry",
+        "name": "MH Masonry",
+        "_info": {
+          "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19405"
+        }
+      },
+      "billToCompany": {
+        "id": 19405,
+        "identifier": "MHMasonry",
+        "name": "MH Masonry",
+        "_info": {
+          "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19405"
+        }
+      },
+      "shipToCompany": {
+        "id": 19405,
+        "identifier": "MHMasonry",
+        "name": "MH Masonry",
+        "_info": {
+          "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19405"
+        }
+      },
+      "accountNumber": "MH Masonry",
+      "applyToType": "Agreement",
+      "applyToId": 5,
+      "attention": "Chad McGhee",
+      "shipToAttention": "Chad McGhee",
+      "billingSite": {
+        "id": 1111,
+        "name": "MH Virginia",
+        "_info": {
+          "site_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19405/sites/1111"
+        }
+      },
+      "billingSiteAddressLine1": "22473 Timberlake Rd.",
+      "billingSiteCity": "Lynchburg",
+      "billingSiteState": "VA",
+      "billingSiteZip": "24502",
+      "shippingSite": {
+        "id": 1111,
+        "name": "MH Virginia",
+        "_info": {
+          "site_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19405/sites/1111"
+        }
+      },
+      "shippingSiteAddressLine1": "22473 Timberlake Rd.",
+      "shippingSiteCity": "Lynchburg",
+      "shippingSiteState": "VA",
+      "shippingSiteZip": "24502",
+      "billingTerms": {
+        "id": 3,
+        "name": "Due Upon Receipt"
+      },
+      "reference": "Monthly Billing for February",
+      "customerPO": "",
+      "templateSetupId": 7,
+      "invoiceTemplate": {
+        "id": 13,
+        "name": "MS Agreement Template",
+        "_info": {
+          "invoiceTemplate_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/invoiceTemplates/13"
+        }
+      },
+      "emailTemplateId": 1,
+      "addToBatchEmailList": false,
+      "date": "2016-02-01T00:00:00Z",
+      "restrictDownpaymentFlag": false,
+      "locationId": 11,
+      "location": {
+        "id": 11,
+        "name": "Headquarters",
+        "_info": {
+          "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/11"
+        }
+      },
+      "departmentId": 1,
+      "department": {
+        "id": 1,
+        "name": "Help Desk",
+        "_info": {
+          "department_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/departments/1"
+        }
+      },
+      "territoryId": 2,
+      "territory": {
+        "id": 2,
+        "name": "Banks Technology Services, LLC",
+        "_info": {
+          "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/2"
+        }
+      },
+      "topComment": "",
+      "bottomComment": "",
+      "taxableFlag": false,
+      "taxCode": {
+        "id": 8,
+        "name": "Tax-State",
+        "_info": {
+          "taxCode_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/taxCodes/8"
+        }
+      },
+      "internalNotes": "",
+      "downpaymentPreviouslyTaxedFlag": false,
+      "serviceTotal": 0,
+      "overrideDownPaymentAmountFlag": false,
+      "currency": {
+        "id": 7,
+        "symbol": "$",
+        "currencyCode": "USD",
+        "decimalSeparator": ".",
+        "numberOfDecimals": 2,
+        "thousandsSeparator": ",",
+        "negativeParenthesesFlag": false,
+        "displaySymbolFlag": true,
+        "currencyIdentifier": "USD",
+        "displayIdFlag": false,
+        "rightAlign": false,
+        "name": "US Dollars",
+        "_info": {
+          "currency_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/currencies/7"
+        }
+      },
+      "dueDate": "2016-02-01T00:00:00Z",
+      "expenseTotal": 0,
+      "productTotal": 30,
+      "previousProgressApplied": 0,
+      "serviceAdjustmentAmount": 0,
+      "agreementAmount": 0,
+      "downpaymentApplied": 0,
+      "subtotal": 30,
+      "total": 30,
+      "remainingDownpayment": 0,
+      "salesTax": 0,
+      "adjustmentReason": "",
+      "adjustedBy": "",
+      "closedBy": "PBanks",
+      "payments": 30,
+      "credits": 0,
+      "balance": 0,
+      "specialInvoiceFlag": false,
+      "billingSetupReference": {
+        "id": 2,
+        "name": "Banks Technology Services",
+        "_info": {
+          "billingSetup_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/billingsetups/2"
+        }
+      },
+      "agreement": {
+        "id": 5,
+        "name": "Managed Antivirus",
+        "type": "Managed Antivirus",
+        "_info": {
+          "agreement_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/agreements/5"
+        }
+      },
+      "_info": {
+        "lastUpdated": "2016-02-02T18:14:09Z",
+        "updatedBy": "PBanks",
+        "dateEntered": "2016-02-01T13:07:38Z",
+        "enteredBy": "PBanks",
+        "products_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/products?conditions=invoice/id=8",
+        "timeEntries_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//time/entries?conditions=invoice/id=8",
+        "expenseEntries_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//expense/entries?conditions=invoice/id=8"
+      }
+    },
+    {
+      "id": 10,
+      "invoiceNumber": "5009",
+      "type": "Standard",
+      "status": {
+        "id": 3,
+        "name": "Closed - Emailed",
+        "isClosed": true
+      },
+      "company": {
+        "id": 19407,
+        "identifier": "ThorConstruction",
+        "name": "Thor Construction",
+        "_info": {
+          "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19407"
+        }
+      },
+      "billToCompany": {
+        "id": 19407,
+        "identifier": "ThorConstruction",
+        "name": "Thor Construction",
+        "_info": {
+          "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19407"
+        }
+      },
+      "shipToCompany": {
+        "id": 19407,
+        "identifier": "ThorConstruction",
+        "name": "Thor Construction",
+        "_info": {
+          "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19407"
+        }
+      },
+      "accountNumber": "Thor Construction",
+      "attention": "",
+      "shipToAttention": "",
+      "billingSite": {
+        "id": 1113,
+        "name": "Thor Construction",
+        "_info": {
+          "site_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19407/sites/1113"
+        }
+      },
+      "billingSiteAddressLine1": "3313 Plantation Rd.",
+      "billingSiteAddressLine2": "",
+      "billingSiteCity": "Roanoke",
+      "billingSiteState": "VA",
+      "billingSiteZip": "",
+      "shippingSite": {
+        "id": 1113,
+        "name": "Thor Construction",
+        "_info": {
+          "site_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19407/sites/1113"
+        }
+      },
+      "shippingSiteAddressLine1": "3313 Plantation Rd.",
+      "shippingSiteAddressLine2": "",
+      "shippingSiteCity": "Roanoke",
+      "shippingSiteState": "VA",
+      "shippingSiteZip": "",
+      "billingTerms": {
+        "id": 2,
+        "name": "Net 15 days"
+      },
+      "reference": "",
+      "customerPO": "",
+      "templateSetupId": 1,
+      "invoiceTemplate": {
+        "id": 1,
+        "name": "Default Invoice Template",
+        "_info": {
+          "invoiceTemplate_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/invoiceTemplates/1"
+        }
+      },
+      "emailTemplateId": 1,
+      "addToBatchEmailList": true,
+      "date": "2016-02-01T00:00:00Z",
+      "restrictDownpaymentFlag": false,
+      "locationId": 11,
+      "location": {
+        "id": 11,
+        "name": "Headquarters",
+        "_info": {
+          "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/11"
+        }
+      },
+      "departmentId": 1,
+      "department": {
+        "id": 1,
+        "name": "Help Desk",
+        "_info": {
+          "department_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/departments/1"
+        }
+      },
+      "territoryId": 2,
+      "territory": {
+        "id": 2,
+        "name": "Banks Technology Services, LLC",
+        "_info": {
+          "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/2"
+        }
+      },
+      "topComment": "",
+      "bottomComment": "Pay this invoice online at our Payment Portal: http://www.banks-tech.com/pay",
+      "taxableFlag": false,
+      "taxCode": {
+        "id": 8,
+        "name": "Tax-State",
+        "_info": {
+          "taxCode_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/taxCodes/8"
+        }
+      },
+      "internalNotes": "",
+      "downpaymentPreviouslyTaxedFlag": false,
+      "serviceTotal": 2160,
+      "overrideDownPaymentAmountFlag": false,
+      "currency": {
+        "id": 7,
+        "symbol": "$",
+        "currencyCode": "USD",
+        "decimalSeparator": ".",
+        "numberOfDecimals": 2,
+        "thousandsSeparator": ",",
+        "negativeParenthesesFlag": false,
+        "displaySymbolFlag": true,
+        "currencyIdentifier": "USD",
+        "displayIdFlag": false,
+        "rightAlign": false,
+        "name": "US Dollars",
+        "_info": {
+          "currency_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/currencies/7"
+        }
+      },
+      "dueDate": "2016-02-16T00:00:00Z",
+      "expenseTotal": 0,
+      "productTotal": 0,
+      "previousProgressApplied": 0,
+      "serviceAdjustmentAmount": 0,
+      "agreementAmount": 0,
+      "downpaymentApplied": 0,
+      "subtotal": 2160,
+      "total": 2160,
+      "remainingDownpayment": 0,
+      "salesTax": 0,
+      "adjustmentReason": "",
+      "adjustedBy": "",
+      "closedBy": "PBanks",
+      "payments": 2160,
+      "credits": 0,
+      "balance": 0,
+      "specialInvoiceFlag": false,
+      "billingSetupReference": {
+        "id": 2,
+        "name": "Banks Technology Services",
+        "_info": {
+          "billingSetup_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/billingsetups/2"
+        }
+      },
+      "_info": {
+        "lastUpdated": "2016-06-07T13:53:08Z",
+        "updatedBy": "PBanks",
+        "dateEntered": "2016-02-01T16:27:37Z",
+        "enteredBy": "PBanks",
+        "products_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/products?conditions=invoice/id=10",
+        "timeEntries_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//time/entries?conditions=invoice/id=10",
+        "expenseEntries_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//expense/entries?conditions=invoice/id=10"
+      }
+    }
+  ]
+}
