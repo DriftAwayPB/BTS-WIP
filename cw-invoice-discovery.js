@@ -41,6 +41,18 @@ function authHeader() {
   return `Basic ${Buffer.from(raw).toString("base64")}`;
 }
 
+async function fetchSampleUnfiltered(pageSize) {
+  const url = `${CW_BASE_URL}/finance/invoices?pageSize=${pageSize}`;
+  const res = await fetch(url, {
+    headers: { Authorization: authHeader(), clientId: CW_CLIENT_ID, Accept: "application/json" },
+  });
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`ConnectWise API error ${res.status}: ${body}`);
+  }
+  return res.json();
+}
+
 async function fetchInvoices(startDate, endDate) {
   const conditions = encodeURIComponent(`invoiceDate>=[${startDate}] and invoiceDate<=[${endDate}]`);
   let page = 1;
@@ -82,51 +94,9 @@ function monthKey(dateStr) {
 async function main() {
   assertEnv();
 
-  const startDate = "2025-01-01T00:00:00Z";
-  const endDate = new Date().toISOString();
-
-  console.log(`Pulling invoices from ${startDate} to ${endDate}...`);
-  const invoices = await fetchInvoices(startDate, endDate);
-  console.log(`Fetched ${invoices.length} invoices`);
-
-  const byMonth = {};
-  const byType = {};
-  for (const inv of invoices) {
-    const mk = monthKey(inv.invoiceDate || inv.date);
-    byMonth[mk] = (byMonth[mk] || 0) + 1;
-    const t = inv.type?.name || inv.billingType || inv.invoiceType || "Unknown";
-    byType[t] = (byType[t] || 0) + 1;
-  }
-  console.log("By month:", JSON.stringify(byMonth, null, 2));
-  console.log("By type field found:", JSON.stringify(byType, null, 2));
-
-  // Slim summary of every invoice (top-level fields only, no line items)
-  const slim = invoices.map((inv) => ({
-    id: inv.id,
-    invoiceDate: inv.invoiceDate || inv.date || null,
-    company: inv.company?.name || null,
-    total: inv.total ?? null,
-    type: inv.type?.name || null,
-    billingType: inv.billingType || null,
-    agreement: inv.agreement || null, // may or may not exist — checking
-    status: inv.status || null,
-  }));
-
-  // Full raw detail for a spread of sample invoices across different
-  // months, so we can see the actual line-item shape.
-  const sortedByDate = invoices.slice().sort((a, b) => (a.invoiceDate || "").localeCompare(b.invoiceDate || ""));
-  const sampleStep = Math.max(1, Math.floor(sortedByDate.length / 12));
-  const sampleInvoices = sortedByDate.filter((_, i) => i % sampleStep === 0).slice(0, 15);
-
-  const detailSamples = [];
-  for (const inv of sampleInvoices) {
-    try {
-      const detail = await fetchInvoiceDetail(inv.id);
-      detailSamples.push(detail);
-    } catch (e) {
-      console.warn(`  ⚠ failed to fetch detail for invoice ${inv.id}: ${e.message}`);
-    }
-  }
+  console.log("Pulling a small unfiltered sample first to confirm real field names...");
+  const sample = await fetchSampleUnfiltered(5);
+  console.log(`Fetched ${sample.length} sample invoices (unfiltered)`);
 
   const dataDir = path.join(__dirname, "data", "mrr");
   fs.mkdirSync(dataDir, { recursive: true });
@@ -135,17 +105,14 @@ async function main() {
     JSON.stringify(
       {
         generatedAt: new Date().toISOString(),
-        count: invoices.length,
-        byMonth,
-        byType,
-        slim,
-        detailSamples,
+        note: "Field-discovery pass only — date-range pull not yet attempted, waiting to confirm the correct date field name.",
+        sample,
       },
       null,
       2
     )
   );
-  console.log("Wrote data/mrr/_debug-invoices.json");
+  console.log("Wrote data/mrr/_debug-invoices.json (field-discovery sample only)");
 }
 
 main().catch((err) => {
