@@ -1,30 +1,57 @@
 /**
  * cw-mrr-pull.js
  *
- * DISCOVERY SCRIPT — pulls raw ConnectWise Agreements data so we can see
- * the actual field structure (type names, billing frequency, statuses)
- * before building real MRR aggregation and categorization logic. Same
- * approach that caught the Baird agreement-coverage issue on the WIP
- * side: look at real data first, build logic against confirmed fields,
- * not assumptions.
+ * Pulls active ConnectWise agreements + their active additions, and
+ * computes true normalized MRR split into "365 Licensing" vs "Managed
+ * Services". Built from real field inspection (see the discovery-phase
+ * debug files this replaced) rather than guesses:
  *
- * Writes data/mrr/_debug-agreements.json — a raw/summarized dump, NOT
- * the final MRR data shape. This file gets replaced once we've reviewed
- * it together and settled on:
- *   - how to categorize agreements (e.g. "365 Licensing" vs "Managed
- *     Services") — by type, name pattern, or something else
- *   - how to normalize non-monthly billing (annual/quarterly) into a
- *     true monthly figure
- *   - which statuses count as "active" MRR vs cancelled/expired
+ *   - Agreement-level `billAmount` is $0 for almost everything — the real
+ *     dollar amounts live on Additions (per-unit line items).
+ *   - Each addition's `extPrice` (quantity × unitPrice) is the real
+ *     billed value, at whatever billing cycle the PARENT agreement uses
+ *     (additions don't carry their own cycle).
+ *   - Additions have their own `additionStatus`, independent of the
+ *     parent agreement's status — a "Cancelled" addition on an "Active"
+ *     agreement must be excluded.
+ *   - Categorization uses keyword matching against the addition's
+ *     product identifier + description (confirmed cleanest signal),
+ *     falling back to the agreement's own name/type for agreement-level
+ *     billAmount (e.g. Block Time agreements).
+ *
+ * Writes:
+ *   data/mrr/current.json           — latest snapshot
+ *   data/mrr/history/YYYY-MM.json   — snapshot for the current month,
+ *                                      overwritten on each run (so once
+ *                                      a month closes, its file reflects
+ *                                      the last pull of that month)
+ *   data/mrr/manifest.json          — list of available history months
  *
  * Reuses the same ConnectWise secrets as cw-wip-pull.js:
  *   CW_BASE_URL, CW_COMPANY_ID, CW_PUBLIC_KEY, CW_PRIVATE_KEY, CW_CLIENT_ID
+ *
+ * Optional:
+ *   MRR_LICENSING_KEYWORDS   comma-separated, case-insensitive substrings
+ *                            that mark an addition/agreement as "365
+ *                            Licensing" rather than "Managed Services".
+ *                            Default: "365,teams phones"
+ *   DEBUG_MRR                set to "true" to include raw agreement/
+ *                            addition dumps in current.json for
+ *                            troubleshooting.
  */
 
 const fs = require("fs");
 const path = require("path");
 
-const { CW_BASE_URL, CW_COMPANY_ID, CW_PUBLIC_KEY, CW_PRIVATE_KEY, CW_CLIENT_ID } = process.env;
+const {
+  CW_BASE_URL,
+  CW_COMPANY_ID,
+  CW_PUBLIC_KEY,
+  CW_PRIVATE_KEY,
+  CW_CLIENT_ID,
+  MRR_LICENSING_KEYWORDS,
+  DEBUG_MRR,
+} = process.env;
 
 function assertEnv() {
   const required = ["CW_BASE_URL", "CW_COMPANY_ID", "CW_PUBLIC_KEY", "CW_PRIVATE_KEY", "CW_CLIENT_ID"];
@@ -47,11 +74,7 @@ async function fetchAllAgreements() {
   while (true) {
     const url = `${CW_BASE_URL}/finance/agreements?page=${page}&pageSize=${pageSize}`;
     const res = await fetch(url, {
-      headers: {
-        Authorization: authHeader(),
-        clientId: CW_CLIENT_ID,
-        Accept: "application/json",
-      },
+      headers: { Authorization: authHeader(), clientId: CW_CLIENT_ID, Accept: "application/json" },
     });
     if (!res.ok) {
       const body = await res.text();
@@ -68,11 +91,7 @@ async function fetchAllAgreements() {
 async function fetchAdditions(agreementId) {
   const url = `${CW_BASE_URL}/finance/agreements/${agreementId}/additions?pageSize=1000`;
   const res = await fetch(url, {
-    headers: {
-      Authorization: authHeader(),
-      clientId: CW_CLIENT_ID,
-      Accept: "application/json",
-    },
+    headers: { Authorization: authHeader(), clientId: CW_CLIENT_ID, Accept: "application/json" },
   });
   if (!res.ok) {
     const body = await res.text();
@@ -81,115 +100,177 @@ async function fetchAdditions(agreementId) {
   return res.json();
 }
 
+// Monthly-normalization factors by billing cycle name. Only "Monthly"
+// and "Annual" confirmed against real data so far — anything else gets
+// flagged rather than silently guessed at.
+const CYCLE_FACTORS = {
+  Monthly: 1,
+  Annual: 1 / 12,
+  Quarterly: 1 / 3,
+  "Semi-Annually": 1 / 2,
+};
+
+function cycleFactorFor(agreement, flagged) {
+  const cycleName = agreement.billingCycle?.name;
+  if (cycleName && CYCLE_FACTORS[cycleName] !== undefined) {
+    return CYCLE_FACTORS[cycleName];
+  }
+  flagged.push({
+    agreementId: agreement.id,
+    name: agreement.name,
+    company: agreement.company?.name || null,
+    issue: `Unknown/missing billing cycle "${cycleName}" — treated as Monthly (factor 1). Verify this agreement.`,
+  });
+  return 1;
+}
+
+const DEFAULT_LICENSING_KEYWORDS = ["365", "teams phones"];
+function parseLicensingKeywords() {
+  if (!MRR_LICENSING_KEYWORDS) return DEFAULT_LICENSING_KEYWORDS;
+  return MRR_LICENSING_KEYWORDS.split(",").map((s) => s.trim()).filter(Boolean);
+}
+
+function categorize(text, keywords) {
+  const lower = (text || "").toLowerCase();
+  return keywords.some((kw) => lower.includes(kw.toLowerCase())) ? "365 Licensing" : "Managed Services";
+}
+
+function monthKey(d) {
+  return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}`;
+}
+
 async function main() {
   assertEnv();
-  console.log("Pulling all ConnectWise agreements for review...");
-  const agreements = await fetchAllAgreements();
-  console.log(`Fetched ${agreements.length} agreements`);
+  const keywords = parseLicensingKeywords();
+  const debugMode = String(DEBUG_MRR).toLowerCase() === "true";
 
-  // Quick summary so the counts are visible right in the Actions log too
-  const byType = {};
-  const byStatus = {};
-  for (const a of agreements) {
-    const typeName = a.type?.name || "Unknown";
-    const status = a.agreementStatus || (a.cancelledFlag ? "Cancelled" : "Unknown");
-    byType[typeName] = (byType[typeName] || 0) + 1;
-    byStatus[status] = (byStatus[status] || 0) + 1;
-  }
-  console.log("By type:", JSON.stringify(byType, null, 2));
-  console.log("By status:", JSON.stringify(byStatus, null, 2));
+  console.log("Pulling ConnectWise agreements...");
+  const allAgreements = await fetchAllAgreements();
+  const activeAgreements = allAgreements.filter((a) => a.agreementStatus === "Active");
+  console.log(`${allAgreements.length} total agreements, ${activeAgreements.length} active`);
 
-  // A slim summary row per agreement using field names that are common
-  // on ConnectWise Agreement objects — worth cross-checking against the
-  // full raw samples below rather than trusting this blindly.
-  const slim = agreements.map((a) => ({
-    id: a.id,
-    name: a.name,
-    company: a.company?.name || null,
-    type: a.type?.name || null,
-    agreementStatus: a.agreementStatus || null,
-    cancelledFlag: a.cancelledFlag ?? null,
-    billingCycle: a.billingCycle || null,
-    billAmount: a.billAmount ?? null,
-    startDate: a.startDate || null,
-    endDate: a.endDate || null,
-    noEndingDateFlag: a.noEndingDateFlag ?? null,
-  }));
-
-  // Full, unfiltered raw objects for a handful of agreements — this is
-  // what actually settles which field names are real vs. guessed.
-  const rawSamples = agreements.slice(0, 8);
-
-  // --- Additions pull, ACTIVE agreements only (this is almost certainly
-  // where the real dollar amounts live, since billAmount is $0 on nearly
-  // everything at the agreement level) ---
-  const activeAgreements = agreements.filter((a) => a.agreementStatus === "Active");
-  console.log(`Pulling additions for ${activeAgreements.length} active agreements...`);
-
-  let totalAdditions = 0;
-  const additionRawSamples = []; // one or two raw items per agreement, capped overall
-  const descriptionCounts = {}; // frequency of whatever description-like text we find
+  const flagged = [];
+  const byCategory = { "365 Licensing": 0, "Managed Services": 0 };
+  const byClientMap = new Map(); // company -> { licensing, managedServices }
+  const agreementRecords = [];
+  let totalMRR = 0;
 
   for (const a of activeAgreements) {
-    let additions;
+    const company = a.company?.name || "Unknown";
+    const factor = cycleFactorFor(a, flagged);
+
+    let additions = [];
     try {
       additions = await fetchAdditions(a.id);
     } catch (e) {
       console.warn(`  ⚠ failed to fetch additions for agreement ${a.id} (${a.name}): ${e.message}`);
-      continue;
+      flagged.push({ agreementId: a.id, name: a.name, company, issue: `Failed to fetch additions: ${e.message}` });
     }
-    totalAdditions += additions.length;
+    const activeAdditions = additions.filter((add) => add.additionStatus === "Active");
 
-    for (const add of additions) {
-      const desc = add.description || add.product?.description || add.product?.identifier || "(no description field found)";
-      descriptionCounts[desc] = (descriptionCounts[desc] || 0) + 1;
-    }
-
-    if (additions.length > 0 && additionRawSamples.length < 40) {
-      additionRawSamples.push({
-        agreementId: a.id,
-        agreementName: a.name,
-        agreementType: a.type?.name,
-        company: a.company?.name,
-        additions: additions.slice(0, 2), // full raw objects, unfiltered
+    const additionRecords = [];
+    for (const add of activeAdditions) {
+      const monthlyAmt = (Number(add.extPrice) || 0) * factor;
+      const category = categorize(`${add.description} ${add.product?.identifier || ""}`, keywords);
+      additionRecords.push({
+        description: add.description,
+        productIdentifier: add.product?.identifier || null,
+        quantity: add.billedQuantity ?? add.quantity ?? null,
+        unitPrice: add.unitPrice ?? null,
+        extPrice: add.extPrice ?? null,
+        category,
+        monthlyAmount: Number(monthlyAmt.toFixed(2)),
       });
+
+      byCategory[category] += monthlyAmt;
+      totalMRR += monthlyAmt;
+      if (!byClientMap.has(company)) byClientMap.set(company, { licensing: 0, managedServices: 0 });
+      const c = byClientMap.get(company);
+      if (category === "365 Licensing") c.licensing += monthlyAmt;
+      else c.managedServices += monthlyAmt;
     }
+
+    // Agreement-level billAmount (Block Time agreements etc.) — categorize
+    // off the agreement's own name/type since it's not an addition.
+    const agreementBillMonthly = (Number(a.billAmount) || 0) * factor;
+    if (agreementBillMonthly > 0) {
+      const category = categorize(`${a.name} ${a.type?.name || ""}`, keywords);
+      byCategory[category] += agreementBillMonthly;
+      totalMRR += agreementBillMonthly;
+      if (!byClientMap.has(company)) byClientMap.set(company, { licensing: 0, managedServices: 0 });
+      const c = byClientMap.get(company);
+      if (category === "365 Licensing") c.licensing += agreementBillMonthly;
+      else c.managedServices += agreementBillMonthly;
+    }
+
+    agreementRecords.push({
+      id: a.id,
+      name: a.name,
+      company,
+      type: a.type?.name || null,
+      billingCycle: a.billingCycle?.name || null,
+      monthlyBillAmount: Number(agreementBillMonthly.toFixed(2)),
+      additions: additionRecords,
+      agreementMonthlyTotal: Number(
+        (agreementBillMonthly + additionRecords.reduce((s, r) => s + r.monthlyAmount, 0)).toFixed(2)
+      ),
+    });
   }
 
-  console.log(`Total additions across active agreements: ${totalAdditions}`);
+  const byClient = Array.from(byClientMap.entries())
+    .map(([client, v]) => ({
+      client,
+      licensingMRR: Number(v.licensing.toFixed(2)),
+      managedServicesMRR: Number(v.managedServices.toFixed(2)),
+      totalMRR: Number((v.licensing + v.managedServices).toFixed(2)),
+    }))
+    .sort((a, b) => b.totalMRR - a.totalMRR);
 
-  const dataDir = path.join(__dirname, "data", "mrr");
-  fs.mkdirSync(dataDir, { recursive: true });
+  byCategory["365 Licensing"] = Number(byCategory["365 Licensing"].toFixed(2));
+  byCategory["Managed Services"] = Number(byCategory["Managed Services"].toFixed(2));
+  totalMRR = Number(totalMRR.toFixed(2));
+
+  agreementRecords.sort((a, b) => b.agreementMonthlyTotal - a.agreementMonthlyTotal);
+
+  if (flagged.length) {
+    console.warn(`⚠ ${flagged.length} items flagged for review — see flagged[] in current.json`);
+  }
+  console.log(`Total MRR: $${totalMRR} (Licensing: $${byCategory["365 Licensing"]}, Managed Services: $${byCategory["Managed Services"]})`);
+
+  const snapshot = {
+    generatedAt: new Date().toISOString(),
+    totalMRR,
+    byCategory,
+    byClient,
+    agreements: agreementRecords,
+    flagged,
+  };
+
+  if (debugMode) {
+    snapshot._debugRawAgreementCount = allAgreements.length;
+    snapshot._debugActiveAgreementCount = activeAgreements.length;
+  }
+
+  const mrrDir = path.join(__dirname, "data", "mrr");
+  const historyDir = path.join(mrrDir, "history");
+  fs.mkdirSync(historyDir, { recursive: true });
+
+  fs.writeFileSync(path.join(mrrDir, "current.json"), JSON.stringify(snapshot, null, 2));
+
+  const key = monthKey(new Date());
+  fs.writeFileSync(path.join(historyDir, `${key}.json`), JSON.stringify(snapshot, null, 2));
+
+  const existingHistory = fs.readdirSync(historyDir)
+    .filter((f) => /^\d{4}-\d{2}\.json$/.test(f))
+    .map((f) => f.replace(".json", ""))
+    .sort();
+
   fs.writeFileSync(
-    path.join(dataDir, "_debug-agreements.json"),
-    JSON.stringify(
-      {
-        generatedAt: new Date().toISOString(),
-        count: agreements.length,
-        byType,
-        byStatus,
-        slim,
-        rawSamples,
-      },
-      null,
-      2
-    )
+    path.join(mrrDir, "manifest.json"),
+    JSON.stringify({ generatedAt: new Date().toISOString(), months: existingHistory, latest: key }, null, 2)
   );
-  fs.writeFileSync(
-    path.join(dataDir, "_debug-additions.json"),
-    JSON.stringify(
-      {
-        generatedAt: new Date().toISOString(),
-        activeAgreementCount: activeAgreements.length,
-        totalAdditions,
-        descriptionCounts,
-        additionRawSamples,
-      },
-      null,
-      2
-    )
-  );
-  console.log("Wrote data/mrr/_debug-agreements.json and data/mrr/_debug-additions.json");
+
+  console.log("Wrote data/mrr/current.json, data/mrr/history/" + key + ".json, and data/mrr/manifest.json");
 }
 
 main().catch((err) => {
