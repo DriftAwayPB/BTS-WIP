@@ -1,0 +1,868 @@
+{
+  "generatedAt": "2026-08-08T12:30:19.648Z",
+  "totalMRR": 7920.6,
+  "byCategory": {
+    "365 Licensing": 4011.75,
+    "Managed Services": 3908.85
+  },
+  "byClient": [
+    {
+      "client": "McLeod Enterprises",
+      "licensingMRR": 3106.9,
+      "managedServicesMRR": 538.65,
+      "totalMRR": 3645.55
+    },
+    {
+      "client": "Baird Drywall & Acoustic",
+      "licensingMRR": 162.2,
+      "managedServicesMRR": 836,
+      "totalMRR": 998.2
+    },
+    {
+      "client": "Honeytree Early Learning Centers",
+      "licensingMRR": 0,
+      "managedServicesMRR": 982.22,
+      "totalMRR": 982.22
+    },
+    {
+      "client": "Appalachian Bookkeeping",
+      "licensingMRR": 0,
+      "managedServicesMRR": 824,
+      "totalMRR": 824
+    },
+    {
+      "client": "Thor Construction",
+      "licensingMRR": 220.2,
+      "managedServicesMRR": 204,
+      "totalMRR": 424.2
+    },
+    {
+      "client": "Williams Law Firm",
+      "licensingMRR": 110,
+      "managedServicesMRR": 190,
+      "totalMRR": 300
+    },
+    {
+      "client": "Blink Optometry",
+      "licensingMRR": 106.4,
+      "managedServicesMRR": 137.24,
+      "totalMRR": 243.64
+    },
+    {
+      "client": "Utilis Consulting",
+      "licensingMRR": 194,
+      "managedServicesMRR": 25,
+      "totalMRR": 219
+    },
+    {
+      "client": "SWVA Settlement & Title",
+      "licensingMRR": 58.8,
+      "managedServicesMRR": 24.99,
+      "totalMRR": 83.79
+    },
+    {
+      "client": "Fincastle Baptist Church",
+      "licensingMRR": 0,
+      "managedServicesMRR": 80.75,
+      "totalMRR": 80.75
+    },
+    {
+      "client": "James P. Cargill, PC",
+      "licensingMRR": 0,
+      "managedServicesMRR": 47,
+      "totalMRR": 47
+    },
+    {
+      "client": "John McCaleb",
+      "licensingMRR": 0,
+      "managedServicesMRR": 19,
+      "totalMRR": 19
+    },
+    {
+      "client": "RoanokeOnTap",
+      "licensingMRR": 15.02,
+      "managedServicesMRR": 0,
+      "totalMRR": 15.02
+    },
+    {
+      "client": "Scott & Bond",
+      "licensingMRR": 13.13,
+      "managedServicesMRR": 0,
+      "totalMRR": 13.13
+    },
+    {
+      "client": "CAMC, LLC",
+      "licensingMRR": 12.6,
+      "managedServicesMRR": 0,
+      "totalMRR": 12.6
+    },
+    {
+      "client": "Carol's Pet Cafe",
+      "licensingMRR": 12.5,
+      "managedServicesMRR": 0,
+      "totalMRR": 12.5
+    }
+  ],
+  "agreements": [
+    {
+      "id": 19,
+      "name": "Mcleod Enterprises - Office 365",
+      "company": "McLeod Enterprises",
+      "type": "Office 365",
+      "billingCycle": "Monthly",
+      "monthlyBillAmount": 0,
+      "additions": [
+        {
+          "description": "Microsoft 365 Business Basic",
+          "productIdentifier": "365Basic",
+          "quantity": 72,
+          "unitPrice": 7.2,
+          "extPrice": 518.4,
+          "category": "365 Licensing",
+          "monthlyAmount": 518.4
+        },
+        {
+          "description": "Microsoft 365 Business Standard",
+          "productIdentifier": "365Standard",
+          "quantity": 20,
+          "unitPrice": 15,
+          "extPrice": 300,
+          "category": "365 Licensing",
+          "monthlyAmount": 300
+        },
+        {
+          "description": "Microsoft 365 - E3",
+          "productIdentifier": "Microsoft365E3",
+          "quantity": 5,
+          "unitPrice": 43.2,
+          "extPrice": 216,
+          "category": "365 Licensing",
+          "monthlyAmount": 216
+        },
+        {
+          "description": "Defender for Office 365 - Plan 2",
+          "productIdentifier": "Def365Plan2",
+          "quantity": 142,
+          "unitPrice": 5,
+          "extPrice": 710,
+          "category": "365 Licensing",
+          "monthlyAmount": 710
+        },
+        {
+          "description": "Teams Phones with Calling Plan",
+          "productIdentifier": "365TeamsPhone",
+          "quantity": 5,
+          "unitPrice": 25,
+          "extPrice": 125,
+          "category": "365 Licensing",
+          "monthlyAmount": 125
+        },
+        {
+          "description": "Microsoft 365 Business Premium",
+          "productIdentifier": "365BusinessPremium",
+          "quantity": 45,
+          "unitPrice": 27.5,
+          "extPrice": 1237.5,
+          "category": "365 Licensing",
+          "monthlyAmount": 1237.5
+        }
+      ],
+      "agreementMonthlyTotal": 3106.9
+    },
+    {
+      "id": 15,
+      "name": "Baird - Silver/Gold Split",
+      "company": "Baird Drywall & Acoustic",
+      "type": "Managed Service - Silver",
+      "billingCycle": "Monthly",
+      "monthlyBillAmount": 0,
+      "additions": [
+        {
+          "description": "Silver - Workstation",
+          "productIdentifier": "Silver - Workstation",
+          "quantity": 6,
+          "unitPrice": 78,
+          "extPrice": 468,
+          "category": "Managed Services",
+          "monthlyAmount": 468
+        },
+        {
+          "description": "Gold - Server",
+          "productIdentifier": "Gold - Server",
+          "quantity": 1,
+          "unitPrice": 368,
+          "extPrice": 368,
+          "category": "Managed Services",
+          "monthlyAmount": 368
+        }
+      ],
+      "agreementMonthlyTotal": 836
+    },
+    {
+      "id": 50,
+      "name": "App Bookkeeping - Block of Time + Cyber Stack",
+      "company": "Appalachian Bookkeeping",
+      "type": "Block Time - Recurring",
+      "billingCycle": "Monthly",
+      "monthlyBillAmount": 495,
+      "additions": [
+        {
+          "description": "Managed Services - Baseline Cyber Security",
+          "productIdentifier": "BaselineCyberSecurity",
+          "quantity": 10,
+          "unitPrice": 29,
+          "extPrice": 290,
+          "category": "Managed Services",
+          "monthlyAmount": 290
+        },
+        {
+          "description": "Backup - Professional - Workstations",
+          "productIdentifier": "BackupWorkstationProfessional",
+          "quantity": 1,
+          "unitPrice": 39,
+          "extPrice": 39,
+          "category": "Managed Services",
+          "monthlyAmount": 39
+        }
+      ],
+      "agreementMonthlyTotal": 824
+    },
+    {
+      "id": 4,
+      "name": "Honeytree - EDR",
+      "company": "Honeytree Early Learning Centers",
+      "type": "Managed Antivirus",
+      "billingCycle": "Monthly",
+      "monthlyBillAmount": 0,
+      "additions": [
+        {
+          "description": "Sentinel One EDR",
+          "productIdentifier": "EDR-SentinelOne",
+          "quantity": 81,
+          "unitPrice": 6,
+          "extPrice": 486,
+          "category": "Managed Services",
+          "monthlyAmount": 486
+        }
+      ],
+      "agreementMonthlyTotal": 486
+    },
+    {
+      "id": 52,
+      "name": "Honeytree AI Receptionist",
+      "company": "Honeytree Early Learning Centers",
+      "type": "Outsourced IT",
+      "billingCycle": "Monthly",
+      "monthlyBillAmount": 0,
+      "additions": [
+        {
+          "description": "MyFrontDesk AI Receptionist",
+          "productIdentifier": "AIReceptionist",
+          "quantity": 1,
+          "unitPrice": 149,
+          "extPrice": 149,
+          "category": "Managed Services",
+          "monthlyAmount": 149
+        },
+        {
+          "description": "MyFrontDesk AI Receptionist",
+          "productIdentifier": "AIReceptionist",
+          "quantity": 1,
+          "unitPrice": 149,
+          "extPrice": 149,
+          "category": "Managed Services",
+          "monthlyAmount": 149
+        },
+        {
+          "description": "MyFrontDesk AI Receptionist",
+          "productIdentifier": "AIReceptionist",
+          "quantity": 1,
+          "unitPrice": 16.32,
+          "extPrice": 16.32,
+          "category": "Managed Services",
+          "monthlyAmount": 16.32
+        },
+        {
+          "description": "MyFrontDesk AI Receptionist",
+          "productIdentifier": "AIReceptionist",
+          "quantity": 1,
+          "unitPrice": 60.24,
+          "extPrice": 60.24,
+          "category": "Managed Services",
+          "monthlyAmount": 60.24
+        }
+      ],
+      "agreementMonthlyTotal": 374.56
+    },
+    {
+      "id": 17,
+      "name": "McLeod Enterprises - Server Backup & Recovery",
+      "company": "McLeod Enterprises",
+      "type": "Backup & Recovery",
+      "billingCycle": "Monthly",
+      "monthlyBillAmount": 0,
+      "additions": [
+        {
+          "description": "Solar Winds Backup & Recovery",
+          "productIdentifier": "SolarWindsBackup&Recovery",
+          "quantity": 1,
+          "unitPrice": 89,
+          "extPrice": 89,
+          "category": "Managed Services",
+          "monthlyAmount": 89
+        },
+        {
+          "description": "SolarWinds Backup Documents",
+          "productIdentifier": "SolarWindsDocuments",
+          "quantity": 4,
+          "unitPrice": 3,
+          "extPrice": 12,
+          "category": "Managed Services",
+          "monthlyAmount": 12
+        },
+        {
+          "description": "Solar Winds Backup & Recovery",
+          "productIdentifier": "SolarWindsBackup&Recovery",
+          "quantity": 2280,
+          "unitPrice": 0.094583,
+          "extPrice": 215.64924,
+          "category": "Managed Services",
+          "monthlyAmount": 215.65
+        },
+        {
+          "description": "Outbound Email Service for Devices",
+          "productIdentifier": "SMTPServer",
+          "quantity": 1,
+          "unitPrice": 20,
+          "extPrice": 20,
+          "category": "Managed Services",
+          "monthlyAmount": 20
+        },
+        {
+          "description": "SSL Certificate for Website",
+          "productIdentifier": "SSLCert",
+          "quantity": 1,
+          "unitPrice": 10,
+          "extPrice": 10,
+          "category": "Managed Services",
+          "monthlyAmount": 10
+        }
+      ],
+      "agreementMonthlyTotal": 346.65
+    },
+    {
+      "id": 25,
+      "name": "Williams Law Firm - MSP Agreement",
+      "company": "Williams Law Firm",
+      "type": "Managed Service - Bronze",
+      "billingCycle": "Monthly",
+      "monthlyBillAmount": 0,
+      "additions": [
+        {
+          "description": "Workstation in Bronze Support Agreement",
+          "productIdentifier": "Bronze Worksation",
+          "quantity": 5,
+          "unitPrice": 28,
+          "extPrice": 140,
+          "category": "Managed Services",
+          "monthlyAmount": 140
+        },
+        {
+          "description": "SolarWinds Backup Documents",
+          "productIdentifier": "SolwarWindsBackupDocuments",
+          "quantity": 5,
+          "unitPrice": 10,
+          "extPrice": 50,
+          "category": "Managed Services",
+          "monthlyAmount": 50
+        },
+        {
+          "description": "Microsoft 365 Business Premium",
+          "productIdentifier": "365BusinessPremium",
+          "quantity": 4,
+          "unitPrice": 27.5,
+          "extPrice": 110,
+          "category": "365 Licensing",
+          "monthlyAmount": 110
+        }
+      ],
+      "agreementMonthlyTotal": 300
+    },
+    {
+      "id": 51,
+      "name": "Blink Optometry - Office 365 ",
+      "company": "Blink Optometry",
+      "type": "Office 365",
+      "billingCycle": "Monthly",
+      "monthlyBillAmount": 0,
+      "additions": [
+        {
+          "description": "Microsoft 365 Business Premium",
+          "productIdentifier": "365BusinessPremium",
+          "quantity": 4,
+          "unitPrice": 26.6,
+          "extPrice": 106.4,
+          "category": "365 Licensing",
+          "monthlyAmount": 106.4
+        },
+        {
+          "description": "Solar Winds Backup & Recovery",
+          "productIdentifier": "SolarWindsBackup&Recovery",
+          "quantity": 1,
+          "unitPrice": 89,
+          "extPrice": 89,
+          "category": "Managed Services",
+          "monthlyAmount": 89
+        },
+        {
+          "description": "Solar Winds Backup & Recovery",
+          "productIdentifier": "SolarWindsBackup&Recovery",
+          "quantity": 510,
+          "unitPrice": 0.094583,
+          "extPrice": 48.23733,
+          "category": "Managed Services",
+          "monthlyAmount": 48.24
+        }
+      ],
+      "agreementMonthlyTotal": 243.64
+    },
+    {
+      "id": 21,
+      "name": "Thor - Office 365",
+      "company": "Thor Construction",
+      "type": "Office 365",
+      "billingCycle": "Monthly",
+      "monthlyBillAmount": 0,
+      "additions": [
+        {
+          "description": "Microsoft 365 Business Basic",
+          "productIdentifier": "365Basic",
+          "quantity": 16,
+          "unitPrice": 7.2,
+          "extPrice": 115.2,
+          "category": "365 Licensing",
+          "monthlyAmount": 115.2
+        },
+        {
+          "description": "Microsoft 365 Business Standard",
+          "productIdentifier": "365Standard",
+          "quantity": 7,
+          "unitPrice": 15,
+          "extPrice": 105,
+          "category": "365 Licensing",
+          "monthlyAmount": 105
+        }
+      ],
+      "agreementMonthlyTotal": 220.2
+    },
+    {
+      "id": 45,
+      "name": "Utilis Consulting Managed Services",
+      "company": "Utilis Consulting",
+      "type": "Office 365",
+      "billingCycle": "Monthly",
+      "monthlyBillAmount": 0,
+      "additions": [
+        {
+          "description": "Microsoft 365 Business Premium",
+          "productIdentifier": "365BusinessPremium",
+          "quantity": 6,
+          "unitPrice": 24,
+          "extPrice": 144,
+          "category": "365 Licensing",
+          "monthlyAmount": 144
+        },
+        {
+          "description": "Web Hosting",
+          "productIdentifier": "Hosting",
+          "quantity": 1,
+          "unitPrice": 25,
+          "extPrice": 25,
+          "category": "Managed Services",
+          "monthlyAmount": 25
+        },
+        {
+          "description": "Teams Phones with Calling Plan",
+          "productIdentifier": "365TeamsPhone",
+          "quantity": 2,
+          "unitPrice": 25,
+          "extPrice": 50,
+          "category": "365 Licensing",
+          "monthlyAmount": 50
+        }
+      ],
+      "agreementMonthlyTotal": 219
+    },
+    {
+      "id": 16,
+      "name": "McLeod Enterprises - EDR",
+      "company": "McLeod Enterprises",
+      "type": "Managed Antivirus",
+      "billingCycle": "Monthly",
+      "monthlyBillAmount": 0,
+      "additions": [
+        {
+          "description": "Sentinel One EDR",
+          "productIdentifier": "EDR-SentinelOne",
+          "quantity": 32,
+          "unitPrice": 6,
+          "extPrice": 192,
+          "category": "Managed Services",
+          "monthlyAmount": 192
+        }
+      ],
+      "agreementMonthlyTotal": 192
+    },
+    {
+      "id": 18,
+      "name": "Baird - Office 365",
+      "company": "Baird Drywall & Acoustic",
+      "type": "Office 365",
+      "billingCycle": "Monthly",
+      "monthlyBillAmount": 0,
+      "additions": [
+        {
+          "description": "Microsoft 365 Business Basic",
+          "productIdentifier": "365Basic",
+          "quantity": 1,
+          "unitPrice": 7.2,
+          "extPrice": 7.2,
+          "category": "365 Licensing",
+          "monthlyAmount": 7.2
+        },
+        {
+          "description": "Microsoft 365 Business Standard",
+          "productIdentifier": "365Standard",
+          "quantity": 3,
+          "unitPrice": 15,
+          "extPrice": 45,
+          "category": "365 Licensing",
+          "monthlyAmount": 45
+        },
+        {
+          "description": "Microsoft 365 Business Premium",
+          "productIdentifier": "365BusinessPremium",
+          "quantity": 4,
+          "unitPrice": 27.5,
+          "extPrice": 110,
+          "category": "365 Licensing",
+          "monthlyAmount": 110
+        }
+      ],
+      "agreementMonthlyTotal": 162.2
+    },
+    {
+      "id": 6,
+      "name": "Managed Anti-Spam",
+      "company": "Thor Construction",
+      "type": "Managed Anti-Spam",
+      "billingCycle": "Monthly",
+      "monthlyBillAmount": 0,
+      "additions": [
+        {
+          "description": "Managed Anti-Spam",
+          "productIdentifier": "Managed Anti-Spam",
+          "quantity": 46,
+          "unitPrice": 3,
+          "extPrice": 138,
+          "category": "Managed Services",
+          "monthlyAmount": 138
+        }
+      ],
+      "agreementMonthlyTotal": 138
+    },
+    {
+      "id": 27,
+      "name": "Honeytree Managed Backup Documents",
+      "company": "Honeytree Early Learning Centers",
+      "type": "Backup & Recovery",
+      "billingCycle": "Monthly",
+      "monthlyBillAmount": 0,
+      "additions": [
+        {
+          "description": "SolarWinds Backup Documents",
+          "productIdentifier": "SolwarWindsBackupDocuments",
+          "quantity": 37,
+          "unitPrice": 3,
+          "extPrice": 111,
+          "category": "Managed Services",
+          "monthlyAmount": 111
+        }
+      ],
+      "agreementMonthlyTotal": 111
+    },
+    {
+      "id": 33,
+      "name": "SWVA Title - Managed Services",
+      "company": "SWVA Settlement & Title",
+      "type": "Office 365",
+      "billingCycle": "Monthly",
+      "monthlyBillAmount": 0,
+      "additions": [
+        {
+          "description": "Microsoft 365 Business Basic",
+          "productIdentifier": "365Basic",
+          "quantity": 4,
+          "unitPrice": 7.2,
+          "extPrice": 28.8,
+          "category": "365 Licensing",
+          "monthlyAmount": 28.8
+        },
+        {
+          "description": "Microsoft 365 Business Standard",
+          "productIdentifier": "365Standard",
+          "quantity": 2,
+          "unitPrice": 15,
+          "extPrice": 30,
+          "category": "365 Licensing",
+          "monthlyAmount": 30
+        },
+        {
+          "description": "Web Hosting",
+          "productIdentifier": "Hosting",
+          "quantity": 1,
+          "unitPrice": 24.99,
+          "extPrice": 24.99,
+          "category": "Managed Services",
+          "monthlyAmount": 24.99
+        }
+      ],
+      "agreementMonthlyTotal": 83.79
+    },
+    {
+      "id": 14,
+      "name": "FBC Managed Services",
+      "company": "Fincastle Baptist Church",
+      "type": "Managed Antivirus",
+      "billingCycle": "Monthly",
+      "monthlyBillAmount": 0,
+      "additions": [
+        {
+          "description": "Managed Anti-virus",
+          "productIdentifier": "Managed Anti-virus",
+          "quantity": 19,
+          "unitPrice": 4.25,
+          "extPrice": 80.75,
+          "category": "Managed Services",
+          "monthlyAmount": 80.75
+        }
+      ],
+      "agreementMonthlyTotal": 80.75
+    },
+    {
+      "id": 13,
+      "name": "Thor - Managed AV",
+      "company": "Thor Construction",
+      "type": "Managed Antivirus",
+      "billingCycle": "Monthly",
+      "monthlyBillAmount": 0,
+      "additions": [
+        {
+          "description": "Managed Anti Virus",
+          "productIdentifier": "ManagedAV",
+          "quantity": 22,
+          "unitPrice": 3,
+          "extPrice": 66,
+          "category": "Managed Services",
+          "monthlyAmount": 66
+        }
+      ],
+      "agreementMonthlyTotal": 66
+    },
+    {
+      "id": 47,
+      "name": "James P. Cargill - Backup Services",
+      "company": "James P. Cargill, PC",
+      "type": "Backup & Recovery",
+      "billingCycle": "Monthly",
+      "monthlyBillAmount": 0,
+      "additions": [
+        {
+          "description": "Backup - Professional - Workstations",
+          "productIdentifier": "BackupWorkstationProfessional",
+          "quantity": 1,
+          "unitPrice": 29,
+          "extPrice": 29,
+          "category": "Managed Services",
+          "monthlyAmount": 29
+        },
+        {
+          "description": "SolarWinds Backup Documents",
+          "productIdentifier": "SolwarWindsBackupDocuments",
+          "quantity": 2,
+          "unitPrice": 9,
+          "extPrice": 18,
+          "category": "Managed Services",
+          "monthlyAmount": 18
+        }
+      ],
+      "agreementMonthlyTotal": 47
+    },
+    {
+      "id": 37,
+      "name": "McCaleb ",
+      "company": "John McCaleb",
+      "type": "Managed Service - Bronze",
+      "billingCycle": "Monthly",
+      "monthlyBillAmount": 19,
+      "additions": [
+        {
+          "description": "Managed Anti Virus",
+          "productIdentifier": "ManagedAV",
+          "quantity": 0,
+          "unitPrice": 3,
+          "extPrice": 0,
+          "category": "Managed Services",
+          "monthlyAmount": 0
+        },
+        {
+          "description": "Patch Management",
+          "productIdentifier": "PatchManagement",
+          "quantity": 0,
+          "unitPrice": 8,
+          "extPrice": 0,
+          "category": "Managed Services",
+          "monthlyAmount": 0
+        },
+        {
+          "description": "Remote Monitoring & Management",
+          "productIdentifier": "RMM",
+          "quantity": 0,
+          "unitPrice": 8,
+          "extPrice": 0,
+          "category": "Managed Services",
+          "monthlyAmount": 0
+        }
+      ],
+      "agreementMonthlyTotal": 19
+    },
+    {
+      "id": 44,
+      "name": "RoanokeOnTap - 365 LIcenses",
+      "company": "RoanokeOnTap",
+      "type": "Office 365",
+      "billingCycle": "Monthly",
+      "monthlyBillAmount": 0,
+      "additions": [
+        {
+          "description": "Microsoft 365 Business Basic",
+          "productIdentifier": "365Basic",
+          "quantity": 1,
+          "unitPrice": 6.3,
+          "extPrice": 6.3,
+          "category": "365 Licensing",
+          "monthlyAmount": 6.3
+        },
+        {
+          "description": "Microsoft 365 Apps for Business",
+          "productIdentifier": "Microsoft365Apps",
+          "quantity": 1,
+          "unitPrice": 8.72,
+          "extPrice": 8.72,
+          "category": "365 Licensing",
+          "monthlyAmount": 8.72
+        }
+      ],
+      "agreementMonthlyTotal": 15.02
+    },
+    {
+      "id": 31,
+      "name": "Scott and Bond - Office 365",
+      "company": "Scott & Bond",
+      "type": "Office 365",
+      "billingCycle": "Annual",
+      "monthlyBillAmount": 0,
+      "additions": [
+        {
+          "description": "Microsoft 365 Business Standard",
+          "productIdentifier": "365Standard",
+          "quantity": 12,
+          "unitPrice": 13.13,
+          "extPrice": 157.56,
+          "category": "365 Licensing",
+          "monthlyAmount": 13.13
+        }
+      ],
+      "agreementMonthlyTotal": 13.13
+    },
+    {
+      "id": 32,
+      "name": "CAMC - Office 365 - Annual",
+      "company": "CAMC, LLC",
+      "type": "Office 365",
+      "billingCycle": "Annual",
+      "monthlyBillAmount": 0,
+      "additions": [
+        {
+          "description": "Microsoft 365 Business Basic",
+          "productIdentifier": "365Basic",
+          "quantity": 12,
+          "unitPrice": 6.3,
+          "extPrice": 75.6,
+          "category": "365 Licensing",
+          "monthlyAmount": 6.3
+        },
+        {
+          "description": "Microsoft 365 Business Basic",
+          "productIdentifier": "365Basic",
+          "quantity": 12,
+          "unitPrice": 6.3,
+          "extPrice": 75.6,
+          "category": "365 Licensing",
+          "monthlyAmount": 6.3
+        }
+      ],
+      "agreementMonthlyTotal": 12.6
+    },
+    {
+      "id": 36,
+      "name": "Carol's Pet Cafe - Office 365 - Annual",
+      "company": "Carol's Pet Cafe",
+      "type": "Office 365",
+      "billingCycle": "Annual",
+      "monthlyBillAmount": 0,
+      "additions": [
+        {
+          "description": "Microsoft 365 Business Standard",
+          "productIdentifier": "365Standard",
+          "quantity": 12,
+          "unitPrice": 12.5,
+          "extPrice": 150,
+          "category": "365 Licensing",
+          "monthlyAmount": 12.5
+        }
+      ],
+      "agreementMonthlyTotal": 12.5
+    },
+    {
+      "id": 43,
+      "name": "Domain + Privacy",
+      "company": "Honeytree Early Learning Centers",
+      "type": "Office 365",
+      "billingCycle": "Annual",
+      "monthlyBillAmount": 0,
+      "additions": [
+        {
+          "description": "Web Hosting",
+          "productIdentifier": "Hosting",
+          "quantity": 1,
+          "unitPrice": 35.98,
+          "extPrice": 35.98,
+          "category": "Managed Services",
+          "monthlyAmount": 3
+        },
+        {
+          "description": "Web Hosting",
+          "productIdentifier": "Hosting",
+          "quantity": 1,
+          "unitPrice": 91.98,
+          "extPrice": 91.98,
+          "category": "Managed Services",
+          "monthlyAmount": 7.67
+        }
+      ],
+      "agreementMonthlyTotal": 10.67
+    }
+  ],
+  "flagged": []
+}
