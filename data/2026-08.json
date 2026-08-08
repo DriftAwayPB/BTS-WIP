@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-07T22:45:14.946Z",
+  "generatedAt": "2026-08-08T12:56:01.114Z",
   "month": "2026-08",
   "isCurrentMonth": true,
   "monthGoal": 21000,
   "weekdaysInMonth": 21,
   "weekdaysElapsed": 5,
   "weekdaysRemaining": 16,
-  "currentDate": "2026-08-07",
+  "currentDate": "2026-08-08",
   "dailyAccrual": [
     {
       "date": "2026-08-03",
@@ -299,7 +299,7 @@
       "billableOption": "Billable",
       "extendedInvoiceAmount": 109,
       "agreementAmount": 109,
-      "agreementAdjustment": -80.16,
+      "agreementAdjustment": -80.26,
       "adjustment": 0,
       "invoiceReady": 0,
       "agreement": {
@@ -322,7 +322,7 @@
       "billableOption": "Billable",
       "extendedInvoiceAmount": 54.5,
       "agreementAmount": 54.5,
-      "agreementAdjustment": -40.08,
+      "agreementAdjustment": -40.13,
       "adjustment": 0,
       "invoiceReady": 0,
       "agreement": {
@@ -345,7 +345,7 @@
       "billableOption": "Billable",
       "extendedInvoiceAmount": 54.5,
       "agreementAmount": 54.5,
-      "agreementAdjustment": -40.08,
+      "agreementAdjustment": -40.13,
       "adjustment": 0,
       "invoiceReady": 0,
       "agreement": {
@@ -368,7 +368,7 @@
       "billableOption": "Billable",
       "extendedInvoiceAmount": 109,
       "agreementAmount": 109,
-      "agreementAdjustment": 0,
+      "agreementAdjustment": -80.26,
       "adjustment": 0,
       "invoiceReady": 0,
       "agreement": {

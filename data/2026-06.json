@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07T22:45:16.911Z",
+  "generatedAt": "2026-08-08T12:56:02.698Z",
   "month": "2026-06",
   "isCurrentMonth": false,
   "monthGoal": 21000,
@@ -1098,7 +1098,7 @@
       "billableOption": "Billable",
       "extendedInvoiceAmount": 109,
       "agreementAmount": 109,
-      "agreementAdjustment": -80.16,
+      "agreementAdjustment": -80.26,
       "adjustment": 0,
       "invoiceReady": 0,
       "agreement": {
@@ -1135,7 +1135,7 @@
       "billableOption": "Billable",
       "extendedInvoiceAmount": 54.5,
       "agreementAmount": 54.5,
-      "agreementAdjustment": -40.08,
+      "agreementAdjustment": -40.13,
       "adjustment": 0,
       "invoiceReady": 0,
       "agreement": {
@@ -1158,7 +1158,7 @@
       "billableOption": "Billable",
       "extendedInvoiceAmount": 54.5,
       "agreementAmount": 54.5,
-      "agreementAdjustment": -40.08,
+      "agreementAdjustment": -40.13,
       "adjustment": 0,
       "invoiceReady": 0,
       "agreement": {
