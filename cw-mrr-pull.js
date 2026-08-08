@@ -1,30 +1,29 @@
 /**
  * cw-mrr-pull.js
  *
- * Pulls active ConnectWise agreements + their active additions, and
- * computes true normalized MRR split into "365 Licensing" vs "Managed
- * Services". Built from real field inspection (see the discovery-phase
- * debug files this replaced) rather than guesses:
+ * Pulls the CURRENT month's real Agreement-type invoices (same method as
+ * cw-mrr-backfill.js) instead of reconstructing from live agreement/
+ * addition state. This replaces an earlier version of this script that
+ * used current agreement state + cycle-normalization (÷12 for annual
+ * agreements) — that approach didn't match real ConnectWise invoicing,
+ * since annual agreements actually bill in a single lump on their
+ * renewal month, not smoothed evenly. Actual-as-billed is simpler and
+ * matches what you see in ConnectWise directly.
  *
- *   - Agreement-level `billAmount` is $0 for almost everything — the real
- *     dollar amounts live on Additions (per-unit line items).
- *   - Each addition's `extPrice` (quantity × unitPrice) is the real
- *     billed value, at whatever billing cycle the PARENT agreement uses
- *     (additions don't carry their own cycle).
- *   - Additions have their own `additionStatus`, independent of the
- *     parent agreement's status — a "Cancelled" addition on an "Active"
- *     agreement must be excluded.
- *   - Categorization uses keyword matching against the addition's
- *     product identifier + description (confirmed cleanest signal),
- *     falling back to the agreement's own name/type for agreement-level
- *     billAmount (e.g. Block Time agreements).
+ * Trade-off this creates: ConnectWise invoices land in batches (this
+ * shop's pattern: around the 1st and the 15th), so early in the month
+ * "actual" is genuinely incomplete — clients who bill on the 15th just
+ * haven't been invoiced yet. To handle that without guessing at
+ * ConnectWise's internal invoice-scheduling behavior (nextInvoiceDate's
+ * update timing isn't verified), this script also writes a `projected`
+ * figure: for each client, use their real actual amount if they've
+ * already invoiced this month, otherwise fall back to their amount
+ * from last month as a placeholder. Simple, verifiable, no assumptions
+ * about *when* ConnectWise will actually generate an invoice.
  *
  * Writes:
- *   data/mrr/current.json           — latest snapshot
- *   data/mrr/history/YYYY-MM.json   — snapshot for the current month,
- *                                      overwritten on each run (so once
- *                                      a month closes, its file reflects
- *                                      the last pull of that month)
+ *   data/mrr/current.json           — latest snapshot (current month)
+ *   data/mrr/history/YYYY-MM.json   — same snapshot, filed by month
  *   data/mrr/manifest.json          — list of available history months
  *
  * Reuses the same ConnectWise secrets as cw-wip-pull.js:
@@ -32,26 +31,16 @@
  *
  * Optional:
  *   MRR_LICENSING_KEYWORDS   comma-separated, case-insensitive substrings
- *                            that mark an addition/agreement as "365
- *                            Licensing" rather than "Managed Services".
+ *                            that mark a line item as "365 Licensing"
+ *                            rather than "Managed Services".
  *                            Default: "365,teams phones"
- *   DEBUG_MRR                set to "true" to include raw agreement/
- *                            addition dumps in current.json for
- *                            troubleshooting.
  */
 
 const fs = require("fs");
 const path = require("path");
 
-const {
-  CW_BASE_URL,
-  CW_COMPANY_ID,
-  CW_PUBLIC_KEY,
-  CW_PRIVATE_KEY,
-  CW_CLIENT_ID,
-  MRR_LICENSING_KEYWORDS,
-  DEBUG_MRR,
-} = process.env;
+const { CW_BASE_URL, CW_COMPANY_ID, CW_PUBLIC_KEY, CW_PRIVATE_KEY, CW_CLIENT_ID, MRR_LICENSING_KEYWORDS } =
+  process.env;
 
 function assertEnv() {
   const required = ["CW_BASE_URL", "CW_COMPANY_ID", "CW_PUBLIC_KEY", "CW_PRIVATE_KEY", "CW_CLIENT_ID"];
@@ -67,12 +56,13 @@ function authHeader() {
   return `Basic ${Buffer.from(raw).toString("base64")}`;
 }
 
-async function fetchAllAgreements() {
+async function fetchAgreementInvoices(startDate, endDate) {
+  const conditions = encodeURIComponent(`type="Agreement" and date>=[${startDate}] and date<=[${endDate}]`);
   let page = 1;
   const pageSize = 1000;
   const all = [];
   while (true) {
-    const url = `${CW_BASE_URL}/finance/agreements?page=${page}&pageSize=${pageSize}`;
+    const url = `${CW_BASE_URL}/finance/invoices?conditions=${conditions}&page=${page}&pageSize=${pageSize}`;
     const res = await fetch(url, {
       headers: { Authorization: authHeader(), clientId: CW_CLIENT_ID, Accept: "application/json" },
     });
@@ -88,40 +78,16 @@ async function fetchAllAgreements() {
   return all;
 }
 
-async function fetchAdditions(agreementId) {
-  const url = `${CW_BASE_URL}/finance/agreements/${agreementId}/additions?pageSize=1000`;
+async function fetchInvoiceProducts(invoiceId) {
+  const url = `${CW_BASE_URL}/procurement/products?conditions=invoice/id=${invoiceId}&pageSize=1000`;
   const res = await fetch(url, {
     headers: { Authorization: authHeader(), clientId: CW_CLIENT_ID, Accept: "application/json" },
   });
   if (!res.ok) {
     const body = await res.text();
-    throw new Error(`ConnectWise API error ${res.status} fetching additions for agreement ${agreementId}: ${body}`);
+    throw new Error(`ConnectWise API error ${res.status} fetching products for invoice ${invoiceId}: ${body}`);
   }
   return res.json();
-}
-
-// Monthly-normalization factors by billing cycle name. Only "Monthly"
-// and "Annual" confirmed against real data so far — anything else gets
-// flagged rather than silently guessed at.
-const CYCLE_FACTORS = {
-  Monthly: 1,
-  Annual: 1 / 12,
-  Quarterly: 1 / 3,
-  "Semi-Annually": 1 / 2,
-};
-
-function cycleFactorFor(agreement, flagged) {
-  const cycleName = agreement.billingCycle?.name;
-  if (cycleName && CYCLE_FACTORS[cycleName] !== undefined) {
-    return CYCLE_FACTORS[cycleName];
-  }
-  flagged.push({
-    agreementId: agreement.id,
-    name: agreement.name,
-    company: agreement.company?.name || null,
-    issue: `Unknown/missing billing cycle "${cycleName}" — treated as Monthly (factor 1). Verify this agreement.`,
-  });
-  return 1;
 }
 
 const DEFAULT_LICENSING_KEYWORDS = ["365", "teams phones"];
@@ -139,81 +105,75 @@ function monthKey(d) {
   return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}`;
 }
 
-async function main() {
-  assertEnv();
-  const keywords = parseLicensingKeywords();
-  const debugMode = String(DEBUG_MRR).toLowerCase() === "true";
+function prevMonthKey(d) {
+  const prev = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() - 1, 1));
+  return monthKey(prev);
+}
 
-  console.log("Pulling ConnectWise agreements...");
-  const allAgreements = await fetchAllAgreements();
-  const activeAgreements = allAgreements.filter((a) => a.agreementStatus === "Active");
-  console.log(`${allAgreements.length} total agreements, ${activeAgreements.length} active`);
+function isoDate(d) {
+  return d.toISOString().split("T")[0];
+}
 
-  const flagged = [];
+/**
+ * Builds the "actual" snapshot for a set of Agreement-type invoices —
+ * same categorization/aggregation logic as cw-mrr-backfill.js.
+ */
+async function buildActualFromInvoices(invoices, keywords) {
   const byCategory = { "365 Licensing": 0, "Managed Services": 0 };
-  const byClientMap = new Map(); // company -> { licensing, managedServices }
+  const byClientMap = new Map();
   const agreementRecords = [];
   let totalMRR = 0;
 
-  for (const a of activeAgreements) {
-    const company = a.company?.name || "Unknown";
-    const factor = cycleFactorFor(a, flagged);
-
-    let additions = [];
+  for (const inv of invoices) {
+    const company = inv.company?.name || "Unknown";
+    let products = [];
     try {
-      additions = await fetchAdditions(a.id);
+      products = await fetchInvoiceProducts(inv.id);
     } catch (e) {
-      console.warn(`  ⚠ failed to fetch additions for agreement ${a.id} (${a.name}): ${e.message}`);
-      flagged.push({ agreementId: a.id, name: a.name, company, issue: `Failed to fetch additions: ${e.message}` });
+      console.warn(`  ⚠ failed to fetch products for invoice ${inv.id}: ${e.message}`);
     }
-    const activeAdditions = additions.filter((add) => add.additionStatus === "Active");
 
     const additionRecords = [];
-    for (const add of activeAdditions) {
-      const monthlyAmt = (Number(add.extPrice) || 0) * factor;
-      const category = categorize(`${add.description} ${add.product?.identifier || ""}`, keywords);
+    for (const p of products) {
+      const amt = Number(p.extPrice) || 0;
+      const category = categorize(`${p.description} ${p.catalogItem?.identifier || ""}`, keywords);
       additionRecords.push({
-        description: add.description,
-        productIdentifier: add.product?.identifier || null,
-        quantity: add.billedQuantity ?? add.quantity ?? null,
-        unitPrice: add.unitPrice ?? null,
-        extPrice: add.extPrice ?? null,
+        description: p.description,
+        productIdentifier: p.catalogItem?.identifier || null,
+        quantity: p.quantity ?? null,
+        unitPrice: p.price ?? null,
+        extPrice: p.extPrice ?? null,
         category,
-        monthlyAmount: Number(monthlyAmt.toFixed(2)),
+        monthlyAmount: Number(amt.toFixed(2)),
       });
-
-      byCategory[category] += monthlyAmt;
-      totalMRR += monthlyAmt;
+      byCategory[category] += amt;
+      totalMRR += amt;
       if (!byClientMap.has(company)) byClientMap.set(company, { licensing: 0, managedServices: 0 });
       const c = byClientMap.get(company);
-      if (category === "365 Licensing") c.licensing += monthlyAmt;
-      else c.managedServices += monthlyAmt;
+      if (category === "365 Licensing") c.licensing += amt;
+      else c.managedServices += amt;
     }
 
-    // Agreement-level billAmount (Block Time agreements etc.) — categorize
-    // off the agreement's own name/type since it's not an addition.
-    const agreementBillMonthly = (Number(a.billAmount) || 0) * factor;
-    if (agreementBillMonthly > 0) {
-      const category = categorize(`${a.name} ${a.type?.name || ""}`, keywords);
-      byCategory[category] += agreementBillMonthly;
-      totalMRR += agreementBillMonthly;
+    const serviceAmt = Number(inv.serviceTotal) || 0;
+    if (serviceAmt > 0) {
+      const category = categorize(`${inv.agreement?.name || ""} ${inv.agreement?.type || ""}`, keywords);
+      byCategory[category] += serviceAmt;
+      totalMRR += serviceAmt;
       if (!byClientMap.has(company)) byClientMap.set(company, { licensing: 0, managedServices: 0 });
       const c = byClientMap.get(company);
-      if (category === "365 Licensing") c.licensing += agreementBillMonthly;
-      else c.managedServices += agreementBillMonthly;
+      if (category === "365 Licensing") c.licensing += serviceAmt;
+      else c.managedServices += serviceAmt;
     }
 
     agreementRecords.push({
-      id: a.id,
-      name: a.name,
+      id: inv.id,
+      name: inv.agreement?.name || null,
       company,
-      type: a.type?.name || null,
-      billingCycle: a.billingCycle?.name || null,
-      monthlyBillAmount: Number(agreementBillMonthly.toFixed(2)),
+      type: inv.agreement?.type || null,
+      billingCycle: null,
+      monthlyBillAmount: Number(serviceAmt.toFixed(2)),
       additions: additionRecords,
-      agreementMonthlyTotal: Number(
-        (agreementBillMonthly + additionRecords.reduce((s, r) => s + r.monthlyAmount, 0)).toFixed(2)
-      ),
+      agreementMonthlyTotal: Number((serviceAmt + additionRecords.reduce((s, r) => s + r.monthlyAmount, 0)).toFixed(2)),
     });
   }
 
@@ -226,51 +186,120 @@ async function main() {
     }))
     .sort((a, b) => b.totalMRR - a.totalMRR);
 
-  byCategory["365 Licensing"] = Number(byCategory["365 Licensing"].toFixed(2));
-  byCategory["Managed Services"] = Number(byCategory["Managed Services"].toFixed(2));
-  totalMRR = Number(totalMRR.toFixed(2));
-
   agreementRecords.sort((a, b) => b.agreementMonthlyTotal - a.agreementMonthlyTotal);
 
-  if (flagged.length) {
-    console.warn(`⚠ ${flagged.length} items flagged for review — see flagged[] in current.json`);
+  return {
+    totalMRR: Number(totalMRR.toFixed(2)),
+    byCategory: {
+      "365 Licensing": Number(byCategory["365 Licensing"].toFixed(2)),
+      "Managed Services": Number(byCategory["Managed Services"].toFixed(2)),
+    },
+    byClient,
+    agreements: agreementRecords,
+  };
+}
+
+/**
+ * Hybrid projection: for each client, use their real actual amount if
+ * they've already invoiced this month; otherwise fall back to last
+ * month's actual amount for that client as a placeholder. This doesn't
+ * try to predict *when* ConnectWise will generate an invoice — it just
+ * assumes "probably similar to last month" for whatever hasn't landed
+ * yet, which recurring agreements generally are.
+ */
+function buildProjection(actualByClient, prevMonthData) {
+  const actualMap = new Map(actualByClient.map((c) => [c.client, c]));
+  const prevByClient = prevMonthData?.byClient || [];
+  const projectedMap = new Map();
+
+  // Start from last month's clients as the baseline
+  for (const c of prevByClient) {
+    projectedMap.set(c.client, { client: c.client, licensingMRR: c.licensingMRR, managedServicesMRR: c.managedServicesMRR, totalMRR: c.totalMRR, source: "last_month" });
   }
-  console.log(`Total MRR: $${totalMRR} (Licensing: $${byCategory["365 Licensing"]}, Managed Services: $${byCategory["Managed Services"]})`);
+  // Overlay this month's real actuals wherever they exist (including new clients)
+  for (const c of actualByClient) {
+    projectedMap.set(c.client, { client: c.client, licensingMRR: c.licensingMRR, managedServicesMRR: c.managedServicesMRR, totalMRR: c.totalMRR, source: "actual" });
+  }
+
+  const byClient = Array.from(projectedMap.values()).sort((a, b) => b.totalMRR - a.totalMRR);
+  const byCategory = { "365 Licensing": 0, "Managed Services": 0 };
+  let totalMRR = 0;
+  for (const c of byClient) {
+    byCategory["365 Licensing"] += c.licensingMRR;
+    byCategory["Managed Services"] += c.managedServicesMRR;
+    totalMRR += c.totalMRR;
+  }
+
+  return {
+    totalMRR: Number(totalMRR.toFixed(2)),
+    byCategory: {
+      "365 Licensing": Number(byCategory["365 Licensing"].toFixed(2)),
+      "Managed Services": Number(byCategory["Managed Services"].toFixed(2)),
+    },
+    byClient,
+    basis: prevMonthData ? "actual where invoiced, last month's amount elsewhere" : "actual only — no prior month on file yet",
+  };
+}
+
+async function main() {
+  assertEnv();
+  const keywords = parseLicensingKeywords();
+  const today = new Date();
+  const key = monthKey(today);
+  const monthStart = `${key}-01T00:00:00Z`;
+
+  console.log(`Pulling current-month (${key}) Agreement invoices, ${monthStart} → ${today.toISOString()}...`);
+  const invoices = await fetchAgreementInvoices(monthStart, today.toISOString());
+  console.log(`Fetched ${invoices.length} invoices so far this month`);
+
+  const actual = await buildActualFromInvoices(invoices, keywords);
+
+  const dataDir = path.join(__dirname, "data", "mrr");
+  const historyDir = path.join(dataDir, "history");
+  fs.mkdirSync(historyDir, { recursive: true });
+
+  const prevKey = prevMonthKey(today);
+  const prevPath = path.join(historyDir, `${prevKey}.json`);
+  let prevMonthData = null;
+  if (fs.existsSync(prevPath)) {
+    try {
+      prevMonthData = JSON.parse(fs.readFileSync(prevPath, "utf8"));
+    } catch (e) {
+      console.warn(`⚠ couldn't read previous month's file (${prevKey}.json) for projection: ${e.message}`);
+    }
+  } else {
+    console.warn(`⚠ no previous month file found at ${prevPath} — projection will just equal actual`);
+  }
+
+  const projected = buildProjection(actual.byClient, prevMonthData);
 
   const snapshot = {
     generatedAt: new Date().toISOString(),
-    totalMRR,
-    byCategory,
-    byClient,
-    agreements: agreementRecords,
-    flagged,
+    isCurrentMonth: true,
+    currentDate: isoDate(today),
+    totalMRR: actual.totalMRR,
+    byCategory: actual.byCategory,
+    byClient: actual.byClient,
+    agreements: actual.agreements,
+    flagged: [],
+    projected,
   };
 
-  if (debugMode) {
-    snapshot._debugRawAgreementCount = allAgreements.length;
-    snapshot._debugActiveAgreementCount = activeAgreements.length;
-  }
-
-  const mrrDir = path.join(__dirname, "data", "mrr");
-  const historyDir = path.join(mrrDir, "history");
-  fs.mkdirSync(historyDir, { recursive: true });
-
-  fs.writeFileSync(path.join(mrrDir, "current.json"), JSON.stringify(snapshot, null, 2));
-
-  const key = monthKey(new Date());
+  fs.writeFileSync(path.join(dataDir, "current.json"), JSON.stringify(snapshot, null, 2));
   fs.writeFileSync(path.join(historyDir, `${key}.json`), JSON.stringify(snapshot, null, 2));
 
-  const existingHistory = fs.readdirSync(historyDir)
+  const existing = fs.readdirSync(historyDir)
     .filter((f) => /^\d{4}-\d{2}\.json$/.test(f))
     .map((f) => f.replace(".json", ""))
     .sort();
 
   fs.writeFileSync(
-    path.join(mrrDir, "manifest.json"),
-    JSON.stringify({ generatedAt: new Date().toISOString(), months: existingHistory, latest: key }, null, 2)
+    path.join(dataDir, "manifest.json"),
+    JSON.stringify({ generatedAt: new Date().toISOString(), months: existing, latest: key }, null, 2)
   );
 
-  console.log("Wrote data/mrr/current.json, data/mrr/history/" + key + ".json, and data/mrr/manifest.json");
+  console.log(`Wrote current.json, history/${key}.json, manifest.json`);
+  console.log(`Actual so far: $${actual.totalMRR} — Projected: $${projected.totalMRR}`);
 }
 
 main().catch((err) => {
