@@ -1,0 +1,36 @@
+name: Pull ConnectWise MRR data (discovery)
+
+on:
+  workflow_dispatch: {} # manual only for now, while we're still figuring out the data shape
+
+permissions:
+  contents: write
+
+jobs:
+  pull-mrr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run MRR discovery pull
+        env:
+          CW_BASE_URL: ${{ secrets.CW_BASE_URL }}
+          CW_COMPANY_ID: ${{ secrets.CW_COMPANY_ID }}
+          CW_PUBLIC_KEY: ${{ secrets.CW_PUBLIC_KEY }}
+          CW_PRIVATE_KEY: ${{ secrets.CW_PRIVATE_KEY }}
+          CW_CLIENT_ID: ${{ secrets.CW_CLIENT_ID }}
+        run: node cw-mrr-pull.js
+
+      - name: Commit updated data
+        run: |
+          git config user.name "mrr-bot"
+          git config user.email "actions@github.com"
+          git add data/mrr/
+          git diff --quiet --cached || git commit -m "MRR discovery pull ($(date -u +%Y-%m-%d))"
+          git push
