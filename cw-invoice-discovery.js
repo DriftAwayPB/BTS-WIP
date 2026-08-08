@@ -91,12 +91,80 @@ function monthKey(dateStr) {
   return dateStr ? dateStr.slice(0, 7) : "unknown";
 }
 
+async function fetchAgreementInvoices(startDate, endDate) {
+  const conditions = encodeURIComponent(`type="Agreement" and date>=[${startDate}] and date<=[${endDate}]`);
+  let page = 1;
+  const pageSize = 1000;
+  const all = [];
+  while (true) {
+    const url = `${CW_BASE_URL}/finance/invoices?conditions=${conditions}&page=${page}&pageSize=${pageSize}`;
+    const res = await fetch(url, {
+      headers: { Authorization: authHeader(), clientId: CW_CLIENT_ID, Accept: "application/json" },
+    });
+    if (!res.ok) {
+      const body = await res.text();
+      throw new Error(`ConnectWise API error ${res.status}: ${body}`);
+    }
+    const batch = await res.json();
+    all.push(...batch);
+    if (batch.length < pageSize) break;
+    page += 1;
+  }
+  return all;
+}
+
+async function fetchInvoiceProducts(invoiceId) {
+  const url = `${CW_BASE_URL}/procurement/products?conditions=invoice/id=${invoiceId}&pageSize=1000`;
+  const res = await fetch(url, {
+    headers: { Authorization: authHeader(), clientId: CW_CLIENT_ID, Accept: "application/json" },
+  });
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`ConnectWise API error ${res.status} fetching products for invoice ${invoiceId}: ${body}`);
+  }
+  return res.json();
+}
+
 async function main() {
   assertEnv();
 
-  console.log("Pulling a small unfiltered sample first to confirm real field names...");
-  const sample = await fetchSampleUnfiltered(5);
-  console.log(`Fetched ${sample.length} sample invoices (unfiltered)`);
+  const startDate = "2025-01-01T00:00:00Z";
+  const endDate = new Date().toISOString();
+
+  console.log(`Pulling Agreement-type invoices from ${startDate} to ${endDate}...`);
+  const invoices = await fetchAgreementInvoices(startDate, endDate);
+  console.log(`Fetched ${invoices.length} agreement invoices`);
+
+  const byMonth = {};
+  for (const inv of invoices) {
+    const mk = monthKey(inv.date);
+    byMonth[mk] = (byMonth[mk] || 0) + 1;
+  }
+  console.log("By month:", JSON.stringify(byMonth, null, 2));
+
+  const slim = invoices.map((inv) => ({
+    id: inv.id,
+    date: inv.date,
+    company: inv.company?.name || null,
+    agreement: inv.agreement?.name || null,
+    agreementType: inv.agreement?.type || null,
+    productTotal: inv.productTotal ?? null,
+    serviceTotal: inv.serviceTotal ?? null,
+    total: inv.total ?? null,
+  }));
+
+  // Pull product line-item detail for a spread of sample invoices to
+  // confirm the shape (description, quantity, price fields).
+  const sampleInvoices = invoices.slice(0, 10);
+  const productSamples = [];
+  for (const inv of sampleInvoices) {
+    try {
+      const products = await fetchInvoiceProducts(inv.id);
+      productSamples.push({ invoiceId: inv.id, company: inv.company?.name, products });
+    } catch (e) {
+      console.warn(`  ⚠ failed to fetch products for invoice ${inv.id}: ${e.message}`);
+    }
+  }
 
   const dataDir = path.join(__dirname, "data", "mrr");
   fs.mkdirSync(dataDir, { recursive: true });
@@ -105,14 +173,16 @@ async function main() {
     JSON.stringify(
       {
         generatedAt: new Date().toISOString(),
-        note: "Field-discovery pass only — date-range pull not yet attempted, waiting to confirm the correct date field name.",
-        sample,
+        count: invoices.length,
+        byMonth,
+        slim,
+        productSamples,
       },
       null,
       2
     )
   );
-  console.log("Wrote data/mrr/_debug-invoices.json (field-discovery sample only)");
+  console.log("Wrote data/mrr/_debug-invoices.json");
 }
 
 main().catch((err) => {
