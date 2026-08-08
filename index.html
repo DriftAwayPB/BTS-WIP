@@ -21,6 +21,9 @@
   .nav-btn:hover { opacity: 0.7; }
   .nav-btn[disabled] { opacity: 0.25; cursor: default; }
   .toggle-btn { cursor: pointer; }
+  .tab-bar { display: flex; gap: 4px; padding: 10px 24px; border-bottom: 1px solid #1E293B; background: #0F1626; }
+  .tab-btn { cursor: pointer; }
+  .tab-btn[disabled] { cursor: default; opacity: 0.35; }
 </style>
 </head>
 <body>
@@ -50,7 +53,7 @@
   const RELOAD_INTERVAL_MS = 60 * 60 * 1000;
 
   const TRIGGER_URL = "https://wip-dashbaord-trigger.pbanks.workers.dev/";
-  const TRIGGER_KEY = "B@nksT3ch"; // <-- fill this in with the TRIGGER_SECRET you set in Cloudflare
+  const TRIGGER_KEY = "PASTE_YOUR_TRIGGER_SECRET_HERE"; // <-- fill this in with the TRIGGER_SECRET you set in Cloudflare
   const FAST_POLL_MS = 10 * 1000;
   const FAST_POLL_MAX_TRIES = 12; // ~2 minutes of fast polling after a manual trigger
 
@@ -243,7 +246,7 @@
     );
   }
 
-  function Dashboard() {
+  function WipTab() {
     const [manifest, setManifest] = useState(null);
     const [selectedMonth, setSelectedMonth] = useState(null);
     const [monthData, setMonthData] = useState(null);
@@ -631,7 +634,188 @@
     );
   }
 
-  ReactDOM.createRoot(document.getElementById("root")).render(h(Dashboard));
+  // ---------- MRR Tab ----------
+  const MRR_DATA_URL = `${BASE_URL}/data/mrr/current.json`;
+
+  function ProportionBar({ segments }) {
+    // segments: [{ label, value, color }]
+    const total = segments.reduce((s, seg) => s + seg.value, 0) || 1;
+    return h("div", null,
+      h("div", { style: { display: "flex", width: "100%", height: 14, borderRadius: 7, overflow: "hidden", background: colors.hairline } },
+        segments.map((seg, i) => h("div", {
+          key: i,
+          style: { width: `${(seg.value / total) * 100}%`, background: seg.color }
+        }))
+      ),
+      h("div", { style: { display: "flex", gap: 18, marginTop: 10, flexWrap: "wrap" } },
+        segments.map((seg, i) => h("div", { key: i, style: { display: "flex", alignItems: "center", gap: 6, fontSize: 12.5 } },
+          h("div", { style: { width: 9, height: 9, borderRadius: "50%", background: seg.color } }),
+          h("span", { style: { color: colors.muted } }, seg.label),
+          h("span", { style: { fontFamily: FONT_MONO, color: colors.hi } }, fmtCurrency(seg.value)),
+          h("span", { style: { fontFamily: FONT_MONO, color: colors.faint, fontSize: 11 } }, `(${((seg.value / total) * 100).toFixed(0)}%)`)
+        ))
+      )
+    );
+  }
+
+  function MrrTab() {
+    const [data, setData] = useState(null);
+    const [error, setError] = useState(null);
+    const [expandedClient, setExpandedClient] = useState(null);
+
+    useEffect(() => {
+      let cancelled = false;
+      fetch(`${MRR_DATA_URL}?t=${Date.now()}`)
+        .then((res) => { if (!res.ok) throw new Error(`HTTP ${res.status}`); return res.json(); })
+        .then((json) => { if (!cancelled) setData(json); })
+        .catch((e) => { if (!cancelled) setError(e.message); });
+      return () => { cancelled = true; };
+    }, []);
+
+    if (!data) {
+      return h("div", { style: { background: colors.bg, minHeight: "60vh", display: "flex", alignItems: "center", justifyContent: "center", color: colors.muted, fontFamily: FONT_MONO } },
+        error ? `Error loading MRR data: ${error}` : "Loading MRR data…"
+      );
+    }
+
+    const licensing = data.byCategory?.["365 Licensing"] || 0;
+    const managed = data.byCategory?.["Managed Services"] || 0;
+
+    return h("div", { style: { background: colors.bg, minHeight: "100vh", padding: "28px 24px 60px", fontFamily: FONT_BODY, color: colors.hi } },
+      h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14, flexWrap: "wrap", gap: 10 } },
+        h("div", null,
+          h("div", { style: { fontFamily: FONT_DISPLAY, fontWeight: 700, fontSize: 22, letterSpacing: "-0.01em" } }, "MRR — Recurring Revenue"),
+          h("div", { style: { fontFamily: FONT_MONO, fontSize: 11.5, color: colors.faint, marginTop: 3 } },
+            `SOURCE: CONNECTWISE AGREEMENTS · snapshot ${new Date(data.generatedAt).toLocaleString()}`
+          )
+        ),
+        data.flagged && data.flagged.length > 0 && h("div", {
+          style: { display: "flex", alignItems: "center", gap: 6, padding: "5px 10px", borderRadius: 6, background: "#2A1414", border: `1px solid ${colors.behind}`, fontFamily: FONT_MONO, fontSize: 10.5, color: colors.behind }
+        }, `${data.flagged.length} items need review`)
+      ),
+
+      h("div", { style: {
+        display: "flex", gap: 10, alignItems: "flex-start", padding: "10px 14px",
+        background: colors.panelAlt || colors.panel, border: `1px solid ${colors.hairline}`, borderRadius: 8,
+        fontSize: 12, color: colors.muted, marginBottom: 22
+      } }, "This snapshot updates when the MRR pull is run manually from GitHub Actions — it's not on a live schedule yet."),
+
+      h("div", { className: "grid-4", style: { gridTemplateColumns: "repeat(3, 1fr)", marginBottom: 22 } },
+        h(StatTile, { label: "Total MRR", value: fmtCurrency(data.totalMRR), sub: `${data.agreements?.length || 0} active agreements`, accent: colors.finance, glyph: "●" }),
+        h(StatTile, { label: "365 Licensing", value: fmtCurrency(licensing), sub: `${data.totalMRR ? ((licensing / data.totalMRR) * 100).toFixed(0) : 0}% of total MRR`, accent: colors.mrr || colors.bar, glyph: "◆" }),
+        h(StatTile, { label: "Managed Services", value: fmtCurrency(managed), sub: `${data.totalMRR ? ((managed / data.totalMRR) * 100).toFixed(0) : 0}% of total MRR`, accent: colors.goalLine, glyph: "■" })
+      ),
+
+      h(Panel, { style: { marginBottom: 22 } },
+        h(SectionLabel, { accent: colors.finance }, "Licensing vs. Managed Services"),
+        h(ProportionBar, { segments: [
+          { label: "365 Licensing", value: licensing, color: colors.bar },
+          { label: "Managed Services", value: managed, color: colors.goalLine },
+        ] })
+      ),
+
+      h(SectionLabel, { accent: colors.bar }, "MRR by client"),
+      h(Panel, null,
+        h("div", { style: { display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 8, padding: "0 4px 10px", borderBottom: `1px solid ${colors.hairline}`, marginBottom: 6 } },
+          ["Client", "Licensing", "Managed Svcs", "Total"].map((label, i) =>
+            h("div", { key: i, style: { fontFamily: FONT_MONO, fontSize: 10.5, color: colors.faint, textTransform: "uppercase", letterSpacing: "0.08em" } }, label)
+          )
+        ),
+        (data.byClient || []).map((c, i) => {
+          const isOpen = expandedClient === c.client;
+          const clientAgreements = (data.agreements || []).filter((a) => a.company === c.client);
+          return h("div", { key: i },
+            h("div", {
+              className: "row-hover",
+              onClick: () => setExpandedClient(isOpen ? null : c.client),
+              style: { display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 8, padding: "10px 4px", alignItems: "center", borderRadius: 6, fontSize: 14, cursor: "pointer" }
+            },
+              h("div", { style: { color: colors.hi, display: "flex", alignItems: "center", gap: 6 } },
+                h("span", { style: { fontSize: 10, color: colors.faint, transform: isOpen ? "rotate(90deg)" : "rotate(0deg)", transition: "transform 0.15s", display: "inline-block" } }, "›"),
+                c.client
+              ),
+              h("div", { style: { fontFamily: FONT_MONO, color: colors.muted } }, fmtCurrency(c.licensingMRR)),
+              h("div", { style: { fontFamily: FONT_MONO, color: colors.muted } }, fmtCurrency(c.managedServicesMRR)),
+              h("div", { style: { fontFamily: FONT_MONO, color: colors.finance } }, fmtCurrency(c.totalMRR))
+            ),
+            isOpen && h("div", { style: { padding: "4px 4px 16px 24px" } },
+              clientAgreements.length === 0
+                ? h("div", { style: { fontFamily: FONT_MONO, fontSize: 11.5, color: colors.faint } }, "No agreement detail available.")
+                : clientAgreements.map((a, ai) => h("div", { key: ai, style: { marginBottom: 14 } },
+                    h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 4 } },
+                      h("div", { style: { fontSize: 12.5, color: colors.hi } }, `${a.name} `, h("span", { style: { color: colors.faint, fontFamily: FONT_MONO, fontSize: 10.5 } }, `(${a.type || "—"} · ${a.billingCycle || "—"})`)),
+                      h("div", { style: { fontFamily: FONT_MONO, fontSize: 12.5, color: colors.finance } }, fmtCurrency(a.agreementMonthlyTotal))
+                    ),
+                    a.monthlyBillAmount > 0 && h("div", { style: { display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 8, padding: "4px 4px", fontSize: 12, color: colors.muted } },
+                      h("div", null, "Agreement block fee"),
+                      h("div", null, "—"),
+                      h("div", { style: { fontFamily: FONT_MONO } }, fmtCurrency(a.monthlyBillAmount))
+                    ),
+                    (a.additions || []).map((add, addi) => h("div", { key: addi, style: { display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 8, padding: "4px 4px", fontSize: 12, color: colors.muted } },
+                      h("div", null, add.description),
+                      h("div", { style: { color: add.category === "365 Licensing" ? colors.bar : colors.goalLine, fontFamily: FONT_MONO, fontSize: 10.5 } }, add.category === "365 Licensing" ? "Licensing" : "Managed"),
+                      h("div", { style: { fontFamily: FONT_MONO } }, fmtCurrency(add.monthlyAmount))
+                    ))
+                  ))
+            )
+          );
+        })
+      )
+    );
+  }
+
+  // ---------- Sales Tab (placeholder) ----------
+  function SalesTab() {
+    return h("div", { style: { background: colors.bg, minHeight: "60vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 8, color: colors.muted, fontFamily: FONT_BODY } },
+      h("div", { style: { fontFamily: FONT_DISPLAY, fontSize: 18, color: colors.hi } }, "Sales — coming soon"),
+      h("div", { style: { fontSize: 13, textAlign: "center", maxWidth: 340 } }, "Hardware, licensing renewals, and one-off product sales, pulled from ConnectWise invoice Product line items.")
+    );
+  }
+
+  // ---------- Tab bar + App shell ----------
+  const TABS = [
+    { key: "wip", label: "WIP" },
+    { key: "mrr", label: "MRR" },
+    { key: "sales", label: "Sales", disabled: true },
+  ];
+
+  function TabBar({ active, onChange }) {
+    return h("div", { className: "tab-bar" },
+      TABS.map((t) => h("button", {
+        key: t.key,
+        className: "tab-btn",
+        disabled: t.disabled,
+        onClick: () => !t.disabled && onChange(t.key),
+        style: {
+          background: "transparent", border: "none",
+          borderBottom: active === t.key ? `2px solid ${colors.finance}` : "2px solid transparent",
+          color: active === t.key ? colors.hi : colors.muted,
+          fontFamily: FONT_DISPLAY, fontWeight: 600, fontSize: 13,
+          padding: "8px 14px",
+        }
+      }, t.label + (t.disabled ? " (soon)" : "")))
+    );
+  }
+
+  function App() {
+    const validTabs = TABS.map((t) => t.key);
+    const initial = validTabs.includes(window.location.hash.replace("#", "")) ? window.location.hash.replace("#", "") : "wip";
+    const [tab, setTab] = useState(initial);
+
+    function changeTab(key) {
+      setTab(key);
+      window.location.hash = key;
+    }
+
+    return h("div", null,
+      h(TabBar, { active: tab, onChange: changeTab }),
+      tab === "wip" && h(WipTab),
+      tab === "mrr" && h(MrrTab),
+      tab === "sales" && h(SalesTab)
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById("root")).render(h(App));
 })();
 </script>
 </body>
