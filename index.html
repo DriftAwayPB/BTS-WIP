@@ -53,9 +53,12 @@
   const RELOAD_INTERVAL_MS = 60 * 60 * 1000;
 
   const TRIGGER_URL = "https://wip-dashbaord-trigger.pbanks.workers.dev/";
-  const TRIGGER_KEY = "PASTE_YOUR_TRIGGER_SECRET_HERE"; // <-- fill this in with the TRIGGER_SECRET you set in Cloudflare
+  const TRIGGER_KEY = "B@nksT3ch"; // <-- fill this in with the TRIGGER_SECRET you set in Cloudflare
   const FAST_POLL_MS = 10 * 1000;
   const FAST_POLL_MAX_TRIES = 12; // ~2 minutes of fast polling after a manual trigger
+  // TRIGGER_URL now fires BOTH the WIP and MRR pull workflows (see the
+  // Worker's WORKFLOW_FILES list) — clicking Update on either tab
+  // refreshes the whole dashboard's data, not just the current tab.
 
   // ---------- Design tokens ----------
   const FONT_DISPLAY = "'Space Grotesk', 'Inter', sans-serif";
@@ -288,7 +291,7 @@
 
     async function handleUpdateClick() {
       setUpdateState("triggering");
-      setUpdateMessage("Triggering pull…");
+      setUpdateMessage("Triggering WIP + MRR pulls…");
       try {
         const res = await fetch(TRIGGER_URL, {
           method: "POST",
@@ -296,11 +299,12 @@
         });
         const body = await res.json().catch(() => ({}));
         if (!res.ok || !body.ok) {
-          throw new Error(body.error || `HTTP ${res.status}`);
+          const detail = body.error || (body.results ? body.results.filter((r) => !r.ok).map((r) => `${r.workflowFile}: ${r.status}`).join(", ") : null);
+          throw new Error(detail || `HTTP ${res.status}`);
         }
 
         setUpdateState("waiting");
-        setUpdateMessage("Pull running — checking for fresh data…");
+        setUpdateMessage("Pulls running — checking for fresh WIP data…");
 
         const generatedAtBefore = monthData ? monthData.generatedAt : null;
         let tries = 0;
@@ -635,7 +639,8 @@
   }
 
   // ---------- MRR Tab ----------
-  const MRR_DATA_URL = `${BASE_URL}/data/mrr/current.json`;
+  const MRR_MANIFEST_URL = `${BASE_URL}/data/mrr/manifest.json`;
+  const mrrMonthUrl = (key) => `${BASE_URL}/data/mrr/history/${key}.json`;
 
   function ProportionBar({ segments }) {
     // segments: [{ label, value, color }]
@@ -658,52 +663,206 @@
     );
   }
 
+  // Stacked bar chart, one bar per month (Licensing + Managed stacked),
+  // with hover tooltip and click-to-select — same interaction language
+  // as the WIP tab's AccrualChart.
+  function MrrTrendChart({ months, selectedMonth, onMonthClick }) {
+    const [hoverIdx, setHoverIdx] = useState(null);
+    const W = 900, H = 220, padL = 46, padR = 14, padT = 12, padB = 26;
+    const innerW = W - padL - padR;
+    const innerH = H - padT - padB;
+
+    const maxVal = Math.max(1, ...months.map((m) => m.totalMRR));
+    const step = months.length > 1 ? innerW / months.length : innerW;
+    const barWidth = Math.min(48, step * 0.55);
+
+    const xAt = (i) => padL + i * step + step / 2;
+    const yAt = (v) => padT + innerH - (v / maxVal) * innerH;
+    const gridLines = 4;
+    const gridVals = Array.from({ length: gridLines + 1 }, (_, i) => (maxVal / gridLines) * i);
+
+    const hovered = hoverIdx !== null ? months[hoverIdx] : null;
+    let tooltip = null;
+    if (hovered) {
+      const boxW = 150, boxH = 68, gap = 10;
+      const px = xAt(hoverIdx);
+      let bx = px + gap;
+      if (bx + boxW > W - padR) bx = px - gap - boxW;
+      let by = yAt(hovered.totalMRR) - boxH - gap;
+      if (by < padT) by = padT + gap;
+
+      tooltip = h("g", { style: { pointerEvents: "none" } },
+        h("rect", { x: bx, y: by, width: boxW, height: boxH, rx: 6, fill: colors.panel, stroke: colors.hairline, strokeWidth: "1" }),
+        h("text", { x: bx + 10, y: by + 18, fontFamily: FONT_MONO, fontSize: "11", fontWeight: "600", fill: colors.hi }, fmtMonthLabel(hovered.month)),
+        h("text", { x: bx + 10, y: by + 33, fontFamily: FONT_MONO, fontSize: "10", fill: colors.hi }, `Total: ${fmtCurrency(hovered.totalMRR)}`),
+        h("text", { x: bx + 10, y: by + 47, fontFamily: FONT_MONO, fontSize: "10", fill: colors.bar }, `Licensing: ${fmtCurrency(hovered.licensing)}`),
+        h("text", { x: bx + 10, y: by + 61, fontFamily: FONT_MONO, fontSize: "10", fill: colors.goalLine }, `Managed: ${fmtCurrency(hovered.managed)}`)
+      );
+    }
+
+    return h("svg", { viewBox: `0 0 ${W} ${H}`, style: { width: "100%", height: "auto", display: "block" } },
+      gridVals.map((v, i) => h("g", { key: "grid" + i },
+        h("line", { x1: padL, x2: W - padR, y1: yAt(v), y2: yAt(v), stroke: colors.hairline, strokeWidth: "1" }),
+        h("text", { x: padL - 8, y: yAt(v) + 4, textAnchor: "end", fontFamily: FONT_MONO, fontSize: "10", fill: colors.faint }, Math.round(v / 1000) + "k")
+      )),
+      months.map((m, i) => {
+        const licH = Math.max(0, yAt(0) - yAt(m.licensing));
+        const manH = Math.max(0, yAt(m.licensing) - yAt(m.totalMRR));
+        const isSelected = m.month === selectedMonth;
+        return h("g", { key: "bar" + i },
+          h("rect", { x: xAt(i) - barWidth / 2, y: yAt(m.licensing), width: barWidth, height: licH, fill: colors.bar, opacity: isSelected ? 0.9 : 0.55, rx: 2 }),
+          h("rect", { x: xAt(i) - barWidth / 2, y: yAt(m.totalMRR), width: barWidth, height: manH, fill: colors.goalLine, opacity: isSelected ? 0.9 : 0.55, rx: 2 }),
+          isSelected && h("rect", { x: xAt(i) - barWidth / 2 - 2, y: yAt(m.totalMRR) - 2, width: barWidth + 4, height: licH + manH + 4, fill: "none", stroke: colors.hi, strokeWidth: 1.5, rx: 3 })
+        );
+      }),
+      months.map((m, i) => h("text", {
+        key: "lbl" + i, x: xAt(i), y: H - 6, textAnchor: "middle", fontFamily: FONT_MONO, fontSize: "10",
+        fill: m.month === selectedMonth ? colors.hi : colors.faint
+      }, fmtMonthLabel(m.month).split(" ")[0].slice(0, 3))),
+      months.map((m, i) => h("rect", {
+        key: "hit" + i, x: xAt(i) - step / 2, y: padT, width: step, height: innerH, fill: "transparent",
+        style: { cursor: "pointer" },
+        onMouseEnter: () => setHoverIdx(i),
+        onMouseLeave: () => setHoverIdx((prev) => (prev === i ? null : prev)),
+        onClick: () => onMonthClick && onMonthClick(m.month),
+      })),
+      tooltip
+    );
+  }
+
   function MrrTab() {
-    const [data, setData] = useState(null);
+    const [monthsMap, setMonthsMap] = useState(null); // { "2026-08": snapshotData, ... }
+    const [manifest, setManifest] = useState(null);
+    const [selectedMonth, setSelectedMonth] = useState(null);
     const [error, setError] = useState(null);
     const [expandedClient, setExpandedClient] = useState(null);
+    const [updateState, setUpdateState] = useState("idle");
+    const [updateMessage, setUpdateMessage] = useState("");
 
-    useEffect(() => {
-      let cancelled = false;
-      fetch(`${MRR_DATA_URL}?t=${Date.now()}`)
-        .then((res) => { if (!res.ok) throw new Error(`HTTP ${res.status}`); return res.json(); })
-        .then((json) => { if (!cancelled) setData(json); })
-        .catch((e) => { if (!cancelled) setError(e.message); });
-      return () => { cancelled = true; };
-    }, []);
+    async function loadAll() {
+      try {
+        const manifestRes = await fetch(`${MRR_MANIFEST_URL}?t=${Date.now()}`);
+        if (!manifestRes.ok) throw new Error(`HTTP ${manifestRes.status}`);
+        const manifestJson = await manifestRes.json();
+        setManifest(manifestJson);
 
-    if (!data) {
+        const entries = await Promise.all(
+          manifestJson.months.map(async (key) => {
+            const res = await fetch(`${mrrMonthUrl(key)}?t=${Date.now()}`);
+            if (!res.ok) throw new Error(`HTTP ${res.status} for ${key}`);
+            return [key, await res.json()];
+          })
+        );
+        const map = Object.fromEntries(entries);
+        setMonthsMap(map);
+        setSelectedMonth((prev) => (prev && map[prev] ? prev : manifestJson.latest));
+        setError(null);
+        return map[manifestJson.latest];
+      } catch (e) {
+        setError(e.message);
+        return null;
+      }
+    }
+
+    useEffect(() => { loadAll(); }, []);
+
+    async function handleUpdateClick() {
+      setUpdateState("triggering");
+      setUpdateMessage("Triggering WIP + MRR pulls…");
+      try {
+        const res = await fetch(TRIGGER_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-Trigger-Key": TRIGGER_KEY.trim() },
+        });
+        const body = await res.json().catch(() => ({}));
+        if (!res.ok || !body.ok) {
+          const detail = body.error || (body.results ? body.results.filter((r) => !r.ok).map((r) => `${r.workflowFile}: ${r.status}`).join(", ") : null);
+          throw new Error(detail || `HTTP ${res.status}`);
+        }
+
+        setUpdateState("waiting");
+        setUpdateMessage("Pulls running — checking for fresh MRR data…");
+
+        const generatedAtBefore = monthsMap && manifest ? monthsMap[manifest.latest]?.generatedAt : null;
+        let tries = 0;
+        const poll = setInterval(async () => {
+          tries += 1;
+          const fresh = await loadAll();
+          const gotNewData = fresh && fresh.generatedAt !== generatedAtBefore;
+          if (gotNewData || tries >= FAST_POLL_MAX_TRIES) {
+            clearInterval(poll);
+            setUpdateState(gotNewData ? "idle" : "error");
+            setUpdateMessage(gotNewData ? "" : "Still processing — check the Actions tab if this takes more than a few minutes.");
+          }
+        }, FAST_POLL_MS);
+      } catch (e) {
+        setUpdateState("error");
+        setUpdateMessage(`Couldn't trigger update: ${e.message}`);
+      }
+    }
+
+    if (!monthsMap || !manifest || !selectedMonth) {
       return h("div", { style: { background: colors.bg, minHeight: "60vh", display: "flex", alignItems: "center", justifyContent: "center", color: colors.muted, fontFamily: FONT_MONO } },
         error ? `Error loading MRR data: ${error}` : "Loading MRR data…"
       );
     }
 
+    const data = monthsMap[selectedMonth];
     const licensing = data.byCategory?.["365 Licensing"] || 0;
     const managed = data.byCategory?.["Managed Services"] || 0;
+
+    const trendMonths = manifest.months.map((key) => ({
+      month: key,
+      totalMRR: monthsMap[key]?.totalMRR || 0,
+      licensing: monthsMap[key]?.byCategory?.["365 Licensing"] || 0,
+      managed: monthsMap[key]?.byCategory?.["Managed Services"] || 0,
+    }));
 
     return h("div", { style: { background: colors.bg, minHeight: "100vh", padding: "28px 24px 60px", fontFamily: FONT_BODY, color: colors.hi } },
       h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14, flexWrap: "wrap", gap: 10 } },
         h("div", null,
           h("div", { style: { fontFamily: FONT_DISPLAY, fontWeight: 700, fontSize: 22, letterSpacing: "-0.01em" } }, "MRR — Recurring Revenue"),
           h("div", { style: { fontFamily: FONT_MONO, fontSize: 11.5, color: colors.faint, marginTop: 3 } },
-            `SOURCE: CONNECTWISE AGREEMENTS · snapshot ${new Date(data.generatedAt).toLocaleString()}`
+            `SOURCE: CONNECTWISE AGREEMENTS · viewing ${fmtMonthLabel(selectedMonth)}${selectedMonth === manifest.latest ? " (latest)" : ""} · snapshot ${new Date(data.generatedAt).toLocaleString()}`
           )
         ),
-        data.flagged && data.flagged.length > 0 && h("div", {
-          style: { display: "flex", alignItems: "center", gap: 6, padding: "5px 10px", borderRadius: 6, background: "#2A1414", border: `1px solid ${colors.behind}`, fontFamily: FONT_MONO, fontSize: 10.5, color: colors.behind }
-        }, `${data.flagged.length} items need review`)
+        h("div", { style: { display: "flex", alignItems: "center", gap: 10 } },
+          data.flagged && data.flagged.length > 0 && h("div", {
+            style: { display: "flex", alignItems: "center", gap: 6, padding: "5px 10px", borderRadius: 6, background: "#2A1414", border: `1px solid ${colors.behind}`, fontFamily: FONT_MONO, fontSize: 10.5, color: colors.behind }
+          }, `${data.flagged.length} items need review`),
+          h("div", { style: { display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 4 } },
+            h("button", {
+              onClick: handleUpdateClick,
+              disabled: updateState === "triggering" || updateState === "waiting",
+              style: {
+                display: "flex", alignItems: "center", gap: 6, padding: "6px 14px", borderRadius: 6,
+                background: colors.finance, color: colors.bg, border: "none", fontFamily: FONT_MONO,
+                fontSize: 11.5, fontWeight: 600, cursor: (updateState === "triggering" || updateState === "waiting") ? "default" : "pointer",
+                opacity: (updateState === "triggering" || updateState === "waiting") ? 0.6 : 1,
+              }
+            }, updateState === "triggering" ? "Triggering…" : updateState === "waiting" ? "Updating…" : "⟳ Update Now"),
+            updateMessage && h("div", { style: { fontFamily: FONT_MONO, fontSize: 10, color: updateState === "error" ? colors.behind : colors.muted, maxWidth: 220, textAlign: "right" } }, updateMessage)
+          )
+        )
       ),
-
-      h("div", { style: {
-        display: "flex", gap: 10, alignItems: "flex-start", padding: "10px 14px",
-        background: colors.panelAlt || colors.panel, border: `1px solid ${colors.hairline}`, borderRadius: 8,
-        fontSize: 12, color: colors.muted, marginBottom: 22
-      } }, "This snapshot updates when the MRR pull is run manually from GitHub Actions — it's not on a live schedule yet."),
 
       h("div", { className: "grid-4", style: { gridTemplateColumns: "repeat(3, 1fr)", marginBottom: 22 } },
         h(StatTile, { label: "Total MRR", value: fmtCurrency(data.totalMRR), sub: `${data.agreements?.length || 0} active agreements`, accent: colors.finance, glyph: "●" }),
-        h(StatTile, { label: "365 Licensing", value: fmtCurrency(licensing), sub: `${data.totalMRR ? ((licensing / data.totalMRR) * 100).toFixed(0) : 0}% of total MRR`, accent: colors.mrr || colors.bar, glyph: "◆" }),
+        h(StatTile, { label: "365 Licensing", value: fmtCurrency(licensing), sub: `${data.totalMRR ? ((licensing / data.totalMRR) * 100).toFixed(0) : 0}% of total MRR`, accent: colors.bar, glyph: "◆" }),
         h(StatTile, { label: "Managed Services", value: fmtCurrency(managed), sub: `${data.totalMRR ? ((managed / data.totalMRR) * 100).toFixed(0) : 0}% of total MRR`, accent: colors.goalLine, glyph: "■" })
+      ),
+
+      h(Panel, { style: { marginBottom: 22 } },
+        h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 } },
+          h(SectionLabel, { accent: colors.finance }, "MRR by month"),
+          trendMonths.length < 2 && h("span", { style: { fontFamily: FONT_MONO, fontSize: 10.5, color: colors.faint } }, "History builds as pulls accumulate")
+        ),
+        h(MrrTrendChart, { months: trendMonths, selectedMonth, onMonthClick: (m) => setSelectedMonth(m) }),
+        h("div", { style: { display: "flex", gap: 18, marginTop: 8, fontSize: 12, color: colors.muted } },
+          h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: colors.bar, opacity: 0.7 } }), "365 Licensing"),
+          h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: colors.goalLine, opacity: 0.7 } }), "Managed Services")
+        ),
+        h("div", { style: { marginTop: 6, fontSize: 10.5, fontFamily: FONT_MONO, color: colors.faint } }, "Hover a month for values · click a month to view its detail below")
       ),
 
       h(Panel, { style: { marginBottom: 22 } },
@@ -714,7 +873,7 @@
         ] })
       ),
 
-      h(SectionLabel, { accent: colors.bar }, "MRR by client"),
+      h(SectionLabel, { accent: colors.bar }, `MRR by client — ${fmtMonthLabel(selectedMonth)}`),
       h(Panel, null,
         h("div", { style: { display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 8, padding: "0 4px 10px", borderBottom: `1px solid ${colors.hairline}`, marginBottom: 6 } },
           ["Client", "Licensing", "Managed Svcs", "Total"].map((label, i) =>
@@ -763,6 +922,7 @@
       )
     );
   }
+
 
   // ---------- Sales Tab (placeholder) ----------
   function SalesTab() {
