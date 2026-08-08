@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-08T13:45:42.904Z",
+  "generatedAt": "2026-08-08T13:52:21.421Z",
   "count": 379,
   "byMonth": {
     "2025-01": 17,
@@ -3814,5 +3814,1873 @@
       "total": 374.56
     }
   ],
-  "productSamples": []
+  "productSamples": [
+    {
+      "invoiceId": 3511,
+      "company": "Honeytree Early Learning Centers",
+      "products": [
+        {
+          "id": 6156,
+          "catalogItem": {
+            "id": 10,
+            "identifier": "Managed Anti-virus",
+            "_info": {
+              "typeId": "2",
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/10"
+            }
+          },
+          "description": "Managed Anti-virus",
+          "sequenceNumber": 1,
+          "quantity": 81,
+          "unitOfMeasure": {
+            "id": 1,
+            "name": "Each",
+            "_info": {
+              "uom_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/unitOfMeasures/1"
+            }
+          },
+          "price": 6,
+          "cost": 1,
+          "extPrice": 486,
+          "extCost": 81,
+          "margin": 5,
+          "agreementAmount": 0,
+          "billableOption": "Billable",
+          "agreement": {
+            "id": 4,
+            "name": "Honeytree - EDR",
+            "type": "Managed Antivirus",
+            "_info": {
+              "agreement_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/agreements/4",
+              "typeId": "30"
+            }
+          },
+          "locationId": 11,
+          "location": {
+            "id": 11,
+            "name": "Headquarters",
+            "_info": {
+              "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/11"
+            }
+          },
+          "businessUnitId": 2,
+          "businessUnit": {
+            "id": 2,
+            "name": "Managed Service",
+            "_info": {
+              "department_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/departments/2"
+            }
+          },
+          "taxableFlag": false,
+          "dropshipFlag": false,
+          "specialOrderFlag": false,
+          "phaseProductFlag": false,
+          "cancelledFlag": false,
+          "quantityCancelled": 0,
+          "customerDescription": "Managed Anti-virus",
+          "productSuppliedFlag": false,
+          "invoice": {
+            "id": 3511,
+            "identifier": "8494",
+            "_info": {
+              "invoice_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/invoices/3511"
+            }
+          },
+          "warehouseId": 1,
+          "warehouseIdObject": {
+            "id": 1,
+            "name": "Warehouse",
+            "lockedFlag": false,
+            "_info": {
+              "warehouse_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouses/1"
+            }
+          },
+          "warehouseBinId": 1,
+          "warehouseBinIdObject": {
+            "id": 1,
+            "name": "Tampa Default",
+            "_info": {
+              "warehouseBin_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouseBins/1"
+            }
+          },
+          "calculatedPriceFlag": false,
+          "calculatedCostFlag": false,
+          "warehouse": "Warehouse",
+          "warehouseBin": "Tampa Default",
+          "taxCode": {
+            "id": 8,
+            "name": "Tax-State",
+            "_info": {
+              "taxCode_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/taxCodes/8"
+            }
+          },
+          "listPrice": 3,
+          "company": {
+            "id": 19403,
+            "identifier": "HoneytreeEarlyLearning",
+            "name": "Honeytree Early Learning Centers",
+            "_info": {
+              "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19403"
+            }
+          },
+          "site": {
+            "id": 1313,
+            "name": "Honeytree Early Learning Centers",
+            "_info": {
+              "site_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19403/sites/1313"
+            }
+          },
+          "productClass": "Agreement",
+          "needToPurchaseFlag": false,
+          "minimumStockFlag": false,
+          "poApprovedFlag": false,
+          "uom": "Each",
+          "_info": {
+            "lastUpdated": "2025-01-01T05:32:03Z",
+            "updatedBy": "nightjob"
+          }
+        }
+      ]
+    },
+    {
+      "invoiceId": 3512,
+      "company": "Thor Construction",
+      "products": [
+        {
+          "id": 6157,
+          "catalogItem": {
+            "id": 11,
+            "identifier": "Managed Anti-Spam",
+            "_info": {
+              "typeId": "2",
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/11"
+            }
+          },
+          "description": "Managed Anti-Spam",
+          "sequenceNumber": 1,
+          "quantity": 46,
+          "unitOfMeasure": {
+            "id": 1,
+            "name": "Each",
+            "_info": {
+              "uom_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/unitOfMeasures/1"
+            }
+          },
+          "price": 3,
+          "cost": 1,
+          "extPrice": 138,
+          "extCost": 46,
+          "margin": 2,
+          "agreementAmount": 0,
+          "billableOption": "Billable",
+          "agreement": {
+            "id": 6,
+            "name": "Managed Anti-Spam",
+            "type": "Managed Anti-Spam",
+            "_info": {
+              "agreement_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/agreements/6",
+              "typeId": "31"
+            }
+          },
+          "locationId": 11,
+          "location": {
+            "id": 11,
+            "name": "Headquarters",
+            "_info": {
+              "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/11"
+            }
+          },
+          "businessUnitId": 2,
+          "businessUnit": {
+            "id": 2,
+            "name": "Managed Service",
+            "_info": {
+              "department_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/departments/2"
+            }
+          },
+          "taxableFlag": false,
+          "dropshipFlag": false,
+          "specialOrderFlag": false,
+          "phaseProductFlag": false,
+          "cancelledFlag": false,
+          "quantityCancelled": 0,
+          "customerDescription": "Managed Anti-Spam",
+          "productSuppliedFlag": false,
+          "invoice": {
+            "id": 3512,
+            "identifier": "8495",
+            "_info": {
+              "invoice_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/invoices/3512"
+            }
+          },
+          "warehouseId": 1,
+          "warehouseIdObject": {
+            "id": 1,
+            "name": "Warehouse",
+            "lockedFlag": false,
+            "_info": {
+              "warehouse_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouses/1"
+            }
+          },
+          "warehouseBinId": 1,
+          "warehouseBinIdObject": {
+            "id": 1,
+            "name": "Tampa Default",
+            "_info": {
+              "warehouseBin_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouseBins/1"
+            }
+          },
+          "calculatedPriceFlag": false,
+          "calculatedCostFlag": false,
+          "warehouse": "Warehouse",
+          "warehouseBin": "Tampa Default",
+          "taxCode": {
+            "id": 8,
+            "name": "Tax-State",
+            "_info": {
+              "taxCode_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/taxCodes/8"
+            }
+          },
+          "listPrice": 3,
+          "company": {
+            "id": 19407,
+            "identifier": "ThorConstruction",
+            "name": "Thor Construction",
+            "_info": {
+              "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19407"
+            }
+          },
+          "productClass": "NonInventory",
+          "needToPurchaseFlag": false,
+          "minimumStockFlag": false,
+          "poApprovedFlag": false,
+          "uom": "Each",
+          "_info": {
+            "lastUpdated": "2025-01-01T05:32:05Z",
+            "updatedBy": "nightjob"
+          }
+        }
+      ]
+    },
+    {
+      "invoiceId": 3513,
+      "company": "Thor Construction",
+      "products": [
+        {
+          "id": 6158,
+          "catalogItem": {
+            "id": 18,
+            "identifier": "ManagedAV",
+            "_info": {
+              "typeId": "2",
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/18"
+            }
+          },
+          "description": "Managed Anti Virus",
+          "sequenceNumber": 1,
+          "quantity": 22,
+          "unitOfMeasure": {
+            "id": 1,
+            "name": "Each",
+            "_info": {
+              "uom_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/unitOfMeasures/1"
+            }
+          },
+          "price": 3,
+          "cost": 1,
+          "extPrice": 66,
+          "extCost": 22,
+          "margin": 2,
+          "agreementAmount": 0,
+          "billableOption": "Billable",
+          "agreement": {
+            "id": 13,
+            "name": "Thor - Managed AV",
+            "type": "Managed Antivirus",
+            "_info": {
+              "agreement_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/agreements/13",
+              "typeId": "30"
+            }
+          },
+          "locationId": 11,
+          "location": {
+            "id": 11,
+            "name": "Headquarters",
+            "_info": {
+              "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/11"
+            }
+          },
+          "businessUnitId": 2,
+          "businessUnit": {
+            "id": 2,
+            "name": "Managed Service",
+            "_info": {
+              "department_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/departments/2"
+            }
+          },
+          "taxableFlag": false,
+          "dropshipFlag": false,
+          "specialOrderFlag": false,
+          "phaseProductFlag": false,
+          "cancelledFlag": false,
+          "quantityCancelled": 0,
+          "customerDescription": "Thor Inc Managed AV",
+          "productSuppliedFlag": false,
+          "invoice": {
+            "id": 3513,
+            "identifier": "8496",
+            "_info": {
+              "invoice_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/invoices/3513"
+            }
+          },
+          "warehouseId": 1,
+          "warehouseIdObject": {
+            "id": 1,
+            "name": "Warehouse",
+            "lockedFlag": false,
+            "_info": {
+              "warehouse_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouses/1"
+            }
+          },
+          "warehouseBinId": 1,
+          "warehouseBinIdObject": {
+            "id": 1,
+            "name": "Tampa Default",
+            "_info": {
+              "warehouseBin_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouseBins/1"
+            }
+          },
+          "calculatedPriceFlag": false,
+          "calculatedCostFlag": false,
+          "warehouse": "Warehouse",
+          "warehouseBin": "Tampa Default",
+          "taxCode": {
+            "id": 8,
+            "name": "Tax-State",
+            "_info": {
+              "taxCode_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/taxCodes/8"
+            }
+          },
+          "listPrice": 3,
+          "company": {
+            "id": 19407,
+            "identifier": "ThorConstruction",
+            "name": "Thor Construction",
+            "_info": {
+              "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19407"
+            }
+          },
+          "site": {
+            "id": 1113,
+            "name": "Thor Construction",
+            "_info": {
+              "site_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19407/sites/1113"
+            }
+          },
+          "productClass": "Service",
+          "needToPurchaseFlag": false,
+          "minimumStockFlag": false,
+          "poApprovedFlag": false,
+          "uom": "Each",
+          "_info": {
+            "lastUpdated": "2025-01-01T05:32:05Z",
+            "updatedBy": "nightjob"
+          }
+        }
+      ]
+    },
+    {
+      "invoiceId": 3514,
+      "company": "Fincastle Baptist Church",
+      "products": [
+        {
+          "id": 6159,
+          "catalogItem": {
+            "id": 10,
+            "identifier": "Managed Anti-virus",
+            "_info": {
+              "typeId": "2",
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/10"
+            }
+          },
+          "description": "Managed Anti-virus",
+          "sequenceNumber": 1,
+          "quantity": 36,
+          "unitOfMeasure": {
+            "id": 1,
+            "name": "Each",
+            "_info": {
+              "uom_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/unitOfMeasures/1"
+            }
+          },
+          "price": 2,
+          "cost": 1,
+          "extPrice": 72,
+          "extCost": 36,
+          "margin": 1,
+          "agreementAmount": 0,
+          "billableOption": "Billable",
+          "agreement": {
+            "id": 14,
+            "name": "FBC Managed Services",
+            "type": "Managed Antivirus",
+            "_info": {
+              "agreement_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/agreements/14",
+              "typeId": "30"
+            }
+          },
+          "locationId": 11,
+          "location": {
+            "id": 11,
+            "name": "Headquarters",
+            "_info": {
+              "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/11"
+            }
+          },
+          "businessUnitId": 2,
+          "businessUnit": {
+            "id": 2,
+            "name": "Managed Service",
+            "_info": {
+              "department_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/departments/2"
+            }
+          },
+          "taxableFlag": false,
+          "dropshipFlag": false,
+          "specialOrderFlag": false,
+          "phaseProductFlag": false,
+          "cancelledFlag": false,
+          "quantityCancelled": 0,
+          "customerDescription": "Managed Anti-virus, non-profit pricing. ",
+          "productSuppliedFlag": false,
+          "invoice": {
+            "id": 3514,
+            "identifier": "8497",
+            "_info": {
+              "invoice_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/invoices/3514"
+            }
+          },
+          "warehouseId": 1,
+          "warehouseIdObject": {
+            "id": 1,
+            "name": "Warehouse",
+            "lockedFlag": false,
+            "_info": {
+              "warehouse_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouses/1"
+            }
+          },
+          "warehouseBinId": 1,
+          "warehouseBinIdObject": {
+            "id": 1,
+            "name": "Tampa Default",
+            "_info": {
+              "warehouseBin_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouseBins/1"
+            }
+          },
+          "calculatedPriceFlag": false,
+          "calculatedCostFlag": false,
+          "warehouse": "Warehouse",
+          "warehouseBin": "Tampa Default",
+          "taxCode": {
+            "id": 8,
+            "name": "Tax-State",
+            "_info": {
+              "taxCode_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/taxCodes/8"
+            }
+          },
+          "listPrice": 3,
+          "company": {
+            "id": 19402,
+            "identifier": "FincastleBaptistChurch",
+            "name": "Fincastle Baptist Church",
+            "_info": {
+              "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19402"
+            }
+          },
+          "site": {
+            "id": 1108,
+            "name": "Fincastle Campus",
+            "_info": {
+              "site_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19402/sites/1108"
+            }
+          },
+          "productClass": "Agreement",
+          "needToPurchaseFlag": false,
+          "minimumStockFlag": false,
+          "poApprovedFlag": false,
+          "uom": "Each",
+          "_info": {
+            "lastUpdated": "2025-01-01T05:32:05Z",
+            "updatedBy": "nightjob"
+          }
+        }
+      ]
+    },
+    {
+      "invoiceId": 3515,
+      "company": "Baird Drywall & Acoustic",
+      "products": [
+        {
+          "id": 6160,
+          "catalogItem": {
+            "id": 15,
+            "identifier": "Silver - Workstation",
+            "_info": {
+              "typeId": "2",
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/15"
+            }
+          },
+          "description": "Silver - Workstation",
+          "sequenceNumber": 1,
+          "quantity": 6,
+          "unitOfMeasure": {
+            "id": 1,
+            "name": "Each",
+            "_info": {
+              "uom_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/unitOfMeasures/1"
+            }
+          },
+          "price": 78,
+          "cost": 0,
+          "extPrice": 468,
+          "extCost": 0,
+          "margin": 78,
+          "agreementAmount": 0,
+          "billableOption": "Billable",
+          "agreement": {
+            "id": 15,
+            "name": "Baird - Silver/Gold Split",
+            "type": "Managed Service - Silver",
+            "_info": {
+              "agreement_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/agreements/15",
+              "typeId": "3"
+            }
+          },
+          "locationId": 11,
+          "location": {
+            "id": 11,
+            "name": "Headquarters",
+            "_info": {
+              "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/11"
+            }
+          },
+          "businessUnitId": 2,
+          "businessUnit": {
+            "id": 2,
+            "name": "Managed Service",
+            "_info": {
+              "department_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/departments/2"
+            }
+          },
+          "taxableFlag": false,
+          "dropshipFlag": false,
+          "specialOrderFlag": false,
+          "phaseProductFlag": false,
+          "cancelledFlag": false,
+          "quantityCancelled": 0,
+          "customerDescription": "Silver - Workstation",
+          "productSuppliedFlag": false,
+          "invoice": {
+            "id": 3515,
+            "identifier": "8498",
+            "_info": {
+              "invoice_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/invoices/3515"
+            }
+          },
+          "warehouseId": 1,
+          "warehouseIdObject": {
+            "id": 1,
+            "name": "Warehouse",
+            "lockedFlag": false,
+            "_info": {
+              "warehouse_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouses/1"
+            }
+          },
+          "warehouseBinId": 1,
+          "warehouseBinIdObject": {
+            "id": 1,
+            "name": "Tampa Default",
+            "_info": {
+              "warehouseBin_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouseBins/1"
+            }
+          },
+          "calculatedPriceFlag": false,
+          "calculatedCostFlag": false,
+          "warehouse": "Warehouse",
+          "warehouseBin": "Tampa Default",
+          "taxCode": {
+            "id": 8,
+            "name": "Tax-State",
+            "_info": {
+              "taxCode_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/taxCodes/8"
+            }
+          },
+          "listPrice": 72,
+          "company": {
+            "id": 19547,
+            "identifier": "BairdDrywall",
+            "name": "Baird Drywall & Acoustic",
+            "_info": {
+              "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19547"
+            }
+          },
+          "site": {
+            "id": 1274,
+            "name": "Baird Drywall",
+            "_info": {
+              "site_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19547/sites/1274"
+            }
+          },
+          "productClass": "Agreement",
+          "needToPurchaseFlag": false,
+          "minimumStockFlag": false,
+          "poApprovedFlag": false,
+          "uom": "Each",
+          "_info": {
+            "lastUpdated": "2025-01-01T05:32:05Z",
+            "updatedBy": "nightjob"
+          }
+        },
+        {
+          "id": 6161,
+          "catalogItem": {
+            "id": 19,
+            "identifier": "Gold - Server",
+            "_info": {
+              "typeId": "2",
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/19"
+            }
+          },
+          "description": "Gold - Server",
+          "sequenceNumber": 2,
+          "quantity": 1,
+          "unitOfMeasure": {
+            "id": 1,
+            "name": "Each",
+            "_info": {
+              "uom_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/unitOfMeasures/1"
+            }
+          },
+          "price": 368,
+          "cost": 0,
+          "extPrice": 368,
+          "extCost": 0,
+          "margin": 368,
+          "agreementAmount": 0,
+          "billableOption": "Billable",
+          "agreement": {
+            "id": 15,
+            "name": "Baird - Silver/Gold Split",
+            "type": "Managed Service - Silver",
+            "_info": {
+              "agreement_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/agreements/15",
+              "typeId": "3"
+            }
+          },
+          "locationId": 11,
+          "location": {
+            "id": 11,
+            "name": "Headquarters",
+            "_info": {
+              "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/11"
+            }
+          },
+          "businessUnitId": 2,
+          "businessUnit": {
+            "id": 2,
+            "name": "Managed Service",
+            "_info": {
+              "department_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/departments/2"
+            }
+          },
+          "taxableFlag": false,
+          "dropshipFlag": false,
+          "specialOrderFlag": false,
+          "phaseProductFlag": false,
+          "cancelledFlag": false,
+          "quantityCancelled": 0,
+          "customerDescription": "Gold plan for Servers",
+          "productSuppliedFlag": false,
+          "invoice": {
+            "id": 3515,
+            "identifier": "8498",
+            "_info": {
+              "invoice_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/invoices/3515"
+            }
+          },
+          "warehouseId": 1,
+          "warehouseIdObject": {
+            "id": 1,
+            "name": "Warehouse",
+            "lockedFlag": false,
+            "_info": {
+              "warehouse_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouses/1"
+            }
+          },
+          "warehouseBinId": 1,
+          "warehouseBinIdObject": {
+            "id": 1,
+            "name": "Tampa Default",
+            "_info": {
+              "warehouseBin_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouseBins/1"
+            }
+          },
+          "calculatedPriceFlag": false,
+          "calculatedCostFlag": false,
+          "warehouse": "Warehouse",
+          "warehouseBin": "Tampa Default",
+          "taxCode": {
+            "id": 8,
+            "name": "Tax-State",
+            "_info": {
+              "taxCode_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/taxCodes/8"
+            }
+          },
+          "listPrice": 368,
+          "company": {
+            "id": 19547,
+            "identifier": "BairdDrywall",
+            "name": "Baird Drywall & Acoustic",
+            "_info": {
+              "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19547"
+            }
+          },
+          "site": {
+            "id": 1274,
+            "name": "Baird Drywall",
+            "_info": {
+              "site_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19547/sites/1274"
+            }
+          },
+          "productClass": "NonInventory",
+          "needToPurchaseFlag": false,
+          "minimumStockFlag": false,
+          "poApprovedFlag": false,
+          "uom": "Each",
+          "_info": {
+            "lastUpdated": "2025-01-01T05:32:05Z",
+            "updatedBy": "nightjob"
+          }
+        }
+      ]
+    },
+    {
+      "invoiceId": 3516,
+      "company": "McLeod Enterprises",
+      "products": [
+        {
+          "id": 6162,
+          "catalogItem": {
+            "id": 10,
+            "identifier": "Managed Anti-virus",
+            "_info": {
+              "typeId": "2",
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/10"
+            }
+          },
+          "description": "Managed Anti-virus",
+          "sequenceNumber": 1,
+          "quantity": 25,
+          "unitOfMeasure": {
+            "id": 1,
+            "name": "Each",
+            "_info": {
+              "uom_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/unitOfMeasures/1"
+            }
+          },
+          "price": 6,
+          "cost": 1,
+          "extPrice": 150,
+          "extCost": 25,
+          "margin": 5,
+          "agreementAmount": 0,
+          "billableOption": "Billable",
+          "agreement": {
+            "id": 16,
+            "name": "McLeod Enterprises - EDR",
+            "type": "Managed Antivirus",
+            "_info": {
+              "agreement_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/agreements/16",
+              "typeId": "30"
+            }
+          },
+          "locationId": 11,
+          "location": {
+            "id": 11,
+            "name": "Headquarters",
+            "_info": {
+              "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/11"
+            }
+          },
+          "businessUnitId": 2,
+          "businessUnit": {
+            "id": 2,
+            "name": "Managed Service",
+            "_info": {
+              "department_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/departments/2"
+            }
+          },
+          "taxableFlag": false,
+          "dropshipFlag": false,
+          "specialOrderFlag": false,
+          "phaseProductFlag": false,
+          "cancelledFlag": false,
+          "quantityCancelled": 0,
+          "customerDescription": "Managed Anti-virus",
+          "productSuppliedFlag": false,
+          "invoice": {
+            "id": 3516,
+            "identifier": "8499",
+            "_info": {
+              "invoice_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/invoices/3516"
+            }
+          },
+          "warehouseId": 1,
+          "warehouseIdObject": {
+            "id": 1,
+            "name": "Warehouse",
+            "lockedFlag": false,
+            "_info": {
+              "warehouse_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouses/1"
+            }
+          },
+          "warehouseBinId": 1,
+          "warehouseBinIdObject": {
+            "id": 1,
+            "name": "Tampa Default",
+            "_info": {
+              "warehouseBin_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouseBins/1"
+            }
+          },
+          "calculatedPriceFlag": false,
+          "calculatedCostFlag": false,
+          "warehouse": "Warehouse",
+          "warehouseBin": "Tampa Default",
+          "taxCode": {
+            "id": 8,
+            "name": "Tax-State",
+            "_info": {
+              "taxCode_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/taxCodes/8"
+            }
+          },
+          "listPrice": 3,
+          "company": {
+            "id": 19404,
+            "identifier": "McLeodEnterprises",
+            "name": "McLeod Enterprises",
+            "_info": {
+              "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19404"
+            }
+          },
+          "site": {
+            "id": 1110,
+            "name": "418 1st St. ",
+            "_info": {
+              "site_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19404/sites/1110"
+            }
+          },
+          "productClass": "Agreement",
+          "needToPurchaseFlag": false,
+          "minimumStockFlag": false,
+          "poApprovedFlag": false,
+          "uom": "Each",
+          "_info": {
+            "lastUpdated": "2025-01-01T05:32:05Z",
+            "updatedBy": "nightjob"
+          }
+        }
+      ]
+    },
+    {
+      "invoiceId": 3517,
+      "company": "McLeod Enterprises",
+      "products": [
+        {
+          "id": 6163,
+          "catalogItem": {
+            "id": 26,
+            "identifier": "SolarWindsBackup&Recovery",
+            "_info": {
+              "typeId": "2",
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/26"
+            }
+          },
+          "description": "Solar Winds Backup & Recovery",
+          "sequenceNumber": 1,
+          "quantity": 1,
+          "unitOfMeasure": {
+            "id": 1,
+            "name": "Each",
+            "_info": {
+              "uom_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/unitOfMeasures/1"
+            }
+          },
+          "price": 79,
+          "cost": 50,
+          "extPrice": 79,
+          "extCost": 50,
+          "margin": 29,
+          "agreementAmount": 0,
+          "billableOption": "Billable",
+          "agreement": {
+            "id": 17,
+            "name": "McLeod Enterprises - Server Backup & Recovery",
+            "type": "Backup & Recovery",
+            "_info": {
+              "agreement_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/agreements/17",
+              "typeId": "32"
+            }
+          },
+          "locationId": 11,
+          "location": {
+            "id": 11,
+            "name": "Headquarters",
+            "_info": {
+              "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/11"
+            }
+          },
+          "businessUnitId": 2,
+          "businessUnit": {
+            "id": 2,
+            "name": "Managed Service",
+            "_info": {
+              "department_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/departments/2"
+            }
+          },
+          "taxableFlag": false,
+          "dropshipFlag": false,
+          "specialOrderFlag": false,
+          "phaseProductFlag": false,
+          "cancelledFlag": false,
+          "quantityCancelled": 0,
+          "customerDescription": "Backup and Recovery for Servers",
+          "productSuppliedFlag": false,
+          "invoice": {
+            "id": 3517,
+            "identifier": "8500",
+            "_info": {
+              "invoice_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/invoices/3517"
+            }
+          },
+          "warehouseId": 1,
+          "warehouseIdObject": {
+            "id": 1,
+            "name": "Warehouse",
+            "lockedFlag": false,
+            "_info": {
+              "warehouse_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouses/1"
+            }
+          },
+          "warehouseBinId": 1,
+          "warehouseBinIdObject": {
+            "id": 1,
+            "name": "Tampa Default",
+            "_info": {
+              "warehouseBin_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouseBins/1"
+            }
+          },
+          "calculatedPriceFlag": false,
+          "calculatedCostFlag": false,
+          "warehouse": "Warehouse",
+          "warehouseBin": "Tampa Default",
+          "taxCode": {
+            "id": 8,
+            "name": "Tax-State",
+            "_info": {
+              "taxCode_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/taxCodes/8"
+            }
+          },
+          "listPrice": 79,
+          "company": {
+            "id": 19404,
+            "identifier": "McLeodEnterprises",
+            "name": "McLeod Enterprises",
+            "_info": {
+              "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19404"
+            }
+          },
+          "site": {
+            "id": 1110,
+            "name": "418 1st St. ",
+            "_info": {
+              "site_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19404/sites/1110"
+            }
+          },
+          "productClass": "NonInventory",
+          "needToPurchaseFlag": false,
+          "minimumStockFlag": false,
+          "poApprovedFlag": false,
+          "uom": "Each",
+          "_info": {
+            "lastUpdated": "2025-01-01T05:32:05Z",
+            "updatedBy": "nightjob"
+          }
+        },
+        {
+          "id": 6164,
+          "catalogItem": {
+            "id": 27,
+            "identifier": "SolarWindsDocuments",
+            "_info": {
+              "typeId": "2",
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/27"
+            }
+          },
+          "description": "SolarWinds Backup Documents",
+          "sequenceNumber": 2,
+          "quantity": 4,
+          "unitOfMeasure": {
+            "id": 1,
+            "name": "Each",
+            "_info": {
+              "uom_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/unitOfMeasures/1"
+            }
+          },
+          "price": 3,
+          "cost": 1,
+          "extPrice": 12,
+          "extCost": 4,
+          "margin": 2,
+          "agreementAmount": 0,
+          "billableOption": "Billable",
+          "agreement": {
+            "id": 17,
+            "name": "McLeod Enterprises - Server Backup & Recovery",
+            "type": "Backup & Recovery",
+            "_info": {
+              "agreement_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/agreements/17",
+              "typeId": "32"
+            }
+          },
+          "locationId": 11,
+          "location": {
+            "id": 11,
+            "name": "Headquarters",
+            "_info": {
+              "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/11"
+            }
+          },
+          "businessUnitId": 2,
+          "businessUnit": {
+            "id": 2,
+            "name": "Managed Service",
+            "_info": {
+              "department_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/departments/2"
+            }
+          },
+          "taxableFlag": false,
+          "dropshipFlag": false,
+          "specialOrderFlag": false,
+          "phaseProductFlag": false,
+          "cancelledFlag": false,
+          "quantityCancelled": 0,
+          "customerDescription": "SolarWinds Backup Documents for Workstations\nCBishop, JWilhelm, EBarger, Academy-Dir",
+          "productSuppliedFlag": false,
+          "invoice": {
+            "id": 3517,
+            "identifier": "8500",
+            "_info": {
+              "invoice_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/invoices/3517"
+            }
+          },
+          "warehouseId": 1,
+          "warehouseIdObject": {
+            "id": 1,
+            "name": "Warehouse",
+            "lockedFlag": false,
+            "_info": {
+              "warehouse_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouses/1"
+            }
+          },
+          "warehouseBinId": 1,
+          "warehouseBinIdObject": {
+            "id": 1,
+            "name": "Tampa Default",
+            "_info": {
+              "warehouseBin_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouseBins/1"
+            }
+          },
+          "calculatedPriceFlag": false,
+          "calculatedCostFlag": false,
+          "warehouse": "Warehouse",
+          "warehouseBin": "Tampa Default",
+          "taxCode": {
+            "id": 8,
+            "name": "Tax-State",
+            "_info": {
+              "taxCode_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/taxCodes/8"
+            }
+          },
+          "listPrice": 3,
+          "company": {
+            "id": 19404,
+            "identifier": "McLeodEnterprises",
+            "name": "McLeod Enterprises",
+            "_info": {
+              "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19404"
+            }
+          },
+          "site": {
+            "id": 1110,
+            "name": "418 1st St. ",
+            "_info": {
+              "site_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19404/sites/1110"
+            }
+          },
+          "productClass": "NonInventory",
+          "needToPurchaseFlag": false,
+          "minimumStockFlag": false,
+          "poApprovedFlag": false,
+          "uom": "Each",
+          "_info": {
+            "lastUpdated": "2025-01-01T05:32:05Z",
+            "updatedBy": "nightjob"
+          }
+        },
+        {
+          "id": 6165,
+          "catalogItem": {
+            "id": 26,
+            "identifier": "SolarWindsBackup&Recovery",
+            "_info": {
+              "typeId": "2",
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/26"
+            }
+          },
+          "description": "Solar Winds Backup & Recovery",
+          "sequenceNumber": 3,
+          "quantity": 2033,
+          "unitOfMeasure": {
+            "id": 1,
+            "name": "Each",
+            "_info": {
+              "uom_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/unitOfMeasures/1"
+            }
+          },
+          "price": 0.094583,
+          "cost": 0.07,
+          "extPrice": 192.287629,
+          "extCost": 142.31,
+          "margin": 0.024583,
+          "agreementAmount": 0,
+          "billableOption": "Billable",
+          "agreement": {
+            "id": 17,
+            "name": "McLeod Enterprises - Server Backup & Recovery",
+            "type": "Backup & Recovery",
+            "_info": {
+              "agreement_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/agreements/17",
+              "typeId": "32"
+            }
+          },
+          "locationId": 11,
+          "location": {
+            "id": 11,
+            "name": "Headquarters",
+            "_info": {
+              "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/11"
+            }
+          },
+          "businessUnitId": 2,
+          "businessUnit": {
+            "id": 2,
+            "name": "Managed Service",
+            "_info": {
+              "department_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/departments/2"
+            }
+          },
+          "taxableFlag": false,
+          "dropshipFlag": false,
+          "specialOrderFlag": false,
+          "phaseProductFlag": false,
+          "cancelledFlag": false,
+          "quantityCancelled": 0,
+          "customerDescription": "Data Overages - 500GB Included",
+          "productSuppliedFlag": false,
+          "invoice": {
+            "id": 3517,
+            "identifier": "8500",
+            "_info": {
+              "invoice_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/invoices/3517"
+            }
+          },
+          "warehouseId": 1,
+          "warehouseIdObject": {
+            "id": 1,
+            "name": "Warehouse",
+            "lockedFlag": false,
+            "_info": {
+              "warehouse_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouses/1"
+            }
+          },
+          "warehouseBinId": 1,
+          "warehouseBinIdObject": {
+            "id": 1,
+            "name": "Tampa Default",
+            "_info": {
+              "warehouseBin_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouseBins/1"
+            }
+          },
+          "calculatedPriceFlag": false,
+          "calculatedCostFlag": false,
+          "warehouse": "Warehouse",
+          "warehouseBin": "Tampa Default",
+          "taxCode": {
+            "id": 8,
+            "name": "Tax-State",
+            "_info": {
+              "taxCode_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/taxCodes/8"
+            }
+          },
+          "listPrice": 79,
+          "company": {
+            "id": 19404,
+            "identifier": "McLeodEnterprises",
+            "name": "McLeod Enterprises",
+            "_info": {
+              "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19404"
+            }
+          },
+          "site": {
+            "id": 1110,
+            "name": "418 1st St. ",
+            "_info": {
+              "site_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19404/sites/1110"
+            }
+          },
+          "productClass": "NonInventory",
+          "needToPurchaseFlag": false,
+          "minimumStockFlag": false,
+          "poApprovedFlag": false,
+          "uom": "Each",
+          "_info": {
+            "lastUpdated": "2025-01-01T05:32:05Z",
+            "updatedBy": "nightjob"
+          }
+        },
+        {
+          "id": 6166,
+          "catalogItem": {
+            "id": 232,
+            "identifier": "SMTPServer",
+            "_info": {
+              "typeId": "4",
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/232"
+            }
+          },
+          "description": "Outbound Email Service for Devices",
+          "sequenceNumber": 4,
+          "quantity": 1,
+          "unitOfMeasure": {
+            "id": 1,
+            "name": "Each",
+            "_info": {
+              "uom_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/unitOfMeasures/1"
+            }
+          },
+          "price": 20,
+          "cost": 10,
+          "extPrice": 20,
+          "extCost": 10,
+          "margin": 10,
+          "agreementAmount": 0,
+          "billableOption": "Billable",
+          "agreement": {
+            "id": 17,
+            "name": "McLeod Enterprises - Server Backup & Recovery",
+            "type": "Backup & Recovery",
+            "_info": {
+              "agreement_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/agreements/17",
+              "typeId": "32"
+            }
+          },
+          "locationId": 11,
+          "location": {
+            "id": 11,
+            "name": "Headquarters",
+            "_info": {
+              "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/11"
+            }
+          },
+          "businessUnitId": 2,
+          "businessUnit": {
+            "id": 2,
+            "name": "Managed Service",
+            "_info": {
+              "department_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/departments/2"
+            }
+          },
+          "taxableFlag": false,
+          "dropshipFlag": false,
+          "specialOrderFlag": false,
+          "phaseProductFlag": false,
+          "cancelledFlag": false,
+          "quantityCancelled": 0,
+          "customerDescription": "Outbound Email Service for Devices",
+          "productSuppliedFlag": false,
+          "invoice": {
+            "id": 3517,
+            "identifier": "8500",
+            "_info": {
+              "invoice_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/invoices/3517"
+            }
+          },
+          "warehouseId": 1,
+          "warehouseIdObject": {
+            "id": 1,
+            "name": "Warehouse",
+            "lockedFlag": false,
+            "_info": {
+              "warehouse_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouses/1"
+            }
+          },
+          "warehouseBinId": 1,
+          "warehouseBinIdObject": {
+            "id": 1,
+            "name": "Tampa Default",
+            "_info": {
+              "warehouseBin_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouseBins/1"
+            }
+          },
+          "calculatedPriceFlag": false,
+          "calculatedCostFlag": false,
+          "warehouse": "Warehouse",
+          "warehouseBin": "Tampa Default",
+          "taxCode": {
+            "id": 8,
+            "name": "Tax-State",
+            "_info": {
+              "taxCode_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/taxCodes/8"
+            }
+          },
+          "listPrice": 20,
+          "company": {
+            "id": 19404,
+            "identifier": "McLeodEnterprises",
+            "name": "McLeod Enterprises",
+            "_info": {
+              "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19404"
+            }
+          },
+          "site": {
+            "id": 1110,
+            "name": "418 1st St. ",
+            "_info": {
+              "site_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19404/sites/1110"
+            }
+          },
+          "productClass": "NonInventory",
+          "needToPurchaseFlag": false,
+          "minimumStockFlag": false,
+          "poApprovedFlag": false,
+          "uom": "Each",
+          "_info": {
+            "lastUpdated": "2025-01-01T05:32:05Z",
+            "updatedBy": "nightjob"
+          }
+        }
+      ]
+    },
+    {
+      "invoiceId": 3519,
+      "company": "Honeytree Early Learning Centers",
+      "products": [
+        {
+          "id": 6170,
+          "catalogItem": {
+            "id": 132,
+            "identifier": "SolwarWindsBackupDocuments",
+            "_info": {
+              "typeId": "4",
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/132"
+            }
+          },
+          "description": "SolarWinds Backup Documents",
+          "sequenceNumber": 1,
+          "quantity": 37,
+          "unitOfMeasure": {
+            "id": 1,
+            "name": "Each",
+            "_info": {
+              "uom_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/unitOfMeasures/1"
+            }
+          },
+          "price": 3,
+          "cost": 1,
+          "extPrice": 111,
+          "extCost": 37,
+          "margin": 2,
+          "agreementAmount": 0,
+          "billableOption": "Billable",
+          "agreement": {
+            "id": 27,
+            "name": "Honeytree Managed Backup Documents",
+            "type": "Backup & Recovery",
+            "_info": {
+              "agreement_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/agreements/27",
+              "typeId": "32"
+            }
+          },
+          "locationId": 11,
+          "location": {
+            "id": 11,
+            "name": "Headquarters",
+            "_info": {
+              "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/11"
+            }
+          },
+          "businessUnitId": 2,
+          "businessUnit": {
+            "id": 2,
+            "name": "Managed Service",
+            "_info": {
+              "department_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/departments/2"
+            }
+          },
+          "taxableFlag": false,
+          "dropshipFlag": false,
+          "specialOrderFlag": false,
+          "phaseProductFlag": false,
+          "cancelledFlag": false,
+          "quantityCancelled": 0,
+          "customerDescription": "Manged Backup for Documents",
+          "productSuppliedFlag": false,
+          "invoice": {
+            "id": 3519,
+            "identifier": "8502",
+            "_info": {
+              "invoice_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/invoices/3519"
+            }
+          },
+          "warehouseId": 1,
+          "warehouseIdObject": {
+            "id": 1,
+            "name": "Warehouse",
+            "lockedFlag": false,
+            "_info": {
+              "warehouse_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouses/1"
+            }
+          },
+          "warehouseBinId": 1,
+          "warehouseBinIdObject": {
+            "id": 1,
+            "name": "Tampa Default",
+            "_info": {
+              "warehouseBin_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouseBins/1"
+            }
+          },
+          "calculatedPriceFlag": false,
+          "calculatedCostFlag": false,
+          "warehouse": "Warehouse",
+          "warehouseBin": "Tampa Default",
+          "taxCode": {
+            "id": 8,
+            "name": "Tax-State",
+            "_info": {
+              "taxCode_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/taxCodes/8"
+            }
+          },
+          "listPrice": 3,
+          "company": {
+            "id": 19403,
+            "identifier": "HoneytreeEarlyLearning",
+            "name": "Honeytree Early Learning Centers",
+            "_info": {
+              "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19403"
+            }
+          },
+          "site": {
+            "id": 1313,
+            "name": "Honeytree Early Learning Centers",
+            "_info": {
+              "site_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19403/sites/1313"
+            }
+          },
+          "productClass": "NonInventory",
+          "needToPurchaseFlag": false,
+          "minimumStockFlag": false,
+          "poApprovedFlag": false,
+          "uom": "Each",
+          "_info": {
+            "lastUpdated": "2025-01-01T05:32:06Z",
+            "updatedBy": "nightjob"
+          }
+        }
+      ]
+    },
+    {
+      "invoiceId": 3520,
+      "company": "TerraRoc",
+      "products": []
+    },
+    {
+      "invoiceId": 3521,
+      "company": "SWVA Settlement & Title",
+      "products": [
+        {
+          "id": 6171,
+          "catalogItem": {
+            "id": 44,
+            "identifier": "365Basic",
+            "_info": {
+              "typeId": "4",
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/44"
+            }
+          },
+          "description": "Microsoft 365 Business Basic",
+          "sequenceNumber": 1,
+          "quantity": 4,
+          "unitOfMeasure": {
+            "id": 1,
+            "name": "Each",
+            "_info": {
+              "uom_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/unitOfMeasures/1"
+            }
+          },
+          "price": 7.2,
+          "cost": 4.55,
+          "extPrice": 28.8,
+          "extCost": 18.2,
+          "margin": 2.65,
+          "agreementAmount": 0,
+          "billableOption": "Billable",
+          "agreement": {
+            "id": 33,
+            "name": "SWVA Title - Managed Services",
+            "type": "Office 365",
+            "_info": {
+              "agreement_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/agreements/33",
+              "typeId": "33"
+            }
+          },
+          "locationId": 11,
+          "location": {
+            "id": 11,
+            "name": "Headquarters",
+            "_info": {
+              "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/11"
+            }
+          },
+          "businessUnitId": 2,
+          "businessUnit": {
+            "id": 2,
+            "name": "Managed Service",
+            "_info": {
+              "department_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/departments/2"
+            }
+          },
+          "taxableFlag": false,
+          "dropshipFlag": false,
+          "specialOrderFlag": false,
+          "phaseProductFlag": false,
+          "cancelledFlag": false,
+          "quantityCancelled": 0,
+          "customerDescription": "Office 365 Business Essentials - Microsoft 365 Business Basic",
+          "productSuppliedFlag": false,
+          "invoice": {
+            "id": 3521,
+            "identifier": "8504",
+            "_info": {
+              "invoice_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/invoices/3521"
+            }
+          },
+          "warehouseId": 1,
+          "warehouseIdObject": {
+            "id": 1,
+            "name": "Warehouse",
+            "lockedFlag": false,
+            "_info": {
+              "warehouse_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouses/1"
+            }
+          },
+          "warehouseBinId": 1,
+          "warehouseBinIdObject": {
+            "id": 1,
+            "name": "Tampa Default",
+            "_info": {
+              "warehouseBin_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouseBins/1"
+            }
+          },
+          "calculatedPriceFlag": false,
+          "calculatedCostFlag": false,
+          "warehouse": "Warehouse",
+          "warehouseBin": "Tampa Default",
+          "taxCode": {
+            "id": 8,
+            "name": "Tax-State",
+            "_info": {
+              "taxCode_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/taxCodes/8"
+            }
+          },
+          "listPrice": 5,
+          "company": {
+            "id": 19579,
+            "identifier": "SWVATitle",
+            "name": "SWVA Settlement & Title",
+            "_info": {
+              "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19579"
+            }
+          },
+          "site": {
+            "id": 1331,
+            "name": "Main",
+            "_info": {
+              "site_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19579/sites/1331"
+            }
+          },
+          "productClass": "NonInventory",
+          "needToPurchaseFlag": false,
+          "minimumStockFlag": false,
+          "poApprovedFlag": false,
+          "uom": "Each",
+          "_info": {
+            "lastUpdated": "2025-01-01T05:32:06Z",
+            "updatedBy": "nightjob"
+          }
+        },
+        {
+          "id": 6172,
+          "catalogItem": {
+            "id": 45,
+            "identifier": "365Standard",
+            "_info": {
+              "typeId": "4",
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/45"
+            }
+          },
+          "description": "Microsoft 365 Business Standard",
+          "sequenceNumber": 2,
+          "quantity": 2,
+          "unitOfMeasure": {
+            "id": 1,
+            "name": "Each",
+            "_info": {
+              "uom_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/unitOfMeasures/1"
+            }
+          },
+          "price": 15,
+          "cost": 11.36,
+          "extPrice": 30,
+          "extCost": 22.72,
+          "margin": 3.64,
+          "agreementAmount": 0,
+          "billableOption": "Billable",
+          "agreement": {
+            "id": 33,
+            "name": "SWVA Title - Managed Services",
+            "type": "Office 365",
+            "_info": {
+              "agreement_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/agreements/33",
+              "typeId": "33"
+            }
+          },
+          "locationId": 11,
+          "location": {
+            "id": 11,
+            "name": "Headquarters",
+            "_info": {
+              "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/11"
+            }
+          },
+          "businessUnitId": 2,
+          "businessUnit": {
+            "id": 2,
+            "name": "Managed Service",
+            "_info": {
+              "department_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/departments/2"
+            }
+          },
+          "taxableFlag": false,
+          "dropshipFlag": false,
+          "specialOrderFlag": false,
+          "phaseProductFlag": false,
+          "cancelledFlag": false,
+          "quantityCancelled": 0,
+          "customerDescription": "Office 365 Business Premium",
+          "productSuppliedFlag": false,
+          "invoice": {
+            "id": 3521,
+            "identifier": "8504",
+            "_info": {
+              "invoice_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/invoices/3521"
+            }
+          },
+          "warehouseId": 1,
+          "warehouseIdObject": {
+            "id": 1,
+            "name": "Warehouse",
+            "lockedFlag": false,
+            "_info": {
+              "warehouse_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouses/1"
+            }
+          },
+          "warehouseBinId": 1,
+          "warehouseBinIdObject": {
+            "id": 1,
+            "name": "Tampa Default",
+            "_info": {
+              "warehouseBin_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouseBins/1"
+            }
+          },
+          "calculatedPriceFlag": false,
+          "calculatedCostFlag": false,
+          "warehouse": "Warehouse",
+          "warehouseBin": "Tampa Default",
+          "taxCode": {
+            "id": 8,
+            "name": "Tax-State",
+            "_info": {
+              "taxCode_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/taxCodes/8"
+            }
+          },
+          "listPrice": 12.5,
+          "company": {
+            "id": 19579,
+            "identifier": "SWVATitle",
+            "name": "SWVA Settlement & Title",
+            "_info": {
+              "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19579"
+            }
+          },
+          "site": {
+            "id": 1331,
+            "name": "Main",
+            "_info": {
+              "site_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19579/sites/1331"
+            }
+          },
+          "productClass": "NonInventory",
+          "needToPurchaseFlag": false,
+          "minimumStockFlag": false,
+          "poApprovedFlag": false,
+          "uom": "Each",
+          "_info": {
+            "lastUpdated": "2025-01-01T05:32:06Z",
+            "updatedBy": "nightjob"
+          }
+        },
+        {
+          "id": 6173,
+          "catalogItem": {
+            "id": 166,
+            "identifier": "Hosting",
+            "_info": {
+              "typeId": "4",
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/166"
+            }
+          },
+          "description": "Web Hosting",
+          "sequenceNumber": 3,
+          "quantity": 1,
+          "unitOfMeasure": {
+            "id": 1,
+            "name": "Each",
+            "_info": {
+              "uom_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/unitOfMeasures/1"
+            }
+          },
+          "price": 19.99,
+          "cost": 9.99,
+          "extPrice": 19.99,
+          "extCost": 9.99,
+          "margin": 10,
+          "agreementAmount": 0,
+          "billableOption": "Billable",
+          "agreement": {
+            "id": 33,
+            "name": "SWVA Title - Managed Services",
+            "type": "Office 365",
+            "_info": {
+              "agreement_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/agreements/33",
+              "typeId": "33"
+            }
+          },
+          "locationId": 11,
+          "location": {
+            "id": 11,
+            "name": "Headquarters",
+            "_info": {
+              "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/11"
+            }
+          },
+          "businessUnitId": 2,
+          "businessUnit": {
+            "id": 2,
+            "name": "Managed Service",
+            "_info": {
+              "department_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/departments/2"
+            }
+          },
+          "taxableFlag": false,
+          "dropshipFlag": false,
+          "specialOrderFlag": false,
+          "phaseProductFlag": false,
+          "cancelledFlag": false,
+          "quantityCancelled": 0,
+          "customerDescription": "Web Hosting Renewal",
+          "productSuppliedFlag": false,
+          "invoice": {
+            "id": 3521,
+            "identifier": "8504",
+            "_info": {
+              "invoice_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/invoices/3521"
+            }
+          },
+          "warehouseId": 1,
+          "warehouseIdObject": {
+            "id": 1,
+            "name": "Warehouse",
+            "lockedFlag": false,
+            "_info": {
+              "warehouse_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouses/1"
+            }
+          },
+          "warehouseBinId": 1,
+          "warehouseBinIdObject": {
+            "id": 1,
+            "name": "Tampa Default",
+            "_info": {
+              "warehouseBin_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/warehouseBins/1"
+            }
+          },
+          "calculatedPriceFlag": false,
+          "calculatedCostFlag": false,
+          "warehouse": "Warehouse",
+          "warehouseBin": "Tampa Default",
+          "taxCode": {
+            "id": 8,
+            "name": "Tax-State",
+            "_info": {
+              "taxCode_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/taxCodes/8"
+            }
+          },
+          "listPrice": 5.99,
+          "company": {
+            "id": 19579,
+            "identifier": "SWVATitle",
+            "name": "SWVA Settlement & Title",
+            "_info": {
+              "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19579"
+            }
+          },
+          "site": {
+            "id": 1331,
+            "name": "Main",
+            "_info": {
+              "site_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19579/sites/1331"
+            }
+          },
+          "productClass": "NonInventory",
+          "needToPurchaseFlag": false,
+          "minimumStockFlag": false,
+          "poApprovedFlag": false,
+          "uom": "Each",
+          "_info": {
+            "lastUpdated": "2025-01-01T05:32:06Z",
+            "updatedBy": "nightjob"
+          }
+        }
+      ]
+    }
+  ]
 }
