@@ -811,12 +811,26 @@
     const licensing = data.byCategory?.["365 Licensing"] || 0;
     const managed = data.byCategory?.["Managed Services"] || 0;
 
-    const trendMonths = manifest.months.map((key) => ({
-      month: key,
-      totalMRR: monthsMap[key]?.totalMRR || 0,
-      licensing: monthsMap[key]?.byCategory?.["365 Licensing"] || 0,
-      managed: monthsMap[key]?.byCategory?.["Managed Services"] || 0,
-    }));
+    const trendMonths = manifest.months.map((key) => {
+      const m = monthsMap[key];
+      // For the current (in-progress) month, chart the projection instead
+      // of the partial actual-so-far figure — otherwise the trend line
+      // shows a misleading dip at the end purely from billing timing.
+      if (m?.isCurrentMonth && m.projected) {
+        return {
+          month: key,
+          totalMRR: m.projected.totalMRR || 0,
+          licensing: m.projected.byCategory?.["365 Licensing"] || 0,
+          managed: m.projected.byCategory?.["Managed Services"] || 0,
+        };
+      }
+      return {
+        month: key,
+        totalMRR: m?.totalMRR || 0,
+        licensing: m?.byCategory?.["365 Licensing"] || 0,
+        managed: m?.byCategory?.["Managed Services"] || 0,
+      };
+    });
 
     return h("div", { style: { background: colors.bg, minHeight: "100vh", padding: "28px 24px 60px", fontFamily: FONT_BODY, color: colors.hi } },
       h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14, flexWrap: "wrap", gap: 10 } },
@@ -846,10 +860,25 @@
         )
       ),
 
-      h("div", { className: "grid-4", style: { gridTemplateColumns: "repeat(3, 1fr)", marginBottom: 22 } },
-        h(StatTile, { label: "Total MRR", value: fmtCurrency(data.totalMRR), sub: `${data.agreements?.length || 0} active agreements`, accent: colors.finance, glyph: "●" }),
+      data.isCurrentMonth && h("div", {
+        style: {
+          display: "flex", gap: 10, alignItems: "flex-start", padding: "10px 14px",
+          background: colors.panelAlt || colors.panel, border: `1px solid ${colors.hairline}`, borderRadius: 8,
+          fontSize: 12, color: colors.muted, marginBottom: 14
+        }
+      }, `Total MRR reflects actual invoices billed so far this month (as of ${data.currentDate ? fmtMD(data.currentDate) : "today"}) — billing typically lands in batches around the 1st and 15th, so this climbs through the month. See Projected for an estimate of where it'll land.`),
+
+      h("div", { className: "grid-4", style: { gridTemplateColumns: data.isCurrentMonth ? "repeat(4, 1fr)" : "repeat(3, 1fr)", marginBottom: 22 } },
+        h(StatTile, { label: data.isCurrentMonth ? "Actual (MTD)" : "Total MRR", value: fmtCurrency(data.totalMRR), sub: `${data.agreements?.length || 0} invoices this month`, accent: colors.finance, glyph: "●" }),
         h(StatTile, { label: "365 Licensing", value: fmtCurrency(licensing), sub: `${data.totalMRR ? ((licensing / data.totalMRR) * 100).toFixed(0) : 0}% of total MRR`, accent: colors.bar, glyph: "◆" }),
-        h(StatTile, { label: "Managed Services", value: fmtCurrency(managed), sub: `${data.totalMRR ? ((managed / data.totalMRR) * 100).toFixed(0) : 0}% of total MRR`, accent: colors.goalLine, glyph: "■" })
+        h(StatTile, { label: "Managed Services", value: fmtCurrency(managed), sub: `${data.totalMRR ? ((managed / data.totalMRR) * 100).toFixed(0) : 0}% of total MRR`, accent: colors.goalLine, glyph: "■" }),
+        data.isCurrentMonth && h(StatTile, {
+          label: "Projected (Full Month)",
+          value: fmtCurrency(data.projected?.totalMRR || 0),
+          sub: data.projected?.basis === "actual only — no prior month on file yet" ? "no prior month to project from" : "actual + last month's placeholder",
+          accent: colors.goalLine,
+          glyph: "◇"
+        })
       ),
 
       h(Panel, { style: { marginBottom: 22 } },
