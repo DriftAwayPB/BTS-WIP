@@ -65,6 +65,22 @@ async function fetchAllAgreements() {
   return all;
 }
 
+async function fetchAdditions(agreementId) {
+  const url = `${CW_BASE_URL}/finance/agreements/${agreementId}/additions?pageSize=1000`;
+  const res = await fetch(url, {
+    headers: {
+      Authorization: authHeader(),
+      clientId: CW_CLIENT_ID,
+      Accept: "application/json",
+    },
+  });
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`ConnectWise API error ${res.status} fetching additions for agreement ${agreementId}: ${body}`);
+  }
+  return res.json();
+}
+
 async function main() {
   assertEnv();
   console.log("Pulling all ConnectWise agreements for review...");
@@ -104,6 +120,44 @@ async function main() {
   // what actually settles which field names are real vs. guessed.
   const rawSamples = agreements.slice(0, 8);
 
+  // --- Additions pull, ACTIVE agreements only (this is almost certainly
+  // where the real dollar amounts live, since billAmount is $0 on nearly
+  // everything at the agreement level) ---
+  const activeAgreements = agreements.filter((a) => a.agreementStatus === "Active");
+  console.log(`Pulling additions for ${activeAgreements.length} active agreements...`);
+
+  let totalAdditions = 0;
+  const additionRawSamples = []; // one or two raw items per agreement, capped overall
+  const descriptionCounts = {}; // frequency of whatever description-like text we find
+
+  for (const a of activeAgreements) {
+    let additions;
+    try {
+      additions = await fetchAdditions(a.id);
+    } catch (e) {
+      console.warn(`  ⚠ failed to fetch additions for agreement ${a.id} (${a.name}): ${e.message}`);
+      continue;
+    }
+    totalAdditions += additions.length;
+
+    for (const add of additions) {
+      const desc = add.description || add.product?.description || add.product?.identifier || "(no description field found)";
+      descriptionCounts[desc] = (descriptionCounts[desc] || 0) + 1;
+    }
+
+    if (additions.length > 0 && additionRawSamples.length < 40) {
+      additionRawSamples.push({
+        agreementId: a.id,
+        agreementName: a.name,
+        agreementType: a.type?.name,
+        company: a.company?.name,
+        additions: additions.slice(0, 2), // full raw objects, unfiltered
+      });
+    }
+  }
+
+  console.log(`Total additions across active agreements: ${totalAdditions}`);
+
   const dataDir = path.join(__dirname, "data", "mrr");
   fs.mkdirSync(dataDir, { recursive: true });
   fs.writeFileSync(
@@ -121,7 +175,21 @@ async function main() {
       2
     )
   );
-  console.log("Wrote data/mrr/_debug-agreements.json");
+  fs.writeFileSync(
+    path.join(dataDir, "_debug-additions.json"),
+    JSON.stringify(
+      {
+        generatedAt: new Date().toISOString(),
+        activeAgreementCount: activeAgreements.length,
+        totalAdditions,
+        descriptionCounts,
+        additionRawSamples,
+      },
+      null,
+      2
+    )
+  );
+  console.log("Wrote data/mrr/_debug-agreements.json and data/mrr/_debug-additions.json");
 }
 
 main().catch((err) => {
