@@ -1,0 +1,1918 @@
+{
+  "generatedAt": "2026-08-08T12:21:12.413Z",
+  "activeAgreementCount": 24,
+  "totalAdditions": 59,
+  "descriptionCounts": {
+    "Sentinel One EDR": 2,
+    "Managed Anti-Spam": 1,
+    "Managed Anti Virus": 2,
+    "Managed Anti-virus": 1,
+    "Office 365 Business Premium NonProfit": 1,
+    "Web Hosting": 5,
+    "Silver - Workstation": 1,
+    "Gold - Server": 1,
+    "Solar Winds Backup & Recovery": 4,
+    "SolarWinds Backup Documents": 4,
+    "Outbound Email Service for Devices": 1,
+    "SSL Certificate for Website": 1,
+    "Microsoft 365 Business Basic": 8,
+    "Microsoft 365 Business Standard": 6,
+    "Microsoft 365 Business Premium": 5,
+    "Microsoft 365 - E3": 1,
+    "Defender for Office 365 - Plan 2": 1,
+    "Teams Phones with Calling Plan": 2,
+    "Workstation in Bronze Support Agreement": 1,
+    "Microsoft 365 Business Apps": 1,
+    "Patch Management": 1,
+    "Remote Monitoring & Management": 1,
+    "Microsoft 365 Apps for Business": 1,
+    "Backup - Professional - Workstations": 2,
+    "Managed Services - Baseline Cyber Security": 1,
+    "MyFrontDesk AI Receptionist": 4
+  },
+  "additionRawSamples": [
+    {
+      "agreementId": 4,
+      "agreementName": "Honeytree - EDR",
+      "agreementType": "Managed Antivirus",
+      "company": "Honeytree Early Learning Centers",
+      "additions": [
+        {
+          "id": 7,
+          "product": {
+            "id": 258,
+            "identifier": "EDR-SentinelOne",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/258"
+            }
+          },
+          "quantity": 81,
+          "lessIncluded": 0,
+          "unitPrice": 6,
+          "unitCost": 2.55,
+          "billCustomer": "Billable",
+          "effectiveDate": "2016-01-01T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Sentinel One - Endpoint Detection & Response",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 4,
+          "description": "Sentinel One EDR",
+          "billedQuantity": 81,
+          "uom": "Each",
+          "extPrice": 486,
+          "extCost": 206.55,
+          "sequenceNumber": 1,
+          "margin": 279.45,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-04-30T12:47:39Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2016-08-24T06:35:10Z",
+            "enteredBy": "CONVERSION"
+          }
+        }
+      ]
+    },
+    {
+      "agreementId": 6,
+      "agreementName": "Managed Anti-Spam",
+      "agreementType": "Managed Anti-Spam",
+      "company": "Thor Construction",
+      "additions": [
+        {
+          "id": 9,
+          "product": {
+            "id": 11,
+            "identifier": "Managed Anti-Spam",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/11"
+            }
+          },
+          "quantity": 46,
+          "lessIncluded": 0,
+          "unitPrice": 3,
+          "unitCost": 1,
+          "billCustomer": "Billable",
+          "effectiveDate": "2016-01-01T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Managed Anti-Spam",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 6,
+          "description": "Managed Anti-Spam",
+          "billedQuantity": 46,
+          "uom": "Each",
+          "extPrice": 138,
+          "extCost": 46,
+          "sequenceNumber": 1,
+          "margin": 92,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2018-09-05T12:38:19Z",
+            "updatedBy": "PBanks",
+            "dateEntered": "2016-08-24T06:35:10Z",
+            "enteredBy": "CONVERSION"
+          }
+        }
+      ]
+    },
+    {
+      "agreementId": 13,
+      "agreementName": "Thor - Managed AV",
+      "agreementType": "Managed Antivirus",
+      "company": "Thor Construction",
+      "additions": [
+        {
+          "id": 23,
+          "product": {
+            "id": 18,
+            "identifier": "ManagedAV",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/18"
+            }
+          },
+          "quantity": 22,
+          "lessIncluded": 0,
+          "unitPrice": 3,
+          "unitCost": 1,
+          "billCustomer": "Billable",
+          "effectiveDate": "2017-05-01T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Thor Inc Managed AV",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 13,
+          "description": "Managed Anti Virus",
+          "billedQuantity": 22,
+          "uom": "Each",
+          "extPrice": 66,
+          "extCost": 22,
+          "sequenceNumber": 1,
+          "margin": 44,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2017-10-30T19:36:51Z",
+            "updatedBy": "PBanks",
+            "dateEntered": "2017-05-03T12:09:38Z",
+            "enteredBy": "PBanks"
+          }
+        }
+      ]
+    },
+    {
+      "agreementId": 14,
+      "agreementName": "FBC Managed Services",
+      "agreementType": "Managed Antivirus",
+      "company": "Fincastle Baptist Church",
+      "additions": [
+        {
+          "id": 24,
+          "product": {
+            "id": 10,
+            "identifier": "Managed Anti-virus",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/10"
+            }
+          },
+          "quantity": 19,
+          "lessIncluded": 0,
+          "unitPrice": 4.25,
+          "unitCost": 1.25,
+          "billCustomer": "Billable",
+          "effectiveDate": "2017-07-01T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Managed Anti-virus, non-profit pricing. ",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 14,
+          "description": "Managed Anti-virus",
+          "billedQuantity": 19,
+          "uom": "Each",
+          "extPrice": 80.75,
+          "extCost": 23.75,
+          "sequenceNumber": 1,
+          "margin": 57,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-04-30T13:16:43Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2017-07-10T17:00:28Z",
+            "enteredBy": "PBanks"
+          }
+        },
+        {
+          "id": 56,
+          "product": {
+            "id": 167,
+            "identifier": "Office365BusinessPremiumNP",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/167"
+            }
+          },
+          "quantity": 8,
+          "lessIncluded": 0,
+          "unitPrice": 3,
+          "unitCost": 3,
+          "billCustomer": "Billable",
+          "effectiveDate": "2020-05-01T00:00:00Z",
+          "cancelledDate": "2021-01-31T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Office 365 Business Premium NonProfit",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 14,
+          "description": "Office 365 Business Premium NonProfit",
+          "billedQuantity": 8,
+          "uom": "Each",
+          "extPrice": 24,
+          "extCost": 24,
+          "sequenceNumber": 2,
+          "margin": 0,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Cancelled",
+          "_info": {
+            "lastUpdated": "2021-01-29T16:35:20Z",
+            "updatedBy": "PBanks",
+            "dateEntered": "2020-05-07T11:13:25Z",
+            "enteredBy": "PBanks"
+          }
+        }
+      ]
+    },
+    {
+      "agreementId": 15,
+      "agreementName": "Baird - Silver/Gold Split",
+      "agreementType": "Managed Service - Silver",
+      "company": "Baird Drywall & Acoustic",
+      "additions": [
+        {
+          "id": 25,
+          "product": {
+            "id": 15,
+            "identifier": "Silver - Workstation",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/15"
+            }
+          },
+          "quantity": 6,
+          "lessIncluded": 0,
+          "unitPrice": 78,
+          "unitCost": 0,
+          "billCustomer": "Billable",
+          "effectiveDate": "2017-10-04T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Silver - Workstation",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 15,
+          "description": "Silver - Workstation",
+          "billedQuantity": 6,
+          "uom": "Each",
+          "extPrice": 468,
+          "extCost": 0,
+          "sequenceNumber": 1,
+          "margin": 468,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2017-10-04T19:35:34Z",
+            "updatedBy": "PBanks",
+            "dateEntered": "2017-10-04T19:35:34Z",
+            "enteredBy": "PBanks"
+          }
+        },
+        {
+          "id": 26,
+          "product": {
+            "id": 19,
+            "identifier": "Gold - Server",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/19"
+            }
+          },
+          "quantity": 1,
+          "lessIncluded": 0,
+          "unitPrice": 368,
+          "unitCost": 0,
+          "billCustomer": "Billable",
+          "effectiveDate": "2017-10-04T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Gold plan for Servers",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 15,
+          "description": "Gold - Server",
+          "billedQuantity": 1,
+          "uom": "Each",
+          "extPrice": 368,
+          "extCost": 0,
+          "sequenceNumber": 2,
+          "margin": 368,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2017-10-04T19:37:07Z",
+            "updatedBy": "PBanks",
+            "dateEntered": "2017-10-04T19:37:07Z",
+            "enteredBy": "PBanks"
+          }
+        }
+      ]
+    },
+    {
+      "agreementId": 16,
+      "agreementName": "McLeod Enterprises - EDR",
+      "agreementType": "Managed Antivirus",
+      "company": "McLeod Enterprises",
+      "additions": [
+        {
+          "id": 27,
+          "product": {
+            "id": 258,
+            "identifier": "EDR-SentinelOne",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/258"
+            }
+          },
+          "quantity": 32,
+          "lessIncluded": 0,
+          "unitPrice": 6,
+          "unitCost": 2.55,
+          "billCustomer": "Billable",
+          "effectiveDate": "2018-02-01T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Sentinel One - Endpoint Detection & Response",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 16,
+          "description": "Sentinel One EDR",
+          "billedQuantity": 32,
+          "uom": "Each",
+          "extPrice": 192,
+          "extCost": 81.6,
+          "sequenceNumber": 1,
+          "margin": 110.4,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-04-30T13:05:48Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2018-02-07T00:35:32Z",
+            "enteredBy": "PBanks"
+          }
+        }
+      ]
+    },
+    {
+      "agreementId": 17,
+      "agreementName": "McLeod Enterprises - Server Backup & Recovery",
+      "agreementType": "Backup & Recovery",
+      "company": "McLeod Enterprises",
+      "additions": [
+        {
+          "id": 28,
+          "product": {
+            "id": 26,
+            "identifier": "SolarWindsBackup&Recovery",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/26"
+            }
+          },
+          "quantity": 1,
+          "lessIncluded": 0,
+          "unitPrice": 89,
+          "unitCost": 56.1,
+          "billCustomer": "Billable",
+          "effectiveDate": "2018-03-01T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Backup and Recovery for Servers",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 17,
+          "description": "Solar Winds Backup & Recovery",
+          "billedQuantity": 1,
+          "uom": "Each",
+          "extPrice": 89,
+          "extCost": 56.1,
+          "sequenceNumber": 1,
+          "margin": 32.9,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "opportunity": {
+            "id": 4,
+            "name": "Migrate Mcleod Enterprises from Carbonite to SolarWinds Backup & Recovery",
+            "_info": {
+              "opportunity_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//sales/opportunities/4",
+              "mobileGuid": "fa6c8b3f-ff6f-4b51-9db2-eeea2c3275c3"
+            }
+          },
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-04-30T12:34:48Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2018-02-23T20:25:41Z",
+            "enteredBy": "PBanks"
+          }
+        },
+        {
+          "id": 51,
+          "product": {
+            "id": 27,
+            "identifier": "SolarWindsDocuments",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/27"
+            }
+          },
+          "quantity": 4,
+          "lessIncluded": 0,
+          "unitPrice": 3,
+          "unitCost": 1,
+          "billCustomer": "Billable",
+          "effectiveDate": "2019-11-01T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "SolarWinds Backup Documents for Workstations\nCBishop, JWilhelm, EBarger, Academy-Dir",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 17,
+          "description": "SolarWinds Backup Documents",
+          "billedQuantity": 4,
+          "uom": "Each",
+          "extPrice": 12,
+          "extCost": 4,
+          "sequenceNumber": 2,
+          "margin": 8,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2021-12-01T14:14:03Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2019-10-31T15:35:06Z",
+            "enteredBy": "PBanks"
+          }
+        }
+      ]
+    },
+    {
+      "agreementId": 18,
+      "agreementName": "Baird - Office 365",
+      "agreementType": "Office 365",
+      "company": "Baird Drywall & Acoustic",
+      "additions": [
+        {
+          "id": 29,
+          "product": {
+            "id": 44,
+            "identifier": "365Basic",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/44"
+            }
+          },
+          "quantity": 1,
+          "lessIncluded": 0,
+          "unitPrice": 7.2,
+          "unitCost": 5.04,
+          "billCustomer": "Billable",
+          "effectiveDate": "2018-04-12T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Office 365 Business Essentials",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 18,
+          "description": "Microsoft 365 Business Basic",
+          "billedQuantity": 1,
+          "uom": "Each",
+          "extPrice": 7.2,
+          "extCost": 5.04,
+          "sequenceNumber": 1,
+          "margin": 2.16,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-02-27T14:55:35Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2018-04-12T14:37:38Z",
+            "enteredBy": "PBanks"
+          }
+        },
+        {
+          "id": 30,
+          "product": {
+            "id": 45,
+            "identifier": "365Standard",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/45"
+            }
+          },
+          "quantity": 3,
+          "lessIncluded": 0,
+          "unitPrice": 15,
+          "unitCost": 10.5,
+          "billCustomer": "Billable",
+          "effectiveDate": "2018-04-12T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Office 365 Business Standard",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 18,
+          "description": "Microsoft 365 Business Standard",
+          "billedQuantity": 3,
+          "uom": "Each",
+          "extPrice": 45,
+          "extCost": 31.5,
+          "sequenceNumber": 2,
+          "margin": 13.5,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-02-27T14:54:19Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2018-04-12T14:44:17Z",
+            "enteredBy": "PBanks"
+          }
+        }
+      ]
+    },
+    {
+      "agreementId": 19,
+      "agreementName": "Mcleod Enterprises - Office 365",
+      "agreementType": "Office 365",
+      "company": "McLeod Enterprises",
+      "additions": [
+        {
+          "id": 31,
+          "product": {
+            "id": 44,
+            "identifier": "365Basic",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/44"
+            }
+          },
+          "quantity": 72,
+          "lessIncluded": 0,
+          "unitPrice": 7.2,
+          "unitCost": 5.3,
+          "billCustomer": "Billable",
+          "effectiveDate": "2020-02-13T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Microsoft 365 Business Basic",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 19,
+          "description": "Microsoft 365 Business Basic",
+          "billedQuantity": 72,
+          "uom": "Each",
+          "extPrice": 518.4,
+          "extCost": 381.6,
+          "sequenceNumber": 1,
+          "margin": 136.8,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-04-30T12:38:05Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2018-04-12T14:47:00Z",
+            "enteredBy": "PBanks"
+          }
+        },
+        {
+          "id": 32,
+          "product": {
+            "id": 45,
+            "identifier": "365Standard",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/45"
+            }
+          },
+          "quantity": 20,
+          "lessIncluded": 0,
+          "unitPrice": 15,
+          "unitCost": 11.03,
+          "billCustomer": "Billable",
+          "effectiveDate": "2020-02-13T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Microsoft 365 Business Standard",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 19,
+          "description": "Microsoft 365 Business Standard",
+          "billedQuantity": 20,
+          "uom": "Each",
+          "extPrice": 300,
+          "extCost": 220.6,
+          "sequenceNumber": 2,
+          "margin": 79.4,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-04-30T12:38:48Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2018-04-12T14:47:16Z",
+            "enteredBy": "PBanks"
+          }
+        }
+      ]
+    },
+    {
+      "agreementId": 21,
+      "agreementName": "Thor - Office 365",
+      "agreementType": "Office 365",
+      "company": "Thor Construction",
+      "additions": [
+        {
+          "id": 36,
+          "product": {
+            "id": 44,
+            "identifier": "365Basic",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/44"
+            }
+          },
+          "quantity": 16,
+          "lessIncluded": 0,
+          "unitPrice": 7.2,
+          "unitCost": 5.04,
+          "billCustomer": "Billable",
+          "effectiveDate": "2018-04-12T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Office 365 Business Essentials",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 21,
+          "description": "Microsoft 365 Business Basic",
+          "billedQuantity": 16,
+          "uom": "Each",
+          "extPrice": 115.2,
+          "extCost": 80.64,
+          "sequenceNumber": 1,
+          "margin": 34.56,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-02-27T15:09:03Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2018-04-12T14:51:52Z",
+            "enteredBy": "PBanks"
+          }
+        },
+        {
+          "id": 37,
+          "product": {
+            "id": 45,
+            "identifier": "365Standard",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/45"
+            }
+          },
+          "quantity": 7,
+          "lessIncluded": 0,
+          "unitPrice": 15,
+          "unitCost": 10.5,
+          "billCustomer": "Billable",
+          "effectiveDate": "2018-04-12T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Office 365 Business Premium",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 21,
+          "description": "Microsoft 365 Business Standard",
+          "billedQuantity": 7,
+          "uom": "Each",
+          "extPrice": 105,
+          "extCost": 73.5,
+          "sequenceNumber": 2,
+          "margin": 31.5,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-02-27T15:09:23Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2018-04-12T14:52:10Z",
+            "enteredBy": "PBanks"
+          }
+        }
+      ]
+    },
+    {
+      "agreementId": 25,
+      "agreementName": "Williams Law Firm - MSP Agreement",
+      "agreementType": "Managed Service - Bronze",
+      "company": "Williams Law Firm",
+      "additions": [
+        {
+          "id": 41,
+          "product": {
+            "id": 13,
+            "identifier": "Bronze Worksation",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/13"
+            }
+          },
+          "quantity": 5,
+          "lessIncluded": 0,
+          "unitPrice": 28,
+          "unitCost": 1,
+          "billCustomer": "Billable",
+          "effectiveDate": "2018-12-01T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Workstation in Bronze Support Agreement",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 25,
+          "description": "Workstation in Bronze Support Agreement",
+          "billedQuantity": 5,
+          "uom": "Each",
+          "extPrice": 140,
+          "extCost": 5,
+          "sequenceNumber": 1,
+          "margin": 135,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-03-03T16:06:47Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2018-11-21T20:25:21Z",
+            "enteredBy": "PBanks"
+          }
+        },
+        {
+          "id": 42,
+          "product": {
+            "id": 130,
+            "identifier": "365BusinessApps",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/130"
+            }
+          },
+          "quantity": 2,
+          "lessIncluded": 0,
+          "unitPrice": 10,
+          "unitCost": 7.54,
+          "billCustomer": "Billable",
+          "effectiveDate": "2018-12-01T00:00:00Z",
+          "cancelledDate": "2024-12-31T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Office 365 Business",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 25,
+          "description": "Microsoft 365 Business Apps",
+          "billedQuantity": 2,
+          "uom": "Each",
+          "extPrice": 20,
+          "extCost": 15.08,
+          "sequenceNumber": 2,
+          "margin": 4.92,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Cancelled",
+          "_info": {
+            "lastUpdated": "2025-01-03T20:49:25Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2018-11-21T20:26:44Z",
+            "enteredBy": "PBanks"
+          }
+        }
+      ]
+    },
+    {
+      "agreementId": 27,
+      "agreementName": "Honeytree Managed Backup Documents",
+      "agreementType": "Backup & Recovery",
+      "company": "Honeytree Early Learning Centers",
+      "additions": [
+        {
+          "id": 45,
+          "product": {
+            "id": 132,
+            "identifier": "SolwarWindsBackupDocuments",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/132"
+            }
+          },
+          "quantity": 37,
+          "lessIncluded": 0,
+          "unitPrice": 3,
+          "unitCost": 1.12,
+          "billCustomer": "Billable",
+          "effectiveDate": "2018-12-01T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Manged Backup for Documents",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 27,
+          "description": "SolarWinds Backup Documents",
+          "billedQuantity": 37,
+          "uom": "Each",
+          "extPrice": 111,
+          "extCost": 41.44,
+          "sequenceNumber": 1,
+          "margin": 69.56,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-04-30T12:49:24Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2018-11-30T14:33:07Z",
+            "enteredBy": "PBanks"
+          }
+        }
+      ]
+    },
+    {
+      "agreementId": 31,
+      "agreementName": "Scott and Bond - Office 365",
+      "agreementType": "Office 365",
+      "company": "Scott & Bond",
+      "additions": [
+        {
+          "id": 52,
+          "product": {
+            "id": 45,
+            "identifier": "365Standard",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/45"
+            }
+          },
+          "quantity": 12,
+          "lessIncluded": 0,
+          "unitPrice": 13.13,
+          "unitCost": 11.03,
+          "billCustomer": "Billable",
+          "effectiveDate": "2019-07-01T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Office 365 Business Premium - John Bond - 2021",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 31,
+          "description": "Microsoft 365 Business Standard",
+          "billedQuantity": 12,
+          "uom": "Each",
+          "extPrice": 157.56,
+          "extCost": 132.36,
+          "sequenceNumber": 1,
+          "margin": 25.2,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-01-30T14:40:50Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2019-12-13T17:46:48Z",
+            "enteredBy": "PBanks"
+          }
+        }
+      ]
+    },
+    {
+      "agreementId": 32,
+      "agreementName": "CAMC - Office 365 - Annual",
+      "agreementType": "Office 365",
+      "company": "CAMC, LLC",
+      "additions": [
+        {
+          "id": 53,
+          "product": {
+            "id": 44,
+            "identifier": "365Basic",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/44"
+            }
+          },
+          "quantity": 12,
+          "lessIncluded": 0,
+          "unitPrice": 6.3,
+          "unitCost": 5.3,
+          "billCustomer": "Billable",
+          "effectiveDate": "2019-07-01T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Office 365 Business Essentials - Brenda@camcll.com - 2021",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 32,
+          "description": "Microsoft 365 Business Basic",
+          "billedQuantity": 12,
+          "uom": "Each",
+          "extPrice": 75.6,
+          "extCost": 63.6,
+          "sequenceNumber": 1,
+          "margin": 12,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-01-30T14:41:30Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2019-12-13T17:50:19Z",
+            "enteredBy": "PBanks"
+          }
+        },
+        {
+          "id": 54,
+          "product": {
+            "id": 44,
+            "identifier": "365Basic",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/44"
+            }
+          },
+          "quantity": 12,
+          "lessIncluded": 0,
+          "unitPrice": 6.3,
+          "unitCost": 5.3,
+          "billCustomer": "Billable",
+          "effectiveDate": "2019-07-01T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Office 365 Business Essentials - Admin@camcllc.com - 2021",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 32,
+          "description": "Microsoft 365 Business Basic",
+          "billedQuantity": 12,
+          "uom": "Each",
+          "extPrice": 75.6,
+          "extCost": 63.6,
+          "sequenceNumber": 2,
+          "margin": 12,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-01-30T14:41:39Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2019-12-13T17:50:45Z",
+            "enteredBy": "PBanks"
+          }
+        }
+      ]
+    },
+    {
+      "agreementId": 33,
+      "agreementName": "SWVA Title - Managed Services",
+      "agreementType": "Office 365",
+      "company": "SWVA Settlement & Title",
+      "additions": [
+        {
+          "id": 58,
+          "product": {
+            "id": 44,
+            "identifier": "365Basic",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/44"
+            }
+          },
+          "quantity": 4,
+          "lessIncluded": 0,
+          "unitPrice": 7.2,
+          "unitCost": 5.3,
+          "billCustomer": "Billable",
+          "effectiveDate": "2020-05-01T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Office 365 Business Essentials - Microsoft 365 Business Basic",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 33,
+          "description": "Microsoft 365 Business Basic",
+          "billedQuantity": 4,
+          "uom": "Each",
+          "extPrice": 28.8,
+          "extCost": 21.2,
+          "sequenceNumber": 1,
+          "margin": 7.6,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-02-27T15:12:49Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2020-05-07T11:19:35Z",
+            "enteredBy": "PBanks"
+          }
+        },
+        {
+          "id": 59,
+          "product": {
+            "id": 45,
+            "identifier": "365Standard",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/45"
+            }
+          },
+          "quantity": 2,
+          "lessIncluded": 0,
+          "unitPrice": 15,
+          "unitCost": 11.03,
+          "billCustomer": "Billable",
+          "effectiveDate": "2020-10-12T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Office 365 Business Premium",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 33,
+          "description": "Microsoft 365 Business Standard",
+          "billedQuantity": 2,
+          "uom": "Each",
+          "extPrice": 30,
+          "extCost": 22.06,
+          "sequenceNumber": 2,
+          "margin": 7.94,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-02-27T15:12:25Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2020-05-07T11:19:55Z",
+            "enteredBy": "PBanks"
+          }
+        }
+      ]
+    },
+    {
+      "agreementId": 36,
+      "agreementName": "Carol's Pet Cafe - Office 365 - Annual",
+      "agreementType": "Office 365",
+      "company": "Carol's Pet Cafe",
+      "additions": [
+        {
+          "id": 63,
+          "product": {
+            "id": 45,
+            "identifier": "365Standard",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/45"
+            }
+          },
+          "quantity": 12,
+          "lessIncluded": 0,
+          "unitPrice": 12.5,
+          "unitCost": 10.5,
+          "billCustomer": "Billable",
+          "effectiveDate": "2020-08-10T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Office 365 Business Premium - Annual",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 36,
+          "description": "Microsoft 365 Business Standard",
+          "billedQuantity": 12,
+          "uom": "Each",
+          "extPrice": 150,
+          "extCost": 126,
+          "sequenceNumber": 1,
+          "margin": 24,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-01-30T14:42:38Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2020-08-10T17:10:46Z",
+            "enteredBy": "PBanks"
+          }
+        }
+      ]
+    },
+    {
+      "agreementId": 37,
+      "agreementName": "McCaleb ",
+      "agreementType": "Managed Service - Bronze",
+      "company": "John McCaleb",
+      "additions": [
+        {
+          "id": 65,
+          "product": {
+            "id": 18,
+            "identifier": "ManagedAV",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/18"
+            }
+          },
+          "quantity": 0,
+          "lessIncluded": 0,
+          "unitPrice": 3,
+          "unitCost": 1,
+          "billCustomer": "Billable",
+          "effectiveDate": "2021-01-07T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Managed AntiVirus",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 37,
+          "description": "Managed Anti Virus",
+          "billedQuantity": 0,
+          "uom": "Each",
+          "extPrice": 0,
+          "extCost": 0,
+          "sequenceNumber": 1,
+          "margin": 0,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2021-01-07T12:49:13Z",
+            "updatedBy": "PBanks",
+            "dateEntered": "2021-01-07T12:46:24Z",
+            "enteredBy": "PBanks"
+          }
+        },
+        {
+          "id": 66,
+          "product": {
+            "id": 186,
+            "identifier": "PatchManagement",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/186"
+            }
+          },
+          "quantity": 0,
+          "lessIncluded": 0,
+          "unitPrice": 8,
+          "unitCost": 1,
+          "billCustomer": "Billable",
+          "effectiveDate": "2021-01-07T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Patch Management",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 37,
+          "description": "Patch Management",
+          "billedQuantity": 0,
+          "uom": "Each",
+          "extPrice": 0,
+          "extCost": 0,
+          "sequenceNumber": 2,
+          "margin": 0,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2021-01-07T12:49:34Z",
+            "updatedBy": "PBanks",
+            "dateEntered": "2021-01-07T12:47:54Z",
+            "enteredBy": "PBanks"
+          }
+        }
+      ]
+    },
+    {
+      "agreementId": 43,
+      "agreementName": "Domain + Privacy",
+      "agreementType": "Office 365",
+      "company": "Honeytree Early Learning Centers",
+      "additions": [
+        {
+          "id": 273,
+          "product": {
+            "id": 166,
+            "identifier": "Hosting",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/166"
+            }
+          },
+          "quantity": 1,
+          "lessIncluded": 0,
+          "unitPrice": 35.98,
+          "unitCost": 17.99,
+          "billCustomer": "Billable",
+          "effectiveDate": "2024-07-31T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Domain Renewal - HoneytreeELC",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 43,
+          "description": "Web Hosting",
+          "billedQuantity": 1,
+          "uom": "Each",
+          "extPrice": 35.98,
+          "extCost": 17.99,
+          "sequenceNumber": 1,
+          "margin": 17.99,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2024-07-31T12:57:15Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2024-07-31T12:56:05Z",
+            "enteredBy": "pbanks"
+          }
+        },
+        {
+          "id": 274,
+          "product": {
+            "id": 166,
+            "identifier": "Hosting",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/166"
+            }
+          },
+          "quantity": 1,
+          "lessIncluded": 0,
+          "unitPrice": 91.98,
+          "unitCost": 45.99,
+          "billCustomer": "Billable",
+          "effectiveDate": "2024-07-31T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Domain Privacy Protection",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 43,
+          "description": "Web Hosting",
+          "billedQuantity": 1,
+          "uom": "Each",
+          "extPrice": 91.98,
+          "extCost": 45.99,
+          "sequenceNumber": 2,
+          "margin": 45.99,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2024-07-31T12:57:52Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2024-07-31T12:57:46Z",
+            "enteredBy": "pbanks"
+          }
+        }
+      ]
+    },
+    {
+      "agreementId": 44,
+      "agreementName": "RoanokeOnTap - 365 LIcenses",
+      "agreementType": "Office 365",
+      "company": "RoanokeOnTap",
+      "additions": [
+        {
+          "id": 275,
+          "product": {
+            "id": 44,
+            "identifier": "365Basic",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/44"
+            }
+          },
+          "quantity": 1,
+          "lessIncluded": 0,
+          "unitPrice": 6.3,
+          "unitCost": 5.3,
+          "billCustomer": "Billable",
+          "effectiveDate": "2024-09-19T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Office 365 Business Basic",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 44,
+          "description": "Microsoft 365 Business Basic",
+          "billedQuantity": 1,
+          "uom": "Each",
+          "extPrice": 6.3,
+          "extCost": 5.3,
+          "sequenceNumber": 1,
+          "margin": 1,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-02-27T15:21:15Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2024-09-19T13:10:33Z",
+            "enteredBy": "pbanks"
+          }
+        },
+        {
+          "id": 276,
+          "product": {
+            "id": 235,
+            "identifier": "Microsoft365Apps",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/235"
+            }
+          },
+          "quantity": 1,
+          "lessIncluded": 0,
+          "unitPrice": 8.72,
+          "unitCost": 7.33,
+          "billCustomer": "Billable",
+          "effectiveDate": "2024-09-19T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Microsoft 365 Apps for Business",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 44,
+          "description": "Microsoft 365 Apps for Business",
+          "billedQuantity": 1,
+          "uom": "Each",
+          "extPrice": 8.72,
+          "extCost": 7.33,
+          "sequenceNumber": 2,
+          "margin": 1.39,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-02-27T15:21:55Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2024-09-19T13:11:56Z",
+            "enteredBy": "pbanks"
+          }
+        }
+      ]
+    },
+    {
+      "agreementId": 45,
+      "agreementName": "Utilis Consulting Managed Services",
+      "agreementType": "Office 365",
+      "company": "Utilis Consulting",
+      "additions": [
+        {
+          "id": 280,
+          "product": {
+            "id": 241,
+            "identifier": "365BusinessPremium",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/241"
+            }
+          },
+          "quantity": 6,
+          "lessIncluded": 0,
+          "unitPrice": 24,
+          "unitCost": 19.41,
+          "billCustomer": "Billable",
+          "effectiveDate": "2025-04-09T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Microsoft 365 Business Premium",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 45,
+          "description": "Microsoft 365 Business Premium",
+          "billedQuantity": 6,
+          "uom": "Each",
+          "extPrice": 144,
+          "extCost": 116.46,
+          "sequenceNumber": 1,
+          "margin": 27.54,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-02-27T14:57:26Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2025-04-09T14:59:24Z",
+            "enteredBy": "pbanks"
+          }
+        },
+        {
+          "id": 281,
+          "product": {
+            "id": 166,
+            "identifier": "Hosting",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/166"
+            }
+          },
+          "quantity": 1,
+          "lessIncluded": 0,
+          "unitPrice": 25,
+          "unitCost": 25,
+          "billCustomer": "Billable",
+          "effectiveDate": "2025-04-09T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Square Space Web Hosting Renewal",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 45,
+          "description": "Web Hosting",
+          "billedQuantity": 1,
+          "uom": "Each",
+          "extPrice": 25,
+          "extCost": 25,
+          "sequenceNumber": 2,
+          "margin": 0,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2025-04-09T15:38:34Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2025-04-09T15:00:09Z",
+            "enteredBy": "pbanks"
+          }
+        }
+      ]
+    },
+    {
+      "agreementId": 47,
+      "agreementName": "James P. Cargill - Backup Services",
+      "agreementType": "Backup & Recovery",
+      "company": "James P. Cargill, PC",
+      "additions": [
+        {
+          "id": 284,
+          "product": {
+            "id": 202,
+            "identifier": "BackupWorkstationProfessional",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/202"
+            }
+          },
+          "quantity": 1,
+          "lessIncluded": 0,
+          "unitPrice": 29,
+          "unitCost": 11,
+          "billCustomer": "Billable",
+          "effectiveDate": "2025-05-06T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Backup - Professional - Workstations",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 47,
+          "description": "Backup - Professional - Workstations",
+          "billedQuantity": 1,
+          "uom": "Each",
+          "extPrice": 29,
+          "extCost": 11,
+          "sequenceNumber": 1,
+          "margin": 18,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2025-05-06T14:08:52Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2025-05-06T14:08:52Z",
+            "enteredBy": "pbanks"
+          }
+        },
+        {
+          "id": 285,
+          "product": {
+            "id": 132,
+            "identifier": "SolwarWindsBackupDocuments",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/132"
+            }
+          },
+          "quantity": 2,
+          "lessIncluded": 0,
+          "unitPrice": 9,
+          "unitCost": 1.1,
+          "billCustomer": "Billable",
+          "effectiveDate": "2025-05-06T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Manged Backup for Documents",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 47,
+          "description": "SolarWinds Backup Documents",
+          "billedQuantity": 2,
+          "uom": "Each",
+          "extPrice": 18,
+          "extCost": 2.2,
+          "sequenceNumber": 2,
+          "margin": 15.8,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2025-05-06T14:09:27Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2025-05-06T14:09:27Z",
+            "enteredBy": "pbanks"
+          }
+        }
+      ]
+    },
+    {
+      "agreementId": 50,
+      "agreementName": "App Bookkeeping - Block of Time + Cyber Stack",
+      "agreementType": "Block Time - Recurring",
+      "company": "Appalachian Bookkeeping",
+      "additions": [
+        {
+          "id": 297,
+          "product": {
+            "id": 233,
+            "identifier": "BaselineCyberSecurity",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/233"
+            }
+          },
+          "quantity": 10,
+          "lessIncluded": 0,
+          "unitPrice": 29,
+          "unitCost": 6,
+          "billCustomer": "Billable",
+          "effectiveDate": "2025-09-03T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Managed Services - Baseline Cyber Security Stack",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 50,
+          "description": "Managed Services - Baseline Cyber Security",
+          "billedQuantity": 10,
+          "uom": "Each",
+          "extPrice": 290,
+          "extCost": 60,
+          "sequenceNumber": 3,
+          "margin": 230,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-04-30T12:18:00Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2025-09-03T14:19:54Z",
+            "enteredBy": "pbanks"
+          }
+        },
+        {
+          "id": 309,
+          "product": {
+            "id": 202,
+            "identifier": "BackupWorkstationProfessional",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/202"
+            }
+          },
+          "quantity": 1,
+          "lessIncluded": 0,
+          "unitPrice": 39,
+          "unitCost": 11.22,
+          "billCustomer": "Billable",
+          "effectiveDate": "2026-05-01T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Server2 - Workstation Backup",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 50,
+          "description": "Backup - Professional - Workstations",
+          "billedQuantity": 1,
+          "uom": "Each",
+          "extPrice": 39,
+          "extCost": 11.22,
+          "sequenceNumber": 4,
+          "margin": 27.78,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-04-30T12:23:50Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2026-04-30T12:23:50Z",
+            "enteredBy": "pbanks"
+          }
+        }
+      ]
+    },
+    {
+      "agreementId": 51,
+      "agreementName": "Blink Optometry - Office 365 ",
+      "agreementType": "Office 365",
+      "company": "Blink Optometry",
+      "additions": [
+        {
+          "id": 301,
+          "product": {
+            "id": 241,
+            "identifier": "365BusinessPremium",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/241"
+            }
+          },
+          "quantity": 4,
+          "lessIncluded": 0,
+          "unitPrice": 26.6,
+          "unitCost": 22.18,
+          "billCustomer": "Billable",
+          "effectiveDate": "2025-10-13T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Microsoft 365 Business Premium",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 51,
+          "description": "Microsoft 365 Business Premium",
+          "billedQuantity": 4,
+          "uom": "Each",
+          "extPrice": 106.4,
+          "extCost": 88.72,
+          "sequenceNumber": 3,
+          "margin": 17.68,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-02-27T14:34:19Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2025-10-13T22:57:20Z",
+            "enteredBy": "pbanks"
+          }
+        },
+        {
+          "id": 303,
+          "product": {
+            "id": 26,
+            "identifier": "SolarWindsBackup&Recovery",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/26"
+            }
+          },
+          "quantity": 1,
+          "lessIncluded": 0,
+          "unitPrice": 89,
+          "unitCost": 56.1,
+          "billCustomer": "Billable",
+          "effectiveDate": "2026-02-07T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Backup and Recovery for Servers",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 51,
+          "description": "Solar Winds Backup & Recovery",
+          "billedQuantity": 1,
+          "uom": "Each",
+          "extPrice": 89,
+          "extCost": 56.1,
+          "sequenceNumber": 4,
+          "margin": 32.9,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-04-30T12:35:46Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2026-02-07T17:25:15Z",
+            "enteredBy": "pbanks"
+          }
+        }
+      ]
+    },
+    {
+      "agreementId": 52,
+      "agreementName": "Honeytree AI Receptionist",
+      "agreementType": "Outsourced IT",
+      "company": "Honeytree Early Learning Centers",
+      "additions": [
+        {
+          "id": 302,
+          "product": {
+            "id": 254,
+            "identifier": "AIReceptionist",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/254"
+            }
+          },
+          "quantity": 1,
+          "lessIncluded": 0,
+          "unitPrice": 149,
+          "unitCost": 149,
+          "billCustomer": "Billable",
+          "effectiveDate": "2026-01-15T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "460 - MyFrontDesk AI Receptionist",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 52,
+          "description": "MyFrontDesk AI Receptionist",
+          "billedQuantity": 1,
+          "uom": "Each",
+          "extPrice": 149,
+          "extCost": 149,
+          "sequenceNumber": 1,
+          "margin": 0,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-01-21T18:20:30Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2026-01-21T18:02:05Z",
+            "enteredBy": "pbanks"
+          }
+        },
+        {
+          "id": 305,
+          "product": {
+            "id": 254,
+            "identifier": "AIReceptionist",
+            "_info": {
+              "catalog_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/catalog/254"
+            }
+          },
+          "quantity": 1,
+          "lessIncluded": 0,
+          "unitPrice": 149,
+          "unitCost": 149,
+          "billCustomer": "Billable",
+          "effectiveDate": "2026-01-31T00:00:00Z",
+          "taxableFlag": false,
+          "invoiceDescription": "Honeytree Main Line - MyFrontDesk AI Receptionist",
+          "purchaseItemFlag": false,
+          "specialOrderFlag": false,
+          "agreementId": 52,
+          "description": "MyFrontDesk AI Receptionist",
+          "billedQuantity": 1,
+          "uom": "Each",
+          "extPrice": 149,
+          "extCost": 149,
+          "sequenceNumber": 2,
+          "margin": 0,
+          "prorateCost": 0,
+          "proratePrice": 0,
+          "extendedProrateCost": 0,
+          "extendedProratePrice": 0,
+          "prorateCurrentPeriodFlag": false,
+          "agreementStatus": "Active",
+          "additionStatus": "Active",
+          "_info": {
+            "lastUpdated": "2026-02-07T17:39:30Z",
+            "updatedBy": "pbanks",
+            "dateEntered": "2026-02-07T17:38:12Z",
+            "enteredBy": "pbanks"
+          }
+        }
+      ]
+    }
+  ]
+}
