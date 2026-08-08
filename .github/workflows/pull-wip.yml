@@ -30,7 +30,6 @@ jobs:
           CW_CLIENT_ID: ${{ secrets.CW_CLIENT_ID }}
           MONTH_GOAL: ${{ secrets.MONTH_GOAL }}
           MONTH_GOALS: ${{ secrets.MONTH_GOALS }}
-          DEBUG_COMPANY: ${{ secrets.DEBUG_COMPANY }}
         run: node cw-wip-pull.js
 
       - name: Commit updated data
@@ -39,4 +38,11 @@ jobs:
           git config user.email "actions@github.com"
           git add data/
           git diff --quiet --cached || git commit -m "Update WIP data ($(date -u +%Y-%m-%d))"
-          git push
+          # Retry push with rebase — WIP and MRR pulls can run concurrently
+          # (both fire from the same Update button), so whichever finishes
+          # second needs to catch up on the other's commit before pushing.
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && break
+            echo "Push attempt $i failed, retrying in 5s..."
+            sleep 5
+          done
