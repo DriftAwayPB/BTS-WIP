@@ -54,7 +54,7 @@
   const RELOAD_INTERVAL_MS = 60 * 60 * 1000;
 
   const TRIGGER_URL = "https://wip-dashbaord-trigger.pbanks.workers.dev/";
-  const TRIGGER_KEY = "B@nksT3ch"; // <-- fill this in with the TRIGGER_SECRET you set in Cloudflare
+  const TRIGGER_KEY = "PASTE_YOUR_TRIGGER_SECRET_HERE"; // <-- fill this in with the TRIGGER_SECRET you set in Cloudflare
   const FAST_POLL_MS = 10 * 1000;
   const FAST_POLL_MAX_TRIES = 12; // ~2 minutes of fast polling after a manual trigger
   // TRIGGER_URL now fires BOTH the WIP and MRR pull workflows (see the
@@ -755,8 +755,8 @@
         h("rect", { x: bx, y: by, width: boxW, height: boxH, rx: 6, fill: colors.panel, stroke: colors.hairline, strokeWidth: "1" }),
         h("text", { x: bx + 10, y: by + 18, fontFamily: FONT_MONO, fontSize: "11", fontWeight: "600", fill: colors.hi }, fmtMonthLabel(hovered.month) + (hovered.isForecast ? " (est.)" : "")),
         h("text", { x: bx + 10, y: by + 33, fontFamily: FONT_MONO, fontSize: "10", fill: colors.hi }, `Total: ${fmtCurrency(hovered.totalMRR)}`),
-        h("text", { x: bx + 10, y: by + 47, fontFamily: FONT_MONO, fontSize: "10", fill: colors.bar }, `Licensing: ${fmtCurrency(hovered.licensing)}`),
-        h("text", { x: bx + 10, y: by + 61, fontFamily: FONT_MONO, fontSize: "10", fill: colors.goalLine }, `Managed: ${fmtCurrency(hovered.managed)}`),
+        h("text", { x: bx + 10, y: by + 47, fontFamily: FONT_MONO, fontSize: "10", fill: colors.finance }, `Licensing: ${fmtCurrency(hovered.licensing)}`),
+        h("text", { x: bx + 10, y: by + 61, fontFamily: FONT_MONO, fontSize: "10", fill: colors.bar }, `Managed: ${fmtCurrency(hovered.managed)}`),
         hovered.isForecast && h("text", { x: bx + 10, y: by + 75, fontFamily: FONT_MONO, fontSize: "9", fill: colors.faint }, "linear trend projection")
       );
     }
@@ -772,8 +772,8 @@
         const isSelected = m.month === selectedMonth;
         const opacity = m.isForecast ? 0.28 : (isSelected ? 0.9 : 0.55);
         return h("g", { key: "bar" + i },
-          h("rect", { x: xAt(i) - barWidth / 2, y: yAt(m.licensing), width: barWidth, height: licH, fill: colors.bar, opacity, rx: 2, stroke: m.isForecast ? colors.bar : "none", strokeWidth: m.isForecast ? 1 : 0, strokeDasharray: m.isForecast ? "3 2" : "none" }),
-          h("rect", { x: xAt(i) - barWidth / 2, y: yAt(m.totalMRR), width: barWidth, height: manH, fill: colors.goalLine, opacity, rx: 2, stroke: m.isForecast ? colors.goalLine : "none", strokeWidth: m.isForecast ? 1 : 0, strokeDasharray: m.isForecast ? "3 2" : "none" }),
+          h("rect", { x: xAt(i) - barWidth / 2, y: yAt(m.licensing), width: barWidth, height: licH, fill: colors.finance, opacity, rx: 2, stroke: m.isForecast ? colors.finance : "none", strokeWidth: m.isForecast ? 1 : 0, strokeDasharray: m.isForecast ? "3 2" : "none" }),
+          h("rect", { x: xAt(i) - barWidth / 2, y: yAt(m.totalMRR), width: barWidth, height: manH, fill: colors.bar, opacity, rx: 2, stroke: m.isForecast ? colors.bar : "none", strokeWidth: m.isForecast ? 1 : 0, strokeDasharray: m.isForecast ? "3 2" : "none" }),
           isSelected && !m.isForecast && h("rect", { x: xAt(i) - barWidth / 2 - 2, y: yAt(m.totalMRR) - 2, width: barWidth + 4, height: licH + manH + 4, fill: "none", stroke: colors.hi, strokeWidth: 1.5, rx: 3 })
         );
       }),
@@ -933,8 +933,8 @@
 
       h("div", { className: "grid-4", style: { gridTemplateColumns: data.isCurrentMonth ? "repeat(4, 1fr)" : "repeat(3, 1fr)", marginBottom: 22 } },
         h(StatTile, { label: data.isCurrentMonth ? "Actual (MTD)" : "Total MRR", value: fmtCurrency(data.totalMRR), sub: `${data.agreements?.length || 0} invoices this month`, accent: colors.finance, glyph: "●" }),
-        h(StatTile, { label: "365 Licensing", value: fmtCurrency(licensing), sub: `${data.totalMRR ? ((licensing / data.totalMRR) * 100).toFixed(0) : 0}% of total MRR`, accent: colors.bar, glyph: "◆" }),
-        h(StatTile, { label: "Managed Services", value: fmtCurrency(managed), sub: `${data.totalMRR ? ((managed / data.totalMRR) * 100).toFixed(0) : 0}% of total MRR`, accent: colors.goalLine, glyph: "■" }),
+        h(StatTile, { label: "365 Licensing", value: fmtCurrency(licensing), sub: `${data.totalMRR ? ((licensing / data.totalMRR) * 100).toFixed(0) : 0}% of total MRR`, accent: colors.finance, glyph: "◆" }),
+        h(StatTile, { label: "Managed Services", value: fmtCurrency(managed), sub: `${data.totalMRR ? ((managed / data.totalMRR) * 100).toFixed(0) : 0}% of total MRR`, accent: colors.bar, glyph: "■" }),
         data.isCurrentMonth && h(StatTile, {
           label: "Projected (Full Month)",
           value: fmtCurrency(data.projected?.totalMRR || 0),
@@ -951,8 +951,8 @@
         ),
         h(MrrTrendChart, { months: trendMonths, selectedMonth, onMonthClick: (m) => setSelectedMonth(m) }),
         h("div", { style: { display: "flex", gap: 18, marginTop: 8, fontSize: 12, color: colors.muted } },
-          h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: colors.bar, opacity: 0.7 } }), "365 Licensing"),
-          h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: colors.goalLine, opacity: 0.7 } }), "Managed Services")
+          h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: colors.finance, opacity: 0.7 } }), "365 Licensing"),
+          h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: colors.bar, opacity: 0.7 } }), "Managed Services")
         ),
         h("div", { style: { marginTop: 6, fontSize: 10.5, fontFamily: FONT_MONO, color: colors.faint } }, "Hover a month for values · click a month for detail below · dashed = trend line · faint bar (*) = next month, projected from trend")
       ),
@@ -960,8 +960,8 @@
       h(Panel, { style: { marginBottom: 22 } },
         h(SectionLabel, { accent: colors.finance }, "Licensing vs. Managed Services"),
         h(ProportionBar, { segments: [
-          { label: "365 Licensing", value: licensing, color: colors.bar },
-          { label: "Managed Services", value: managed, color: colors.goalLine },
+          { label: "365 Licensing", value: licensing, color: colors.finance },
+          { label: "Managed Services", value: managed, color: colors.bar },
         ] })
       ),
 
@@ -1004,7 +1004,7 @@
                     ),
                     (a.additions || []).map((add, addi) => h("div", { key: addi, style: { display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 8, padding: "4px 4px", fontSize: 12, color: colors.muted } },
                       h("div", null, add.description),
-                      h("div", { style: { color: add.category === "365 Licensing" ? colors.bar : colors.goalLine, fontFamily: FONT_MONO, fontSize: 10.5 } }, add.category === "365 Licensing" ? "Licensing" : "Managed"),
+                      h("div", { style: { color: add.category === "365 Licensing" ? colors.finance : colors.bar, fontFamily: FONT_MONO, fontSize: 10.5 } }, add.category === "365 Licensing" ? "Licensing" : "Managed"),
                       h("div", { style: { fontFamily: FONT_MONO } }, fmtCurrency(add.monthlyAmount))
                     ))
                   ))
@@ -1061,7 +1061,7 @@
 
     return h("div", { style: { background: colors.bg, minHeight: "100vh" } },
       h("div", { className: "masthead" },
-        h("img", { src: LOGO_DATA_URI, alt: "Banks Technology Services", style: { height: 34, display: "block" } }),
+        h("img", { src: LOGO_DATA_URI, alt: "Banks Technology Services", style: { height: 56, display: "block" } }),
         h("div", { style: { fontFamily: FONT_MONO, fontSize: 11, color: colors.faint, letterSpacing: "0.08em", textTransform: "uppercase" } }, "Command Deck")
       ),
       h(TabBar, { active: tab, onChange: changeTab }),
