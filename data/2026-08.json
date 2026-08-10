@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T12:35:20.876Z",
+  "generatedAt": "2026-08-10T16:59:26.245Z",
   "month": "2026-08",
   "isCurrentMonth": true,
   "monthGoal": 21000,
@@ -22,14 +22,55 @@
     },
     {
       "date": "2026-08-06",
-      "accrued": 515
+      "accrued": 715
     },
     {
       "date": "2026-08-07",
       "accrued": 519
+    },
+    {
+      "date": "2026-08-10",
+      "accrued": 75
     }
   ],
   "clientBreakdown": [
+    {
+      "client": "McLeod Enterprises",
+      "mtd": 975,
+      "pctOfGoal": 4.6,
+      "daily": [
+        {
+          "date": "2026-08-03",
+          "hours": 3.25,
+          "billed": 163
+        },
+        {
+          "date": "2026-08-04",
+          "hours": 5,
+          "billed": 250
+        },
+        {
+          "date": "2026-08-05",
+          "hours": 1.25,
+          "billed": 100
+        },
+        {
+          "date": "2026-08-06",
+          "hours": 6.75,
+          "billed": 338
+        },
+        {
+          "date": "2026-08-07",
+          "hours": 1,
+          "billed": 50
+        },
+        {
+          "date": "2026-08-10",
+          "hours": 1.5,
+          "billed": 75
+        }
+      ]
+    },
     {
       "client": "Honeytree Early Learning Centers",
       "mtd": 888,
@@ -59,38 +100,6 @@
           "date": "2026-08-07",
           "hours": 1.5,
           "billed": 75
-        }
-      ]
-    },
-    {
-      "client": "McLeod Enterprises",
-      "mtd": 700,
-      "pctOfGoal": 3.3,
-      "daily": [
-        {
-          "date": "2026-08-03",
-          "hours": 3.25,
-          "billed": 163
-        },
-        {
-          "date": "2026-08-04",
-          "hours": 5,
-          "billed": 250
-        },
-        {
-          "date": "2026-08-05",
-          "hours": 1.25,
-          "billed": 100
-        },
-        {
-          "date": "2026-08-06",
-          "hours": 2.75,
-          "billed": 138
-        },
-        {
-          "date": "2026-08-07",
-          "hours": 1,
-          "billed": 50
         }
       ]
     },
@@ -289,5 +298,5 @@
     }
   ],
   "flagged": [],
-  "totalBilledHours": 47
+  "totalBilledHours": 52.5
 }
