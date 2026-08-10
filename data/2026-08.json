@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-09T22:58:28.619Z",
+  "generatedAt": "2026-08-10T12:35:20.876Z",
   "month": "2026-08",
   "isCurrentMonth": true,
   "monthGoal": 21000,
   "weekdaysInMonth": 21,
-  "weekdaysElapsed": 5,
-  "weekdaysRemaining": 16,
-  "currentDate": "2026-08-09",
+  "weekdaysElapsed": 6,
+  "weekdaysRemaining": 15,
+  "currentDate": "2026-08-10",
   "dailyAccrual": [
     {
       "date": "2026-08-03",
