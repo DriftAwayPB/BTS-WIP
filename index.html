@@ -54,7 +54,7 @@
   const RELOAD_INTERVAL_MS = 60 * 60 * 1000;
 
   const TRIGGER_URL = "https://wip-dashbaord-trigger.pbanks.workers.dev/";
-  const TRIGGER_KEY = "B@nksT3ch"; // <-- fill this in with the TRIGGER_SECRET you set in Cloudflare
+  const TRIGGER_KEY = "PASTE_YOUR_TRIGGER_SECRET_HERE"; // <-- fill this in with the TRIGGER_SECRET you set in Cloudflare
   const FAST_POLL_MS = 10 * 1000;
   const FAST_POLL_MAX_TRIES = 12; // ~2 minutes of fast polling after a manual trigger
   // TRIGGER_URL now fires BOTH the WIP and MRR pull workflows (see the
@@ -636,6 +636,11 @@
                       h("div", { style: { color: colors.hi, fontFamily: FONT_MONO } }, "Total"),
                       h("div", { style: { fontFamily: FONT_MONO, color: colors.hi } }, c.daily.reduce((s, d) => s + d.hours, 0).toFixed(2)),
                       h("div", { style: { fontFamily: FONT_MONO, color: colors.finance } }, fmtCurrency(c.mtd))
+                    ),
+                    monthData.weekdaysElapsed > 0 && h("div", { style: { display: "grid", gridTemplateColumns: "1.2fr 1fr 1fr", gap: 8, padding: "6px 4px 0", fontSize: 12, color: colors.muted } },
+                      h("div", { style: { fontFamily: FONT_MONO, fontStyle: "italic" } }, "Projected (month-end)"),
+                      h("div", null),
+                      h("div", { style: { fontFamily: FONT_MONO, color: colors.bar, fontStyle: "italic" } }, fmtCurrency((c.mtd / monthData.weekdaysElapsed) * monthData.weekdaysInMonth))
                     )
                   )
             )
