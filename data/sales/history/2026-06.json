@@ -1,0 +1,104 @@
+{
+  "generatedAt": "2026-08-12T10:23:18.868Z",
+  "totalSales": 7080.06,
+  "byCategory": {
+    "Hardware/Equipment": 6337.56,
+    "Cloud/Consumption": 742.5
+  },
+  "byClient": [
+    {
+      "client": "Premier Rollertainment",
+      "hardwareTotal": 4075.36,
+      "cloudTotal": 0,
+      "total": 4075.36
+    },
+    {
+      "client": "Utilis Consulting",
+      "hardwareTotal": 2262.2,
+      "cloudTotal": 0,
+      "total": 2262.2
+    },
+    {
+      "client": "TerraRoc",
+      "hardwareTotal": 0,
+      "cloudTotal": 742.5,
+      "total": 742.5
+    }
+  ],
+  "invoices": [
+    {
+      "id": 4233,
+      "date": "2026-06-03T00:00:00Z",
+      "company": "Utilis Consulting",
+      "reference": "Intern Laptop",
+      "lineItems": [
+        {
+          "description": "Laptop PC",
+          "productIdentifier": "LaptopPC",
+          "quantity": 1,
+          "unitPrice": 2262.204,
+          "extPrice": 2262.2,
+          "category": "Hardware/Equipment",
+          "amount": 2262.2
+        }
+      ],
+      "invoiceTotal": 2262.2
+    },
+    {
+      "id": 4231,
+      "date": "2026-06-03T00:00:00Z",
+      "company": "Premier Rollertainment",
+      "reference": "Roanoke Location",
+      "lineItems": [
+        {
+          "description": "Desktop PC",
+          "productIdentifier": "DesktopPC",
+          "quantity": 1,
+          "unitPrice": 2037.68,
+          "extPrice": 2037.68,
+          "category": "Hardware/Equipment",
+          "amount": 2037.68
+        }
+      ],
+      "invoiceTotal": 2037.68
+    },
+    {
+      "id": 4232,
+      "date": "2026-06-03T00:00:00Z",
+      "company": "Premier Rollertainment",
+      "reference": "Lynchburg Location",
+      "lineItems": [
+        {
+          "description": "Desktop PC",
+          "productIdentifier": "DesktopPC",
+          "quantity": 1,
+          "unitPrice": 2037.68,
+          "extPrice": 2037.68,
+          "category": "Hardware/Equipment",
+          "amount": 2037.68
+        }
+      ],
+      "invoiceTotal": 2037.68
+    },
+    {
+      "id": 4287,
+      "date": "2026-06-30T00:00:00Z",
+      "company": "TerraRoc",
+      "reference": null,
+      "lineItems": [
+        {
+          "description": "Azure Consumption",
+          "productIdentifier": "AzureConsumption",
+          "quantity": 1,
+          "unitPrice": 742.5,
+          "extPrice": 742.5,
+          "category": "Cloud/Consumption",
+          "amount": 742.5
+        }
+      ],
+      "invoiceTotal": 742.5
+    }
+  ],
+  "flagged": [],
+  "historical": true
+}

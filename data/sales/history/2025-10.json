@@ -1,0 +1,362 @@
+{
+  "generatedAt": "2026-08-12T10:22:54.349Z",
+  "totalSales": 13552.12,
+  "byCategory": {
+    "Hardware/Equipment": 11342.8,
+    "Cloud/Consumption": 2209.32
+  },
+  "byClient": [
+    {
+      "client": "McLeod Enterprises",
+      "hardwareTotal": 5215.32,
+      "cloudTotal": 0,
+      "total": 5215.32
+    },
+    {
+      "client": "Blink Optometry",
+      "hardwareTotal": 3818.31,
+      "cloudTotal": 311.25,
+      "total": 4129.56
+    },
+    {
+      "client": "TerraRoc",
+      "hardwareTotal": 0,
+      "cloudTotal": 1898.07,
+      "total": 1898.07
+    },
+    {
+      "client": "Honeytree Early Learning Centers",
+      "hardwareTotal": 1678.18,
+      "cloudTotal": 0,
+      "total": 1678.18
+    },
+    {
+      "client": "Baird Drywall & Acoustic",
+      "hardwareTotal": 349.99,
+      "cloudTotal": 0,
+      "total": 349.99
+    },
+    {
+      "client": "Scott & Bond",
+      "hardwareTotal": 183,
+      "cloudTotal": 0,
+      "total": 183
+    },
+    {
+      "client": "Utilis Consulting",
+      "hardwareTotal": 98,
+      "cloudTotal": 0,
+      "total": 98
+    }
+  ],
+  "invoices": [
+    {
+      "id": 3880,
+      "date": "2025-10-02T00:00:00Z",
+      "company": "Blink Optometry",
+      "reference": "Order #646",
+      "lineItems": [
+        {
+          "description": "Sonicwall TZ370 - 1 Year Advanced Threat Edition",
+          "productIdentifier": "02-SSC-7281",
+          "quantity": 1,
+          "unitPrice": 1326.31,
+          "extPrice": 1326.31,
+          "category": "Hardware/Equipment",
+          "amount": 1326.31
+        },
+        {
+          "description": "Unifi Cloud Key Gen2 Plus",
+          "productIdentifier": "UCK-G2-PLUS",
+          "quantity": 1,
+          "unitPrice": 311.25,
+          "extPrice": 311.25,
+          "category": "Cloud/Consumption",
+          "amount": 311.25
+        },
+        {
+          "description": "Unifi U7 Pro",
+          "productIdentifier": "U7-PRO-US",
+          "quantity": 3,
+          "unitPrice": 259.95,
+          "extPrice": 779.85,
+          "category": "Hardware/Equipment",
+          "amount": 779.85
+        },
+        {
+          "description": "Unifi Switch 16 PoE",
+          "productIdentifier": "USW-16-PoE",
+          "quantity": 1,
+          "unitPrice": 383.16,
+          "extPrice": 383.16,
+          "category": "Hardware/Equipment",
+          "amount": 383.16
+        },
+        {
+          "description": "Unifi 24 Port PoE",
+          "productIdentifier": "Switch",
+          "quantity": 1,
+          "unitPrice": 523.17,
+          "extPrice": 523.17,
+          "category": "Hardware/Equipment",
+          "amount": 523.17
+        },
+        {
+          "description": "Unifi Flex",
+          "productIdentifier": "Switch",
+          "quantity": 1,
+          "unitPrice": 123.75,
+          "extPrice": 123.75,
+          "category": "Hardware/Equipment",
+          "amount": 123.75
+        },
+        {
+          "description": "Sonicwall Rack Mount Kit",
+          "productIdentifier": "RM-SW-T11",
+          "quantity": 1,
+          "unitPrice": 186.25,
+          "extPrice": 186.25,
+          "category": "Hardware/Equipment",
+          "amount": 186.25
+        },
+        {
+          "description": "Battery Backup",
+          "productIdentifier": "UPS",
+          "quantity": 2,
+          "unitPrice": 247.91,
+          "extPrice": 495.82,
+          "category": "Hardware/Equipment",
+          "amount": 495.82
+        }
+      ],
+      "invoiceTotal": 4129.56
+    },
+    {
+      "id": 3899,
+      "date": "2025-10-15T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "reference": "Order #651",
+      "lineItems": [
+        {
+          "description": "Laptop PC",
+          "productIdentifier": "LaptopPC",
+          "quantity": 1,
+          "unitPrice": 2143.13,
+          "extPrice": 2143.13,
+          "category": "Hardware/Equipment",
+          "amount": 2143.13
+        }
+      ],
+      "invoiceTotal": 2143.13
+    },
+    {
+      "id": 3942,
+      "date": "2025-10-31T00:00:00Z",
+      "company": "TerraRoc",
+      "reference": null,
+      "lineItems": [
+        {
+          "description": "Azure Consumption",
+          "productIdentifier": "AzureConsumption",
+          "quantity": 1,
+          "unitPrice": 1898.07,
+          "extPrice": 1898.07,
+          "category": "Cloud/Consumption",
+          "amount": 1898.07
+        }
+      ],
+      "invoiceTotal": 1898.07
+    },
+    {
+      "id": 3898,
+      "date": "2025-10-13T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "reference": "Order #649",
+      "lineItems": [
+        {
+          "description": "TZ570 Renewal",
+          "productIdentifier": "TZ570Renewal",
+          "quantity": 1,
+          "unitPrice": 1683.99,
+          "extPrice": 1683.99,
+          "category": "Hardware/Equipment",
+          "amount": 1683.99
+        }
+      ],
+      "invoiceTotal": 1683.99
+    },
+    {
+      "id": 3902,
+      "date": "2025-10-23T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "reference": "Order #650",
+      "lineItems": [
+        {
+          "description": "Sonicwall TZ270 WiFi - Firewall TotalSecure - Essential - 1",
+          "productIdentifier": "02-SSC-6848",
+          "quantity": 1,
+          "unitPrice": 1113.2,
+          "extPrice": 1113.2,
+          "category": "Hardware/Equipment",
+          "amount": 1113.2
+        }
+      ],
+      "invoiceTotal": 1113.2
+    },
+    {
+      "id": 3881,
+      "date": "2025-10-02T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #645",
+      "lineItems": [
+        {
+          "description": "Sonicwall TZ270 Annual Renewal",
+          "productIdentifier": "02-SSC-6649",
+          "quantity": 1,
+          "unitPrice": 679.27,
+          "extPrice": 679.27,
+          "category": "Hardware/Equipment",
+          "amount": 679.27
+        }
+      ],
+      "invoiceTotal": 679.27
+    },
+    {
+      "id": 3901,
+      "date": "2025-10-23T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #653",
+      "lineItems": [
+        {
+          "description": "Sonicwall TZ270 Annual Renewal",
+          "productIdentifier": "02-SSC-6649",
+          "quantity": 1,
+          "unitPrice": 679.27,
+          "extPrice": 679.27,
+          "category": "Hardware/Equipment",
+          "amount": 679.27
+        }
+      ],
+      "invoiceTotal": 679.27
+    },
+    {
+      "id": 3897,
+      "date": "2025-10-13T00:00:00Z",
+      "company": "Baird Drywall & Acoustic",
+      "reference": "Order #648",
+      "lineItems": [
+        {
+          "description": "UPS Replacement Battery",
+          "productIdentifier": "UPSBattery",
+          "quantity": 1,
+          "unitPrice": 349.99,
+          "extPrice": 349.99,
+          "category": "Hardware/Equipment",
+          "amount": 349.99
+        }
+      ],
+      "invoiceTotal": 349.99
+    },
+    {
+      "id": 3903,
+      "date": "2025-10-23T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #654",
+      "lineItems": [
+        {
+          "description": "6U Wall Mount Network Cabinet",
+          "productIdentifier": "SRW6U",
+          "quantity": 1,
+          "unitPrice": 139.98,
+          "extPrice": 139.98,
+          "category": "Hardware/Equipment",
+          "amount": 139.98
+        },
+        {
+          "description": "24 Port Cat6 Patch Panel",
+          "productIdentifier": "TC-P24C5E",
+          "quantity": 1,
+          "unitPrice": 107.98,
+          "extPrice": 107.98,
+          "category": "Hardware/Equipment",
+          "amount": 107.98
+        },
+        {
+          "description": "Punch Down Tool",
+          "productIdentifier": "Miscellaneous",
+          "quantity": 1,
+          "unitPrice": 71.68,
+          "extPrice": 71.68,
+          "category": "Hardware/Equipment",
+          "amount": 71.68
+        }
+      ],
+      "invoiceTotal": 319.64
+    },
+    {
+      "id": 3894,
+      "date": "2025-10-08T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "reference": "Order #647",
+      "lineItems": [
+        {
+          "description": "Microsoft 365 Business Premium",
+          "productIdentifier": "365BusinessPremium",
+          "quantity": 10,
+          "unitPrice": 27.5,
+          "extPrice": 275,
+          "category": "Hardware/Equipment",
+          "amount": 275
+        }
+      ],
+      "invoiceTotal": 275
+    },
+    {
+      "id": 3900,
+      "date": "2025-10-16T00:00:00Z",
+      "company": "Scott & Bond",
+      "reference": "Order #652",
+      "lineItems": [
+        {
+          "description": "Windows 10 ESU",
+          "productIdentifier": "WIndows10ESU",
+          "quantity": 3,
+          "unitPrice": 61,
+          "extPrice": 183,
+          "category": "Hardware/Equipment",
+          "amount": 183
+        }
+      ],
+      "invoiceTotal": 183
+    },
+    {
+      "id": 3860,
+      "date": "2025-10-01T00:00:00Z",
+      "company": "Utilis Consulting",
+      "reference": "Order #644",
+      "lineItems": [
+        {
+          "description": "Microsoft 365 Business Premium",
+          "productIdentifier": "365BusinessPremium",
+          "quantity": 2,
+          "unitPrice": 24,
+          "extPrice": 48,
+          "category": "Hardware/Equipment",
+          "amount": 48
+        },
+        {
+          "description": "Teams Phones with Calling Plan",
+          "productIdentifier": "365TeamsPhone",
+          "quantity": 2,
+          "unitPrice": 25,
+          "extPrice": 50,
+          "category": "Hardware/Equipment",
+          "amount": 50
+        }
+      ],
+      "invoiceTotal": 98
+    }
+  ],
+  "flagged": [],
+  "historical": true
+}

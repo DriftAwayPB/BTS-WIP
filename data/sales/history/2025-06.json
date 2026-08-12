@@ -1,0 +1,62 @@
+{
+  "generatedAt": "2026-08-12T10:22:45.035Z",
+  "totalSales": 3485.35,
+  "byCategory": {
+    "Hardware/Equipment": 3485.35,
+    "Cloud/Consumption": 0
+  },
+  "byClient": [
+    {
+      "client": "McLeod Enterprises",
+      "hardwareTotal": 2806.08,
+      "cloudTotal": 0,
+      "total": 2806.08
+    },
+    {
+      "client": "Honeytree Early Learning Centers",
+      "hardwareTotal": 679.27,
+      "cloudTotal": 0,
+      "total": 679.27
+    }
+  ],
+  "invoices": [
+    {
+      "id": 3736,
+      "date": "2025-06-23T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "reference": "Order #630",
+      "lineItems": [
+        {
+          "description": "Desktop PC",
+          "productIdentifier": "DesktopPC",
+          "quantity": 2,
+          "unitPrice": 1403.04,
+          "extPrice": 2806.08,
+          "category": "Hardware/Equipment",
+          "amount": 2806.08
+        }
+      ],
+      "invoiceTotal": 2806.08
+    },
+    {
+      "id": 3737,
+      "date": "2025-06-25T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #631",
+      "lineItems": [
+        {
+          "description": "Sonicwall TZ270 Annual Renewal",
+          "productIdentifier": "02-SSC-6649",
+          "quantity": 1,
+          "unitPrice": 679.27,
+          "extPrice": 679.27,
+          "category": "Hardware/Equipment",
+          "amount": 679.27
+        }
+      ],
+      "invoiceTotal": 679.27
+    }
+  ],
+  "flagged": [],
+  "historical": true
+}

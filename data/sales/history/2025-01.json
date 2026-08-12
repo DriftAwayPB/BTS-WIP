@@ -1,0 +1,257 @@
+{
+  "generatedAt": "2026-08-12T10:22:35.039Z",
+  "totalSales": 7636.08,
+  "byCategory": {
+    "Hardware/Equipment": 7636.08,
+    "Cloud/Consumption": 0
+  },
+  "byClient": [
+    {
+      "client": "Honeytree Early Learning Centers",
+      "hardwareTotal": 4520.26,
+      "cloudTotal": 0,
+      "total": 4520.26
+    },
+    {
+      "client": "McLeod Enterprises",
+      "hardwareTotal": 3020.87,
+      "cloudTotal": 0,
+      "total": 3020.87
+    },
+    {
+      "client": "McLeod Family Foundation",
+      "hardwareTotal": 94.95,
+      "cloudTotal": 0,
+      "total": 94.95
+    }
+  ],
+  "invoices": [
+    {
+      "id": 3526,
+      "date": "2025-01-06T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "reference": "Order #594",
+      "lineItems": [
+        {
+          "description": "Laptop PC",
+          "productIdentifier": "LaptopPC",
+          "quantity": 1,
+          "unitPrice": 1884.96,
+          "extPrice": 1884.96,
+          "category": "Hardware/Equipment",
+          "amount": 1884.96
+        },
+        {
+          "description": "Laptop Docking Station",
+          "productIdentifier": "LaptopDock",
+          "quantity": 2,
+          "unitPrice": 374.99,
+          "extPrice": 749.98,
+          "category": "Hardware/Equipment",
+          "amount": 749.98
+        }
+      ],
+      "invoiceTotal": 2634.94
+    },
+    {
+      "id": 3543,
+      "date": "2025-01-22T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #598",
+      "lineItems": [
+        {
+          "description": "Procare Touchscreen Check In Computer",
+          "productIdentifier": "ProcareTouch",
+          "quantity": 1,
+          "unitPrice": 1695,
+          "extPrice": 1695,
+          "category": "Hardware/Equipment",
+          "amount": 1695
+        }
+      ],
+      "invoiceTotal": 1695
+    },
+    {
+      "id": 3544,
+      "date": "2025-01-22T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #600",
+      "lineItems": [
+        {
+          "description": "Sonicwall TZ270 Firewall TotalSecure - Essential Edition -1 ",
+          "productIdentifier": "02-SSC-6841",
+          "quantity": 1,
+          "unitPrice": 1255,
+          "extPrice": 1255,
+          "category": "Hardware/Equipment",
+          "amount": 1255
+        }
+      ],
+      "invoiceTotal": 1255
+    },
+    {
+      "id": 3546,
+      "date": "2025-01-23T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #599",
+      "lineItems": [
+        {
+          "description": "Sonicwall TZ270 Annual Renewal",
+          "productIdentifier": "02-SSC-6649",
+          "quantity": 1,
+          "unitPrice": 679.27,
+          "extPrice": 679.27,
+          "category": "Hardware/Equipment",
+          "amount": 679.27
+        }
+      ],
+      "invoiceTotal": 679.27
+    },
+    {
+      "id": 3548,
+      "date": "2025-01-29T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #601",
+      "lineItems": [
+        {
+          "description": "Network Switch",
+          "productIdentifier": "Switch",
+          "quantity": 1,
+          "unitPrice": 432,
+          "extPrice": 432,
+          "category": "Hardware/Equipment",
+          "amount": 432
+        }
+      ],
+      "invoiceTotal": 432
+    },
+    {
+      "id": 3549,
+      "date": "2025-01-29T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #604",
+      "lineItems": [
+        {
+          "description": "Access Point",
+          "productIdentifier": "AccessPoint",
+          "quantity": 1,
+          "unitPrice": 299,
+          "extPrice": 299,
+          "category": "Hardware/Equipment",
+          "amount": 299
+        }
+      ],
+      "invoiceTotal": 299
+    },
+    {
+      "id": 3547,
+      "date": "2025-01-27T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "reference": "Order #603",
+      "lineItems": [
+        {
+          "description": "Laptop Hard Drive",
+          "productIdentifier": "LaptopHardDrive",
+          "quantity": 1,
+          "unitPrice": 168.99,
+          "extPrice": 168.99,
+          "category": "Hardware/Equipment",
+          "amount": 168.99
+        }
+      ],
+      "invoiceTotal": 168.99
+    },
+    {
+      "id": 3538,
+      "date": "2025-01-14T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #597",
+      "lineItems": [
+        {
+          "description": "Battery Backup",
+          "productIdentifier": "UPS",
+          "quantity": 1,
+          "unitPrice": 159.99,
+          "extPrice": 159.99,
+          "category": "Hardware/Equipment",
+          "amount": 159.99
+        }
+      ],
+      "invoiceTotal": 159.99
+    },
+    {
+      "id": 3545,
+      "date": "2025-01-23T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "reference": "Order #602",
+      "lineItems": [
+        {
+          "description": "iPhone Charging Block",
+          "productIdentifier": "iPadCharger",
+          "quantity": 2,
+          "unitPrice": 29.99,
+          "extPrice": 59.98,
+          "category": "Hardware/Equipment",
+          "amount": 59.98
+        },
+        {
+          "description": "iPad Mini Charging Cable",
+          "productIdentifier": "IpadChargingCable",
+          "quantity": 2,
+          "unitPrice": 17.99,
+          "extPrice": 35.98,
+          "category": "Hardware/Equipment",
+          "amount": 35.98
+        },
+        {
+          "description": "iPhone 16 Pro Max Case",
+          "productIdentifier": "iPadCase",
+          "quantity": 1,
+          "unitPrice": 38.99,
+          "extPrice": 38.99,
+          "category": "Hardware/Equipment",
+          "amount": 38.99
+        }
+      ],
+      "invoiceTotal": 134.95
+    },
+    {
+      "id": 3537,
+      "date": "2025-01-14T00:00:00Z",
+      "company": "McLeod Family Foundation",
+      "reference": "Order #596",
+      "lineItems": [
+        {
+          "description": "Laptop Charger",
+          "productIdentifier": "LaptopCharger",
+          "quantity": 5,
+          "unitPrice": 18.99,
+          "extPrice": 94.95,
+          "category": "Hardware/Equipment",
+          "amount": 94.95
+        }
+      ],
+      "invoiceTotal": 94.95
+    },
+    {
+      "id": 3536,
+      "date": "2025-01-14T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "reference": "Order #595",
+      "lineItems": [
+        {
+          "description": "Laptop Charger",
+          "productIdentifier": "LaptopCharger",
+          "quantity": 1,
+          "unitPrice": 81.99,
+          "extPrice": 81.99,
+          "category": "Hardware/Equipment",
+          "amount": 81.99
+        }
+      ],
+      "invoiceTotal": 81.99
+    }
+  ],
+  "flagged": [],
+  "historical": true
+}

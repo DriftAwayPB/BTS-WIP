@@ -1,0 +1,299 @@
+{
+  "generatedAt": "2026-08-12T10:22:57.477Z",
+  "totalSales": 15890.82,
+  "byCategory": {
+    "Hardware/Equipment": 14127.4,
+    "Cloud/Consumption": 1763.42
+  },
+  "byClient": [
+    {
+      "client": "Honeytree Early Learning Centers",
+      "hardwareTotal": 5212.62,
+      "cloudTotal": 0,
+      "total": 5212.62
+    },
+    {
+      "client": "McLeod Family Foundation",
+      "hardwareTotal": 2654,
+      "cloudTotal": 0,
+      "total": 2654
+    },
+    {
+      "client": "TerraRoc",
+      "hardwareTotal": 0,
+      "cloudTotal": 1763.42,
+      "total": 1763.42
+    },
+    {
+      "client": "Utilis Consulting",
+      "hardwareTotal": 1541.63,
+      "cloudTotal": 0,
+      "total": 1541.63
+    },
+    {
+      "client": "Crenshaw Lighting",
+      "hardwareTotal": 1362.78,
+      "cloudTotal": 0,
+      "total": 1362.78
+    },
+    {
+      "client": "Williams Law Firm",
+      "hardwareTotal": 1211.17,
+      "cloudTotal": 0,
+      "total": 1211.17
+    },
+    {
+      "client": "Baird Drywall & Acoustic",
+      "hardwareTotal": 1155,
+      "cloudTotal": 0,
+      "total": 1155
+    },
+    {
+      "client": "McLeod Enterprises",
+      "hardwareTotal": 859,
+      "cloudTotal": 0,
+      "total": 859
+    },
+    {
+      "client": "Appalachian Bookkeeping",
+      "hardwareTotal": 78,
+      "cloudTotal": 0,
+      "total": 78
+    },
+    {
+      "client": "Blink Optometry",
+      "hardwareTotal": 53.2,
+      "cloudTotal": 0,
+      "total": 53.2
+    }
+  ],
+  "invoices": [
+    {
+      "id": 3950,
+      "date": "2025-11-19T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Amy Ralston Tech Setup",
+      "lineItems": [
+        {
+          "description": "Laptop PC",
+          "productIdentifier": "LaptopPC",
+          "quantity": 1,
+          "unitPrice": 2296.32,
+          "extPrice": 2296.32,
+          "category": "Hardware/Equipment",
+          "amount": 2296.32
+        },
+        {
+          "description": "Laptop Docking Station",
+          "productIdentifier": "LaptopDock",
+          "quantity": 1,
+          "unitPrice": 449.99,
+          "extPrice": 449.99,
+          "category": "Hardware/Equipment",
+          "amount": 449.99
+        },
+        {
+          "description": "Monitor",
+          "productIdentifier": "Monitor",
+          "quantity": 1,
+          "unitPrice": 169.99,
+          "extPrice": 169.99,
+          "category": "Hardware/Equipment",
+          "amount": 169.99
+        }
+      ],
+      "invoiceTotal": 2916.3
+    },
+    {
+      "id": 3945,
+      "date": "2025-11-12T00:00:00Z",
+      "company": "McLeod Family Foundation",
+      "reference": "Order #658",
+      "lineItems": [
+        {
+          "description": "Sonicwall TZ480",
+          "productIdentifier": "TZ280",
+          "quantity": 1,
+          "unitPrice": 2505,
+          "extPrice": 2505,
+          "category": "Hardware/Equipment",
+          "amount": 2505
+        },
+        {
+          "description": "Sonicwall Rack Mount Kit",
+          "productIdentifier": "RM-SW-T11",
+          "quantity": 1,
+          "unitPrice": 149,
+          "extPrice": 149,
+          "category": "Hardware/Equipment",
+          "amount": 149
+        }
+      ],
+      "invoiceTotal": 2654
+    },
+    {
+      "id": 3923,
+      "date": "2025-11-03T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #657",
+      "lineItems": [
+        {
+          "description": "Laptop PC",
+          "productIdentifier": "LaptopPC",
+          "quantity": 1,
+          "unitPrice": 2296.32,
+          "extPrice": 2296.32,
+          "category": "Hardware/Equipment",
+          "amount": 2296.32
+        }
+      ],
+      "invoiceTotal": 2296.32
+    },
+    {
+      "id": 3992,
+      "date": "2025-11-30T00:00:00Z",
+      "company": "TerraRoc",
+      "reference": null,
+      "lineItems": [
+        {
+          "description": "Azure Consumption",
+          "productIdentifier": "AzureConsumption",
+          "quantity": 1,
+          "unitPrice": 1763.42,
+          "extPrice": 1763.42,
+          "category": "Cloud/Consumption",
+          "amount": 1763.42
+        }
+      ],
+      "invoiceTotal": 1763.42
+    },
+    {
+      "id": 3924,
+      "date": "2025-11-03T00:00:00Z",
+      "company": "Utilis Consulting",
+      "reference": "Order #656",
+      "lineItems": [
+        {
+          "description": "Laptop PC",
+          "productIdentifier": "LaptopPC",
+          "quantity": 1,
+          "unitPrice": 1541.63,
+          "extPrice": 1541.63,
+          "category": "Hardware/Equipment",
+          "amount": 1541.63
+        }
+      ],
+      "invoiceTotal": 1541.63
+    },
+    {
+      "id": 3947,
+      "date": "2025-11-14T00:00:00Z",
+      "company": "Crenshaw Lighting",
+      "reference": "Order #660",
+      "lineItems": [
+        {
+          "description": "Sonicwall TZ470 Annual Renewal",
+          "productIdentifier": "02-SSC-6393",
+          "quantity": 1,
+          "unitPrice": 1362.78,
+          "extPrice": 1362.78,
+          "category": "Hardware/Equipment",
+          "amount": 1362.78
+        }
+      ],
+      "invoiceTotal": 1362.78
+    },
+    {
+      "id": 3948,
+      "date": "2025-11-14T00:00:00Z",
+      "company": "Williams Law Firm",
+      "reference": "Order #661",
+      "lineItems": [
+        {
+          "description": "Desktop PC",
+          "productIdentifier": "DesktopPC",
+          "quantity": 1,
+          "unitPrice": 1211.17,
+          "extPrice": 1211.17,
+          "category": "Hardware/Equipment",
+          "amount": 1211.17
+        }
+      ],
+      "invoiceTotal": 1211.17
+    },
+    {
+      "id": 3926,
+      "date": "2025-11-03T00:00:00Z",
+      "company": "Baird Drywall & Acoustic",
+      "reference": "Order #655",
+      "lineItems": [
+        {
+          "description": "Sonicwall TZ280",
+          "productIdentifier": "TZ280",
+          "quantity": 1,
+          "unitPrice": 1155,
+          "extPrice": 1155,
+          "category": "Hardware/Equipment",
+          "amount": 1155
+        }
+      ],
+      "invoiceTotal": 1155
+    },
+    {
+      "id": 3925,
+      "date": "2025-11-03T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "reference": "Order #659",
+      "lineItems": [
+        {
+          "description": "HP Color LaserJet Pro MFP 4301fdw",
+          "productIdentifier": "Printer",
+          "quantity": 1,
+          "unitPrice": 859,
+          "extPrice": 859,
+          "category": "Hardware/Equipment",
+          "amount": 859
+        }
+      ],
+      "invoiceTotal": 859
+    },
+    {
+      "id": 3978,
+      "date": "2025-11-30T00:00:00Z",
+      "company": "Appalachian Bookkeeping",
+      "reference": null,
+      "lineItems": [
+        {
+          "description": "Managed Services - Baseline Cyber Security",
+          "productIdentifier": "BaselineCyberSecurity",
+          "quantity": 2,
+          "unitPrice": 39,
+          "extPrice": 78,
+          "category": "Hardware/Equipment",
+          "amount": 78
+        }
+      ],
+      "invoiceTotal": 78
+    },
+    {
+      "id": 3979,
+      "date": "2025-11-30T00:00:00Z",
+      "company": "Blink Optometry",
+      "reference": null,
+      "lineItems": [
+        {
+          "description": "Microsoft 365 Business Premium",
+          "productIdentifier": "365BusinessPremium",
+          "quantity": 2,
+          "unitPrice": 26.6,
+          "extPrice": 53.2,
+          "category": "Hardware/Equipment",
+          "amount": 53.2
+        }
+      ],
+      "invoiceTotal": 53.2
+    }
+  ],
+  "flagged": [],
+  "historical": true
+}

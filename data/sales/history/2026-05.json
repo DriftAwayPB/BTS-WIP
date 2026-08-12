@@ -1,0 +1,188 @@
+{
+  "generatedAt": "2026-08-12T10:23:16.665Z",
+  "totalSales": 7691.26,
+  "byCategory": {
+    "Hardware/Equipment": 5421.58,
+    "Cloud/Consumption": 2269.68
+  },
+  "byClient": [
+    {
+      "client": "Fincastle Baptist Church",
+      "hardwareTotal": 3199.27,
+      "cloudTotal": 0,
+      "total": 3199.27
+    },
+    {
+      "client": "TerraRoc",
+      "hardwareTotal": 0,
+      "cloudTotal": 1965.97,
+      "total": 1965.97
+    },
+    {
+      "client": "Honeytree Early Learning Centers",
+      "hardwareTotal": 1820,
+      "cloudTotal": 0,
+      "total": 1820
+    },
+    {
+      "client": "McLeod Enterprises",
+      "hardwareTotal": 402.31,
+      "cloudTotal": 0,
+      "total": 402.31
+    },
+    {
+      "client": "Baird Drywall & Acoustic",
+      "hardwareTotal": 0,
+      "cloudTotal": 303.71,
+      "total": 303.71
+    }
+  ],
+  "invoices": [
+    {
+      "id": 4209,
+      "date": "2026-05-29T00:00:00Z",
+      "company": "Fincastle Baptist Church",
+      "reference": "Order #697",
+      "lineItems": [
+        {
+          "description": "Unifi U7 Pro",
+          "productIdentifier": "U7-PRO-US",
+          "quantity": 4,
+          "unitPrice": 283.4811,
+          "extPrice": 1133.92,
+          "category": "Hardware/Equipment",
+          "amount": 1133.92
+        },
+        {
+          "description": "Unifi U7 Pro Max",
+          "productIdentifier": "U7-PRO-US",
+          "quantity": 2,
+          "unitPrice": 418.4721,
+          "extPrice": 836.94,
+          "category": "Hardware/Equipment",
+          "amount": 836.94
+        },
+        {
+          "description": "Bulk Cable",
+          "productIdentifier": "BulkCable",
+          "quantity": 1,
+          "unitPrice": 268.4821,
+          "extPrice": 268.48,
+          "category": "Hardware/Equipment",
+          "amount": 268.48
+        },
+        {
+          "description": "Ubiquiti Unifi 8 Port Switch - 60W",
+          "productIdentifier": "Unifi8PortPOE",
+          "quantity": 1,
+          "unitPrice": 164.7099,
+          "extPrice": 164.71,
+          "category": "Hardware/Equipment",
+          "amount": 164.71
+        }
+      ],
+      "invoiceTotal": 2404.05
+    },
+    {
+      "id": 4234,
+      "date": "2026-05-31T00:00:00Z",
+      "company": "TerraRoc",
+      "reference": null,
+      "lineItems": [
+        {
+          "description": "Azure Consumption",
+          "productIdentifier": "AzureConsumption",
+          "quantity": 1,
+          "unitPrice": 1965.97,
+          "extPrice": 1965.97,
+          "category": "Cloud/Consumption",
+          "amount": 1965.97
+        }
+      ],
+      "invoiceTotal": 1965.97
+    },
+    {
+      "id": 4206,
+      "date": "2026-05-07T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #693",
+      "lineItems": [
+        {
+          "description": "Procare Keyless Entry System",
+          "productIdentifier": "ProcareKES",
+          "quantity": 2,
+          "unitPrice": 895,
+          "extPrice": 1790,
+          "category": "Hardware/Equipment",
+          "amount": 1790
+        },
+        {
+          "description": "Shipping & Handling",
+          "productIdentifier": "Shipping",
+          "quantity": 2,
+          "unitPrice": 15,
+          "extPrice": 30,
+          "category": "Hardware/Equipment",
+          "amount": 30
+        }
+      ],
+      "invoiceTotal": 1820
+    },
+    {
+      "id": 4205,
+      "date": "2026-05-07T00:00:00Z",
+      "company": "Fincastle Baptist Church",
+      "reference": "Order #692",
+      "lineItems": [
+        {
+          "description": "Sonicwall TZ370 Annual Renewal",
+          "productIdentifier": "02-SSC-6529",
+          "quantity": 1,
+          "unitPrice": 795.22,
+          "extPrice": 795.22,
+          "category": "Hardware/Equipment",
+          "amount": 795.22
+        }
+      ],
+      "invoiceTotal": 795.22
+    },
+    {
+      "id": 4208,
+      "date": "2026-05-07T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "reference": "Order #695",
+      "lineItems": [
+        {
+          "description": "Ubiquiti Router",
+          "productIdentifier": "Router",
+          "quantity": 1,
+          "unitPrice": 402.31,
+          "extPrice": 402.31,
+          "category": "Hardware/Equipment",
+          "amount": 402.31
+        }
+      ],
+      "invoiceTotal": 402.31
+    },
+    {
+      "id": 4207,
+      "date": "2026-05-07T00:00:00Z",
+      "company": "Baird Drywall & Acoustic",
+      "reference": "Order #694",
+      "lineItems": [
+        {
+          "description": "Unifi Cloud Key Gen2 SSD",
+          "productIdentifier": "UCK-G2-PLUS",
+          "quantity": 1,
+          "unitPrice": 303.71,
+          "extPrice": 303.71,
+          "category": "Cloud/Consumption",
+          "amount": 303.71
+        }
+      ],
+      "invoiceTotal": 303.71
+    }
+  ],
+  "flagged": [],
+  "historical": true
+}

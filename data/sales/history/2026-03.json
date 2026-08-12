@@ -1,0 +1,158 @@
+{
+  "generatedAt": "2026-08-12T10:23:12.465Z",
+  "totalSales": 7982.69,
+  "byCategory": {
+    "Hardware/Equipment": 5457.93,
+    "Cloud/Consumption": 2524.76
+  },
+  "byClient": [
+    {
+      "client": "TerraRoc",
+      "hardwareTotal": 2377.99,
+      "cloudTotal": 2214.77,
+      "total": 4592.76
+    },
+    {
+      "client": "Fincastle Baptist Church",
+      "hardwareTotal": 2419.97,
+      "cloudTotal": 309.99,
+      "total": 2729.96
+    },
+    {
+      "client": "McLeod Enterprises",
+      "hardwareTotal": 659.97,
+      "cloudTotal": 0,
+      "total": 659.97
+    }
+  ],
+  "invoices": [
+    {
+      "id": 4126,
+      "date": "2026-03-10T00:00:00Z",
+      "company": "Fincastle Baptist Church",
+      "reference": "Stone Church - Buena Vista",
+      "lineItems": [
+        {
+          "description": "Sonicwall TZ380",
+          "productIdentifier": "SonicwallTZ380",
+          "quantity": 1,
+          "unitPrice": 1590,
+          "extPrice": 1590,
+          "category": "Hardware/Equipment",
+          "amount": 1590
+        },
+        {
+          "description": "Unifi Cloud Key Gen2 Plus",
+          "productIdentifier": "UCK-G2-PLUS",
+          "quantity": 1,
+          "unitPrice": 309.99,
+          "extPrice": 309.99,
+          "category": "Cloud/Consumption",
+          "amount": 309.99
+        },
+        {
+          "description": "Unifi U7 Pro",
+          "productIdentifier": "U7-PRO-US",
+          "quantity": 2,
+          "unitPrice": 209.99,
+          "extPrice": 419.98,
+          "category": "Hardware/Equipment",
+          "amount": 419.98
+        },
+        {
+          "description": "Ubiquiti Unifi 24 Port - USW-24-POE",
+          "productIdentifier": "US-24-250W",
+          "quantity": 1,
+          "unitPrice": 409.99,
+          "extPrice": 409.99,
+          "category": "Hardware/Equipment",
+          "amount": 409.99
+        }
+      ],
+      "invoiceTotal": 2729.96
+    },
+    {
+      "id": 4123,
+      "date": "2026-03-04T00:00:00Z",
+      "company": "TerraRoc",
+      "reference": "Order #683",
+      "lineItems": [
+        {
+          "description": "Sonicwall TZ380",
+          "productIdentifier": "SonicwallTZ380",
+          "quantity": 1,
+          "unitPrice": 1590,
+          "extPrice": 1590,
+          "category": "Hardware/Equipment",
+          "amount": 1590
+        },
+        {
+          "description": "Unifi Cloud Key Gen2 Plus",
+          "productIdentifier": "UCK-G2-PLUS",
+          "quantity": 1,
+          "unitPrice": 249,
+          "extPrice": 249,
+          "category": "Cloud/Consumption",
+          "amount": 249
+        },
+        {
+          "description": "Unifi U7 Pro",
+          "productIdentifier": "U7-PRO-US",
+          "quantity": 2,
+          "unitPrice": 189,
+          "extPrice": 378,
+          "category": "Hardware/Equipment",
+          "amount": 378
+        },
+        {
+          "description": "Ubiquiti Unifi 24 Port - USW-24-POE",
+          "productIdentifier": "US-24-250W",
+          "quantity": 1,
+          "unitPrice": 409.99,
+          "extPrice": 409.99,
+          "category": "Hardware/Equipment",
+          "amount": 409.99
+        }
+      ],
+      "invoiceTotal": 2626.99
+    },
+    {
+      "id": 4149,
+      "date": "2026-03-31T00:00:00Z",
+      "company": "TerraRoc",
+      "reference": null,
+      "lineItems": [
+        {
+          "description": "Azure Consumption",
+          "productIdentifier": "AzureConsumption",
+          "quantity": 1,
+          "unitPrice": 1965.77,
+          "extPrice": 1965.77,
+          "category": "Cloud/Consumption",
+          "amount": 1965.77
+        }
+      ],
+      "invoiceTotal": 1965.77
+    },
+    {
+      "id": 4128,
+      "date": "2026-03-16T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "reference": "Order #686",
+      "lineItems": [
+        {
+          "description": "Amazon Echo Show 11",
+          "productIdentifier": "EchoShow2nd",
+          "quantity": 3,
+          "unitPrice": 219.99,
+          "extPrice": 659.97,
+          "category": "Hardware/Equipment",
+          "amount": 659.97
+        }
+      ],
+      "invoiceTotal": 659.97
+    }
+  ],
+  "flagged": [],
+  "historical": true
+}

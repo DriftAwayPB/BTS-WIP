@@ -1,0 +1,182 @@
+{
+  "generatedAt": "2026-08-12T10:22:37.328Z",
+  "totalSales": 2007.59,
+  "byCategory": {
+    "Hardware/Equipment": 2007.59,
+    "Cloud/Consumption": 0
+  },
+  "byClient": [
+    {
+      "client": "Honeytree Early Learning Centers",
+      "hardwareTotal": 884.91,
+      "cloudTotal": 0,
+      "total": 884.91
+    },
+    {
+      "client": "McLeod Enterprises",
+      "hardwareTotal": 404.99,
+      "cloudTotal": 0,
+      "total": 404.99
+    },
+    {
+      "client": "Fincastle Baptist Church",
+      "hardwareTotal": 371.91,
+      "cloudTotal": 0,
+      "total": 371.91
+    },
+    {
+      "client": "McLeod Family Foundation",
+      "hardwareTotal": 345.78,
+      "cloudTotal": 0,
+      "total": 345.78
+    }
+  ],
+  "invoices": [
+    {
+      "id": 3583,
+      "date": "2025-02-24T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #609",
+      "lineItems": [
+        {
+          "description": "Sonicwall SoHo 250 - Annual Renewal",
+          "productIdentifier": "02-SSC-1726",
+          "quantity": 1,
+          "unitPrice": 679.99,
+          "extPrice": 679.99,
+          "category": "Hardware/Equipment",
+          "amount": 679.99
+        },
+        {
+          "description": "Sonicwall Reinstatement",
+          "productIdentifier": "Miscellaneous",
+          "quantity": 1,
+          "unitPrice": 49,
+          "extPrice": 49,
+          "category": "Hardware/Equipment",
+          "amount": 49
+        }
+      ],
+      "invoiceTotal": 728.99
+    },
+    {
+      "id": 3584,
+      "date": "2025-02-25T00:00:00Z",
+      "company": "Fincastle Baptist Church",
+      "reference": "Order #610",
+      "lineItems": [
+        {
+          "description": "Dell Warranty Renewal",
+          "productIdentifier": "DellWarranty",
+          "quantity": 1,
+          "unitPrice": 371.91,
+          "extPrice": 371.91,
+          "category": "Hardware/Equipment",
+          "amount": 371.91
+        }
+      ],
+      "invoiceTotal": 371.91
+    },
+    {
+      "id": 3585,
+      "date": "2025-02-27T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "reference": "Order #611",
+      "lineItems": [
+        {
+          "description": "Microsoft 365 Business Premium",
+          "productIdentifier": "365BusinessPremium",
+          "quantity": 10,
+          "unitPrice": 27.5,
+          "extPrice": 275,
+          "category": "Hardware/Equipment",
+          "amount": 275
+        }
+      ],
+      "invoiceTotal": 275
+    },
+    {
+      "id": 3563,
+      "date": "2025-02-04T00:00:00Z",
+      "company": "McLeod Family Foundation",
+      "reference": "Order #605",
+      "lineItems": [
+        {
+          "description": "iPad Wall Charger",
+          "productIdentifier": "iPadCharger",
+          "quantity": 12,
+          "unitPrice": 17.99,
+          "extPrice": 215.88,
+          "category": "Hardware/Equipment",
+          "amount": 215.88
+        }
+      ],
+      "invoiceTotal": 215.88
+    },
+    {
+      "id": 3586,
+      "date": "2025-02-28T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #613",
+      "lineItems": [
+        {
+          "description": "iPad Screen Protector",
+          "productIdentifier": "iPadScreenProtector",
+          "quantity": 6,
+          "unitPrice": 14.99,
+          "extPrice": 89.94,
+          "category": "Hardware/Equipment",
+          "amount": 89.94
+        },
+        {
+          "description": "iPad 10.2 2019 Rugged Shockproof Case",
+          "productIdentifier": "iPadCase",
+          "quantity": 2,
+          "unitPrice": 32.99,
+          "extPrice": 65.98,
+          "category": "Hardware/Equipment",
+          "amount": 65.98
+        }
+      ],
+      "invoiceTotal": 155.92
+    },
+    {
+      "id": 3581,
+      "date": "2025-02-21T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "reference": "Order #606",
+      "lineItems": [
+        {
+          "description": "Dell Warranty Renewal",
+          "productIdentifier": "DellWarranty",
+          "quantity": 1,
+          "unitPrice": 129.99,
+          "extPrice": 129.99,
+          "category": "Hardware/Equipment",
+          "amount": 129.99
+        }
+      ],
+      "invoiceTotal": 129.99
+    },
+    {
+      "id": 3582,
+      "date": "2025-02-21T00:00:00Z",
+      "company": "McLeod Family Foundation",
+      "reference": "Order #608",
+      "lineItems": [
+        {
+          "description": "iPad Mini Charging Cable",
+          "productIdentifier": "IpadChargingCable",
+          "quantity": 10,
+          "unitPrice": 12.99,
+          "extPrice": 129.9,
+          "category": "Hardware/Equipment",
+          "amount": 129.9
+        }
+      ],
+      "invoiceTotal": 129.9
+    }
+  ],
+  "flagged": [],
+  "historical": true
+}

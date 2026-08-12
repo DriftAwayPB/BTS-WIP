@@ -1,0 +1,62 @@
+{
+  "generatedAt": "2026-08-12T10:22:43.331Z",
+  "totalSales": 753.01,
+  "byCategory": {
+    "Hardware/Equipment": 753.01,
+    "Cloud/Consumption": 0
+  },
+  "byClient": [
+    {
+      "client": "McLeod Enterprises",
+      "hardwareTotal": 563.49,
+      "cloudTotal": 0,
+      "total": 563.49
+    },
+    {
+      "client": "Honeytree Early Learning Centers",
+      "hardwareTotal": 189.52,
+      "cloudTotal": 0,
+      "total": 189.52
+    }
+  ],
+  "invoices": [
+    {
+      "id": 3702,
+      "date": "2025-05-22T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "reference": "Order #629",
+      "lineItems": [
+        {
+          "description": "HP CLJ 3301sdw",
+          "productIdentifier": "Printer",
+          "quantity": 1,
+          "unitPrice": 563.4885,
+          "extPrice": 563.49,
+          "category": "Hardware/Equipment",
+          "amount": 563.49
+        }
+      ],
+      "invoiceTotal": 563.49
+    },
+    {
+      "id": 3692,
+      "date": "2025-05-07T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #628",
+      "lineItems": [
+        {
+          "description": "Cordless Phones for Riverwalk",
+          "productIdentifier": "Miscellaneous",
+          "quantity": 1,
+          "unitPrice": 189.525,
+          "extPrice": 189.52,
+          "category": "Hardware/Equipment",
+          "amount": 189.52
+        }
+      ],
+      "invoiceTotal": 189.52
+    }
+  ],
+  "flagged": [],
+  "historical": true
+}

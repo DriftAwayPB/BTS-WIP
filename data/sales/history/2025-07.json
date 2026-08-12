@@ -1,0 +1,215 @@
+{
+  "generatedAt": "2026-08-12T10:22:47.272Z",
+  "totalSales": 18214.27,
+  "byCategory": {
+    "Hardware/Equipment": 16073.57,
+    "Cloud/Consumption": 2140.7
+  },
+  "byClient": [
+    {
+      "client": "Blink Optometry",
+      "hardwareTotal": 5404.04,
+      "cloudTotal": 0,
+      "total": 5404.04
+    },
+    {
+      "client": "McLeod Enterprises",
+      "hardwareTotal": 4791.91,
+      "cloudTotal": 0,
+      "total": 4791.91
+    },
+    {
+      "client": "Honeytree Early Learning Centers",
+      "hardwareTotal": 3584.78,
+      "cloudTotal": 0,
+      "total": 3584.78
+    },
+    {
+      "client": "Fincastle Baptist Church",
+      "hardwareTotal": 2292.84,
+      "cloudTotal": 249.99,
+      "total": 2542.83
+    },
+    {
+      "client": "TerraRoc",
+      "hardwareTotal": 0,
+      "cloudTotal": 1890.71,
+      "total": 1890.71
+    }
+  ],
+  "invoices": [
+    {
+      "id": 3784,
+      "date": "2025-07-23T00:00:00Z",
+      "company": "Blink Optometry",
+      "reference": "Order #636",
+      "lineItems": [
+        {
+          "description": "Server",
+          "productIdentifier": "ServerPC",
+          "quantity": 1,
+          "unitPrice": 5404.04,
+          "extPrice": 5404.04,
+          "category": "Hardware/Equipment",
+          "amount": 5404.04
+        }
+      ],
+      "invoiceTotal": 5404.04
+    },
+    {
+      "id": 3777,
+      "date": "2025-07-14T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "reference": "Order #635",
+      "lineItems": [
+        {
+          "description": "Laptop PC",
+          "productIdentifier": "LaptopPC",
+          "quantity": 1,
+          "unitPrice": 2053.06,
+          "extPrice": 2053.06,
+          "category": "Hardware/Equipment",
+          "amount": 2053.06
+        },
+        {
+          "description": "Desktop PC",
+          "productIdentifier": "DesktopPC",
+          "quantity": 1,
+          "unitPrice": 1943.74,
+          "extPrice": 1943.74,
+          "category": "Hardware/Equipment",
+          "amount": 1943.74
+        },
+        {
+          "description": "Dell Pro 24\" Monitor",
+          "productIdentifier": "Monitor",
+          "quantity": 2,
+          "unitPrice": 187.49,
+          "extPrice": 374.98,
+          "category": "Hardware/Equipment",
+          "amount": 374.98
+        }
+      ],
+      "invoiceTotal": 4371.78
+    },
+    {
+      "id": 3775,
+      "date": "2025-07-09T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #634",
+      "lineItems": [
+        {
+          "description": "Desktop PC",
+          "productIdentifier": "DesktopPC",
+          "quantity": 2,
+          "unitPrice": 1416.13,
+          "extPrice": 2832.26,
+          "category": "Hardware/Equipment",
+          "amount": 2832.26
+        }
+      ],
+      "invoiceTotal": 2832.26
+    },
+    {
+      "id": 3786,
+      "date": "2025-07-28T00:00:00Z",
+      "company": "Fincastle Baptist Church",
+      "reference": "Order #637",
+      "lineItems": [
+        {
+          "description": "Unifi Cloud Key Gen2 Plus SSD",
+          "productIdentifier": "UCK-G2-PLUS",
+          "quantity": 1,
+          "unitPrice": 249.99,
+          "extPrice": 249.99,
+          "category": "Cloud/Consumption",
+          "amount": 249.99
+        },
+        {
+          "description": "Unifi Network Video Recorder Pro",
+          "productIdentifier": "UNVR-Pro",
+          "quantity": 1,
+          "unitPrice": 499.99,
+          "extPrice": 499.99,
+          "category": "Hardware/Equipment",
+          "amount": 499.99
+        },
+        {
+          "description": "Unifi 16TB Hard Drive",
+          "productIdentifier": "ServerHardDrive",
+          "quantity": 5,
+          "unitPrice": 349.99,
+          "extPrice": 1749.95,
+          "category": "Hardware/Equipment",
+          "amount": 1749.95
+        },
+        {
+          "description": "Shipping & Handling",
+          "productIdentifier": "Shipping",
+          "quantity": 1,
+          "unitPrice": 42.9,
+          "extPrice": 42.9,
+          "category": "Hardware/Equipment",
+          "amount": 42.9
+        }
+      ],
+      "invoiceTotal": 2542.83
+    },
+    {
+      "id": 3816,
+      "date": "2025-07-31T00:00:00Z",
+      "company": "TerraRoc",
+      "reference": null,
+      "lineItems": [
+        {
+          "description": "Azure Consumption",
+          "productIdentifier": "AzureConsumption",
+          "quantity": 1,
+          "unitPrice": 1890.71,
+          "extPrice": 1890.71,
+          "category": "Cloud/Consumption",
+          "amount": 1890.71
+        }
+      ],
+      "invoiceTotal": 1890.71
+    },
+    {
+      "id": 3773,
+      "date": "2025-07-09T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #632",
+      "lineItems": [
+        {
+          "description": "Bulk Cable - 1000ft",
+          "productIdentifier": "BulkCable",
+          "quantity": 2,
+          "unitPrice": 376.26,
+          "extPrice": 752.52,
+          "category": "Hardware/Equipment",
+          "amount": 752.52
+        }
+      ],
+      "invoiceTotal": 752.52
+    },
+    {
+      "id": 3774,
+      "date": "2025-07-09T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "reference": "Order #633",
+      "lineItems": [
+        {
+          "description": "Dell Warranty Renewal",
+          "productIdentifier": "DellWarranty",
+          "quantity": 1,
+          "unitPrice": 420.125,
+          "extPrice": 420.13,
+          "category": "Hardware/Equipment",
+          "amount": 420.13
+        }
+      ],
+      "invoiceTotal": 420.13
+    }
+  ],
+  "flagged": [],
+  "historical": true
+}

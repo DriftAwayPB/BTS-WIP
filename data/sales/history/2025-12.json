@@ -1,0 +1,311 @@
+{
+  "generatedAt": "2026-08-12T10:23:00.288Z",
+  "totalSales": 14647.58,
+  "byCategory": {
+    "Hardware/Equipment": 12746.5,
+    "Cloud/Consumption": 1901.08
+  },
+  "byClient": [
+    {
+      "client": "Honeytree Early Learning Centers",
+      "hardwareTotal": 7884.07,
+      "cloudTotal": 0,
+      "total": 7884.07
+    },
+    {
+      "client": "Fincastle Baptist Church",
+      "hardwareTotal": 2857.68,
+      "cloudTotal": 0,
+      "total": 2857.68
+    },
+    {
+      "client": "TerraRoc",
+      "hardwareTotal": 0,
+      "cloudTotal": 1901.08,
+      "total": 1901.08
+    },
+    {
+      "client": "John McCaleb",
+      "hardwareTotal": 884.75,
+      "cloudTotal": 0,
+      "total": 884.75
+    },
+    {
+      "client": "McLeod Enterprises",
+      "hardwareTotal": 859,
+      "cloudTotal": 0,
+      "total": 859
+    },
+    {
+      "client": "Appalachian Bookkeeping",
+      "hardwareTotal": 261,
+      "cloudTotal": 0,
+      "total": 261
+    }
+  ],
+  "invoices": [
+    {
+      "id": 3993,
+      "date": "2025-12-08T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #663",
+      "lineItems": [
+        {
+          "description": "Dream Machine Pro",
+          "productIdentifier": "Router",
+          "quantity": 1,
+          "unitPrice": 606.4,
+          "extPrice": 606.4,
+          "category": "Hardware/Equipment",
+          "amount": 606.4
+        },
+        {
+          "description": "24 Port PoE",
+          "productIdentifier": "Switch",
+          "quantity": 1,
+          "unitPrice": 606.4,
+          "extPrice": 606.4,
+          "category": "Hardware/Equipment",
+          "amount": 606.4
+        },
+        {
+          "description": "WiFi 7 Pro",
+          "productIdentifier": "AccessPoint",
+          "quantity": 3,
+          "unitPrice": 302.4,
+          "extPrice": 907.2,
+          "category": "Hardware/Equipment",
+          "amount": 907.2
+        },
+        {
+          "description": "In Wall Access Point",
+          "productIdentifier": "AccessPoint",
+          "quantity": 2,
+          "unitPrice": 238.4,
+          "extPrice": 476.8,
+          "category": "Hardware/Equipment",
+          "amount": 476.8
+        },
+        {
+          "description": "0.1M Patch Cables",
+          "productIdentifier": "NetworkCable",
+          "quantity": 15,
+          "unitPrice": 3.2,
+          "extPrice": 48,
+          "category": "Hardware/Equipment",
+          "amount": 48
+        },
+        {
+          "description": "0.3M Patch Cable",
+          "productIdentifier": "NetworkCable",
+          "quantity": 15,
+          "unitPrice": 3.52,
+          "extPrice": 52.8,
+          "category": "Hardware/Equipment",
+          "amount": 52.8
+        },
+        {
+          "description": "Battery Backup",
+          "productIdentifier": "UPS",
+          "quantity": 1,
+          "unitPrice": 446.4,
+          "extPrice": 446.4,
+          "category": "Hardware/Equipment",
+          "amount": 446.4
+        },
+        {
+          "description": "Unifi PDU",
+          "productIdentifier": "RS-1215",
+          "quantity": 1,
+          "unitPrice": 446.4,
+          "extPrice": 446.4,
+          "category": "Hardware/Equipment",
+          "amount": 446.4
+        }
+      ],
+      "invoiceTotal": 3590.4
+    },
+    {
+      "id": 3997,
+      "date": "2025-12-18T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #670",
+      "lineItems": [
+        {
+          "description": "Desktop PC",
+          "productIdentifier": "DesktopPC",
+          "quantity": 2,
+          "unitPrice": 1692.37,
+          "extPrice": 3384.74,
+          "category": "Hardware/Equipment",
+          "amount": 3384.74
+        }
+      ],
+      "invoiceTotal": 3384.74
+    },
+    {
+      "id": 3971,
+      "date": "2025-12-01T00:00:00Z",
+      "company": "Fincastle Baptist Church",
+      "reference": "Order #665",
+      "lineItems": [
+        {
+          "description": "Sonicwall NSA2700 Renewal",
+          "productIdentifier": "02-SSC-6905",
+          "quantity": 1,
+          "unitPrice": 2857.68,
+          "extPrice": 2857.68,
+          "category": "Hardware/Equipment",
+          "amount": 2857.68
+        }
+      ],
+      "invoiceTotal": 2857.68
+    },
+    {
+      "id": 4021,
+      "date": "2025-12-31T00:00:00Z",
+      "company": "TerraRoc",
+      "reference": null,
+      "lineItems": [
+        {
+          "description": "Azure Consumption",
+          "productIdentifier": "AzureConsumption",
+          "quantity": 1,
+          "unitPrice": 1901.08,
+          "extPrice": 1901.08,
+          "category": "Cloud/Consumption",
+          "amount": 1901.08
+        }
+      ],
+      "invoiceTotal": 1901.08
+    },
+    {
+      "id": 3974,
+      "date": "2025-12-03T00:00:00Z",
+      "company": "John McCaleb",
+      "reference": "New Laptop",
+      "lineItems": [
+        {
+          "description": "Laptop PC",
+          "productIdentifier": "LaptopPC",
+          "quantity": 1,
+          "unitPrice": 884.75,
+          "extPrice": 884.75,
+          "category": "Hardware/Equipment",
+          "amount": 884.75
+        }
+      ],
+      "invoiceTotal": 884.75
+    },
+    {
+      "id": 3972,
+      "date": "2025-12-01T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "reference": "Order #666",
+      "lineItems": [
+        {
+          "description": "HP Color LaserJet Pro MFP 4301fdw",
+          "productIdentifier": "Printer",
+          "quantity": 1,
+          "unitPrice": 859,
+          "extPrice": 859,
+          "category": "Hardware/Equipment",
+          "amount": 859
+        }
+      ],
+      "invoiceTotal": 859
+    },
+    {
+      "id": 3970,
+      "date": "2025-12-01T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #664",
+      "lineItems": [
+        {
+          "description": "Sonicwall TZ270 Annual Renewal",
+          "productIdentifier": "02-SSC-6649",
+          "quantity": 1,
+          "unitPrice": 679.27,
+          "extPrice": 679.27,
+          "category": "Hardware/Equipment",
+          "amount": 679.27
+        }
+      ],
+      "invoiceTotal": 679.27
+    },
+    {
+      "id": 3996,
+      "date": "2025-12-17T00:00:00Z",
+      "company": "Appalachian Bookkeeping",
+      "reference": "Order #672",
+      "lineItems": [
+        {
+          "description": "Windows 10 ESU",
+          "productIdentifier": "WIndows10ESU",
+          "quantity": 3,
+          "unitPrice": 61,
+          "extPrice": 183,
+          "category": "Hardware/Equipment",
+          "amount": 183
+        }
+      ],
+      "invoiceTotal": 183
+    },
+    {
+      "id": 3973,
+      "date": "2025-12-03T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #668",
+      "lineItems": [
+        {
+          "description": "Dell Warranty Renewal",
+          "productIdentifier": "DellWarranty",
+          "quantity": 1,
+          "unitPrice": 119.67,
+          "extPrice": 119.67,
+          "category": "Hardware/Equipment",
+          "amount": 119.67
+        }
+      ],
+      "invoiceTotal": 119.67
+    },
+    {
+      "id": 3995,
+      "date": "2025-12-16T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #671",
+      "lineItems": [
+        {
+          "description": "Laptop Charger",
+          "productIdentifier": "LaptopCharger",
+          "quantity": 1,
+          "unitPrice": 109.99,
+          "extPrice": 109.99,
+          "category": "Hardware/Equipment",
+          "amount": 109.99
+        }
+      ],
+      "invoiceTotal": 109.99
+    },
+    {
+      "id": 4028,
+      "date": "2025-12-31T00:00:00Z",
+      "company": "Appalachian Bookkeeping",
+      "reference": null,
+      "lineItems": [
+        {
+          "description": "Managed Services - Baseline Cyber Security",
+          "productIdentifier": "BaselineCyberSecurity",
+          "quantity": 2,
+          "unitPrice": 39,
+          "extPrice": 78,
+          "category": "Hardware/Equipment",
+          "amount": 78
+        }
+      ],
+      "invoiceTotal": 78
+    }
+  ],
+  "flagged": [],
+  "historical": true
+}

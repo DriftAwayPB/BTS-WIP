@@ -1,0 +1,245 @@
+{
+  "generatedAt": "2026-08-12T10:22:39.350Z",
+  "totalSales": 12268.44,
+  "byCategory": {
+    "Hardware/Equipment": 11968.45,
+    "Cloud/Consumption": 299.99
+  },
+  "byClient": [
+    {
+      "client": "McLeod Enterprises",
+      "hardwareTotal": 9668.76,
+      "cloudTotal": 0,
+      "total": 9668.76
+    },
+    {
+      "client": "Fincastle Baptist Church",
+      "hardwareTotal": 1780.99,
+      "cloudTotal": 299.99,
+      "total": 2080.98
+    },
+    {
+      "client": "Honeytree Early Learning Centers",
+      "hardwareTotal": 268.79,
+      "cloudTotal": 0,
+      "total": 268.79
+    },
+    {
+      "client": "McLeod Family Foundation",
+      "hardwareTotal": 249.91,
+      "cloudTotal": 0,
+      "total": 249.91
+    }
+  ],
+  "invoices": [
+    {
+      "id": 3627,
+      "date": "2025-03-31T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "reference": "Server Replacement",
+      "lineItems": [
+        {
+          "description": "Server",
+          "productIdentifier": "ServerPC",
+          "quantity": 1,
+          "unitPrice": 9063.77,
+          "extPrice": 9063.77,
+          "category": "Hardware/Equipment",
+          "amount": 9063.77
+        }
+      ],
+      "invoiceTotal": 9063.77
+    },
+    {
+      "id": 3613,
+      "date": "2025-03-14T00:00:00Z",
+      "company": "Fincastle Baptist Church",
+      "reference": "Order #619",
+      "lineItems": [
+        {
+          "description": "Sonicwall TZ370 - 1 Year Threat Edition",
+          "productIdentifier": "02-SSC-7281",
+          "quantity": 1,
+          "unitPrice": 1190,
+          "extPrice": 1190,
+          "category": "Hardware/Equipment",
+          "amount": 1190
+        },
+        {
+          "description": "Ubiquiti Unifi Cloud Key - Remote Control Device",
+          "productIdentifier": "CloudKey",
+          "quantity": 1,
+          "unitPrice": 299.99,
+          "extPrice": 299.99,
+          "category": "Cloud/Consumption",
+          "amount": 299.99
+        },
+        {
+          "description": "U6 Pro AP",
+          "productIdentifier": "AccessPoint",
+          "quantity": 1,
+          "unitPrice": 199.99,
+          "extPrice": 199.99,
+          "category": "Hardware/Equipment",
+          "amount": 199.99
+        }
+      ],
+      "invoiceTotal": 1689.98
+    },
+    {
+      "id": 3615,
+      "date": "2025-03-14T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "reference": "Order #617",
+      "lineItems": [
+        {
+          "description": "UPS Replacement Battery",
+          "productIdentifier": "UPSBattery",
+          "quantity": 1,
+          "unitPrice": 475,
+          "extPrice": 475,
+          "category": "Hardware/Equipment",
+          "amount": 475
+        }
+      ],
+      "invoiceTotal": 475
+    },
+    {
+      "id": 3614,
+      "date": "2025-03-14T00:00:00Z",
+      "company": "Fincastle Baptist Church",
+      "reference": "Order #618",
+      "lineItems": [
+        {
+          "description": "UPS Replacement Battery",
+          "productIdentifier": "UPSBattery",
+          "quantity": 1,
+          "unitPrice": 186,
+          "extPrice": 186,
+          "category": "Hardware/Equipment",
+          "amount": 186
+        },
+        {
+          "description": "UPS Replacement Battery",
+          "productIdentifier": "UPSBattery",
+          "quantity": 1,
+          "unitPrice": 205,
+          "extPrice": 205,
+          "category": "Hardware/Equipment",
+          "amount": 205
+        }
+      ],
+      "invoiceTotal": 391
+    },
+    {
+      "id": 3611,
+      "date": "2025-03-10T00:00:00Z",
+      "company": "McLeod Family Foundation",
+      "reference": "Order #614",
+      "lineItems": [
+        {
+          "description": "LCD Hinge Kit",
+          "productIdentifier": "ChromeboookRepair",
+          "quantity": 1,
+          "unitPrice": 29.95,
+          "extPrice": 29.95,
+          "category": "Hardware/Equipment",
+          "amount": 29.95
+        },
+        {
+          "description": "LCD Front Bezel",
+          "productIdentifier": "ChromeboookRepair",
+          "quantity": 1,
+          "unitPrice": 39.99,
+          "extPrice": 39.99,
+          "category": "Hardware/Equipment",
+          "amount": 39.99
+        },
+        {
+          "description": "LED LCD Screen",
+          "productIdentifier": "ChromeboookRepair",
+          "quantity": 2,
+          "unitPrice": 49.99,
+          "extPrice": 99.98,
+          "category": "Hardware/Equipment",
+          "amount": 99.98
+        },
+        {
+          "description": "Lenovo Keyboard Replacement",
+          "productIdentifier": "ChromeboookRepair",
+          "quantity": 1,
+          "unitPrice": 79.99,
+          "extPrice": 79.99,
+          "category": "Hardware/Equipment",
+          "amount": 79.99
+        }
+      ],
+      "invoiceTotal": 249.91
+    },
+    {
+      "id": 3616,
+      "date": "2025-03-14T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #620",
+      "lineItems": [
+        {
+          "description": "iPad Screen Protector",
+          "productIdentifier": "iPadScreenProtector",
+          "quantity": 6,
+          "unitPrice": 14.99,
+          "extPrice": 89.94,
+          "category": "Hardware/Equipment",
+          "amount": 89.94
+        },
+        {
+          "description": "iPad 10.2 2019 Rugged Shockproof Case",
+          "productIdentifier": "iPadCase",
+          "quantity": 2,
+          "unitPrice": 32.99,
+          "extPrice": 65.98,
+          "category": "Hardware/Equipment",
+          "amount": 65.98
+        }
+      ],
+      "invoiceTotal": 155.92
+    },
+    {
+      "id": 3610,
+      "date": "2025-03-03T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "reference": "Order #607",
+      "lineItems": [
+        {
+          "description": "Dell Warranty Renewal",
+          "productIdentifier": "DellWarranty",
+          "quantity": 1,
+          "unitPrice": 129.99,
+          "extPrice": 129.99,
+          "category": "Hardware/Equipment",
+          "amount": 129.99
+        }
+      ],
+      "invoiceTotal": 129.99
+    },
+    {
+      "id": 3612,
+      "date": "2025-03-11T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #615",
+      "lineItems": [
+        {
+          "description": "12V Step Down Transformer - Door Lock Power Supply",
+          "productIdentifier": "Miscellaneous",
+          "quantity": 1,
+          "unitPrice": 112.87,
+          "extPrice": 112.87,
+          "category": "Hardware/Equipment",
+          "amount": 112.87
+        }
+      ],
+      "invoiceTotal": 112.87
+    }
+  ],
+  "flagged": [],
+  "historical": true
+}

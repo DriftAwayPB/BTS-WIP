@@ -1,0 +1,161 @@
+{
+  "generatedAt": "2026-08-12T10:23:14.553Z",
+  "totalSales": 4814.82,
+  "byCategory": {
+    "Hardware/Equipment": 2900.5,
+    "Cloud/Consumption": 1914.32
+  },
+  "byClient": [
+    {
+      "client": "TerraRoc",
+      "hardwareTotal": 0,
+      "cloudTotal": 1914.32,
+      "total": 1914.32
+    },
+    {
+      "client": "Honeytree Early Learning Centers",
+      "hardwareTotal": 1358.54,
+      "cloudTotal": 0,
+      "total": 1358.54
+    },
+    {
+      "client": "Fincastle Baptist Church",
+      "hardwareTotal": 1326.99,
+      "cloudTotal": 0,
+      "total": 1326.99
+    },
+    {
+      "client": "Williams Law Firm",
+      "hardwareTotal": 159.99,
+      "cloudTotal": 0,
+      "total": 159.99
+    },
+    {
+      "client": "McLeod Enterprises",
+      "hardwareTotal": 54.98,
+      "cloudTotal": 0,
+      "total": 54.98
+    }
+  ],
+  "invoices": [
+    {
+      "id": 4191,
+      "date": "2026-04-30T00:00:00Z",
+      "company": "TerraRoc",
+      "reference": null,
+      "lineItems": [
+        {
+          "description": "Azure Consumption",
+          "productIdentifier": "AzureConsumption",
+          "quantity": 1,
+          "unitPrice": 1914.32,
+          "extPrice": 1914.32,
+          "category": "Cloud/Consumption",
+          "amount": 1914.32
+        }
+      ],
+      "invoiceTotal": 1914.32
+    },
+    {
+      "id": 4164,
+      "date": "2026-04-14T00:00:00Z",
+      "company": "Fincastle Baptist Church",
+      "reference": "Order #688",
+      "lineItems": [
+        {
+          "description": "Network Switch",
+          "productIdentifier": "Switch",
+          "quantity": 3,
+          "unitPrice": 198.1833,
+          "extPrice": 594.55,
+          "category": "Hardware/Equipment",
+          "amount": 594.55
+        },
+        {
+          "description": "Access Point",
+          "productIdentifier": "AccessPoint",
+          "quantity": 3,
+          "unitPrice": 244.1481,
+          "extPrice": 732.44,
+          "category": "Hardware/Equipment",
+          "amount": 732.44
+        }
+      ],
+      "invoiceTotal": 1326.99
+    },
+    {
+      "id": 4166,
+      "date": "2026-04-16T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #690",
+      "lineItems": [
+        {
+          "description": "Sonicwall TZ270 Annual Renewal",
+          "productIdentifier": "02-SSC-6649",
+          "quantity": 1,
+          "unitPrice": 679.27,
+          "extPrice": 679.27,
+          "category": "Hardware/Equipment",
+          "amount": 679.27
+        }
+      ],
+      "invoiceTotal": 679.27
+    },
+    {
+      "id": 4167,
+      "date": "2026-04-16T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #691",
+      "lineItems": [
+        {
+          "description": "Sonicwall TZ270 Annual Renewal",
+          "productIdentifier": "02-SSC-6649",
+          "quantity": 1,
+          "unitPrice": 679.27,
+          "extPrice": 679.27,
+          "category": "Hardware/Equipment",
+          "amount": 679.27
+        }
+      ],
+      "invoiceTotal": 679.27
+    },
+    {
+      "id": 4163,
+      "date": "2026-04-09T00:00:00Z",
+      "company": "Williams Law Firm",
+      "reference": "Order #687",
+      "lineItems": [
+        {
+          "description": "Monitor",
+          "productIdentifier": "Monitor",
+          "quantity": 1,
+          "unitPrice": 159.99,
+          "extPrice": 159.99,
+          "category": "Hardware/Equipment",
+          "amount": 159.99
+        }
+      ],
+      "invoiceTotal": 159.99
+    },
+    {
+      "id": 4165,
+      "date": "2026-04-14T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "reference": "Order #689",
+      "lineItems": [
+        {
+          "description": "Logitech Wireless Mouse and Keyboard",
+          "productIdentifier": "MK270",
+          "quantity": 1,
+          "unitPrice": 54.98,
+          "extPrice": 54.98,
+          "category": "Hardware/Equipment",
+          "amount": 54.98
+        }
+      ],
+      "invoiceTotal": 54.98
+    }
+  ],
+  "flagged": [],
+  "historical": true
+}

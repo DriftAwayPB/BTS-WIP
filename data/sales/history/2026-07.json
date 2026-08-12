@@ -1,0 +1,281 @@
+{
+  "generatedAt": "2026-08-12T10:23:21.190Z",
+  "totalSales": 16312.16,
+  "byCategory": {
+    "Hardware/Equipment": 15403.77,
+    "Cloud/Consumption": 908.39
+  },
+  "byClient": [
+    {
+      "client": "McLeod Family Foundation",
+      "hardwareTotal": 10703.28,
+      "cloudTotal": 804,
+      "total": 11507.28
+    },
+    {
+      "client": "McLeod Enterprises",
+      "hardwareTotal": 2563.68,
+      "cloudTotal": 0,
+      "total": 2563.68
+    },
+    {
+      "client": "Honeytree Early Learning Centers",
+      "hardwareTotal": 2136.81,
+      "cloudTotal": 0,
+      "total": 2136.81
+    },
+    {
+      "client": "TerraRoc",
+      "hardwareTotal": 0,
+      "cloudTotal": 104.39,
+      "total": 104.39
+    }
+  ],
+  "invoices": [
+    {
+      "id": 4293,
+      "date": "2026-07-24T00:00:00Z",
+      "company": "McLeod Family Foundation",
+      "reference": "Order #709",
+      "lineItems": [
+        {
+          "description": "Sonicwall TZ 480 - 1 Year AAPS",
+          "productIdentifier": "Router",
+          "quantity": 2,
+          "unitPrice": 2505,
+          "extPrice": 5010,
+          "category": "Hardware/Equipment",
+          "amount": 5010
+        },
+        {
+          "description": "Ubiquiti Unifi 24 Port - POE 250W",
+          "productIdentifier": "US-24-250W",
+          "quantity": 2,
+          "unitPrice": 612,
+          "extPrice": 1224,
+          "category": "Hardware/Equipment",
+          "amount": 1224
+        },
+        {
+          "description": "Unifi U7 Pro",
+          "productIdentifier": "U7-PRO-US",
+          "quantity": 8,
+          "unitPrice": 286.17,
+          "extPrice": 2289.36,
+          "category": "Hardware/Equipment",
+          "amount": 2289.36
+        },
+        {
+          "description": "StarTech Wall Rack w/ Shelf",
+          "productIdentifier": "WallShelf8U",
+          "quantity": 1,
+          "unitPrice": 336.86,
+          "extPrice": 336.86,
+          "category": "Hardware/Equipment",
+          "amount": 336.86
+        },
+        {
+          "description": "Tripp Lite - Rack Mount Shelf - 2U",
+          "productIdentifier": "SRSHELF2PTM",
+          "quantity": 1,
+          "unitPrice": 74.085,
+          "extPrice": 74.09,
+          "category": "Hardware/Equipment",
+          "amount": 74.09
+        },
+        {
+          "description": "1U Bush Panel",
+          "productIdentifier": "CableManagement",
+          "quantity": 1,
+          "unitPrice": 67.59,
+          "extPrice": 67.59,
+          "category": "Hardware/Equipment",
+          "amount": 67.59
+        },
+        {
+          "description": "1U Cable Management Channel",
+          "productIdentifier": "CableManagement",
+          "quantity": 1,
+          "unitPrice": 40.17,
+          "extPrice": 40.17,
+          "category": "Hardware/Equipment",
+          "amount": 40.17
+        },
+        {
+          "description": "Power Distribution Pro",
+          "productIdentifier": "RS-1215",
+          "quantity": 1,
+          "unitPrice": 451.5,
+          "extPrice": 451.5,
+          "category": "Hardware/Equipment",
+          "amount": 451.5
+        },
+        {
+          "description": "Unifi Cloud Key Gen2 Plus SSD",
+          "productIdentifier": "UCK-G2-PLUS",
+          "quantity": 2,
+          "unitPrice": 402,
+          "extPrice": 804,
+          "category": "Cloud/Consumption",
+          "amount": 804
+        },
+        {
+          "description": "Patch Cables",
+          "productIdentifier": "NetworkCable",
+          "quantity": 30,
+          "unitPrice": 4.2,
+          "extPrice": 126,
+          "category": "Hardware/Equipment",
+          "amount": 126
+        },
+        {
+          "description": "Bulk Cable",
+          "productIdentifier": "BulkCable",
+          "quantity": 1,
+          "unitPrice": 268.5,
+          "extPrice": 268.5,
+          "category": "Hardware/Equipment",
+          "amount": 268.5
+        },
+        {
+          "description": "Cable Management",
+          "productIdentifier": "CableManagement",
+          "quantity": 1,
+          "unitPrice": 16.41,
+          "extPrice": 16.41,
+          "category": "Hardware/Equipment",
+          "amount": 16.41
+        },
+        {
+          "description": "2U Rack Mount UPS",
+          "productIdentifier": "UPS",
+          "quantity": 1,
+          "unitPrice": 479.835,
+          "extPrice": 479.84,
+          "category": "Hardware/Equipment",
+          "amount": 479.84
+        },
+        {
+          "description": "Battery Backup",
+          "productIdentifier": "UPS",
+          "quantity": 1,
+          "unitPrice": 318.96,
+          "extPrice": 318.96,
+          "category": "Hardware/Equipment",
+          "amount": 318.96
+        }
+      ],
+      "invoiceTotal": 11507.28
+    },
+    {
+      "id": 4290,
+      "date": "2026-07-23T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "reference": "Order #703",
+      "lineItems": [
+        {
+          "description": "Dell Pro Plus",
+          "productIdentifier": "DesktopPC",
+          "quantity": 1,
+          "unitPrice": 1963.695,
+          "extPrice": 1963.7,
+          "category": "Hardware/Equipment",
+          "amount": 1963.7
+        }
+      ],
+      "invoiceTotal": 1963.7
+    },
+    {
+      "id": 4292,
+      "date": "2026-07-23T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #708",
+      "lineItems": [
+        {
+          "description": "Sonicwall TZ280",
+          "productIdentifier": "TZ280",
+          "quantity": 1,
+          "unitPrice": 1290.597,
+          "extPrice": 1290.6,
+          "category": "Hardware/Equipment",
+          "amount": 1290.6
+        }
+      ],
+      "invoiceTotal": 1290.6
+    },
+    {
+      "id": 4288,
+      "date": "2026-07-14T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #701",
+      "lineItems": [
+        {
+          "description": "Sonicwall TZ270 Annual Renewal",
+          "productIdentifier": "02-SSC-6649",
+          "quantity": 1,
+          "unitPrice": 679.27,
+          "extPrice": 679.27,
+          "category": "Hardware/Equipment",
+          "amount": 679.27
+        }
+      ],
+      "invoiceTotal": 679.27
+    },
+    {
+      "id": 4289,
+      "date": "2026-07-14T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "reference": "Order #702",
+      "lineItems": [
+        {
+          "description": "Laptop Docking Station",
+          "productIdentifier": "LaptopDock",
+          "quantity": 2,
+          "unitPrice": 299.99,
+          "extPrice": 599.98,
+          "category": "Hardware/Equipment",
+          "amount": 599.98
+        }
+      ],
+      "invoiceTotal": 599.98
+    },
+    {
+      "id": 4291,
+      "date": "2026-07-23T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #707",
+      "lineItems": [
+        {
+          "description": "Network Switch",
+          "productIdentifier": "Switch",
+          "quantity": 1,
+          "unitPrice": 166.935,
+          "extPrice": 166.94,
+          "category": "Hardware/Equipment",
+          "amount": 166.94
+        }
+      ],
+      "invoiceTotal": 166.94
+    },
+    {
+      "id": 4295,
+      "date": "2026-07-28T00:00:00Z",
+      "company": "TerraRoc",
+      "reference": null,
+      "lineItems": [
+        {
+          "description": "Azure Consumption",
+          "productIdentifier": "AzureConsumption",
+          "quantity": 1,
+          "unitPrice": 104.3875,
+          "extPrice": 104.39,
+          "category": "Cloud/Consumption",
+          "amount": 104.39
+        }
+      ],
+      "invoiceTotal": 104.39
+    }
+  ],
+  "flagged": [],
+  "historical": true
+}

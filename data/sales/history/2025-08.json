@@ -1,0 +1,104 @@
+{
+  "generatedAt": "2026-08-12T10:22:49.219Z",
+  "totalSales": 8467.7,
+  "byCategory": {
+    "Hardware/Equipment": 6573.51,
+    "Cloud/Consumption": 1894.19
+  },
+  "byClient": [
+    {
+      "client": "Honeytree Early Learning Centers",
+      "hardwareTotal": 3626.39,
+      "cloudTotal": 0,
+      "total": 3626.39
+    },
+    {
+      "client": "McLeod Enterprises",
+      "hardwareTotal": 2947.12,
+      "cloudTotal": 0,
+      "total": 2947.12
+    },
+    {
+      "client": "TerraRoc",
+      "hardwareTotal": 0,
+      "cloudTotal": 1894.19,
+      "total": 1894.19
+    }
+  ],
+  "invoices": [
+    {
+      "id": 3800,
+      "date": "2025-08-04T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "reference": "Order #638",
+      "lineItems": [
+        {
+          "description": "Desktop PC",
+          "productIdentifier": "DesktopPC",
+          "quantity": 2,
+          "unitPrice": 1473.56,
+          "extPrice": 2947.12,
+          "category": "Hardware/Equipment",
+          "amount": 2947.12
+        }
+      ],
+      "invoiceTotal": 2947.12
+    },
+    {
+      "id": 3818,
+      "date": "2025-08-26T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #640",
+      "lineItems": [
+        {
+          "description": "Desktop PC",
+          "productIdentifier": "DesktopPC",
+          "quantity": 2,
+          "unitPrice": 1473.56,
+          "extPrice": 2947.12,
+          "category": "Hardware/Equipment",
+          "amount": 2947.12
+        }
+      ],
+      "invoiceTotal": 2947.12
+    },
+    {
+      "id": 3835,
+      "date": "2025-08-31T00:00:00Z",
+      "company": "TerraRoc",
+      "reference": null,
+      "lineItems": [
+        {
+          "description": "Azure Consumption",
+          "productIdentifier": "AzureConsumption",
+          "quantity": 1,
+          "unitPrice": 1894.19,
+          "extPrice": 1894.19,
+          "category": "Cloud/Consumption",
+          "amount": 1894.19
+        }
+      ],
+      "invoiceTotal": 1894.19
+    },
+    {
+      "id": 3817,
+      "date": "2025-08-19T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #639",
+      "lineItems": [
+        {
+          "description": "Sonicwall TZ270 Annual Renewal",
+          "productIdentifier": "02-SSC-6649",
+          "quantity": 1,
+          "unitPrice": 679.27,
+          "extPrice": 679.27,
+          "category": "Hardware/Equipment",
+          "amount": 679.27
+        }
+      ],
+      "invoiceTotal": 679.27
+    }
+  ],
+  "flagged": [],
+  "historical": true
+}

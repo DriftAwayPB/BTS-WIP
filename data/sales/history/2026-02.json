@@ -1,0 +1,155 @@
+{
+  "generatedAt": "2026-08-12T10:23:10.442Z",
+  "totalSales": 2961.33,
+  "byCategory": {
+    "Hardware/Equipment": 1054.37,
+    "Cloud/Consumption": 1906.96
+  },
+  "byClient": [
+    {
+      "client": "TerraRoc",
+      "hardwareTotal": 0,
+      "cloudTotal": 1906.96,
+      "total": 1906.96
+    },
+    {
+      "client": "Honeytree Early Learning Centers",
+      "hardwareTotal": 516.31,
+      "cloudTotal": 0,
+      "total": 516.31
+    },
+    {
+      "client": "Fincastle Baptist Church",
+      "hardwareTotal": 340.8,
+      "cloudTotal": 0,
+      "total": 340.8
+    },
+    {
+      "client": "McLeod Enterprises",
+      "hardwareTotal": 197.26,
+      "cloudTotal": 0,
+      "total": 197.26
+    }
+  ],
+  "invoices": [
+    {
+      "id": 4119,
+      "date": "2026-02-28T00:00:00Z",
+      "company": "TerraRoc",
+      "reference": null,
+      "lineItems": [
+        {
+          "description": "Azure Consumption",
+          "productIdentifier": "AzureConsumption",
+          "quantity": 1,
+          "unitPrice": 90,
+          "extPrice": 90,
+          "category": "Cloud/Consumption",
+          "amount": 90
+        },
+        {
+          "description": "Azure Consumption",
+          "productIdentifier": "AzureConsumption",
+          "quantity": 1,
+          "unitPrice": 1816.96,
+          "extPrice": 1816.96,
+          "category": "Cloud/Consumption",
+          "amount": 1816.96
+        }
+      ],
+      "invoiceTotal": 1906.96
+    },
+    {
+      "id": 4086,
+      "date": "2026-02-25T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #681",
+      "lineItems": [
+        {
+          "description": "Procare Keyless Entry System - Relay Box",
+          "productIdentifier": "ProcareKES",
+          "quantity": 1,
+          "unitPrice": 379,
+          "extPrice": 379,
+          "category": "Hardware/Equipment",
+          "amount": 379
+        }
+      ],
+      "invoiceTotal": 379
+    },
+    {
+      "id": 4087,
+      "date": "2026-02-26T00:00:00Z",
+      "company": "Fincastle Baptist Church",
+      "reference": "Order #682",
+      "lineItems": [
+        {
+          "description": "Dell Warranty Renewal",
+          "productIdentifier": "DellWarranty",
+          "quantity": 1,
+          "unitPrice": 340.8,
+          "extPrice": 340.8,
+          "category": "Hardware/Equipment",
+          "amount": 340.8
+        }
+      ],
+      "invoiceTotal": 340.8
+    },
+    {
+      "id": 4084,
+      "date": "2026-02-23T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "reference": "Order #680",
+      "lineItems": [
+        {
+          "description": "Monitor",
+          "productIdentifier": "Monitor",
+          "quantity": 1,
+          "unitPrice": 179.99,
+          "extPrice": 179.99,
+          "category": "Hardware/Equipment",
+          "amount": 179.99
+        },
+        {
+          "description": "Shipping & Handling",
+          "productIdentifier": "Shipping",
+          "quantity": 1,
+          "unitPrice": 17.27,
+          "extPrice": 17.27,
+          "category": "Hardware/Equipment",
+          "amount": 17.27
+        }
+      ],
+      "invoiceTotal": 197.26
+    },
+    {
+      "id": 4085,
+      "date": "2026-02-23T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "reference": "Order #679",
+      "lineItems": [
+        {
+          "description": "UPS Replacement Battery",
+          "productIdentifier": "UPSBattery",
+          "quantity": 1,
+          "unitPrice": 109.99,
+          "extPrice": 109.99,
+          "category": "Hardware/Equipment",
+          "amount": 109.99
+        },
+        {
+          "description": "Shipping & Handling",
+          "productIdentifier": "Shipping",
+          "quantity": 1,
+          "unitPrice": 27.32,
+          "extPrice": 27.32,
+          "category": "Hardware/Equipment",
+          "amount": 27.32
+        }
+      ],
+      "invoiceTotal": 137.31
+    }
+  ],
+  "flagged": [],
+  "historical": true
+}
