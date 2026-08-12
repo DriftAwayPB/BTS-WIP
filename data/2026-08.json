@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-11T13:00:32.814Z",
+  "generatedAt": "2026-08-12T12:35:51.057Z",
   "month": "2026-08",
   "isCurrentMonth": true,
   "monthGoal": 21000,
   "weekdaysInMonth": 21,
-  "weekdaysElapsed": 7,
-  "weekdaysRemaining": 14,
-  "currentDate": "2026-08-11",
+  "weekdaysElapsed": 8,
+  "weekdaysRemaining": 13,
+  "currentDate": "2026-08-12",
   "dailyAccrual": [
     {
       "date": "2026-08-03",
@@ -34,7 +34,7 @@
     },
     {
       "date": "2026-08-11",
-      "accrued": 82
+      "accrued": 107
     }
   ],
   "clientBreakdown": [
@@ -119,8 +119,8 @@
     },
     {
       "client": "McLeod Family Foundation",
-      "mtd": 450,
-      "pctOfGoal": 2.1,
+      "mtd": 475,
+      "pctOfGoal": 2.3,
       "daily": [
         {
           "date": "2026-08-03",
@@ -146,6 +146,11 @@
           "date": "2026-08-10",
           "hours": 1,
           "billed": 50
+        },
+        {
+          "date": "2026-08-11",
+          "hours": 0.5,
+          "billed": 25
         }
       ]
     },
@@ -349,5 +354,5 @@
     }
   ],
   "flagged": [],
-  "totalBilledHours": 65.25
+  "totalBilledHours": 65.75
 }
