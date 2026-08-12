@@ -161,10 +161,35 @@ async function main() {
         else c.hardware += amt;
       }
 
+      // Sales tax is an invoice-level field, not itemized per line —
+      // add it as its own transparent line so the drill-down total
+      // reconciles to the real invoice total.
+      const taxAmt = Number(inv.salesTax) || 0;
+      if (taxAmt > 0) {
+        const hwSum = lineRecords.filter((r) => r.category === "Hardware/Equipment").reduce((s, r) => s + r.amount, 0);
+        const cloudSum = lineRecords.filter((r) => r.category === "Cloud/Consumption").reduce((s, r) => s + r.amount, 0);
+        const dominant = hwSum >= cloudSum ? "Hardware/Equipment" : "Cloud/Consumption";
+        lineRecords.push({
+          description: "Sales Tax",
+          productIdentifier: null,
+          quantity: null,
+          unitPrice: null,
+          extPrice: taxAmt,
+          category: dominant,
+          amount: Number(taxAmt.toFixed(2)),
+        });
+        byCategory[dominant] += taxAmt;
+        totalSales += taxAmt;
+        const c = byClientMap.get(company);
+        if (dominant === "Cloud/Consumption") c.cloud += taxAmt;
+        else c.hardware += taxAmt;
+      }
+
       invoiceRecords.push({
         id: inv.id,
         date: inv.date,
         company,
+        invoiceNumber: inv.invoiceNumber || null,
         reference: inv.reference || null,
         lineItems: lineRecords,
         invoiceTotal: Number(lineRecords.reduce((s, r) => s + r.amount, 0).toFixed(2)),
