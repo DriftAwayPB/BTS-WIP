@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-08-12T10:23:16.665Z",
-  "totalSales": 7691.26,
+  "generatedAt": "2026-08-12T10:33:58.834Z",
+  "totalSales": 7950.96,
   "byCategory": {
-    "Hardware/Equipment": 5421.58,
-    "Cloud/Consumption": 2269.68
+    "Hardware/Equipment": 5665.18,
+    "Cloud/Consumption": 2285.78
   },
   "byClient": [
     {
       "client": "Fincastle Baptist Church",
-      "hardwareTotal": 3199.27,
+      "hardwareTotal": 3326.68,
       "cloudTotal": 0,
-      "total": 3199.27
+      "total": 3326.68
     },
     {
       "client": "TerraRoc",
@@ -20,21 +20,21 @@
     },
     {
       "client": "Honeytree Early Learning Centers",
-      "hardwareTotal": 1820,
+      "hardwareTotal": 1914.87,
       "cloudTotal": 0,
-      "total": 1820
+      "total": 1914.87
     },
     {
       "client": "McLeod Enterprises",
-      "hardwareTotal": 402.31,
+      "hardwareTotal": 423.63,
       "cloudTotal": 0,
-      "total": 402.31
+      "total": 423.63
     },
     {
       "client": "Baird Drywall & Acoustic",
       "hardwareTotal": 0,
-      "cloudTotal": 303.71,
-      "total": 303.71
+      "cloudTotal": 319.81,
+      "total": 319.81
     }
   ],
   "invoices": [
@@ -42,6 +42,7 @@
       "id": 4209,
       "date": "2026-05-29T00:00:00Z",
       "company": "Fincastle Baptist Church",
+      "invoiceNumber": "9191",
       "reference": "Order #697",
       "lineItems": [
         {
@@ -79,14 +80,24 @@
           "extPrice": 164.71,
           "category": "Hardware/Equipment",
           "amount": 164.71
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 127.41,
+          "category": "Hardware/Equipment",
+          "amount": 127.41
         }
       ],
-      "invoiceTotal": 2404.05
+      "invoiceTotal": 2531.46
     },
     {
       "id": 4234,
       "date": "2026-05-31T00:00:00Z",
       "company": "TerraRoc",
+      "invoiceNumber": "9216",
       "reference": null,
       "lineItems": [
         {
@@ -105,6 +116,7 @@
       "id": 4206,
       "date": "2026-05-07T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "9188",
       "reference": "Order #693",
       "lineItems": [
         {
@@ -124,14 +136,24 @@
           "extPrice": 30,
           "category": "Hardware/Equipment",
           "amount": 30
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 94.87,
+          "category": "Hardware/Equipment",
+          "amount": 94.87
         }
       ],
-      "invoiceTotal": 1820
+      "invoiceTotal": 1914.87
     },
     {
       "id": 4205,
       "date": "2026-05-07T00:00:00Z",
       "company": "Fincastle Baptist Church",
+      "invoiceNumber": "9187",
       "reference": "Order #692",
       "lineItems": [
         {
@@ -150,6 +172,7 @@
       "id": 4208,
       "date": "2026-05-07T00:00:00Z",
       "company": "McLeod Enterprises",
+      "invoiceNumber": "9190",
       "reference": "Order #695",
       "lineItems": [
         {
@@ -160,14 +183,24 @@
           "extPrice": 402.31,
           "category": "Hardware/Equipment",
           "amount": 402.31
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 21.32,
+          "category": "Hardware/Equipment",
+          "amount": 21.32
         }
       ],
-      "invoiceTotal": 402.31
+      "invoiceTotal": 423.63
     },
     {
       "id": 4207,
       "date": "2026-05-07T00:00:00Z",
       "company": "Baird Drywall & Acoustic",
+      "invoiceNumber": "9189",
       "reference": "Order #694",
       "lineItems": [
         {
@@ -178,9 +211,18 @@
           "extPrice": 303.71,
           "category": "Cloud/Consumption",
           "amount": 303.71
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 16.1,
+          "category": "Cloud/Consumption",
+          "amount": 16.1
         }
       ],
-      "invoiceTotal": 303.71
+      "invoiceTotal": 319.81
     }
   ],
   "flagged": [],

@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-08-12T10:22:54.349Z",
-  "totalSales": 13552.12,
+  "generatedAt": "2026-08-12T10:33:38.534Z",
+  "totalSales": 13979.07,
   "byCategory": {
-    "Hardware/Equipment": 11342.8,
+    "Hardware/Equipment": 11769.75,
     "Cloud/Consumption": 2209.32
   },
   "byClient": [
     {
       "client": "McLeod Enterprises",
-      "hardwareTotal": 5215.32,
+      "hardwareTotal": 5387.91,
       "cloudTotal": 0,
-      "total": 5215.32
+      "total": 5387.91
     },
     {
       "client": "Blink Optometry",
-      "hardwareTotal": 3818.31,
+      "hardwareTotal": 4037.18,
       "cloudTotal": 311.25,
-      "total": 4129.56
+      "total": 4348.43
     },
     {
       "client": "TerraRoc",
@@ -26,15 +26,15 @@
     },
     {
       "client": "Honeytree Early Learning Centers",
-      "hardwareTotal": 1678.18,
+      "hardwareTotal": 1695.12,
       "cloudTotal": 0,
-      "total": 1678.18
+      "total": 1695.12
     },
     {
       "client": "Baird Drywall & Acoustic",
-      "hardwareTotal": 349.99,
+      "hardwareTotal": 368.54,
       "cloudTotal": 0,
-      "total": 349.99
+      "total": 368.54
     },
     {
       "client": "Scott & Bond",
@@ -54,6 +54,7 @@
       "id": 3880,
       "date": "2025-10-02T00:00:00Z",
       "company": "Blink Optometry",
+      "invoiceNumber": "8863",
       "reference": "Order #646",
       "lineItems": [
         {
@@ -127,14 +128,24 @@
           "extPrice": 495.82,
           "category": "Hardware/Equipment",
           "amount": 495.82
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 218.87,
+          "category": "Hardware/Equipment",
+          "amount": 218.87
         }
       ],
-      "invoiceTotal": 4129.56
+      "invoiceTotal": 4348.43
     },
     {
       "id": 3899,
       "date": "2025-10-15T00:00:00Z",
       "company": "McLeod Enterprises",
+      "invoiceNumber": "8882",
       "reference": "Order #651",
       "lineItems": [
         {
@@ -145,14 +156,24 @@
           "extPrice": 2143.13,
           "category": "Hardware/Equipment",
           "amount": 2143.13
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 113.59,
+          "category": "Hardware/Equipment",
+          "amount": 113.59
         }
       ],
-      "invoiceTotal": 2143.13
+      "invoiceTotal": 2256.72
     },
     {
       "id": 3942,
       "date": "2025-10-31T00:00:00Z",
       "company": "TerraRoc",
+      "invoiceNumber": "8925",
       "reference": null,
       "lineItems": [
         {
@@ -171,6 +192,7 @@
       "id": 3898,
       "date": "2025-10-13T00:00:00Z",
       "company": "McLeod Enterprises",
+      "invoiceNumber": "8881",
       "reference": "Order #649",
       "lineItems": [
         {
@@ -189,6 +211,7 @@
       "id": 3902,
       "date": "2025-10-23T00:00:00Z",
       "company": "McLeod Enterprises",
+      "invoiceNumber": "8885",
       "reference": "Order #650",
       "lineItems": [
         {
@@ -199,14 +222,24 @@
           "extPrice": 1113.2,
           "category": "Hardware/Equipment",
           "amount": 1113.2
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 59,
+          "category": "Hardware/Equipment",
+          "amount": 59
         }
       ],
-      "invoiceTotal": 1113.2
+      "invoiceTotal": 1172.2
     },
     {
       "id": 3881,
       "date": "2025-10-02T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "8864",
       "reference": "Order #645",
       "lineItems": [
         {
@@ -225,6 +258,7 @@
       "id": 3901,
       "date": "2025-10-23T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "8884",
       "reference": "Order #653",
       "lineItems": [
         {
@@ -243,6 +277,7 @@
       "id": 3897,
       "date": "2025-10-13T00:00:00Z",
       "company": "Baird Drywall & Acoustic",
+      "invoiceNumber": "8880",
       "reference": "Order #648",
       "lineItems": [
         {
@@ -253,14 +288,24 @@
           "extPrice": 349.99,
           "category": "Hardware/Equipment",
           "amount": 349.99
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 18.55,
+          "category": "Hardware/Equipment",
+          "amount": 18.55
         }
       ],
-      "invoiceTotal": 349.99
+      "invoiceTotal": 368.54
     },
     {
       "id": 3903,
       "date": "2025-10-23T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "8886",
       "reference": "Order #654",
       "lineItems": [
         {
@@ -289,14 +334,24 @@
           "extPrice": 71.68,
           "category": "Hardware/Equipment",
           "amount": 71.68
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 16.94,
+          "category": "Hardware/Equipment",
+          "amount": 16.94
         }
       ],
-      "invoiceTotal": 319.64
+      "invoiceTotal": 336.58
     },
     {
       "id": 3894,
       "date": "2025-10-08T00:00:00Z",
       "company": "McLeod Enterprises",
+      "invoiceNumber": "8877",
       "reference": "Order #647",
       "lineItems": [
         {
@@ -315,6 +370,7 @@
       "id": 3900,
       "date": "2025-10-16T00:00:00Z",
       "company": "Scott & Bond",
+      "invoiceNumber": "8883",
       "reference": "Order #652",
       "lineItems": [
         {
@@ -333,6 +389,7 @@
       "id": 3860,
       "date": "2025-10-01T00:00:00Z",
       "company": "Utilis Consulting",
+      "invoiceNumber": "8843",
       "reference": "Order #644",
       "lineItems": [
         {

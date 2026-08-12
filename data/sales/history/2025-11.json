@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-08-12T10:22:57.477Z",
-  "totalSales": 15890.82,
+  "generatedAt": "2026-08-12T10:33:42.439Z",
+  "totalSales": 16560.39,
   "byCategory": {
-    "Hardware/Equipment": 14127.4,
+    "Hardware/Equipment": 14796.97,
     "Cloud/Consumption": 1763.42
   },
   "byClient": [
     {
       "client": "Honeytree Early Learning Centers",
-      "hardwareTotal": 5212.62,
+      "hardwareTotal": 5488.88,
       "cloudTotal": 0,
-      "total": 5212.62
+      "total": 5488.88
     },
     {
       "client": "McLeod Family Foundation",
-      "hardwareTotal": 2654,
+      "hardwareTotal": 2794.66,
       "cloudTotal": 0,
-      "total": 2654
+      "total": 2794.66
     },
     {
       "client": "TerraRoc",
@@ -26,9 +26,9 @@
     },
     {
       "client": "Utilis Consulting",
-      "hardwareTotal": 1541.63,
+      "hardwareTotal": 1623.34,
       "cloudTotal": 0,
-      "total": 1541.63
+      "total": 1623.34
     },
     {
       "client": "Crenshaw Lighting",
@@ -38,21 +38,21 @@
     },
     {
       "client": "Williams Law Firm",
-      "hardwareTotal": 1211.17,
+      "hardwareTotal": 1275.36,
       "cloudTotal": 0,
-      "total": 1211.17
+      "total": 1275.36
     },
     {
       "client": "Baird Drywall & Acoustic",
-      "hardwareTotal": 1155,
+      "hardwareTotal": 1216.22,
       "cloudTotal": 0,
-      "total": 1155
+      "total": 1216.22
     },
     {
       "client": "McLeod Enterprises",
-      "hardwareTotal": 859,
+      "hardwareTotal": 904.53,
       "cloudTotal": 0,
-      "total": 859
+      "total": 904.53
     },
     {
       "client": "Appalachian Bookkeeping",
@@ -72,6 +72,7 @@
       "id": 3950,
       "date": "2025-11-19T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "8933",
       "reference": "Amy Ralston Tech Setup",
       "lineItems": [
         {
@@ -100,14 +101,24 @@
           "extPrice": 169.99,
           "category": "Hardware/Equipment",
           "amount": 169.99
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 154.56,
+          "category": "Hardware/Equipment",
+          "amount": 154.56
         }
       ],
-      "invoiceTotal": 2916.3
+      "invoiceTotal": 3070.86
     },
     {
       "id": 3945,
       "date": "2025-11-12T00:00:00Z",
       "company": "McLeod Family Foundation",
+      "invoiceNumber": "8928",
       "reference": "Order #658",
       "lineItems": [
         {
@@ -127,14 +138,24 @@
           "extPrice": 149,
           "category": "Hardware/Equipment",
           "amount": 149
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 140.66,
+          "category": "Hardware/Equipment",
+          "amount": 140.66
         }
       ],
-      "invoiceTotal": 2654
+      "invoiceTotal": 2794.66
     },
     {
       "id": 3923,
       "date": "2025-11-03T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "8906",
       "reference": "Order #657",
       "lineItems": [
         {
@@ -145,14 +166,24 @@
           "extPrice": 2296.32,
           "category": "Hardware/Equipment",
           "amount": 2296.32
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 121.7,
+          "category": "Hardware/Equipment",
+          "amount": 121.7
         }
       ],
-      "invoiceTotal": 2296.32
+      "invoiceTotal": 2418.02
     },
     {
       "id": 3992,
       "date": "2025-11-30T00:00:00Z",
       "company": "TerraRoc",
+      "invoiceNumber": "8960",
       "reference": null,
       "lineItems": [
         {
@@ -171,6 +202,7 @@
       "id": 3924,
       "date": "2025-11-03T00:00:00Z",
       "company": "Utilis Consulting",
+      "invoiceNumber": "8907",
       "reference": "Order #656",
       "lineItems": [
         {
@@ -181,14 +213,24 @@
           "extPrice": 1541.63,
           "category": "Hardware/Equipment",
           "amount": 1541.63
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 81.71,
+          "category": "Hardware/Equipment",
+          "amount": 81.71
         }
       ],
-      "invoiceTotal": 1541.63
+      "invoiceTotal": 1623.34
     },
     {
       "id": 3947,
       "date": "2025-11-14T00:00:00Z",
       "company": "Crenshaw Lighting",
+      "invoiceNumber": "8930",
       "reference": "Order #660",
       "lineItems": [
         {
@@ -207,6 +249,7 @@
       "id": 3948,
       "date": "2025-11-14T00:00:00Z",
       "company": "Williams Law Firm",
+      "invoiceNumber": "8931",
       "reference": "Order #661",
       "lineItems": [
         {
@@ -217,14 +260,24 @@
           "extPrice": 1211.17,
           "category": "Hardware/Equipment",
           "amount": 1211.17
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 64.19,
+          "category": "Hardware/Equipment",
+          "amount": 64.19
         }
       ],
-      "invoiceTotal": 1211.17
+      "invoiceTotal": 1275.36
     },
     {
       "id": 3926,
       "date": "2025-11-03T00:00:00Z",
       "company": "Baird Drywall & Acoustic",
+      "invoiceNumber": "8909",
       "reference": "Order #655",
       "lineItems": [
         {
@@ -235,14 +288,24 @@
           "extPrice": 1155,
           "category": "Hardware/Equipment",
           "amount": 1155
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 61.22,
+          "category": "Hardware/Equipment",
+          "amount": 61.22
         }
       ],
-      "invoiceTotal": 1155
+      "invoiceTotal": 1216.22
     },
     {
       "id": 3925,
       "date": "2025-11-03T00:00:00Z",
       "company": "McLeod Enterprises",
+      "invoiceNumber": "8908",
       "reference": "Order #659",
       "lineItems": [
         {
@@ -253,14 +316,24 @@
           "extPrice": 859,
           "category": "Hardware/Equipment",
           "amount": 859
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 45.53,
+          "category": "Hardware/Equipment",
+          "amount": 45.53
         }
       ],
-      "invoiceTotal": 859
+      "invoiceTotal": 904.53
     },
     {
       "id": 3978,
       "date": "2025-11-30T00:00:00Z",
       "company": "Appalachian Bookkeeping",
+      "invoiceNumber": "8961",
       "reference": null,
       "lineItems": [
         {
@@ -279,6 +352,7 @@
       "id": 3979,
       "date": "2025-11-30T00:00:00Z",
       "company": "Blink Optometry",
+      "invoiceNumber": "8962",
       "reference": null,
       "lineItems": [
         {

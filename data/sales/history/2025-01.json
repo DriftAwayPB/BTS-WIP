@@ -1,28 +1,28 @@
 {
-  "generatedAt": "2026-08-12T10:22:35.039Z",
-  "totalSales": 7636.08,
+  "generatedAt": "2026-08-12T10:33:15.386Z",
+  "totalSales": 8004.81,
   "byCategory": {
-    "Hardware/Equipment": 7636.08,
+    "Hardware/Equipment": 8004.81,
     "Cloud/Consumption": 0
   },
   "byClient": [
     {
       "client": "Honeytree Early Learning Centers",
-      "hardwareTotal": 4520.26,
+      "hardwareTotal": 4723.85,
       "cloudTotal": 0,
-      "total": 4520.26
+      "total": 4723.85
     },
     {
       "client": "McLeod Enterprises",
-      "hardwareTotal": 3020.87,
+      "hardwareTotal": 3180.98,
       "cloudTotal": 0,
-      "total": 3020.87
+      "total": 3180.98
     },
     {
       "client": "McLeod Family Foundation",
-      "hardwareTotal": 94.95,
+      "hardwareTotal": 99.98,
       "cloudTotal": 0,
-      "total": 94.95
+      "total": 99.98
     }
   ],
   "invoices": [
@@ -30,6 +30,7 @@
       "id": 3526,
       "date": "2025-01-06T00:00:00Z",
       "company": "McLeod Enterprises",
+      "invoiceNumber": "8509",
       "reference": "Order #594",
       "lineItems": [
         {
@@ -49,14 +50,24 @@
           "extPrice": 749.98,
           "category": "Hardware/Equipment",
           "amount": 749.98
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 139.65,
+          "category": "Hardware/Equipment",
+          "amount": 139.65
         }
       ],
-      "invoiceTotal": 2634.94
+      "invoiceTotal": 2774.59
     },
     {
       "id": 3543,
       "date": "2025-01-22T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "8526",
       "reference": "Order #598",
       "lineItems": [
         {
@@ -67,14 +78,24 @@
           "extPrice": 1695,
           "category": "Hardware/Equipment",
           "amount": 1695
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 89.84,
+          "category": "Hardware/Equipment",
+          "amount": 89.84
         }
       ],
-      "invoiceTotal": 1695
+      "invoiceTotal": 1784.84
     },
     {
       "id": 3544,
       "date": "2025-01-22T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "8527",
       "reference": "Order #600",
       "lineItems": [
         {
@@ -85,14 +106,24 @@
           "extPrice": 1255,
           "category": "Hardware/Equipment",
           "amount": 1255
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 66.52,
+          "category": "Hardware/Equipment",
+          "amount": 66.52
         }
       ],
-      "invoiceTotal": 1255
+      "invoiceTotal": 1321.52
     },
     {
       "id": 3546,
       "date": "2025-01-23T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "8529",
       "reference": "Order #599",
       "lineItems": [
         {
@@ -111,6 +142,7 @@
       "id": 3548,
       "date": "2025-01-29T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "8531",
       "reference": "Order #601",
       "lineItems": [
         {
@@ -121,14 +153,24 @@
           "extPrice": 432,
           "category": "Hardware/Equipment",
           "amount": 432
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 22.9,
+          "category": "Hardware/Equipment",
+          "amount": 22.9
         }
       ],
-      "invoiceTotal": 432
+      "invoiceTotal": 454.9
     },
     {
       "id": 3549,
       "date": "2025-01-29T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "8532",
       "reference": "Order #604",
       "lineItems": [
         {
@@ -139,14 +181,24 @@
           "extPrice": 299,
           "category": "Hardware/Equipment",
           "amount": 299
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 15.85,
+          "category": "Hardware/Equipment",
+          "amount": 15.85
         }
       ],
-      "invoiceTotal": 299
+      "invoiceTotal": 314.85
     },
     {
       "id": 3547,
       "date": "2025-01-27T00:00:00Z",
       "company": "McLeod Enterprises",
+      "invoiceNumber": "8530",
       "reference": "Order #603",
       "lineItems": [
         {
@@ -157,14 +209,24 @@
           "extPrice": 168.99,
           "category": "Hardware/Equipment",
           "amount": 168.99
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 8.96,
+          "category": "Hardware/Equipment",
+          "amount": 8.96
         }
       ],
-      "invoiceTotal": 168.99
+      "invoiceTotal": 177.95
     },
     {
       "id": 3538,
       "date": "2025-01-14T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "8521",
       "reference": "Order #597",
       "lineItems": [
         {
@@ -175,14 +237,24 @@
           "extPrice": 159.99,
           "category": "Hardware/Equipment",
           "amount": 159.99
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 8.48,
+          "category": "Hardware/Equipment",
+          "amount": 8.48
         }
       ],
-      "invoiceTotal": 159.99
+      "invoiceTotal": 168.47
     },
     {
       "id": 3545,
       "date": "2025-01-23T00:00:00Z",
       "company": "McLeod Enterprises",
+      "invoiceNumber": "8528",
       "reference": "Order #602",
       "lineItems": [
         {
@@ -211,14 +283,24 @@
           "extPrice": 38.99,
           "category": "Hardware/Equipment",
           "amount": 38.99
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 7.15,
+          "category": "Hardware/Equipment",
+          "amount": 7.15
         }
       ],
-      "invoiceTotal": 134.95
+      "invoiceTotal": 142.1
     },
     {
       "id": 3537,
       "date": "2025-01-14T00:00:00Z",
       "company": "McLeod Family Foundation",
+      "invoiceNumber": "8520",
       "reference": "Order #596",
       "lineItems": [
         {
@@ -229,14 +311,24 @@
           "extPrice": 94.95,
           "category": "Hardware/Equipment",
           "amount": 94.95
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 5.03,
+          "category": "Hardware/Equipment",
+          "amount": 5.03
         }
       ],
-      "invoiceTotal": 94.95
+      "invoiceTotal": 99.98
     },
     {
       "id": 3536,
       "date": "2025-01-14T00:00:00Z",
       "company": "McLeod Enterprises",
+      "invoiceNumber": "8519",
       "reference": "Order #595",
       "lineItems": [
         {
@@ -247,9 +339,18 @@
           "extPrice": 81.99,
           "category": "Hardware/Equipment",
           "amount": 81.99
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 4.35,
+          "category": "Hardware/Equipment",
+          "amount": 4.35
         }
       ],
-      "invoiceTotal": 81.99
+      "invoiceTotal": 86.34
     }
   ],
   "flagged": [],

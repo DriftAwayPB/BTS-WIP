@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-08-12T10:22:43.331Z",
-  "totalSales": 753.01,
+  "generatedAt": "2026-08-12T10:33:25.450Z",
+  "totalSales": 792.92,
   "byCategory": {
-    "Hardware/Equipment": 753.01,
+    "Hardware/Equipment": 792.92,
     "Cloud/Consumption": 0
   },
   "byClient": [
     {
       "client": "McLeod Enterprises",
-      "hardwareTotal": 563.49,
+      "hardwareTotal": 593.35,
       "cloudTotal": 0,
-      "total": 563.49
+      "total": 593.35
     },
     {
       "client": "Honeytree Early Learning Centers",
-      "hardwareTotal": 189.52,
+      "hardwareTotal": 199.57,
       "cloudTotal": 0,
-      "total": 189.52
+      "total": 199.57
     }
   ],
   "invoices": [
@@ -24,6 +24,7 @@
       "id": 3702,
       "date": "2025-05-22T00:00:00Z",
       "company": "McLeod Enterprises",
+      "invoiceNumber": "8685",
       "reference": "Order #629",
       "lineItems": [
         {
@@ -34,14 +35,24 @@
           "extPrice": 563.49,
           "category": "Hardware/Equipment",
           "amount": 563.49
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 29.86,
+          "category": "Hardware/Equipment",
+          "amount": 29.86
         }
       ],
-      "invoiceTotal": 563.49
+      "invoiceTotal": 593.35
     },
     {
       "id": 3692,
       "date": "2025-05-07T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "8675",
       "reference": "Order #628",
       "lineItems": [
         {
@@ -52,9 +63,18 @@
           "extPrice": 189.52,
           "category": "Hardware/Equipment",
           "amount": 189.52
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 10.05,
+          "category": "Hardware/Equipment",
+          "amount": 10.05
         }
       ],
-      "invoiceTotal": 189.52
+      "invoiceTotal": 199.57
     }
   ],
   "flagged": [],

@@ -1,28 +1,28 @@
 {
-  "generatedAt": "2026-08-12T10:23:21.190Z",
-  "totalSales": 16312.16,
+  "generatedAt": "2026-08-12T10:34:04.791Z",
+  "totalSales": 17135.18,
   "byCategory": {
-    "Hardware/Equipment": 15403.77,
+    "Hardware/Equipment": 16226.79,
     "Cloud/Consumption": 908.39
   },
   "byClient": [
     {
       "client": "McLeod Family Foundation",
-      "hardwareTotal": 10703.28,
+      "hardwareTotal": 11313.17,
       "cloudTotal": 804,
-      "total": 11507.28
+      "total": 12117.17
     },
     {
       "client": "McLeod Enterprises",
-      "hardwareTotal": 2563.68,
+      "hardwareTotal": 2699.56,
       "cloudTotal": 0,
-      "total": 2563.68
+      "total": 2699.56
     },
     {
       "client": "Honeytree Early Learning Centers",
-      "hardwareTotal": 2136.81,
+      "hardwareTotal": 2214.06,
       "cloudTotal": 0,
-      "total": 2136.81
+      "total": 2214.06
     },
     {
       "client": "TerraRoc",
@@ -36,6 +36,7 @@
       "id": 4293,
       "date": "2026-07-24T00:00:00Z",
       "company": "McLeod Family Foundation",
+      "invoiceNumber": "9274",
       "reference": "Order #709",
       "lineItems": [
         {
@@ -163,14 +164,24 @@
           "extPrice": 318.96,
           "category": "Hardware/Equipment",
           "amount": 318.96
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 609.89,
+          "category": "Hardware/Equipment",
+          "amount": 609.89
         }
       ],
-      "invoiceTotal": 11507.28
+      "invoiceTotal": 12117.17
     },
     {
       "id": 4290,
       "date": "2026-07-23T00:00:00Z",
       "company": "McLeod Enterprises",
+      "invoiceNumber": "9271",
       "reference": "Order #703",
       "lineItems": [
         {
@@ -181,14 +192,24 @@
           "extPrice": 1963.7,
           "category": "Hardware/Equipment",
           "amount": 1963.7
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 104.08,
+          "category": "Hardware/Equipment",
+          "amount": 104.08
         }
       ],
-      "invoiceTotal": 1963.7
+      "invoiceTotal": 2067.78
     },
     {
       "id": 4292,
       "date": "2026-07-23T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "9273",
       "reference": "Order #708",
       "lineItems": [
         {
@@ -199,14 +220,24 @@
           "extPrice": 1290.6,
           "category": "Hardware/Equipment",
           "amount": 1290.6
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 68.4,
+          "category": "Hardware/Equipment",
+          "amount": 68.4
         }
       ],
-      "invoiceTotal": 1290.6
+      "invoiceTotal": 1359
     },
     {
       "id": 4288,
       "date": "2026-07-14T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "9269",
       "reference": "Order #701",
       "lineItems": [
         {
@@ -225,6 +256,7 @@
       "id": 4289,
       "date": "2026-07-14T00:00:00Z",
       "company": "McLeod Enterprises",
+      "invoiceNumber": "9270",
       "reference": "Order #702",
       "lineItems": [
         {
@@ -235,14 +267,24 @@
           "extPrice": 599.98,
           "category": "Hardware/Equipment",
           "amount": 599.98
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 31.8,
+          "category": "Hardware/Equipment",
+          "amount": 31.8
         }
       ],
-      "invoiceTotal": 599.98
+      "invoiceTotal": 631.78
     },
     {
       "id": 4291,
       "date": "2026-07-23T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "9272",
       "reference": "Order #707",
       "lineItems": [
         {
@@ -253,14 +295,24 @@
           "extPrice": 166.94,
           "category": "Hardware/Equipment",
           "amount": 166.94
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 8.85,
+          "category": "Hardware/Equipment",
+          "amount": 8.85
         }
       ],
-      "invoiceTotal": 166.94
+      "invoiceTotal": 175.79
     },
     {
       "id": 4295,
       "date": "2026-07-28T00:00:00Z",
       "company": "TerraRoc",
+      "invoiceNumber": "9276",
       "reference": null,
       "lineItems": [
         {

@@ -1,28 +1,28 @@
 {
-  "generatedAt": "2026-08-12T10:23:12.465Z",
-  "totalSales": 7982.69,
+  "generatedAt": "2026-08-12T10:33:53.488Z",
+  "totalSales": 8301.59,
   "byCategory": {
-    "Hardware/Equipment": 5457.93,
+    "Hardware/Equipment": 5776.83,
     "Cloud/Consumption": 2524.76
   },
   "byClient": [
     {
       "client": "TerraRoc",
-      "hardwareTotal": 2377.99,
+      "hardwareTotal": 2517.22,
       "cloudTotal": 2214.77,
-      "total": 4592.76
+      "total": 4731.99
     },
     {
       "client": "Fincastle Baptist Church",
-      "hardwareTotal": 2419.97,
+      "hardwareTotal": 2564.66,
       "cloudTotal": 309.99,
-      "total": 2729.96
+      "total": 2874.65
     },
     {
       "client": "McLeod Enterprises",
-      "hardwareTotal": 659.97,
+      "hardwareTotal": 694.95,
       "cloudTotal": 0,
-      "total": 659.97
+      "total": 694.95
     }
   ],
   "invoices": [
@@ -30,6 +30,7 @@
       "id": 4126,
       "date": "2026-03-10T00:00:00Z",
       "company": "Fincastle Baptist Church",
+      "invoiceNumber": "9108",
       "reference": "Stone Church - Buena Vista",
       "lineItems": [
         {
@@ -67,14 +68,24 @@
           "extPrice": 409.99,
           "category": "Hardware/Equipment",
           "amount": 409.99
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 144.69,
+          "category": "Hardware/Equipment",
+          "amount": 144.69
         }
       ],
-      "invoiceTotal": 2729.96
+      "invoiceTotal": 2874.65
     },
     {
       "id": 4123,
       "date": "2026-03-04T00:00:00Z",
       "company": "TerraRoc",
+      "invoiceNumber": "9105",
       "reference": "Order #683",
       "lineItems": [
         {
@@ -112,14 +123,24 @@
           "extPrice": 409.99,
           "category": "Hardware/Equipment",
           "amount": 409.99
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 139.23,
+          "category": "Hardware/Equipment",
+          "amount": 139.23
         }
       ],
-      "invoiceTotal": 2626.99
+      "invoiceTotal": 2766.22
     },
     {
       "id": 4149,
       "date": "2026-03-31T00:00:00Z",
       "company": "TerraRoc",
+      "invoiceNumber": "9131",
       "reference": null,
       "lineItems": [
         {
@@ -138,6 +159,7 @@
       "id": 4128,
       "date": "2026-03-16T00:00:00Z",
       "company": "McLeod Enterprises",
+      "invoiceNumber": "9110",
       "reference": "Order #686",
       "lineItems": [
         {
@@ -148,9 +170,18 @@
           "extPrice": 659.97,
           "category": "Hardware/Equipment",
           "amount": 659.97
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 34.98,
+          "category": "Hardware/Equipment",
+          "amount": 34.98
         }
       ],
-      "invoiceTotal": 659.97
+      "invoiceTotal": 694.95
     }
   ],
   "flagged": [],

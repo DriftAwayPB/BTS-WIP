@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-12T10:23:10.442Z",
-  "totalSales": 2961.33,
+  "generatedAt": "2026-08-12T10:33:51.134Z",
+  "totalSales": 2996.79,
   "byCategory": {
-    "Hardware/Equipment": 1054.37,
+    "Hardware/Equipment": 1089.83,
     "Cloud/Consumption": 1906.96
   },
   "byClient": [
@@ -14,9 +14,9 @@
     },
     {
       "client": "Honeytree Early Learning Centers",
-      "hardwareTotal": 516.31,
+      "hardwareTotal": 542.23,
       "cloudTotal": 0,
-      "total": 516.31
+      "total": 542.23
     },
     {
       "client": "Fincastle Baptist Church",
@@ -26,9 +26,9 @@
     },
     {
       "client": "McLeod Enterprises",
-      "hardwareTotal": 197.26,
+      "hardwareTotal": 206.8,
       "cloudTotal": 0,
-      "total": 197.26
+      "total": 206.8
     }
   ],
   "invoices": [
@@ -36,6 +36,7 @@
       "id": 4119,
       "date": "2026-02-28T00:00:00Z",
       "company": "TerraRoc",
+      "invoiceNumber": "9101",
       "reference": null,
       "lineItems": [
         {
@@ -63,6 +64,7 @@
       "id": 4086,
       "date": "2026-02-25T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "9068",
       "reference": "Order #681",
       "lineItems": [
         {
@@ -73,14 +75,24 @@
           "extPrice": 379,
           "category": "Hardware/Equipment",
           "amount": 379
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 20.09,
+          "category": "Hardware/Equipment",
+          "amount": 20.09
         }
       ],
-      "invoiceTotal": 379
+      "invoiceTotal": 399.09
     },
     {
       "id": 4087,
       "date": "2026-02-26T00:00:00Z",
       "company": "Fincastle Baptist Church",
+      "invoiceNumber": "9069",
       "reference": "Order #682",
       "lineItems": [
         {
@@ -99,6 +111,7 @@
       "id": 4084,
       "date": "2026-02-23T00:00:00Z",
       "company": "McLeod Enterprises",
+      "invoiceNumber": "9066",
       "reference": "Order #680",
       "lineItems": [
         {
@@ -118,14 +131,24 @@
           "extPrice": 17.27,
           "category": "Hardware/Equipment",
           "amount": 17.27
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 9.54,
+          "category": "Hardware/Equipment",
+          "amount": 9.54
         }
       ],
-      "invoiceTotal": 197.26
+      "invoiceTotal": 206.8
     },
     {
       "id": 4085,
       "date": "2026-02-23T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "9067",
       "reference": "Order #679",
       "lineItems": [
         {
@@ -145,9 +168,18 @@
           "extPrice": 27.32,
           "category": "Hardware/Equipment",
           "amount": 27.32
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 5.83,
+          "category": "Hardware/Equipment",
+          "amount": 5.83
         }
       ],
-      "invoiceTotal": 137.31
+      "invoiceTotal": 143.14
     }
   ],
   "flagged": [],

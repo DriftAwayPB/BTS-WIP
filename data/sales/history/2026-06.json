@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-08-12T10:23:18.868Z",
-  "totalSales": 7080.06,
+  "generatedAt": "2026-08-12T10:34:01.911Z",
+  "totalSales": 7415.96,
   "byCategory": {
-    "Hardware/Equipment": 6337.56,
+    "Hardware/Equipment": 6673.46,
     "Cloud/Consumption": 742.5
   },
   "byClient": [
     {
       "client": "Premier Rollertainment",
-      "hardwareTotal": 4075.36,
+      "hardwareTotal": 4291.36,
       "cloudTotal": 0,
-      "total": 4075.36
+      "total": 4291.36
     },
     {
       "client": "Utilis Consulting",
-      "hardwareTotal": 2262.2,
+      "hardwareTotal": 2382.1,
       "cloudTotal": 0,
-      "total": 2262.2
+      "total": 2382.1
     },
     {
       "client": "TerraRoc",
@@ -30,6 +30,7 @@
       "id": 4233,
       "date": "2026-06-03T00:00:00Z",
       "company": "Utilis Consulting",
+      "invoiceNumber": "9215",
       "reference": "Intern Laptop",
       "lineItems": [
         {
@@ -40,14 +41,24 @@
           "extPrice": 2262.2,
           "category": "Hardware/Equipment",
           "amount": 2262.2
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 119.9,
+          "category": "Hardware/Equipment",
+          "amount": 119.9
         }
       ],
-      "invoiceTotal": 2262.2
+      "invoiceTotal": 2382.1
     },
     {
       "id": 4231,
       "date": "2026-06-03T00:00:00Z",
       "company": "Premier Rollertainment",
+      "invoiceNumber": "9213",
       "reference": "Roanoke Location",
       "lineItems": [
         {
@@ -58,14 +69,24 @@
           "extPrice": 2037.68,
           "category": "Hardware/Equipment",
           "amount": 2037.68
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 108,
+          "category": "Hardware/Equipment",
+          "amount": 108
         }
       ],
-      "invoiceTotal": 2037.68
+      "invoiceTotal": 2145.68
     },
     {
       "id": 4232,
       "date": "2026-06-03T00:00:00Z",
       "company": "Premier Rollertainment",
+      "invoiceNumber": "9214",
       "reference": "Lynchburg Location",
       "lineItems": [
         {
@@ -76,14 +97,24 @@
           "extPrice": 2037.68,
           "category": "Hardware/Equipment",
           "amount": 2037.68
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 108,
+          "category": "Hardware/Equipment",
+          "amount": 108
         }
       ],
-      "invoiceTotal": 2037.68
+      "invoiceTotal": 2145.68
     },
     {
       "id": 4287,
       "date": "2026-06-30T00:00:00Z",
       "company": "TerraRoc",
+      "invoiceNumber": "9254",
       "reference": null,
       "lineItems": [
         {

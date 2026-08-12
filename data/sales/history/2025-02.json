@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-08-12T10:22:37.328Z",
-  "totalSales": 2007.59,
+  "generatedAt": "2026-08-12T10:33:17.994Z",
+  "totalSales": 2034.17,
   "byCategory": {
-    "Hardware/Equipment": 2007.59,
+    "Hardware/Equipment": 2034.17,
     "Cloud/Consumption": 0
   },
   "byClient": [
     {
       "client": "Honeytree Early Learning Centers",
-      "hardwareTotal": 884.91,
+      "hardwareTotal": 893.17,
       "cloudTotal": 0,
-      "total": 884.91
+      "total": 893.17
     },
     {
       "client": "McLeod Enterprises",
@@ -26,9 +26,9 @@
     },
     {
       "client": "McLeod Family Foundation",
-      "hardwareTotal": 345.78,
+      "hardwareTotal": 364.1,
       "cloudTotal": 0,
-      "total": 345.78
+      "total": 364.1
     }
   ],
   "invoices": [
@@ -36,6 +36,7 @@
       "id": 3583,
       "date": "2025-02-24T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "8566",
       "reference": "Order #609",
       "lineItems": [
         {
@@ -63,6 +64,7 @@
       "id": 3584,
       "date": "2025-02-25T00:00:00Z",
       "company": "Fincastle Baptist Church",
+      "invoiceNumber": "8567",
       "reference": "Order #610",
       "lineItems": [
         {
@@ -81,6 +83,7 @@
       "id": 3585,
       "date": "2025-02-27T00:00:00Z",
       "company": "McLeod Enterprises",
+      "invoiceNumber": "8568",
       "reference": "Order #611",
       "lineItems": [
         {
@@ -99,6 +102,7 @@
       "id": 3563,
       "date": "2025-02-04T00:00:00Z",
       "company": "McLeod Family Foundation",
+      "invoiceNumber": "8546",
       "reference": "Order #605",
       "lineItems": [
         {
@@ -109,14 +113,24 @@
           "extPrice": 215.88,
           "category": "Hardware/Equipment",
           "amount": 215.88
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 11.44,
+          "category": "Hardware/Equipment",
+          "amount": 11.44
         }
       ],
-      "invoiceTotal": 215.88
+      "invoiceTotal": 227.32
     },
     {
       "id": 3586,
       "date": "2025-02-28T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "8569",
       "reference": "Order #613",
       "lineItems": [
         {
@@ -136,14 +150,52 @@
           "extPrice": 65.98,
           "category": "Hardware/Equipment",
           "amount": 65.98
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 8.26,
+          "category": "Hardware/Equipment",
+          "amount": 8.26
         }
       ],
-      "invoiceTotal": 155.92
+      "invoiceTotal": 164.18
+    },
+    {
+      "id": 3582,
+      "date": "2025-02-21T00:00:00Z",
+      "company": "McLeod Family Foundation",
+      "invoiceNumber": "8565",
+      "reference": "Order #608",
+      "lineItems": [
+        {
+          "description": "iPad Mini Charging Cable",
+          "productIdentifier": "IpadChargingCable",
+          "quantity": 10,
+          "unitPrice": 12.99,
+          "extPrice": 129.9,
+          "category": "Hardware/Equipment",
+          "amount": 129.9
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 6.88,
+          "category": "Hardware/Equipment",
+          "amount": 6.88
+        }
+      ],
+      "invoiceTotal": 136.78
     },
     {
       "id": 3581,
       "date": "2025-02-21T00:00:00Z",
       "company": "McLeod Enterprises",
+      "invoiceNumber": "8564",
       "reference": "Order #606",
       "lineItems": [
         {
@@ -157,24 +209,6 @@
         }
       ],
       "invoiceTotal": 129.99
-    },
-    {
-      "id": 3582,
-      "date": "2025-02-21T00:00:00Z",
-      "company": "McLeod Family Foundation",
-      "reference": "Order #608",
-      "lineItems": [
-        {
-          "description": "iPad Mini Charging Cable",
-          "productIdentifier": "IpadChargingCable",
-          "quantity": 10,
-          "unitPrice": 12.99,
-          "extPrice": 129.9,
-          "category": "Hardware/Equipment",
-          "amount": 129.9
-        }
-      ],
-      "invoiceTotal": 129.9
     }
   ],
   "flagged": [],

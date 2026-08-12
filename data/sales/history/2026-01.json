@@ -1,34 +1,34 @@
 {
-  "generatedAt": "2026-08-12T10:23:08.039Z",
-  "totalSales": 9906.46,
+  "generatedAt": "2026-08-12T10:33:48.774Z",
+  "totalSales": 10238.63,
   "byCategory": {
-    "Hardware/Equipment": 7655.78,
+    "Hardware/Equipment": 7987.95,
     "Cloud/Consumption": 2250.68
   },
   "byClient": [
     {
       "client": "McLeod Enterprises",
-      "hardwareTotal": 3503.39,
+      "hardwareTotal": 3689.07,
       "cloudTotal": 0,
-      "total": 3503.39
+      "total": 3689.07
     },
     {
       "client": "Honeytree Early Learning Centers",
-      "hardwareTotal": 3378.54,
+      "hardwareTotal": 3484.01,
       "cloudTotal": 0,
-      "total": 3378.54
+      "total": 3484.01
     },
     {
       "client": "TerraRoc",
-      "hardwareTotal": 449.97,
+      "hardwareTotal": 473.82,
       "cloudTotal": 2250.68,
-      "total": 2700.65
+      "total": 2724.5
     },
     {
       "client": "McLeod Family Foundation",
-      "hardwareTotal": 323.88,
+      "hardwareTotal": 341.05,
       "cloudTotal": 0,
-      "total": 323.88
+      "total": 341.05
     }
   ],
   "invoices": [
@@ -36,6 +36,7 @@
       "id": 4038,
       "date": "2026-01-14T00:00:00Z",
       "company": "McLeod Enterprises",
+      "invoiceNumber": "9020",
       "reference": "Order #675",
       "lineItems": [
         {
@@ -46,14 +47,24 @@
           "extPrice": 2644.39,
           "category": "Hardware/Equipment",
           "amount": 2644.39
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 140.15,
+          "category": "Hardware/Equipment",
+          "amount": 140.15
         }
       ],
-      "invoiceTotal": 2644.39
+      "invoiceTotal": 2784.54
     },
     {
       "id": 4080,
       "date": "2026-01-31T00:00:00Z",
       "company": "TerraRoc",
+      "invoiceNumber": "9062",
       "reference": null,
       "lineItems": [
         {
@@ -72,6 +83,7 @@
       "id": 4019,
       "date": "2026-01-05T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "9001",
       "reference": "Order #669",
       "lineItems": [
         {
@@ -100,14 +112,24 @@
           "extPrice": 30,
           "category": "Hardware/Equipment",
           "amount": 30
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 105.47,
+          "category": "Hardware/Equipment",
+          "amount": 105.47
         }
       ],
-      "invoiceTotal": 2020
+      "invoiceTotal": 2125.47
     },
     {
       "id": 4043,
       "date": "2026-01-30T00:00:00Z",
       "company": "McLeod Enterprises",
+      "invoiceNumber": "9025",
       "reference": "Order #676",
       "lineItems": [
         {
@@ -118,14 +140,24 @@
           "extPrice": 859,
           "category": "Hardware/Equipment",
           "amount": 859
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 45.53,
+          "category": "Hardware/Equipment",
+          "amount": 45.53
         }
       ],
-      "invoiceTotal": 859
+      "invoiceTotal": 904.53
     },
     {
       "id": 4044,
       "date": "2026-01-30T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "9026",
       "reference": "Order #677",
       "lineItems": [
         {
@@ -144,6 +176,7 @@
       "id": 4045,
       "date": "2026-01-30T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "9027",
       "reference": "Order #678",
       "lineItems": [
         {
@@ -162,6 +195,7 @@
       "id": 4018,
       "date": "2026-01-05T00:00:00Z",
       "company": "TerraRoc",
+      "invoiceNumber": "9000",
       "reference": "Order #673",
       "lineItems": [
         {
@@ -172,14 +206,24 @@
           "extPrice": 449.97,
           "category": "Hardware/Equipment",
           "amount": 449.97
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 23.85,
+          "category": "Hardware/Equipment",
+          "amount": 23.85
         }
       ],
-      "invoiceTotal": 449.97
+      "invoiceTotal": 473.82
     },
     {
       "id": 4037,
       "date": "2026-01-08T00:00:00Z",
       "company": "McLeod Family Foundation",
+      "invoiceNumber": "9019",
       "reference": "Chromebook Repair Parts",
       "lineItems": [
         {
@@ -217,9 +261,18 @@
           "extPrice": 89.98,
           "category": "Hardware/Equipment",
           "amount": 89.98
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 17.17,
+          "category": "Hardware/Equipment",
+          "amount": 17.17
         }
       ],
-      "invoiceTotal": 323.88
+      "invoiceTotal": 341.05
     }
   ],
   "flagged": [],

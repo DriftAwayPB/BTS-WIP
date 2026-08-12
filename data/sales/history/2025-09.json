@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-08-12T10:22:51.151Z",
-  "totalSales": 7623.01,
+  "generatedAt": "2026-08-12T10:33:34.397Z",
+  "totalSales": 7892.79,
   "byCategory": {
-    "Hardware/Equipment": 5769.44,
+    "Hardware/Equipment": 6039.22,
     "Cloud/Consumption": 1853.57
   },
   "byClient": [
     {
       "client": "Honeytree Early Learning Centers",
-      "hardwareTotal": 3632.01,
+      "hardwareTotal": 3788.51,
       "cloudTotal": 0,
-      "total": 3632.01
+      "total": 3788.51
     },
     {
       "client": "McLeod Enterprises",
-      "hardwareTotal": 2137.43,
+      "hardwareTotal": 2250.71,
       "cloudTotal": 0,
-      "total": 2137.43
+      "total": 2250.71
     },
     {
       "client": "TerraRoc",
@@ -30,6 +30,7 @@
       "id": 3845,
       "date": "2025-09-15T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "8828",
       "reference": "Order #641",
       "lineItems": [
         {
@@ -40,14 +41,24 @@
           "extPrice": 2952.74,
           "category": "Hardware/Equipment",
           "amount": 2952.74
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 156.5,
+          "category": "Hardware/Equipment",
+          "amount": 156.5
         }
       ],
-      "invoiceTotal": 2952.74
+      "invoiceTotal": 3109.24
     },
     {
       "id": 3846,
       "date": "2025-09-22T00:00:00Z",
       "company": "McLeod Enterprises",
+      "invoiceNumber": "8829",
       "reference": "Order #642",
       "lineItems": [
         {
@@ -58,14 +69,24 @@
           "extPrice": 2137.43,
           "category": "Hardware/Equipment",
           "amount": 2137.43
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 113.28,
+          "category": "Hardware/Equipment",
+          "amount": 113.28
         }
       ],
-      "invoiceTotal": 2137.43
+      "invoiceTotal": 2250.71
     },
     {
       "id": 3884,
       "date": "2025-09-30T00:00:00Z",
       "company": "TerraRoc",
+      "invoiceNumber": "8867",
       "reference": null,
       "lineItems": [
         {
@@ -84,6 +105,7 @@
       "id": 3847,
       "date": "2025-09-23T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "8830",
       "reference": "Order #643",
       "lineItems": [
         {

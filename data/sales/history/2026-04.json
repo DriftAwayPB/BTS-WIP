@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-12T10:23:14.553Z",
-  "totalSales": 4814.82,
+  "generatedAt": "2026-08-12T10:33:56.155Z",
+  "totalSales": 4896.54,
   "byCategory": {
-    "Hardware/Equipment": 2900.5,
+    "Hardware/Equipment": 2982.22,
     "Cloud/Consumption": 1914.32
   },
   "byClient": [
@@ -13,28 +13,28 @@
       "total": 1914.32
     },
     {
+      "client": "Fincastle Baptist Church",
+      "hardwareTotal": 1397.32,
+      "cloudTotal": 0,
+      "total": 1397.32
+    },
+    {
       "client": "Honeytree Early Learning Centers",
       "hardwareTotal": 1358.54,
       "cloudTotal": 0,
       "total": 1358.54
     },
     {
-      "client": "Fincastle Baptist Church",
-      "hardwareTotal": 1326.99,
-      "cloudTotal": 0,
-      "total": 1326.99
-    },
-    {
       "client": "Williams Law Firm",
-      "hardwareTotal": 159.99,
+      "hardwareTotal": 168.47,
       "cloudTotal": 0,
-      "total": 159.99
+      "total": 168.47
     },
     {
       "client": "McLeod Enterprises",
-      "hardwareTotal": 54.98,
+      "hardwareTotal": 57.89,
       "cloudTotal": 0,
-      "total": 54.98
+      "total": 57.89
     }
   ],
   "invoices": [
@@ -42,6 +42,7 @@
       "id": 4191,
       "date": "2026-04-30T00:00:00Z",
       "company": "TerraRoc",
+      "invoiceNumber": "9173",
       "reference": null,
       "lineItems": [
         {
@@ -60,6 +61,7 @@
       "id": 4164,
       "date": "2026-04-14T00:00:00Z",
       "company": "Fincastle Baptist Church",
+      "invoiceNumber": "9146",
       "reference": "Order #688",
       "lineItems": [
         {
@@ -79,14 +81,24 @@
           "extPrice": 732.44,
           "category": "Hardware/Equipment",
           "amount": 732.44
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 70.33,
+          "category": "Hardware/Equipment",
+          "amount": 70.33
         }
       ],
-      "invoiceTotal": 1326.99
+      "invoiceTotal": 1397.32
     },
     {
       "id": 4166,
       "date": "2026-04-16T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "9148",
       "reference": "Order #690",
       "lineItems": [
         {
@@ -105,6 +117,7 @@
       "id": 4167,
       "date": "2026-04-16T00:00:00Z",
       "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "9149",
       "reference": "Order #691",
       "lineItems": [
         {
@@ -123,6 +136,7 @@
       "id": 4163,
       "date": "2026-04-09T00:00:00Z",
       "company": "Williams Law Firm",
+      "invoiceNumber": "9145",
       "reference": "Order #687",
       "lineItems": [
         {
@@ -133,14 +147,24 @@
           "extPrice": 159.99,
           "category": "Hardware/Equipment",
           "amount": 159.99
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 8.48,
+          "category": "Hardware/Equipment",
+          "amount": 8.48
         }
       ],
-      "invoiceTotal": 159.99
+      "invoiceTotal": 168.47
     },
     {
       "id": 4165,
       "date": "2026-04-14T00:00:00Z",
       "company": "McLeod Enterprises",
+      "invoiceNumber": "9147",
       "reference": "Order #689",
       "lineItems": [
         {
@@ -151,9 +175,18 @@
           "extPrice": 54.98,
           "category": "Hardware/Equipment",
           "amount": 54.98
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 2.91,
+          "category": "Hardware/Equipment",
+          "amount": 2.91
         }
       ],
-      "invoiceTotal": 54.98
+      "invoiceTotal": 57.89
     }
   ],
   "flagged": [],
