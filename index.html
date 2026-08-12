@@ -1021,11 +1021,261 @@
   }
 
 
-  // ---------- Sales Tab (placeholder) ----------
+  // ---------- Sales Tab ----------
+  const SALES_MANIFEST_URL = `${BASE_URL}/data/sales/manifest.json`;
+  const salesMonthUrl = (key) => `${BASE_URL}/data/sales/history/${key}.json`;
+
+  // Simple bar chart (no forecast — hardware/one-off sales are lumpy by
+  // nature, extrapolating a trend line onto them would be misleading in
+  // a way it isn't for genuinely recurring MRR).
+  function SalesTrendChart({ months, selectedMonth, onMonthClick }) {
+    const [hoverIdx, setHoverIdx] = useState(null);
+    const W = 900, H = 220, padL = 46, padR = 14, padT = 12, padB = 26;
+    const innerW = W - padL - padR;
+    const innerH = H - padT - padB;
+
+    const maxVal = Math.max(1, ...months.map((m) => m.total));
+    const step = months.length > 1 ? innerW / months.length : innerW;
+    const barWidth = Math.min(48, step * 0.55);
+
+    const xAt = (i) => padL + i * step + step / 2;
+    const yAt = (v) => padT + innerH - (v / maxVal) * innerH;
+    const gridLines = 4;
+    const gridVals = Array.from({ length: gridLines + 1 }, (_, i) => (maxVal / gridLines) * i);
+
+    const hovered = hoverIdx !== null ? months[hoverIdx] : null;
+    let tooltip = null;
+    if (hovered) {
+      const boxW = 160, boxH = 68, gap = 10;
+      const px = xAt(hoverIdx);
+      let bx = px + gap;
+      if (bx + boxW > W - padR) bx = px - gap - boxW;
+      let by = yAt(hovered.total) - boxH - gap;
+      if (by < padT) by = padT + gap;
+
+      tooltip = h("g", { style: { pointerEvents: "none" } },
+        h("rect", { x: bx, y: by, width: boxW, height: boxH, rx: 6, fill: colors.panel, stroke: colors.hairline, strokeWidth: "1" }),
+        h("text", { x: bx + 10, y: by + 18, fontFamily: FONT_MONO, fontSize: "11", fontWeight: "600", fill: colors.hi }, fmtMonthLabel(hovered.month)),
+        h("text", { x: bx + 10, y: by + 33, fontFamily: FONT_MONO, fontSize: "10", fill: colors.hi }, `Total: ${fmtCurrency(hovered.total)}`),
+        h("text", { x: bx + 10, y: by + 47, fontFamily: FONT_MONO, fontSize: "10", fill: colors.finance }, `Hardware: ${fmtCurrency(hovered.hardware)}`),
+        h("text", { x: bx + 10, y: by + 61, fontFamily: FONT_MONO, fontSize: "10", fill: colors.bar }, `Cloud: ${fmtCurrency(hovered.cloud)}`)
+      );
+    }
+
+    return h("svg", { viewBox: `0 0 ${W} ${H}`, style: { width: "100%", height: "auto", display: "block" } },
+      gridVals.map((v, i) => h("g", { key: "grid" + i },
+        h("line", { x1: padL, x2: W - padR, y1: yAt(v), y2: yAt(v), stroke: colors.hairline, strokeWidth: "1" }),
+        h("text", { x: padL - 8, y: yAt(v) + 4, textAnchor: "end", fontFamily: FONT_MONO, fontSize: "10", fill: colors.faint }, Math.round(v / 1000) + "k")
+      )),
+      months.map((m, i) => {
+        const hwH = Math.max(0, yAt(0) - yAt(m.hardware));
+        const cloudH = Math.max(0, yAt(m.hardware) - yAt(m.total));
+        const isSelected = m.month === selectedMonth;
+        const opacity = isSelected ? 0.9 : 0.55;
+        return h("g", { key: "bar" + i },
+          h("rect", { x: xAt(i) - barWidth / 2, y: yAt(m.hardware), width: barWidth, height: hwH, fill: colors.finance, opacity, rx: 2 }),
+          h("rect", { x: xAt(i) - barWidth / 2, y: yAt(m.total), width: barWidth, height: cloudH, fill: colors.bar, opacity, rx: 2 }),
+          isSelected && h("rect", { x: xAt(i) - barWidth / 2 - 2, y: yAt(m.total) - 2, width: barWidth + 4, height: hwH + cloudH + 4, fill: "none", stroke: colors.hi, strokeWidth: 1.5, rx: 3 })
+        );
+      }),
+      months.map((m, i) => h("text", {
+        key: "lbl" + i, x: xAt(i), y: H - 6, textAnchor: "middle", fontFamily: FONT_MONO, fontSize: "10",
+        fill: m.month === selectedMonth ? colors.hi : colors.faint
+      }, fmtMonthLabel(m.month).split(" ")[0].slice(0, 3))),
+      months.map((m, i) => h("rect", {
+        key: "hit" + i, x: xAt(i) - step / 2, y: padT, width: step, height: innerH, fill: "transparent",
+        style: { cursor: "pointer" },
+        onMouseEnter: () => setHoverIdx(i),
+        onMouseLeave: () => setHoverIdx((prev) => (prev === i ? null : prev)),
+        onClick: () => onMonthClick && onMonthClick(m.month),
+      })),
+      tooltip
+    );
+  }
+
   function SalesTab() {
-    return h("div", { style: { background: colors.bg, minHeight: "60vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 8, color: colors.muted, fontFamily: FONT_BODY } },
-      h("div", { style: { fontFamily: FONT_DISPLAY, fontSize: 18, color: colors.hi } }, "Sales — coming soon"),
-      h("div", { style: { fontSize: 13, textAlign: "center", maxWidth: 340 } }, "Hardware, licensing renewals, and one-off product sales, pulled from ConnectWise invoice Product line items.")
+    const [monthsMap, setMonthsMap] = useState(null);
+    const [manifest, setManifest] = useState(null);
+    const [selectedMonth, setSelectedMonth] = useState(null);
+    const [error, setError] = useState(null);
+    const [expandedClient, setExpandedClient] = useState(null);
+    const [updateState, setUpdateState] = useState("idle");
+    const [updateMessage, setUpdateMessage] = useState("");
+
+    async function loadAll() {
+      try {
+        const manifestRes = await fetch(`${SALES_MANIFEST_URL}?t=${Date.now()}`);
+        if (!manifestRes.ok) throw new Error(`HTTP ${manifestRes.status}`);
+        const manifestJson = await manifestRes.json();
+        setManifest(manifestJson);
+
+        const entries = await Promise.all(
+          manifestJson.months.map(async (key) => {
+            const res = await fetch(`${salesMonthUrl(key)}?t=${Date.now()}`);
+            if (!res.ok) throw new Error(`HTTP ${res.status} for ${key}`);
+            return [key, await res.json()];
+          })
+        );
+        const map = Object.fromEntries(entries);
+        setMonthsMap(map);
+        setSelectedMonth((prev) => (prev && map[prev] ? prev : manifestJson.latest));
+        setError(null);
+        return map[manifestJson.latest];
+      } catch (e) {
+        setError(e.message);
+        return null;
+      }
+    }
+
+    useEffect(() => { loadAll(); }, []);
+
+    async function handleUpdateClick() {
+      setUpdateState("triggering");
+      setUpdateMessage("Triggering WIP + MRR + Sales pulls…");
+      try {
+        const res = await fetch(TRIGGER_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-Trigger-Key": TRIGGER_KEY.trim() },
+        });
+        const body = await res.json().catch(() => ({}));
+        if (!res.ok || !body.ok) {
+          const detail = body.error || (body.results ? body.results.filter((r) => !r.ok).map((r) => `${r.workflowFile}: ${r.status}`).join(", ") : null);
+          throw new Error(detail || `HTTP ${res.status}`);
+        }
+
+        setUpdateState("waiting");
+        setUpdateMessage("Pulls running — checking for fresh Sales data…");
+
+        const generatedAtBefore = monthsMap && manifest ? monthsMap[manifest.latest]?.generatedAt : null;
+        let tries = 0;
+        const poll = setInterval(async () => {
+          tries += 1;
+          const fresh = await loadAll();
+          const gotNewData = fresh && fresh.generatedAt !== generatedAtBefore;
+          if (gotNewData || tries >= FAST_POLL_MAX_TRIES) {
+            clearInterval(poll);
+            setUpdateState(gotNewData ? "idle" : "error");
+            setUpdateMessage(gotNewData ? "" : "Still processing — check the Actions tab if this takes more than a few minutes.");
+          }
+        }, FAST_POLL_MS);
+      } catch (e) {
+        setUpdateState("error");
+        setUpdateMessage(`Couldn't trigger update: ${e.message}`);
+      }
+    }
+
+    if (!monthsMap || !manifest || !selectedMonth) {
+      return h("div", { style: { background: colors.bg, minHeight: "60vh", display: "flex", alignItems: "center", justifyContent: "center", color: colors.muted, fontFamily: FONT_MONO } },
+        error ? `Error loading Sales data: ${error}` : "Loading Sales data…"
+      );
+    }
+
+    const data = monthsMap[selectedMonth];
+    const hardware = data.byCategory?.["Hardware/Equipment"] || 0;
+    const cloud = data.byCategory?.["Cloud/Consumption"] || 0;
+
+    const trendMonths = manifest.months.map((key) => {
+      const m = monthsMap[key];
+      return {
+        month: key,
+        total: m?.totalSales || 0,
+        hardware: m?.byCategory?.["Hardware/Equipment"] || 0,
+        cloud: m?.byCategory?.["Cloud/Consumption"] || 0,
+      };
+    });
+
+    return h("div", { style: { background: colors.bg, minHeight: "100vh", padding: "28px 24px 60px", fontFamily: FONT_BODY, color: colors.hi } },
+      h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14, flexWrap: "wrap", gap: 10 } },
+        h("div", null,
+          h("div", { style: { fontFamily: FONT_DISPLAY, fontWeight: 700, fontSize: 22, letterSpacing: "-0.01em" } }, "Sales — Hardware & One-Off Revenue"),
+          h("div", { style: { fontFamily: FONT_MONO, fontSize: 11.5, color: colors.faint, marginTop: 3 } },
+            `SOURCE: CONNECTWISE STANDARD INVOICES · viewing ${fmtMonthLabel(selectedMonth)}${selectedMonth === manifest.latest ? " (latest)" : ""} · snapshot ${new Date(data.generatedAt).toLocaleString()}`
+          )
+        ),
+        h("div", { style: { display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 4 } },
+          h("button", {
+            onClick: handleUpdateClick,
+            disabled: updateState === "triggering" || updateState === "waiting",
+            style: {
+              display: "flex", alignItems: "center", gap: 6, padding: "6px 14px", borderRadius: 6,
+              background: colors.finance, color: colors.bg, border: "none", fontFamily: FONT_MONO,
+              fontSize: 11.5, fontWeight: 600, cursor: (updateState === "triggering" || updateState === "waiting") ? "default" : "pointer",
+              opacity: (updateState === "triggering" || updateState === "waiting") ? 0.6 : 1,
+            }
+          }, updateState === "triggering" ? "Triggering…" : updateState === "waiting" ? "Updating…" : "⟳ Update Now"),
+          updateMessage && h("div", { style: { fontFamily: FONT_MONO, fontSize: 10, color: updateState === "error" ? colors.behind : colors.muted, maxWidth: 220, textAlign: "right" } }, updateMessage)
+        )
+      ),
+
+      h("div", { style: {
+        display: "flex", gap: 10, alignItems: "flex-start", padding: "10px 14px",
+        background: colors.panelAlt || colors.panel, border: `1px solid ${colors.hairline}`, borderRadius: 8,
+        fontSize: 12, color: colors.muted, marginBottom: 22
+      } }, "Only real product/hardware sales are counted here — the monthly WIP billing batch that also lands on Standard invoices is excluded, since that revenue is already tracked on the WIP tab."),
+
+      h("div", { className: "grid-4", style: { gridTemplateColumns: "repeat(3, 1fr)", marginBottom: 22 } },
+        h(StatTile, { label: "Total Sales", value: fmtCurrency(data.totalSales), sub: `${data.invoices?.length || 0} orders this month`, accent: colors.finance, glyph: "●" }),
+        h(StatTile, { label: "Hardware/Equipment", value: fmtCurrency(hardware), sub: `${data.totalSales ? ((hardware / data.totalSales) * 100).toFixed(0) : 0}% of total`, accent: colors.finance, glyph: "▣" }),
+        h(StatTile, { label: "Cloud/Consumption", value: fmtCurrency(cloud), sub: `${data.totalSales ? ((cloud / data.totalSales) * 100).toFixed(0) : 0}% of total`, accent: colors.bar, glyph: "◇" })
+      ),
+
+      h(Panel, { style: { marginBottom: 22 } },
+        h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 } },
+          h(SectionLabel, { accent: colors.finance }, "Sales by month"),
+          trendMonths.length < 2 && h("span", { style: { fontFamily: FONT_MONO, fontSize: 10.5, color: colors.faint } }, "History builds as pulls accumulate")
+        ),
+        h(SalesTrendChart, { months: trendMonths, selectedMonth, onMonthClick: (m) => setSelectedMonth(m) }),
+        h("div", { style: { display: "flex", gap: 18, marginTop: 8, fontSize: 12, color: colors.muted } },
+          h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: colors.finance, opacity: 0.7 } }), "Hardware/Equipment"),
+          h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: colors.bar, opacity: 0.7 } }), "Cloud/Consumption")
+        ),
+        h("div", { style: { marginTop: 6, fontSize: 10.5, fontFamily: FONT_MONO, color: colors.faint } }, "Hover a month for values · click a month for detail below · no forecast shown — one-off sales are too lumpy to trend-project meaningfully")
+      ),
+
+      h(SectionLabel, { accent: colors.bar }, `Sales by client — ${fmtMonthLabel(selectedMonth)}`),
+      h(Panel, null,
+        h("div", { style: { display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 8, padding: "0 4px 10px", borderBottom: `1px solid ${colors.hairline}`, marginBottom: 6 } },
+          ["Client", "Hardware", "Cloud", "Total"].map((label, i) =>
+            h("div", { key: i, style: { fontFamily: FONT_MONO, fontSize: 10.5, color: colors.faint, textTransform: "uppercase", letterSpacing: "0.08em" } }, label)
+          )
+        ),
+        (data.byClient || []).length === 0
+          ? h("div", { style: { fontFamily: FONT_MONO, fontSize: 12, color: colors.faint, padding: "8px 4px" } }, "No product sales this month.")
+          : (data.byClient || []).map((c, i) => {
+          const isOpen = expandedClient === c.client;
+          const clientInvoices = (data.invoices || []).filter((inv) => inv.company === c.client);
+          return h("div", { key: i },
+            h("div", {
+              className: "row-hover",
+              onClick: () => setExpandedClient(isOpen ? null : c.client),
+              style: { display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 8, padding: "10px 4px", alignItems: "center", borderRadius: 6, fontSize: 14, cursor: "pointer" }
+            },
+              h("div", { style: { color: colors.hi, display: "flex", alignItems: "center", gap: 6 } },
+                h("span", { style: { fontSize: 10, color: colors.faint, transform: isOpen ? "rotate(90deg)" : "rotate(0deg)", transition: "transform 0.15s", display: "inline-block" } }, "›"),
+                c.client
+              ),
+              h("div", { style: { fontFamily: FONT_MONO, color: colors.muted } }, fmtCurrency(c.hardwareTotal)),
+              h("div", { style: { fontFamily: FONT_MONO, color: colors.muted } }, fmtCurrency(c.cloudTotal)),
+              h("div", { style: { fontFamily: FONT_MONO, color: colors.finance } }, fmtCurrency(c.total))
+            ),
+            isOpen && h("div", { style: { padding: "4px 4px 16px 24px" } },
+              clientInvoices.length === 0
+                ? h("div", { style: { fontFamily: FONT_MONO, fontSize: 11.5, color: colors.faint } }, "No order detail available.")
+                : clientInvoices.map((inv, ii) => h("div", { key: ii, style: { marginBottom: 14 } },
+                    h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 4 } },
+                      h("div", { style: { fontSize: 12.5, color: colors.hi } }, `${inv.reference || "Order"} `, h("span", { style: { color: colors.faint, fontFamily: FONT_MONO, fontSize: 10.5 } }, `(${fmtMD(inv.date)})`)),
+                      h("div", { style: { fontFamily: FONT_MONO, fontSize: 12.5, color: colors.finance } }, fmtCurrency(inv.invoiceTotal))
+                    ),
+                    (inv.lineItems || []).map((li, lii) => h("div", { key: lii, style: { display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 8, padding: "4px 4px", fontSize: 12, color: colors.muted } },
+                      h("div", null, `${li.description}${li.quantity > 1 ? ` ×${li.quantity}` : ""}`),
+                      h("div", { style: { color: li.category === "Cloud/Consumption" ? colors.bar : colors.finance, fontFamily: FONT_MONO, fontSize: 10.5 } }, li.category === "Cloud/Consumption" ? "Cloud" : "Hardware"),
+                      h("div", { style: { fontFamily: FONT_MONO } }, fmtCurrency(li.amount))
+                    ))
+                  ))
+            )
+          );
+        })
+      )
     );
   }
 
@@ -1033,7 +1283,7 @@
   const TABS = [
     { key: "wip", label: "WIP" },
     { key: "mrr", label: "MRR" },
-    { key: "sales", label: "Sales", disabled: true },
+    { key: "sales", label: "Sales" },
   ];
 
   function TabBar({ active, onChange }) {
