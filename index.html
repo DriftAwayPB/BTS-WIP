@@ -1263,7 +1263,7 @@
                 ? h("div", { style: { fontFamily: FONT_MONO, fontSize: 11.5, color: colors.faint } }, "No order detail available.")
                 : clientInvoices.map((inv, ii) => h("div", { key: ii, style: { marginBottom: 14 } },
                     h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 4 } },
-                      h("div", { style: { fontSize: 12.5, color: colors.hi } }, `${inv.reference || "Order"} `, h("span", { style: { color: colors.faint, fontFamily: FONT_MONO, fontSize: 10.5 } }, `(${fmtMD(inv.date)})`)),
+                      h("div", { style: { fontSize: 12.5, color: colors.hi } }, `Invoice #${inv.invoiceNumber || inv.id} `, h("span", { style: { color: colors.faint, fontFamily: FONT_MONO, fontSize: 10.5 } }, `(${fmtMD(inv.date)})`)),
                       h("div", { style: { fontFamily: FONT_MONO, fontSize: 12.5, color: colors.finance } }, fmtCurrency(inv.invoiceTotal))
                     ),
                     (inv.lineItems || []).map((li, lii) => h("div", { key: lii, style: { display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 8, padding: "4px 4px", fontSize: 12, color: colors.muted } },
