@@ -92,7 +92,7 @@ async function fetchInvoiceProducts(invoiceId) {
   return res.json();
 }
 
-const DEFAULT_CLOUD_KEYWORDS = ["azure consumption", "consumption", "cloud"];
+const DEFAULT_CLOUD_KEYWORDS = ["consumption"];
 function parseCloudKeywords() {
   if (!SALES_CLOUD_KEYWORDS) return DEFAULT_CLOUD_KEYWORDS;
   return SALES_CLOUD_KEYWORDS.split(",").map((s) => s.trim()).filter(Boolean);
