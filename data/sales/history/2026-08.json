@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-08-12T10:21:46.243Z",
+  "isCurrentMonth": true,
+  "currentDate": "2026-08-12",
+  "totalSales": 0,
+  "byCategory": {
+    "Hardware/Equipment": 0,
+    "Cloud/Consumption": 0
+  },
+  "byClient": [],
+  "invoices": [],
+  "flagged": []
+}
