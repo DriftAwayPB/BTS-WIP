@@ -1184,6 +1184,27 @@
       };
     });
 
+    // Sales tax liability — sums the "Sales Tax" line items already
+    // captured per invoice (added for reconciliation earlier), no new
+    // data pull needed. Franklin County (unincorporated) tax on
+    // physical products.
+    function salesTaxForMonth(monthData) {
+      if (!monthData?.invoices) return 0;
+      let sum = 0;
+      for (const inv of monthData.invoices) {
+        for (const li of inv.lineItems || []) {
+          if (li.description === "Sales Tax") sum += li.amount || 0;
+        }
+      }
+      return Number(sum.toFixed(2));
+    }
+
+    const salesTaxThisMonth = salesTaxForMonth(data);
+    const salesTaxByMonth = manifest.months
+      .slice()
+      .reverse() // most recent first — this is a "what do I owe" list
+      .map((key) => ({ month: key, tax: salesTaxForMonth(monthsMap[key]) }));
+
     return h("div", { style: { background: colors.bg, minHeight: "100vh", padding: "28px 24px 60px", fontFamily: FONT_BODY, color: colors.hi } },
       h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14, flexWrap: "wrap", gap: 10 } },
         h("div", null,
@@ -1217,6 +1238,28 @@
         h(StatTile, { label: "Total Sales", value: fmtCurrency(data.totalSales), sub: `${data.invoices?.length || 0} orders this month`, accent: colors.finance, glyph: "●" }),
         h(StatTile, { label: "Hardware/Equipment", value: fmtCurrency(hardware), sub: `${data.totalSales ? ((hardware / data.totalSales) * 100).toFixed(0) : 0}% of total`, accent: colors.finance, glyph: "▣" }),
         h(StatTile, { label: "Cloud/Consumption", value: fmtCurrency(cloud), sub: `${data.totalSales ? ((cloud / data.totalSales) * 100).toFixed(0) : 0}% of total`, accent: colors.bar, glyph: "◇" })
+      ),
+
+      h(Panel, { style: { marginBottom: 22 } },
+        h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14, flexWrap: "wrap", gap: 10 } },
+          h(SectionLabel, { accent: colors.goalLine }, "Sales tax liability — Franklin County"),
+          h("div", { style: { fontFamily: FONT_MONO, fontSize: 10.5, color: colors.faint } }, "from tax already itemized per invoice, no separate calculation")
+        ),
+        h("div", { style: { display: "flex", alignItems: "baseline", gap: 10, marginBottom: 18 } },
+          h("div", { style: { fontFamily: FONT_MONO, fontSize: 30, fontWeight: 600, color: colors.hi } }, fmtCurrency(salesTaxThisMonth)),
+          h("div", { style: { fontSize: 12.5, color: colors.muted } }, `collected ${fmtMonthLabel(selectedMonth)}${selectedMonth === manifest.latest ? " (so far)" : ""}`)
+        ),
+        h("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, padding: "0 4px 8px", borderBottom: `1px solid ${colors.hairline}`, marginBottom: 4 } },
+          ["Month", "Tax Collected"].map((label, i) =>
+            h("div", { key: i, style: { fontFamily: FONT_MONO, fontSize: 10.5, color: colors.faint, textTransform: "uppercase", letterSpacing: "0.08em" } }, label)
+          )
+        ),
+        salesTaxByMonth.map((m, i) =>
+          h("div", { key: i, className: "row-hover", style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, padding: "8px 4px", borderRadius: 6, fontSize: 13.5 } },
+            h("div", { style: { color: m.month === selectedMonth ? colors.hi : colors.muted, fontFamily: FONT_MONO } }, fmtMonthLabel(m.month)),
+            h("div", { style: { fontFamily: FONT_MONO, color: m.month === selectedMonth ? colors.hi : colors.muted } }, fmtCurrency(m.tax))
+          )
+        )
       ),
 
       h(Panel, { style: { marginBottom: 22 } },
