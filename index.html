@@ -232,6 +232,10 @@
         opacity: "0.55",
         rx: "2",
       })),
+      data.map((d, i) => d.accrued > 0 && h("text", {
+        key: "barval" + i, x: xAt(i), y: yAt(d.accrued) - 5, textAnchor: "middle",
+        fontFamily: FONT_MONO, fontSize: "9", fill: colors.bar
+      }, fmtCurrency(d.accrued))),
       h("path", { d: goalPath, fill: "none", stroke: colors.goalLine, strokeWidth: "1.5", strokeDasharray: "4 4" }),
       h("path", { d: cumulativePath, fill: "none", stroke: colors.finance, strokeWidth: "2.5" }),
       data.map((d, i) => h("circle", {
