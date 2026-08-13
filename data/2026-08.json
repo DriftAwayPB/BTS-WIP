@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-12T12:35:51.057Z",
+  "generatedAt": "2026-08-13T10:17:54.661Z",
   "month": "2026-08",
   "isCurrentMonth": true,
   "monthGoal": 21000,
   "weekdaysInMonth": 21,
-  "weekdaysElapsed": 8,
-  "weekdaysRemaining": 13,
-  "currentDate": "2026-08-12",
+  "weekdaysElapsed": 9,
+  "weekdaysRemaining": 12,
+  "currentDate": "2026-08-13",
   "dailyAccrual": [
     {
       "date": "2026-08-03",
@@ -14,7 +14,7 @@
     },
     {
       "date": "2026-08-04",
-      "accrued": 495
+      "accrued": 645
     },
     {
       "date": "2026-08-05",
@@ -26,7 +26,7 @@
     },
     {
       "date": "2026-08-07",
-      "accrued": 519
+      "accrued": 619
     },
     {
       "date": "2026-08-10",
@@ -34,14 +34,65 @@
     },
     {
       "date": "2026-08-11",
-      "accrued": 107
+      "accrued": 132
+    },
+    {
+      "date": "2026-08-12",
+      "accrued": 270
     }
   ],
   "clientBreakdown": [
     {
+      "client": "Honeytree Early Learning Centers",
+      "mtd": 1475,
+      "pctOfGoal": 7,
+      "daily": [
+        {
+          "date": "2026-08-03",
+          "hours": 9,
+          "billed": 450
+        },
+        {
+          "date": "2026-08-04",
+          "hours": 5,
+          "billed": 250
+        },
+        {
+          "date": "2026-08-05",
+          "hours": 5.75,
+          "billed": 313
+        },
+        {
+          "date": "2026-08-06",
+          "hours": 3,
+          "billed": 150
+        },
+        {
+          "date": "2026-08-07",
+          "hours": 1.5,
+          "billed": 75
+        },
+        {
+          "date": "2026-08-10",
+          "hours": 1,
+          "billed": 50
+        },
+        {
+          "date": "2026-08-11",
+          "hours": 0.5,
+          "billed": 25
+        },
+        {
+          "date": "2026-08-12",
+          "hours": 3.25,
+          "billed": 163
+        }
+      ]
+    },
+    {
       "client": "McLeod Enterprises",
-      "mtd": 1175,
-      "pctOfGoal": 5.6,
+      "mtd": 1338,
+      "pctOfGoal": 6.4,
       "daily": [
         {
           "date": "2026-08-03",
@@ -65,8 +116,8 @@
         },
         {
           "date": "2026-08-07",
-          "hours": 1,
-          "billed": 50
+          "hours": 3,
+          "billed": 150
         },
         {
           "date": "2026-08-10",
@@ -77,49 +128,17 @@
           "date": "2026-08-11",
           "hours": 1,
           "billed": 50
-        }
-      ]
-    },
-    {
-      "client": "Honeytree Early Learning Centers",
-      "mtd": 1138,
-      "pctOfGoal": 5.4,
-      "daily": [
-        {
-          "date": "2026-08-03",
-          "hours": 9,
-          "billed": 450
         },
         {
-          "date": "2026-08-04",
-          "hours": 2,
-          "billed": 100
-        },
-        {
-          "date": "2026-08-05",
-          "hours": 5.75,
-          "billed": 313
-        },
-        {
-          "date": "2026-08-06",
-          "hours": 3,
-          "billed": 150
-        },
-        {
-          "date": "2026-08-07",
-          "hours": 1.5,
-          "billed": 75
-        },
-        {
-          "date": "2026-08-10",
-          "hours": 1,
-          "billed": 50
+          "date": "2026-08-12",
+          "hours": 0.5,
+          "billed": 63
         }
       ]
     },
     {
       "client": "McLeod Family Foundation",
-      "mtd": 475,
+      "mtd": 488,
       "pctOfGoal": 2.3,
       "daily": [
         {
@@ -151,6 +170,11 @@
           "date": "2026-08-11",
           "hours": 0.5,
           "billed": 25
+        },
+        {
+          "date": "2026-08-12",
+          "hours": 0.25,
+          "billed": 13
         }
       ]
     },
@@ -209,6 +233,28 @@
       ]
     },
     {
+      "client": "Premier Rollertainment",
+      "mtd": 194,
+      "pctOfGoal": 0.9,
+      "daily": [
+        {
+          "date": "2026-08-04",
+          "hours": 0.25,
+          "billed": 32
+        },
+        {
+          "date": "2026-08-05",
+          "hours": 0.5,
+          "billed": 129
+        },
+        {
+          "date": "2026-08-12",
+          "hours": 0.25,
+          "billed": 32
+        }
+      ]
+    },
+    {
       "client": "Fincastle Baptist Church",
       "mtd": 161,
       "pctOfGoal": 0.8,
@@ -221,23 +267,6 @@
         {
           "date": "2026-08-05",
           "hours": 1,
-          "billed": 129
-        }
-      ]
-    },
-    {
-      "client": "Premier Rollertainment",
-      "mtd": 161,
-      "pctOfGoal": 0.8,
-      "daily": [
-        {
-          "date": "2026-08-04",
-          "hours": 0.25,
-          "billed": 32
-        },
-        {
-          "date": "2026-08-05",
-          "hours": 0.5,
           "billed": 129
         }
       ]
@@ -354,5 +383,5 @@
     }
   ],
   "flagged": [],
-  "totalBilledHours": 65.75
+  "totalBilledHours": 75.5
 }
