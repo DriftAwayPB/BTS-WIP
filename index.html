@@ -82,6 +82,12 @@
     return "$" + Math.abs(Math.round(n || 0)).toLocaleString("en-US");
   }
 
+  // Full cents precision — for sales tax remittance figures, where
+  // rounding isn't acceptable.
+  function fmtCurrencyExact(n) {
+    return "$" + Math.abs(n || 0).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
   // "2026-08-03" -> "8/3"
   function fmtMD(isoDateStr) {
     const [, m, d] = isoDateStr.split("-");
@@ -1205,6 +1211,10 @@
       .reverse() // most recent first — this is a "what do I owe" list
       .map((key) => ({ month: key, tax: salesTaxForMonth(monthsMap[key]) }));
 
+    const salesMonthIdx = manifest.months.indexOf(selectedMonth);
+    const canPrevSalesMonth = salesMonthIdx > 0;
+    const canNextSalesMonth = salesMonthIdx >= 0 && salesMonthIdx < manifest.months.length - 1;
+
     return h("div", { style: { background: colors.bg, minHeight: "100vh", padding: "28px 24px 60px", fontFamily: FONT_BODY, color: colors.hi } },
       h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14, flexWrap: "wrap", gap: 10 } },
         h("div", null,
@@ -1234,20 +1244,17 @@
         fontSize: 12, color: colors.muted, marginBottom: 22
       } }, "Only real product/hardware sales are counted here — the monthly WIP billing batch that also lands on Standard invoices is excluded, since that revenue is already tracked on the WIP tab."),
 
-      h("div", { className: "grid-4", style: { gridTemplateColumns: "repeat(3, 1fr)", marginBottom: 22 } },
+      h("div", { className: "grid-4", style: { marginBottom: 22 } },
         h(StatTile, { label: "Total Sales", value: fmtCurrency(data.totalSales), sub: `${data.invoices?.length || 0} orders this month`, accent: colors.finance, glyph: "●" }),
         h(StatTile, { label: "Hardware/Equipment", value: fmtCurrency(hardware), sub: `${data.totalSales ? ((hardware / data.totalSales) * 100).toFixed(0) : 0}% of total`, accent: colors.finance, glyph: "▣" }),
-        h(StatTile, { label: "Cloud/Consumption", value: fmtCurrency(cloud), sub: `${data.totalSales ? ((cloud / data.totalSales) * 100).toFixed(0) : 0}% of total`, accent: colors.bar, glyph: "◇" })
+        h(StatTile, { label: "Cloud/Consumption", value: fmtCurrency(cloud), sub: `${data.totalSales ? ((cloud / data.totalSales) * 100).toFixed(0) : 0}% of total`, accent: colors.bar, glyph: "◇" }),
+        h(StatTile, { label: "Sales Tax", value: fmtCurrencyExact(salesTaxThisMonth), sub: "Franklin County, this month", accent: colors.goalLine, glyph: "◆" })
       ),
 
       h(Panel, { style: { marginBottom: 22 } },
         h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14, flexWrap: "wrap", gap: 10 } },
-          h(SectionLabel, { accent: colors.goalLine }, "Sales tax liability — Franklin County"),
-          h("div", { style: { fontFamily: FONT_MONO, fontSize: 10.5, color: colors.faint } }, "from tax already itemized per invoice, no separate calculation")
-        ),
-        h("div", { style: { display: "flex", alignItems: "baseline", gap: 10, marginBottom: 18 } },
-          h("div", { style: { fontFamily: FONT_MONO, fontSize: 30, fontWeight: 600, color: colors.hi } }, fmtCurrency(salesTaxThisMonth)),
-          h("div", { style: { fontSize: 12.5, color: colors.muted } }, `collected ${fmtMonthLabel(selectedMonth)}${selectedMonth === manifest.latest ? " (so far)" : ""}`)
+          h(SectionLabel, { accent: colors.goalLine }, "Sales tax by month — Franklin County"),
+          h("div", { style: { fontFamily: FONT_MONO, fontSize: 10.5, color: colors.faint } }, "exact, unrounded — for state remittance")
         ),
         h("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, padding: "0 4px 8px", borderBottom: `1px solid ${colors.hairline}`, marginBottom: 4 } },
           ["Month", "Tax Collected"].map((label, i) =>
@@ -1257,22 +1264,16 @@
         salesTaxByMonth.map((m, i) =>
           h("div", { key: i, className: "row-hover", style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, padding: "8px 4px", borderRadius: 6, fontSize: 13.5 } },
             h("div", { style: { color: m.month === selectedMonth ? colors.hi : colors.muted, fontFamily: FONT_MONO } }, fmtMonthLabel(m.month)),
-            h("div", { style: { fontFamily: FONT_MONO, color: m.month === selectedMonth ? colors.hi : colors.muted } }, fmtCurrency(m.tax))
+            h("div", { style: { fontFamily: FONT_MONO, color: m.month === selectedMonth ? colors.hi : colors.muted } }, fmtCurrencyExact(m.tax))
           )
         )
       ),
 
-      h(Panel, { style: { marginBottom: 22 } },
-        h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 } },
-          h(SectionLabel, { accent: colors.finance }, "Sales by month"),
-          trendMonths.length < 2 && h("span", { style: { fontFamily: FONT_MONO, fontSize: 10.5, color: colors.faint } }, "History builds as pulls accumulate")
-        ),
-        h(SalesTrendChart, { months: trendMonths, selectedMonth, onMonthClick: (m) => setSelectedMonth(m) }),
-        h("div", { style: { display: "flex", gap: 18, marginTop: 8, fontSize: 12, color: colors.muted } },
-          h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: colors.finance, opacity: 0.7 } }), "Hardware/Equipment"),
-          h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: colors.bar, opacity: 0.7 } }), "Cloud/Consumption")
-        ),
-        h("div", { style: { marginTop: 6, fontSize: 10.5, fontFamily: FONT_MONO, color: colors.faint } }, "Hover a month for values · click a month for detail below · no forecast shown — one-off sales are too lumpy to trend-project meaningfully")
+      h("div", { style: { display: "flex", alignItems: "center", gap: 10, marginBottom: 22 } },
+        h(NavArrow, { direction: "prev", disabled: !canPrevSalesMonth, onClick: () => canPrevSalesMonth && setSelectedMonth(manifest.months[salesMonthIdx - 1]) }),
+        h("div", { style: { fontFamily: FONT_DISPLAY, fontSize: 15, fontWeight: 600, minWidth: 160, textAlign: "center" } }, fmtMonthLabel(selectedMonth)),
+        h(NavArrow, { direction: "next", disabled: !canNextSalesMonth, onClick: () => canNextSalesMonth && setSelectedMonth(manifest.months[salesMonthIdx + 1]) }),
+        selectedMonth === manifest.latest && h("span", { style: { fontFamily: FONT_MONO, fontSize: 10.5, color: colors.faint, marginLeft: 6 } }, "(latest)")
       ),
 
       h(SectionLabel, { accent: colors.bar }, `Sales by client — ${fmtMonthLabel(selectedMonth)}`),
