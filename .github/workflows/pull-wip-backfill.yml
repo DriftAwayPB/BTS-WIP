@@ -1,0 +1,43 @@
+name: WIP historical backfill (one-off)
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  backfill-wip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run WIP backfill
+        env:
+          CW_BASE_URL: ${{ secrets.CW_BASE_URL }}
+          CW_COMPANY_ID: ${{ secrets.CW_COMPANY_ID }}
+          CW_PUBLIC_KEY: ${{ secrets.CW_PUBLIC_KEY }}
+          CW_PRIVATE_KEY: ${{ secrets.CW_PRIVATE_KEY }}
+          CW_CLIENT_ID: ${{ secrets.CW_CLIENT_ID }}
+          MONTH_GOAL: ${{ secrets.MONTH_GOAL }}
+          MONTH_GOALS: ${{ secrets.MONTH_GOALS }}
+          WORK_TYPE_INCREMENTS: ${{ secrets.WORK_TYPE_INCREMENTS }}
+        run: node cw-wip-backfill.js
+
+      - name: Commit backfilled data
+        run: |
+          git config user.name "wip-backfill-bot"
+          git config user.email "actions@github.com"
+          git add data/
+          git diff --quiet --cached || git commit -m "WIP historical backfill (Jan 2025 -> present)"
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && break
+            echo "Push attempt $i failed, retrying in 5s..."
+            sleep 5
+          done
