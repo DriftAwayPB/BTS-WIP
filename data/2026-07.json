@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T09:35:36.431Z",
+  "generatedAt": "2026-08-14T09:38:29.788Z",
   "month": "2026-07",
   "isCurrentMonth": false,
   "monthGoal": null,
@@ -1117,6 +1117,5 @@
     }
   ],
   "flagged": [],
-  "totalBilledHours": 303,
-  "historical": true
+  "totalBilledHours": 303
 }

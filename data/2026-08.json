@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-14T09:23:44.797Z",
+  "generatedAt": "2026-08-14T09:38:29.073Z",
   "month": "2026-08",
   "isCurrentMonth": true,
-  "monthGoal": 21000,
+  "monthGoal": null,
   "weekdaysInMonth": 21,
   "weekdaysElapsed": 10,
   "weekdaysRemaining": 11,
@@ -49,7 +49,7 @@
     {
       "client": "McLeod Enterprises",
       "mtd": 1663,
-      "pctOfGoal": 7.9,
+      "pctOfGoal": null,
       "daily": [
         {
           "date": "2026-08-03",
@@ -101,7 +101,7 @@
     {
       "client": "Honeytree Early Learning Centers",
       "mtd": 1663,
-      "pctOfGoal": 7.9,
+      "pctOfGoal": null,
       "daily": [
         {
           "date": "2026-08-03",
@@ -153,7 +153,7 @@
     {
       "client": "McLeod Family Foundation",
       "mtd": 725,
-      "pctOfGoal": 3.5,
+      "pctOfGoal": null,
       "daily": [
         {
           "date": "2026-08-03",
@@ -200,7 +200,7 @@
     {
       "client": "Fincastle Baptist Church",
       "mtd": 516,
-      "pctOfGoal": 2.5,
+      "pctOfGoal": null,
       "daily": [
         {
           "date": "2026-08-03",
@@ -227,7 +227,7 @@
     {
       "client": "Elite Home Rentals",
       "mtd": 350,
-      "pctOfGoal": 1.7,
+      "pctOfGoal": null,
       "daily": [
         {
           "date": "2026-08-03",
@@ -269,7 +269,7 @@
     {
       "client": "Blink Optometry",
       "mtd": 290,
-      "pctOfGoal": 1.4,
+      "pctOfGoal": null,
       "daily": [
         {
           "date": "2026-08-03",
@@ -291,7 +291,7 @@
     {
       "client": "Premier Rollertainment",
       "mtd": 194,
-      "pctOfGoal": 0.9,
+      "pctOfGoal": null,
       "daily": [
         {
           "date": "2026-08-04",
@@ -313,7 +313,7 @@
     {
       "client": "Scott & Bond",
       "mtd": 161,
-      "pctOfGoal": 0.8,
+      "pctOfGoal": null,
       "daily": [
         {
           "date": "2026-08-05",
@@ -340,7 +340,7 @@
     {
       "client": "Utilis Consulting",
       "mtd": 65,
-      "pctOfGoal": 0.3,
+      "pctOfGoal": null,
       "daily": [
         {
           "date": "2026-08-05",
@@ -357,7 +357,7 @@
     {
       "client": "Crenshaw Lighting",
       "mtd": 32,
-      "pctOfGoal": 0.2,
+      "pctOfGoal": null,
       "daily": [
         {
           "date": "2026-08-10",
@@ -369,7 +369,7 @@
     {
       "client": "Appalachian Bookkeeping",
       "mtd": 0,
-      "pctOfGoal": 0,
+      "pctOfGoal": null,
       "daily": [
         {
           "date": "2026-08-04",
@@ -396,7 +396,7 @@
     {
       "client": "Baird Drywall & Acoustic",
       "mtd": 0,
-      "pctOfGoal": 0,
+      "pctOfGoal": null,
       "daily": [
         {
           "date": "2026-08-04",
