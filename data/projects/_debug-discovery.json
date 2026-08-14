@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T10:54:15.887Z",
+  "generatedAt": "2026-08-14T10:59:44.129Z",
   "chargeToTypeCounts": {
     "ServiceTicket": 1503
   },
@@ -1948,6 +1948,103 @@
         "timeEntries_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//time/entries?conditions=invoice/id=3785",
         "expenseEntries_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//expense/entries?conditions=invoice/id=3785"
       }
+    }
+  ],
+  "projectInvoicesByType": {
+    "DownPayment": 2,
+    "Standard": 3,
+    "Progress": 1
+  },
+  "projectInvoices": [
+    {
+      "id": 3662,
+      "invoiceNumber": "8645",
+      "type": "DownPayment",
+      "date": "2025-04-28T00:00:00Z",
+      "company": "TerraRoc",
+      "project": {
+        "id": 29,
+        "name": "Terraroc Tenant Migration",
+        "billingMethod": "F"
+      },
+      "serviceTotal": 3125,
+      "productTotal": 0,
+      "total": 3125
+    },
+    {
+      "id": 3732,
+      "invoiceNumber": "8715",
+      "type": "Standard",
+      "date": "2025-06-01T00:00:00Z",
+      "company": "TerraRoc",
+      "project": {
+        "id": 29,
+        "name": "Terraroc Tenant Migration",
+        "billingMethod": "F"
+      },
+      "serviceTotal": 6250,
+      "productTotal": 0,
+      "total": 3125
+    },
+    {
+      "id": 3785,
+      "invoiceNumber": "8768",
+      "type": "Progress",
+      "date": "2025-07-25T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "project": {
+        "id": 30,
+        "name": "New 460 Building",
+        "billingMethod": "F"
+      },
+      "serviceTotal": 3125,
+      "productTotal": 0,
+      "total": 3125
+    },
+    {
+      "id": 3944,
+      "invoiceNumber": "8927",
+      "type": "Standard",
+      "date": "2025-11-08T00:00:00Z",
+      "company": "Blink Optometry",
+      "project": {
+        "id": 31,
+        "name": "Blink Optometry Server Migration",
+        "billingMethod": "F"
+      },
+      "serviceTotal": 2500,
+      "productTotal": 0,
+      "total": 2500
+    },
+    {
+      "id": 3949,
+      "invoiceNumber": "8932",
+      "type": "Standard",
+      "date": "2025-11-18T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "project": {
+        "id": 30,
+        "name": "New 460 Building",
+        "billingMethod": "F"
+      },
+      "serviceTotal": 6250,
+      "productTotal": 0,
+      "total": 3125
+    },
+    {
+      "id": 4296,
+      "invoiceNumber": "9277",
+      "type": "DownPayment",
+      "date": "2026-07-31T00:00:00Z",
+      "company": "Gemini Structural",
+      "project": {
+        "id": 32,
+        "name": "Gemini Structural Network Setup",
+        "billingMethod": "F"
+      },
+      "serviceTotal": 2978.56,
+      "productTotal": 0,
+      "total": 2978.56
     }
   ]
 }
