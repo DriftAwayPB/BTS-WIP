@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T10:19:18.000Z",
+  "generatedAt": "2026-08-14T10:29:36.281Z",
   "month": "2026-08",
   "isCurrentMonth": true,
   "monthGoal": 21000,
@@ -14,7 +14,7 @@
     },
     {
       "date": "2026-08-04",
-      "accrued": 645
+      "accrued": 745
     },
     {
       "date": "2026-08-05",
@@ -43,13 +43,17 @@
     {
       "date": "2026-08-13",
       "accrued": 813
+    },
+    {
+      "date": "2026-08-14",
+      "accrued": 50
     }
   ],
   "clientBreakdown": [
     {
       "client": "McLeod Enterprises",
-      "mtd": 1663,
-      "pctOfGoal": 7.9,
+      "mtd": 1813,
+      "pctOfGoal": 8.6,
       "daily": [
         {
           "date": "2026-08-03",
@@ -58,8 +62,8 @@
         },
         {
           "date": "2026-08-04",
-          "hours": 5,
-          "billed": 250
+          "hours": 7,
+          "billed": 350
         },
         {
           "date": "2026-08-05",
@@ -95,6 +99,11 @@
           "date": "2026-08-13",
           "hours": 4.25,
           "billed": 213
+        },
+        {
+          "date": "2026-08-14",
+          "hours": 1,
+          "billed": 50
         }
       ]
     },
@@ -437,5 +446,5 @@
     }
   ],
   "flagged": [],
-  "totalBilledHours": 95.25
+  "totalBilledHours": 98.25
 }
