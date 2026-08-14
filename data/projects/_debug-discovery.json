@@ -1,0 +1,182 @@
+{
+  "generatedAt": "2026-08-14T10:49:23.208Z",
+  "chargeToTypeCounts": {
+    "ServiceTicket": 1503
+  },
+  "sampleProjectTimeEntries": [],
+  "projectCount": 0,
+  "projectSamples": [],
+  "progressInvoices": [
+    {
+      "id": 3785,
+      "invoiceNumber": "8768",
+      "type": "Progress",
+      "status": {
+        "id": 16,
+        "name": "QuickBooks - Created",
+        "isClosed": true
+      },
+      "company": {
+        "id": 19403,
+        "identifier": "HoneytreeEarlyLearning",
+        "name": "Honeytree Early Learning Centers",
+        "_info": {
+          "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19403"
+        }
+      },
+      "billToCompany": {
+        "id": 19403,
+        "identifier": "HoneytreeEarlyLearning",
+        "name": "Honeytree Early Learning Centers",
+        "_info": {
+          "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19403"
+        }
+      },
+      "shipToCompany": {
+        "id": 19403,
+        "identifier": "HoneytreeEarlyLearning",
+        "name": "Honeytree Early Learning Centers",
+        "_info": {
+          "company_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19403"
+        }
+      },
+      "accountNumber": "Honeytree Early Learning Centers",
+      "applyToType": "Project",
+      "applyToId": 30,
+      "attention": "Accounts Payable",
+      "billingSite": {
+        "id": 1313,
+        "name": "Honeytree Early Learning Centers",
+        "_info": {
+          "site_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19403/sites/1313"
+        }
+      },
+      "billingSiteAddressLine1": "410 1st St. SW",
+      "billingSiteCity": "Roanoke",
+      "billingSiteZip": "24011",
+      "billingSiteCountry": "United States",
+      "shippingSite": {
+        "id": 1313,
+        "name": "Honeytree Early Learning Centers",
+        "_info": {
+          "site_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//company/companies/19403/sites/1313"
+        }
+      },
+      "shippingSiteAddressLine1": "410 1st St. SW",
+      "shippingSiteCity": "Roanoke",
+      "shippingSiteZip": "24011",
+      "shippingSiteCountry": "United States",
+      "billingTerms": {
+        "id": 1,
+        "name": "Net 30 days"
+      },
+      "templateSetupId": 5,
+      "invoiceTemplate": {
+        "id": 9,
+        "name": "Service / Project",
+        "_info": {
+          "invoiceTemplate_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/invoiceTemplates/9"
+        }
+      },
+      "emailTemplateId": 1,
+      "addToBatchEmailList": true,
+      "date": "2025-07-25T00:00:00Z",
+      "restrictDownpaymentFlag": false,
+      "locationId": 11,
+      "location": {
+        "id": 11,
+        "name": "Headquarters",
+        "_info": {
+          "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/11"
+        }
+      },
+      "departmentId": 13,
+      "department": {
+        "id": 13,
+        "name": "Projects",
+        "_info": {
+          "department_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/departments/13"
+        }
+      },
+      "territoryId": 2,
+      "territory": {
+        "id": 2,
+        "name": "Banks Technology Services, LLC",
+        "_info": {
+          "location_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//system/locations/2"
+        }
+      },
+      "topComment": "",
+      "bottomComment": "",
+      "taxableFlag": false,
+      "taxCode": {
+        "id": 8,
+        "name": "Tax-State",
+        "_info": {
+          "taxCode_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/taxCodes/8"
+        }
+      },
+      "internalNotes": "Cabling Installation",
+      "downpaymentPreviouslyTaxedFlag": false,
+      "serviceTotal": 3125,
+      "overrideDownPaymentAmountFlag": false,
+      "currency": {
+        "id": 7,
+        "symbol": "$",
+        "currencyCode": "USD",
+        "decimalSeparator": ".",
+        "numberOfDecimals": 2,
+        "thousandsSeparator": ",",
+        "negativeParenthesesFlag": false,
+        "displaySymbolFlag": true,
+        "currencyIdentifier": "USD",
+        "displayIdFlag": false,
+        "rightAlign": false,
+        "name": "US Dollars",
+        "_info": {
+          "currency_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/currencies/7"
+        }
+      },
+      "dueDate": "2025-08-24T00:00:00Z",
+      "expenseTotal": 0,
+      "productTotal": 0,
+      "previousProgressApplied": 0,
+      "serviceAdjustmentAmount": 0,
+      "agreementAmount": 0,
+      "downpaymentApplied": 0,
+      "subtotal": 3125,
+      "total": 3125,
+      "remainingDownpayment": 0,
+      "salesTax": 0,
+      "closedBy": "pbanks",
+      "payments": 3125,
+      "credits": 0,
+      "balance": 0,
+      "specialInvoiceFlag": false,
+      "billingSetupReference": {
+        "id": 2,
+        "name": "Banks Technology Services",
+        "_info": {
+          "billingSetup_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//finance/billingsetups/2"
+        }
+      },
+      "project": {
+        "id": 30,
+        "name": "New 460 Building",
+        "_info": {
+          "project_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//project/projects/30",
+          "billingMethod": "F"
+        }
+      },
+      "_info": {
+        "lastUpdated": "2025-11-01T12:36:11Z",
+        "updatedBy": "pbanks",
+        "dateEntered": "2025-07-25T13:48:23Z",
+        "enteredBy": "pbanks",
+        "products_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//procurement/products?conditions=invoice/id=3785",
+        "timeEntries_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//time/entries?conditions=invoice/id=3785",
+        "expenseEntries_href": "https://api-na.myconnectwise.net/v4_6_release/apis/3.0//expense/entries?conditions=invoice/id=3785"
+      }
+    }
+  ]
+}
