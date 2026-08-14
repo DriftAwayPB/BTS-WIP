@@ -1,0 +1,870 @@
+{
+  "generatedAt": "2026-08-14T09:35:23.970Z",
+  "month": "2025-06",
+  "isCurrentMonth": false,
+  "monthGoal": null,
+  "weekdaysInMonth": 21,
+  "weekdaysElapsed": 21,
+  "weekdaysRemaining": 0,
+  "currentDate": "2025-06-30",
+  "dailyAccrual": [
+    {
+      "date": "2025-06-02",
+      "accrued": 422
+    },
+    {
+      "date": "2025-06-03",
+      "accrued": 487
+    },
+    {
+      "date": "2025-06-04",
+      "accrued": 237
+    },
+    {
+      "date": "2025-06-05",
+      "accrued": 444
+    },
+    {
+      "date": "2025-06-06",
+      "accrued": 466
+    },
+    {
+      "date": "2025-06-09",
+      "accrued": 216
+    },
+    {
+      "date": "2025-06-10",
+      "accrued": 476
+    },
+    {
+      "date": "2025-06-11",
+      "accrued": 411
+    },
+    {
+      "date": "2025-06-12",
+      "accrued": 595
+    },
+    {
+      "date": "2025-06-13",
+      "accrued": 530
+    },
+    {
+      "date": "2025-06-16",
+      "accrued": 617
+    },
+    {
+      "date": "2025-06-17",
+      "accrued": 552
+    },
+    {
+      "date": "2025-06-18",
+      "accrued": 693
+    },
+    {
+      "date": "2025-06-19",
+      "accrued": 531
+    },
+    {
+      "date": "2025-06-20",
+      "accrued": 595
+    },
+    {
+      "date": "2025-06-23",
+      "accrued": 1024
+    },
+    {
+      "date": "2025-06-24",
+      "accrued": 672
+    },
+    {
+      "date": "2025-06-25",
+      "accrued": 773
+    },
+    {
+      "date": "2025-06-26",
+      "accrued": 775
+    },
+    {
+      "date": "2025-06-27",
+      "accrued": 639
+    },
+    {
+      "date": "2025-06-30",
+      "accrued": 618
+    }
+  ],
+  "clientBreakdown": [
+    {
+      "client": "Honeytree Early Learning Centers",
+      "mtd": 3401,
+      "pctOfGoal": null,
+      "daily": [
+        {
+          "date": "2025-06-02",
+          "hours": 3.75,
+          "billed": 162
+        },
+        {
+          "date": "2025-06-03",
+          "hours": 1.75,
+          "billed": 76
+        },
+        {
+          "date": "2025-06-05",
+          "hours": 1.75,
+          "billed": 76
+        },
+        {
+          "date": "2025-06-06",
+          "hours": 2,
+          "billed": 87
+        },
+        {
+          "date": "2025-06-09",
+          "hours": 1,
+          "billed": 43
+        },
+        {
+          "date": "2025-06-10",
+          "hours": 2,
+          "billed": 87
+        },
+        {
+          "date": "2025-06-11",
+          "hours": 3,
+          "billed": 130
+        },
+        {
+          "date": "2025-06-12",
+          "hours": 3.75,
+          "billed": 162
+        },
+        {
+          "date": "2025-06-13",
+          "hours": 5.5,
+          "billed": 238
+        },
+        {
+          "date": "2025-06-16",
+          "hours": 5.5,
+          "billed": 282
+        },
+        {
+          "date": "2025-06-17",
+          "hours": 2.5,
+          "billed": 108
+        },
+        {
+          "date": "2025-06-19",
+          "hours": 2.75,
+          "billed": 119
+        },
+        {
+          "date": "2025-06-20",
+          "hours": 7.25,
+          "billed": 314
+        },
+        {
+          "date": "2025-06-23",
+          "hours": 3.25,
+          "billed": 141
+        },
+        {
+          "date": "2025-06-24",
+          "hours": 5.75,
+          "billed": 292
+        },
+        {
+          "date": "2025-06-25",
+          "hours": 6.5,
+          "billed": 282
+        },
+        {
+          "date": "2025-06-26",
+          "hours": 6.25,
+          "billed": 292
+        },
+        {
+          "date": "2025-06-27",
+          "hours": 7,
+          "billed": 303
+        },
+        {
+          "date": "2025-06-30",
+          "hours": 4.75,
+          "billed": 206
+        }
+      ]
+    },
+    {
+      "client": "McLeod Enterprises",
+      "mtd": 3001,
+      "pctOfGoal": null,
+      "daily": [
+        {
+          "date": "2025-06-02",
+          "hours": 3,
+          "billed": 152
+        },
+        {
+          "date": "2025-06-03",
+          "hours": 1,
+          "billed": 43
+        },
+        {
+          "date": "2025-06-04",
+          "hours": 2.25,
+          "billed": 97
+        },
+        {
+          "date": "2025-06-05",
+          "hours": 4.5,
+          "billed": 238
+        },
+        {
+          "date": "2025-06-06",
+          "hours": 6.25,
+          "billed": 271
+        },
+        {
+          "date": "2025-06-09",
+          "hours": 2,
+          "billed": 87
+        },
+        {
+          "date": "2025-06-10",
+          "hours": 4.25,
+          "billed": 184
+        },
+        {
+          "date": "2025-06-11",
+          "hours": 4.5,
+          "billed": 195
+        },
+        {
+          "date": "2025-06-12",
+          "hours": 4.75,
+          "billed": 206
+        },
+        {
+          "date": "2025-06-13",
+          "hours": 2,
+          "billed": 87
+        },
+        {
+          "date": "2025-06-16",
+          "hours": 2,
+          "billed": 87
+        },
+        {
+          "date": "2025-06-17",
+          "hours": 1.25,
+          "billed": 87
+        },
+        {
+          "date": "2025-06-18",
+          "hours": 5,
+          "billed": 217
+        },
+        {
+          "date": "2025-06-19",
+          "hours": 4,
+          "billed": 173
+        },
+        {
+          "date": "2025-06-20",
+          "hours": 2.75,
+          "billed": 119
+        },
+        {
+          "date": "2025-06-23",
+          "hours": 2.75,
+          "billed": 119
+        },
+        {
+          "date": "2025-06-24",
+          "hours": 2.75,
+          "billed": 119
+        },
+        {
+          "date": "2025-06-25",
+          "hours": 2.75,
+          "billed": 119
+        },
+        {
+          "date": "2025-06-26",
+          "hours": 2.75,
+          "billed": 119
+        },
+        {
+          "date": "2025-06-27",
+          "hours": 4,
+          "billed": 173
+        },
+        {
+          "date": "2025-06-30",
+          "hours": 2.5,
+          "billed": 108
+        }
+      ]
+    },
+    {
+      "client": "McLeod Family Foundation",
+      "mtd": 1842,
+      "pctOfGoal": null,
+      "daily": [
+        {
+          "date": "2025-06-02",
+          "hours": 1.5,
+          "billed": 65
+        },
+        {
+          "date": "2025-06-03",
+          "hours": 1.5,
+          "billed": 108
+        },
+        {
+          "date": "2025-06-05",
+          "hours": 1.25,
+          "billed": 54
+        },
+        {
+          "date": "2025-06-06",
+          "hours": 1.25,
+          "billed": 54
+        },
+        {
+          "date": "2025-06-10",
+          "hours": 3,
+          "billed": 130
+        },
+        {
+          "date": "2025-06-11",
+          "hours": 0.25,
+          "billed": 11
+        },
+        {
+          "date": "2025-06-12",
+          "hours": 1,
+          "billed": 43
+        },
+        {
+          "date": "2025-06-13",
+          "hours": 1.25,
+          "billed": 54
+        },
+        {
+          "date": "2025-06-16",
+          "hours": 1,
+          "billed": 43
+        },
+        {
+          "date": "2025-06-17",
+          "hours": 4,
+          "billed": 173
+        },
+        {
+          "date": "2025-06-18",
+          "hours": 8,
+          "billed": 347
+        },
+        {
+          "date": "2025-06-19",
+          "hours": 3.5,
+          "billed": 152
+        },
+        {
+          "date": "2025-06-20",
+          "hours": 1.25,
+          "billed": 54
+        },
+        {
+          "date": "2025-06-23",
+          "hours": 1,
+          "billed": 43
+        },
+        {
+          "date": "2025-06-24",
+          "hours": 3.25,
+          "billed": 173
+        },
+        {
+          "date": "2025-06-26",
+          "hours": 4.25,
+          "billed": 249
+        },
+        {
+          "date": "2025-06-27",
+          "hours": 1,
+          "billed": 43
+        },
+        {
+          "date": "2025-06-30",
+          "hours": 1,
+          "billed": 43
+        }
+      ]
+    },
+    {
+      "client": "Elite Home Rentals",
+      "mtd": 1560,
+      "pctOfGoal": null,
+      "daily": [
+        {
+          "date": "2025-06-02",
+          "hours": 1,
+          "billed": 43
+        },
+        {
+          "date": "2025-06-03",
+          "hours": 5.25,
+          "billed": 227
+        },
+        {
+          "date": "2025-06-04",
+          "hours": 0.25,
+          "billed": 11
+        },
+        {
+          "date": "2025-06-05",
+          "hours": 1,
+          "billed": 43
+        },
+        {
+          "date": "2025-06-06",
+          "hours": 1.25,
+          "billed": 54
+        },
+        {
+          "date": "2025-06-09",
+          "hours": 0.5,
+          "billed": 22
+        },
+        {
+          "date": "2025-06-10",
+          "hours": 1,
+          "billed": 43
+        },
+        {
+          "date": "2025-06-11",
+          "hours": 0.25,
+          "billed": 11
+        },
+        {
+          "date": "2025-06-12",
+          "hours": 2.75,
+          "billed": 119
+        },
+        {
+          "date": "2025-06-13",
+          "hours": 2,
+          "billed": 87
+        },
+        {
+          "date": "2025-06-16",
+          "hours": 2.5,
+          "billed": 108
+        },
+        {
+          "date": "2025-06-17",
+          "hours": 2,
+          "billed": 87
+        },
+        {
+          "date": "2025-06-18",
+          "hours": 3,
+          "billed": 130
+        },
+        {
+          "date": "2025-06-19",
+          "hours": 2,
+          "billed": 87
+        },
+        {
+          "date": "2025-06-20",
+          "hours": 1,
+          "billed": 43
+        },
+        {
+          "date": "2025-06-23",
+          "hours": 1,
+          "billed": 43
+        },
+        {
+          "date": "2025-06-24",
+          "hours": 2,
+          "billed": 87
+        },
+        {
+          "date": "2025-06-25",
+          "hours": 2,
+          "billed": 87
+        },
+        {
+          "date": "2025-06-26",
+          "hours": 2,
+          "billed": 87
+        },
+        {
+          "date": "2025-06-27",
+          "hours": 1.25,
+          "billed": 54
+        },
+        {
+          "date": "2025-06-30",
+          "hours": 2,
+          "billed": 87
+        }
+      ]
+    },
+    {
+      "client": "Fincastle Baptist Church",
+      "mtd": 1097,
+      "pctOfGoal": null,
+      "daily": [
+        {
+          "date": "2025-06-04",
+          "hours": 1,
+          "billed": 129
+        },
+        {
+          "date": "2025-06-05",
+          "hours": 0.25,
+          "billed": 32
+        },
+        {
+          "date": "2025-06-09",
+          "hours": 0.5,
+          "billed": 65
+        },
+        {
+          "date": "2025-06-10",
+          "hours": 0.25,
+          "billed": 32
+        },
+        {
+          "date": "2025-06-11",
+          "hours": 0.5,
+          "billed": 65
+        },
+        {
+          "date": "2025-06-13",
+          "hours": 0.5,
+          "billed": 65
+        },
+        {
+          "date": "2025-06-16",
+          "hours": 0.75,
+          "billed": 97
+        },
+        {
+          "date": "2025-06-17",
+          "hours": 0.75,
+          "billed": 97
+        },
+        {
+          "date": "2025-06-23",
+          "hours": 3.25,
+          "billed": 419
+        },
+        {
+          "date": "2025-06-27",
+          "hours": 0.25,
+          "billed": 32
+        },
+        {
+          "date": "2025-06-30",
+          "hours": 0.5,
+          "billed": 65
+        }
+      ]
+    },
+    {
+      "client": "Williams Law Firm",
+      "mtd": 258,
+      "pctOfGoal": null,
+      "daily": [
+        {
+          "date": "2025-06-03",
+          "hours": 0.25,
+          "billed": 32
+        },
+        {
+          "date": "2025-06-12",
+          "hours": 0.5,
+          "billed": 65
+        },
+        {
+          "date": "2025-06-23",
+          "hours": 1,
+          "billed": 129
+        },
+        {
+          "date": "2025-06-27",
+          "hours": 0.25,
+          "billed": 32
+        }
+      ]
+    },
+    {
+      "client": "Baird Drywall & Acoustic",
+      "mtd": 164,
+      "pctOfGoal": null,
+      "daily": [
+        {
+          "date": "2025-06-02",
+          "hours": 1,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-03",
+          "hours": 1,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-04",
+          "hours": 0.5,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-05",
+          "hours": 0.5,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-06",
+          "hours": 2,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-10",
+          "hours": 1,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-11",
+          "hours": 0.5,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-12",
+          "hours": 0.5,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-13",
+          "hours": 1,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-17",
+          "hours": 1,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-18",
+          "hours": 0.5,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-19",
+          "hours": 0.5,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-20",
+          "hours": 2,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-23",
+          "hours": 0.5,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-24",
+          "hours": 1.75,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-25",
+          "hours": 1,
+          "billed": 27
+        },
+        {
+          "date": "2025-06-26",
+          "hours": 1,
+          "billed": 27
+        },
+        {
+          "date": "2025-06-27",
+          "hours": 1,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-30",
+          "hours": 1.25,
+          "billed": 109
+        }
+      ]
+    },
+    {
+      "client": "Crenshaw Lighting",
+      "mtd": 129,
+      "pctOfGoal": null,
+      "daily": [
+        {
+          "date": "2025-06-23",
+          "hours": 1,
+          "billed": 129
+        }
+      ]
+    },
+    {
+      "client": "SWVA Settlement & Title",
+      "mtd": 129,
+      "pctOfGoal": null,
+      "daily": [
+        {
+          "date": "2025-06-25",
+          "hours": 1,
+          "billed": 129
+        }
+      ]
+    },
+    {
+      "client": "Venture Consulting",
+      "mtd": 129,
+      "pctOfGoal": null,
+      "daily": [
+        {
+          "date": "2025-06-25",
+          "hours": 1,
+          "billed": 129
+        }
+      ]
+    },
+    {
+      "client": "Utilis Consulting",
+      "mtd": 65,
+      "pctOfGoal": null,
+      "daily": [
+        {
+          "date": "2025-06-20",
+          "hours": 0.5,
+          "billed": 65
+        }
+      ]
+    },
+    {
+      "client": "TerraRoc",
+      "mtd": 0,
+      "pctOfGoal": null,
+      "daily": [
+        {
+          "date": "2025-06-02",
+          "hours": 3.75,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-03",
+          "hours": 5,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-04",
+          "hours": 6,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-05",
+          "hours": 2.25,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-06",
+          "hours": 1,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-09",
+          "hours": 3.25,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-10",
+          "hours": 3.5,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-11",
+          "hours": 1.25,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-12",
+          "hours": 2.25,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-13",
+          "hours": 0.5,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-16",
+          "hours": 2.25,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-17",
+          "hours": 1,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-18",
+          "hours": 0.75,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-19",
+          "hours": 0.75,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-20",
+          "hours": 0.25,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-23",
+          "hours": 1.25,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-24",
+          "hours": 0.25,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-25",
+          "hours": 0.25,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-27",
+          "hours": 1.25,
+          "billed": 0
+        },
+        {
+          "date": "2025-06-30",
+          "hours": 0.25,
+          "billed": 0
+        }
+      ]
+    }
+  ],
+  "flagged": [],
+  "totalBilledHours": 233.75,
+  "historical": true
+}
