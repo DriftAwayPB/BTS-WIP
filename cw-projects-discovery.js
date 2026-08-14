@@ -111,6 +111,38 @@ async function main() {
   }
   result.progressInvoices = progressInvoices;
 
+  // 4. ALL invoices tied to a project (any type), to see the real
+  // deposit/completion billing pattern for Fixed Fee projects, and to
+  // check whether any of these are currently typed "Standard" — which
+  // would mean they're being miscounted as Sales hardware revenue.
+  console.log("Checking all invoices with applyToType=Project since 2025-01-01...");
+  let projectInvoices = [];
+  try {
+    const projConditions = encodeURIComponent(`applyToType="Project" and date>=[2025-01-01T00:00:00Z]`);
+    projectInvoices = await fetchPaginated("/finance/invoices", `&conditions=${projConditions}`);
+    console.log(`Fetched ${projectInvoices.length} project-linked invoices`);
+  } catch (e) {
+    console.warn(`  ⚠ failed to fetch project-linked invoices: ${e.message}`);
+  }
+  const projectInvoicesByType = {};
+  for (const inv of projectInvoices) {
+    const t = inv.type || "Unknown";
+    projectInvoicesByType[t] = (projectInvoicesByType[t] || 0) + 1;
+  }
+  console.log("Project-linked invoices by type:", JSON.stringify(projectInvoicesByType, null, 2));
+  result.projectInvoicesByType = projectInvoicesByType;
+  result.projectInvoices = projectInvoices.map((inv) => ({
+    id: inv.id,
+    invoiceNumber: inv.invoiceNumber,
+    type: inv.type,
+    date: inv.date,
+    company: inv.company?.name || null,
+    project: inv.project ? { id: inv.project.id, name: inv.project.name, billingMethod: inv.project._info?.billingMethod } : null,
+    serviceTotal: inv.serviceTotal,
+    productTotal: inv.productTotal,
+    total: inv.total,
+  }));
+
   const dataDir = path.join(__dirname, "data", "projects");
   fs.mkdirSync(dataDir, { recursive: true });
   fs.writeFileSync(path.join(dataDir, "_debug-discovery.json"), JSON.stringify(result, null, 2));
