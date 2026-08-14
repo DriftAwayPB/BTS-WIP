@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-08-14T00:42:43.276Z",
+  "generatedAt": "2026-08-14T01:34:40.847Z",
   "isCurrentMonth": true,
   "currentDate": "2026-08-14",
-  "totalSales": 2207.91,
+  "totalSales": 2256.65,
   "byCategory": {
-    "Hardware/Equipment": 2207.91,
+    "Hardware/Equipment": 2256.65,
     "Cloud/Consumption": 0
   },
   "byClient": [
     {
       "client": "Honeytree Early Learning Centers",
-      "hardwareTotal": 1991.35,
+      "hardwareTotal": 2040.09,
       "cloudTotal": 0,
-      "total": 1991.35
+      "total": 2040.09
     },
     {
       "client": "McLeod Enterprises",
@@ -114,6 +114,34 @@
         }
       ],
       "invoiceTotal": 80.79
+    },
+    {
+      "id": 4315,
+      "date": "2026-08-13T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "9296",
+      "reference": "Order #711",
+      "lineItems": [
+        {
+          "description": "Cordless Phone Batteries",
+          "productIdentifier": "Miscellaneous",
+          "quantity": 3,
+          "unitPrice": 11.94,
+          "extPrice": 35.82,
+          "category": "Hardware/Equipment",
+          "amount": 35.82
+        },
+        {
+          "description": "Shipping & Handling",
+          "productIdentifier": "Shipping",
+          "quantity": 1,
+          "unitPrice": 12.92,
+          "extPrice": 12.92,
+          "category": "Hardware/Equipment",
+          "amount": 12.92
+        }
+      ],
+      "invoiceTotal": 48.74
     },
     {
       "id": 4311,
