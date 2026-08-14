@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T01:34:38.731Z",
+  "generatedAt": "2026-08-14T01:39:10.305Z",
   "month": "2026-08",
   "isCurrentMonth": true,
   "monthGoal": 21000,
@@ -46,10 +46,67 @@
     },
     {
       "date": "2026-08-14",
-      "accrued": 192
+      "accrued": 242
     }
   ],
   "clientBreakdown": [
+    {
+      "client": "McLeod Enterprises",
+      "mtd": 1663,
+      "pctOfGoal": 7.9,
+      "daily": [
+        {
+          "date": "2026-08-03",
+          "hours": 4.25,
+          "billed": 213
+        },
+        {
+          "date": "2026-08-04",
+          "hours": 5,
+          "billed": 250
+        },
+        {
+          "date": "2026-08-05",
+          "hours": 1.25,
+          "billed": 100
+        },
+        {
+          "date": "2026-08-06",
+          "hours": 6.75,
+          "billed": 338
+        },
+        {
+          "date": "2026-08-07",
+          "hours": 4,
+          "billed": 200
+        },
+        {
+          "date": "2026-08-10",
+          "hours": 3.5,
+          "billed": 175
+        },
+        {
+          "date": "2026-08-11",
+          "hours": 2,
+          "billed": 100
+        },
+        {
+          "date": "2026-08-12",
+          "hours": 0.75,
+          "billed": 75
+        },
+        {
+          "date": "2026-08-13",
+          "hours": 3.25,
+          "billed": 163
+        },
+        {
+          "date": "2026-08-14",
+          "hours": 1,
+          "billed": 50
+        }
+      ]
+    },
     {
       "client": "Honeytree Early Learning Centers",
       "mtd": 1663,
@@ -104,58 +161,6 @@
           "date": "2026-08-14",
           "hours": 1,
           "billed": 50
-        }
-      ]
-    },
-    {
-      "client": "McLeod Enterprises",
-      "mtd": 1613,
-      "pctOfGoal": 7.7,
-      "daily": [
-        {
-          "date": "2026-08-03",
-          "hours": 4.25,
-          "billed": 213
-        },
-        {
-          "date": "2026-08-04",
-          "hours": 5,
-          "billed": 250
-        },
-        {
-          "date": "2026-08-05",
-          "hours": 1.25,
-          "billed": 100
-        },
-        {
-          "date": "2026-08-06",
-          "hours": 6.75,
-          "billed": 338
-        },
-        {
-          "date": "2026-08-07",
-          "hours": 4,
-          "billed": 200
-        },
-        {
-          "date": "2026-08-10",
-          "hours": 3.5,
-          "billed": 175
-        },
-        {
-          "date": "2026-08-11",
-          "hours": 2,
-          "billed": 100
-        },
-        {
-          "date": "2026-08-12",
-          "hours": 0.75,
-          "billed": 75
-        },
-        {
-          "date": "2026-08-13",
-          "hours": 3.25,
-          "billed": 163
         }
       ]
     },
@@ -456,5 +461,5 @@
     }
   ],
   "flagged": [],
-  "totalBilledHours": 94.25
+  "totalBilledHours": 95.25
 }
