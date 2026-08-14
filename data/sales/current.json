@@ -1,13 +1,148 @@
 {
-  "generatedAt": "2026-08-13T10:42:22.029Z",
+  "generatedAt": "2026-08-14T00:40:14.209Z",
   "isCurrentMonth": true,
-  "currentDate": "2026-08-13",
-  "totalSales": 0,
+  "currentDate": "2026-08-14",
+  "totalSales": 2207.91,
   "byCategory": {
-    "Hardware/Equipment": 0,
+    "Hardware/Equipment": 2207.91,
     "Cloud/Consumption": 0
   },
-  "byClient": [],
-  "invoices": [],
+  "byClient": [
+    {
+      "client": "Honeytree Early Learning Centers",
+      "hardwareTotal": 1991.35,
+      "cloudTotal": 0,
+      "total": 1991.35
+    },
+    {
+      "client": "McLeod Enterprises",
+      "hardwareTotal": 216.56,
+      "cloudTotal": 0,
+      "total": 216.56
+    }
+  ],
+  "invoices": [
+    {
+      "id": 4314,
+      "date": "2026-08-13T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "9295",
+      "reference": "Order #710",
+      "lineItems": [
+        {
+          "description": "Procare Touchscreen Check In Computer",
+          "productIdentifier": "ProcareTouch",
+          "quantity": 1,
+          "unitPrice": 1766.25,
+          "extPrice": 1766.25,
+          "category": "Hardware/Equipment",
+          "amount": 1766.25
+        },
+        {
+          "description": "Shipping & Handling",
+          "productIdentifier": "Shipping",
+          "quantity": 1,
+          "unitPrice": 15,
+          "extPrice": 15,
+          "category": "Hardware/Equipment",
+          "amount": 15
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 93.61,
+          "category": "Hardware/Equipment",
+          "amount": 93.61
+        }
+      ],
+      "invoiceTotal": 1874.86
+    },
+    {
+      "id": 4313,
+      "date": "2026-08-13T00:00:00Z",
+      "company": "McLeod Enterprises",
+      "invoiceNumber": "9294",
+      "reference": "Order #706",
+      "lineItems": [
+        {
+          "description": "Dell Warranty Renewal",
+          "productIdentifier": "DellWarranty",
+          "quantity": 1,
+          "unitPrice": 205.66,
+          "extPrice": 205.66,
+          "category": "Hardware/Equipment",
+          "amount": 205.66
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 10.9,
+          "category": "Hardware/Equipment",
+          "amount": 10.9
+        }
+      ],
+      "invoiceTotal": 216.56
+    },
+    {
+      "id": 4312,
+      "date": "2026-08-13T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "9293",
+      "reference": "Order #705",
+      "lineItems": [
+        {
+          "description": "Dell Warranty Renewal",
+          "productIdentifier": "DellWarranty",
+          "quantity": 1,
+          "unitPrice": 76.72,
+          "extPrice": 76.72,
+          "category": "Hardware/Equipment",
+          "amount": 76.72
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 4.07,
+          "category": "Hardware/Equipment",
+          "amount": 4.07
+        }
+      ],
+      "invoiceTotal": 80.79
+    },
+    {
+      "id": 4311,
+      "date": "2026-08-13T00:00:00Z",
+      "company": "Honeytree Early Learning Centers",
+      "invoiceNumber": "9292",
+      "reference": "Order #704",
+      "lineItems": [
+        {
+          "description": "Dell Warranty Renewal",
+          "productIdentifier": "DellWarranty",
+          "quantity": 1,
+          "unitPrice": 33.9,
+          "extPrice": 33.9,
+          "category": "Hardware/Equipment",
+          "amount": 33.9
+        },
+        {
+          "description": "Sales Tax",
+          "productIdentifier": null,
+          "quantity": null,
+          "unitPrice": null,
+          "extPrice": 1.8,
+          "category": "Hardware/Equipment",
+          "amount": 1.8
+        }
+      ],
+      "invoiceTotal": 35.7
+    }
+  ],
   "flagged": []
 }
