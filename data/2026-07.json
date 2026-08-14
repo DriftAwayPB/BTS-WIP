@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T01:47:58.421Z",
+  "generatedAt": "2026-08-14T09:23:45.843Z",
   "month": "2026-07",
   "isCurrentMonth": false,
   "monthGoal": 21000,
@@ -90,11 +90,11 @@
     },
     {
       "date": "2026-07-28",
-      "accrued": 1108
+      "accrued": 1389
     },
     {
       "date": "2026-07-29",
-      "accrued": 1187
+      "accrued": 906
     },
     {
       "date": "2026-07-30",
@@ -213,13 +213,13 @@
         },
         {
           "date": "2026-07-28",
-          "hours": 0.75,
-          "billed": 32
+          "hours": 2.5,
+          "billed": 108
         },
         {
           "date": "2026-07-29",
-          "hours": 7.25,
-          "billed": 314
+          "hours": 5.5,
+          "billed": 238
         },
         {
           "date": "2026-07-30",
@@ -335,13 +335,13 @@
         },
         {
           "date": "2026-07-28",
-          "hours": 0.25,
-          "billed": 11
+          "hours": 1.5,
+          "billed": 65
         },
         {
           "date": "2026-07-29",
-          "hours": 2.75,
-          "billed": 119
+          "hours": 1.5,
+          "billed": 65
         },
         {
           "date": "2026-07-30",
@@ -407,13 +407,13 @@
         },
         {
           "date": "2026-07-28",
-          "hours": 8,
-          "billed": 1032
+          "hours": 8.25,
+          "billed": 1064
         },
         {
           "date": "2026-07-29",
-          "hours": 2.75,
-          "billed": 355
+          "hours": 2.5,
+          "billed": 323
         },
         {
           "date": "2026-07-30",
@@ -600,7 +600,7 @@
           "billed": 303
         },
         {
-          "date": "2026-07-29",
+          "date": "2026-07-28",
           "hours": 1,
           "billed": 43
         },
@@ -707,9 +707,14 @@
           "billed": 43
         },
         {
+          "date": "2026-07-28",
+          "hours": 1,
+          "billed": 43
+        },
+        {
           "date": "2026-07-29",
-          "hours": 3,
-          "billed": 130
+          "hours": 2,
+          "billed": 87
         },
         {
           "date": "2026-07-30",
@@ -856,8 +861,13 @@
           "billed": 109
         },
         {
+          "date": "2026-07-28",
+          "hours": 1,
+          "billed": 0
+        },
+        {
           "date": "2026-07-29",
-          "hours": 1.5,
+          "hours": 0.5,
           "billed": 0
         },
         {
@@ -961,9 +971,14 @@
       "pctOfGoal": 0.5,
       "daily": [
         {
+          "date": "2026-07-28",
+          "hours": 0.25,
+          "billed": 32
+        },
+        {
           "date": "2026-07-29",
-          "hours": 0.75,
-          "billed": 97
+          "hours": 0.5,
+          "billed": 65
         }
       ]
     },
@@ -1028,12 +1043,12 @@
         },
         {
           "date": "2026-07-28",
-          "hours": 0.25,
+          "hours": 0.5,
           "billed": 0
         },
         {
           "date": "2026-07-29",
-          "hours": 0.5,
+          "hours": 0.25,
           "billed": 0
         },
         {

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T01:47:58.960Z",
+  "generatedAt": "2026-08-14T09:23:46.804Z",
   "month": "2026-06",
   "isCurrentMonth": false,
   "monthGoal": 21000,
@@ -62,19 +62,19 @@
     },
     {
       "date": "2026-06-18",
-      "accrued": 509
+      "accrued": 563
     },
     {
       "date": "2026-06-19",
-      "accrued": 701
+      "accrued": 647
     },
     {
       "date": "2026-06-22",
-      "accrued": 431
+      "accrued": 689
     },
     {
       "date": "2026-06-23",
-      "accrued": 863
+      "accrued": 605
     },
     {
       "date": "2026-06-24",
@@ -170,13 +170,13 @@
         },
         {
           "date": "2026-06-18",
-          "hours": 5.5,
-          "billed": 238
+          "hours": 6.75,
+          "billed": 292
         },
         {
           "date": "2026-06-19",
-          "hours": 3.25,
-          "billed": 141
+          "hours": 2,
+          "billed": 87
         },
         {
           "date": "2026-06-22",
@@ -368,9 +368,14 @@
           "billed": 129
         },
         {
+          "date": "2026-06-22",
+          "hours": 0,
+          "billed": 129
+        },
+        {
           "date": "2026-06-23",
           "hours": 1,
-          "billed": 258
+          "billed": 129
         },
         {
           "date": "2026-06-26",
@@ -869,7 +874,7 @@
           "billed": 65
         },
         {
-          "date": "2026-06-23",
+          "date": "2026-06-22",
           "hours": 0,
           "billed": 129
         }
