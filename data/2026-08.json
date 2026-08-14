@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T20:17:29.420Z",
+  "generatedAt": "2026-08-14T20:46:22.312Z",
   "month": "2026-08",
   "isCurrentMonth": true,
   "monthGoal": 21000,
@@ -30,15 +30,15 @@
     },
     {
       "date": "2026-08-10",
-      "accrued": 519
+      "accrued": 669
     },
     {
       "date": "2026-08-11",
-      "accrued": 590
+      "accrued": 690
     },
     {
       "date": "2026-08-12",
-      "accrued": 540
+      "accrued": 590
     },
     {
       "date": "2026-08-13",
@@ -46,14 +46,71 @@
     },
     {
       "date": "2026-08-14",
-      "accrued": 592
+      "accrued": 721
     }
   ],
   "clientBreakdown": [
     {
+      "client": "Honeytree Early Learning Centers",
+      "mtd": 2050,
+      "pctOfGoal": 9.8,
+      "daily": [
+        {
+          "date": "2026-08-03",
+          "hours": 9,
+          "billed": 450
+        },
+        {
+          "date": "2026-08-04",
+          "hours": 5,
+          "billed": 250
+        },
+        {
+          "date": "2026-08-05",
+          "hours": 5.75,
+          "billed": 313
+        },
+        {
+          "date": "2026-08-06",
+          "hours": 3,
+          "billed": 150
+        },
+        {
+          "date": "2026-08-07",
+          "hours": 1.5,
+          "billed": 75
+        },
+        {
+          "date": "2026-08-10",
+          "hours": 4,
+          "billed": 200
+        },
+        {
+          "date": "2026-08-11",
+          "hours": 2.5,
+          "billed": 125
+        },
+        {
+          "date": "2026-08-12",
+          "hours": 3.25,
+          "billed": 163
+        },
+        {
+          "date": "2026-08-13",
+          "hours": 2.75,
+          "billed": 138
+        },
+        {
+          "date": "2026-08-14",
+          "hours": 3.75,
+          "billed": 188
+        }
+      ]
+    },
+    {
       "client": "McLeod Enterprises",
-      "mtd": 1913,
-      "pctOfGoal": 9.1,
+      "mtd": 1963,
+      "pctOfGoal": 9.3,
       "daily": [
         {
           "date": "2026-08-03",
@@ -87,8 +144,8 @@
         },
         {
           "date": "2026-08-11",
-          "hours": 2,
-          "billed": 100
+          "hours": 3,
+          "billed": 150
         },
         {
           "date": "2026-08-12",
@@ -104,63 +161,6 @@
           "date": "2026-08-14",
           "hours": 3,
           "billed": 150
-        }
-      ]
-    },
-    {
-      "client": "Honeytree Early Learning Centers",
-      "mtd": 1850,
-      "pctOfGoal": 8.8,
-      "daily": [
-        {
-          "date": "2026-08-03",
-          "hours": 9,
-          "billed": 450
-        },
-        {
-          "date": "2026-08-04",
-          "hours": 5,
-          "billed": 250
-        },
-        {
-          "date": "2026-08-05",
-          "hours": 5.75,
-          "billed": 313
-        },
-        {
-          "date": "2026-08-06",
-          "hours": 3,
-          "billed": 150
-        },
-        {
-          "date": "2026-08-07",
-          "hours": 1.5,
-          "billed": 75
-        },
-        {
-          "date": "2026-08-10",
-          "hours": 1,
-          "billed": 50
-        },
-        {
-          "date": "2026-08-11",
-          "hours": 1.5,
-          "billed": 75
-        },
-        {
-          "date": "2026-08-12",
-          "hours": 3.25,
-          "billed": 163
-        },
-        {
-          "date": "2026-08-13",
-          "hours": 2.75,
-          "billed": 138
-        },
-        {
-          "date": "2026-08-14",
-          "hours": 3.75,
-          "billed": 188
         }
       ]
     },
@@ -203,8 +203,8 @@
     },
     {
       "client": "McLeod Family Foundation",
-      "mtd": 800,
-      "pctOfGoal": 3.8,
+      "mtd": 850,
+      "pctOfGoal": 4,
       "daily": [
         {
           "date": "2026-08-03",
@@ -238,8 +238,8 @@
         },
         {
           "date": "2026-08-12",
-          "hours": 0.25,
-          "billed": 13
+          "hours": 1.25,
+          "billed": 63
         },
         {
           "date": "2026-08-13",
@@ -255,8 +255,8 @@
     },
     {
       "client": "Fincastle Baptist Church",
-      "mtd": 516,
-      "pctOfGoal": 2.5,
+      "mtd": 645,
+      "pctOfGoal": 3.1,
       "daily": [
         {
           "date": "2026-08-03",
@@ -277,6 +277,11 @@
           "date": "2026-08-13",
           "hours": 1.75,
           "billed": 226
+        },
+        {
+          "date": "2026-08-14",
+          "hours": 1,
+          "billed": 129
         }
       ]
     },
@@ -486,5 +491,5 @@
     }
   ],
   "flagged": [],
-  "totalBilledHours": 112.5
+  "totalBilledHours": 119.5
 }
