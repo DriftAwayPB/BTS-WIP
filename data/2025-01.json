@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-14T09:35:19.775Z",
+  "generatedAt": "2026-08-14T10:18:33.589Z",
   "month": "2025-01",
   "isCurrentMonth": false,
-  "monthGoal": null,
+  "monthGoal": 17000,
   "weekdaysInMonth": 23,
   "weekdaysElapsed": 23,
   "weekdaysRemaining": 0,
@@ -117,7 +117,7 @@
     {
       "client": "McLeod Enterprises",
       "mtd": 4171,
-      "pctOfGoal": null,
+      "pctOfGoal": 24.5,
       "daily": [
         {
           "date": "2025-01-01",
@@ -244,7 +244,7 @@
     {
       "client": "Honeytree Early Learning Centers",
       "mtd": 3932,
-      "pctOfGoal": null,
+      "pctOfGoal": 23.1,
       "daily": [
         {
           "date": "2025-01-02",
@@ -366,7 +366,7 @@
     {
       "client": "McLeod Family Foundation",
       "mtd": 2210,
-      "pctOfGoal": null,
+      "pctOfGoal": 13,
       "daily": [
         {
           "date": "2025-01-02",
@@ -478,7 +478,7 @@
     {
       "client": "Elite Home Rentals",
       "mtd": 2123,
-      "pctOfGoal": null,
+      "pctOfGoal": 12.5,
       "daily": [
         {
           "date": "2025-01-02",
@@ -595,7 +595,7 @@
     {
       "client": "Fincastle Baptist Church",
       "mtd": 1161,
-      "pctOfGoal": null,
+      "pctOfGoal": 6.8,
       "daily": [
         {
           "date": "2025-01-07",
@@ -642,7 +642,7 @@
     {
       "client": "Williams Law Firm",
       "mtd": 742,
-      "pctOfGoal": null,
+      "pctOfGoal": 4.4,
       "daily": [
         {
           "date": "2025-01-03",
@@ -689,7 +689,7 @@
     {
       "client": "SWVA Settlement & Title",
       "mtd": 258,
-      "pctOfGoal": null,
+      "pctOfGoal": 1.5,
       "daily": [
         {
           "date": "2025-01-15",
@@ -706,7 +706,7 @@
     {
       "client": "Baird Drywall & Acoustic",
       "mtd": 218,
-      "pctOfGoal": null,
+      "pctOfGoal": 1.3,
       "daily": [
         {
           "date": "2025-01-01",
@@ -818,7 +818,7 @@
     {
       "client": "Crenshaw Lighting",
       "mtd": 161,
-      "pctOfGoal": null,
+      "pctOfGoal": 0.9,
       "daily": [
         {
           "date": "2025-01-20",
@@ -835,7 +835,7 @@
     {
       "client": "Catchall",
       "mtd": 129,
-      "pctOfGoal": null,
+      "pctOfGoal": 0.8,
       "daily": [
         {
           "date": "2025-01-08",
@@ -857,7 +857,7 @@
     {
       "client": "Venture Consulting",
       "mtd": 129,
-      "pctOfGoal": null,
+      "pctOfGoal": 0.8,
       "daily": [
         {
           "date": "2025-01-15",
@@ -869,7 +869,7 @@
     {
       "client": "Bozilla Corp",
       "mtd": 75,
-      "pctOfGoal": null,
+      "pctOfGoal": 0.4,
       "daily": [
         {
           "date": "2025-01-27",
@@ -881,7 +881,7 @@
     {
       "client": "TerraRoc",
       "mtd": 0,
-      "pctOfGoal": null,
+      "pctOfGoal": 0,
       "daily": [
         {
           "date": "2025-01-21",

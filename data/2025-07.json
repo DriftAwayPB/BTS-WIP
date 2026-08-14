@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-14T09:35:24.700Z",
+  "generatedAt": "2026-08-14T10:18:38.541Z",
   "month": "2025-07",
   "isCurrentMonth": false,
-  "monthGoal": null,
+  "monthGoal": 18000,
   "weekdaysInMonth": 23,
   "weekdaysElapsed": 23,
   "weekdaysRemaining": 0,
@@ -105,7 +105,7 @@
     {
       "client": "McLeod Enterprises",
       "mtd": 3261,
-      "pctOfGoal": null,
+      "pctOfGoal": 18.1,
       "daily": [
         {
           "date": "2025-07-01",
@@ -227,7 +227,7 @@
     {
       "client": "Honeytree Early Learning Centers",
       "mtd": 3174,
-      "pctOfGoal": null,
+      "pctOfGoal": 17.6,
       "daily": [
         {
           "date": "2025-07-01",
@@ -349,7 +349,7 @@
     {
       "client": "McLeod Family Foundation",
       "mtd": 2069,
-      "pctOfGoal": null,
+      "pctOfGoal": 11.5,
       "daily": [
         {
           "date": "2025-07-01",
@@ -456,7 +456,7 @@
     {
       "client": "Fincastle Baptist Church",
       "mtd": 1709,
-      "pctOfGoal": null,
+      "pctOfGoal": 9.5,
       "daily": [
         {
           "date": "2025-07-03",
@@ -513,7 +513,7 @@
     {
       "client": "Elite Home Rentals",
       "mtd": 1105,
-      "pctOfGoal": null,
+      "pctOfGoal": 6.1,
       "daily": [
         {
           "date": "2025-07-01",
@@ -620,7 +620,7 @@
     {
       "client": "SWVA Settlement & Title",
       "mtd": 516,
-      "pctOfGoal": null,
+      "pctOfGoal": 2.9,
       "daily": [
         {
           "date": "2025-07-07",
@@ -647,7 +647,7 @@
     {
       "client": "Williams Law Firm",
       "mtd": 290,
-      "pctOfGoal": null,
+      "pctOfGoal": 1.6,
       "daily": [
         {
           "date": "2025-07-08",
@@ -669,7 +669,7 @@
     {
       "client": "Utilis Consulting",
       "mtd": 129,
-      "pctOfGoal": null,
+      "pctOfGoal": 0.7,
       "daily": [
         {
           "date": "2025-07-07",
@@ -691,7 +691,7 @@
     {
       "client": "Venture Consulting",
       "mtd": 129,
-      "pctOfGoal": null,
+      "pctOfGoal": 0.7,
       "daily": [
         {
           "date": "2025-07-18",
@@ -703,7 +703,7 @@
     {
       "client": "Scott & Bond",
       "mtd": 129,
-      "pctOfGoal": null,
+      "pctOfGoal": 0.7,
       "daily": [
         {
           "date": "2025-07-29",
@@ -720,7 +720,7 @@
     {
       "client": "Bozilla Corp",
       "mtd": 37,
-      "pctOfGoal": null,
+      "pctOfGoal": 0.2,
       "daily": [
         {
           "date": "2025-07-30",
@@ -732,7 +732,7 @@
     {
       "client": "TerraRoc",
       "mtd": 0,
-      "pctOfGoal": null,
+      "pctOfGoal": 0,
       "daily": [
         {
           "date": "2025-07-01",
@@ -834,7 +834,7 @@
     {
       "client": "Baird Drywall & Acoustic",
       "mtd": 0,
-      "pctOfGoal": null,
+      "pctOfGoal": 0,
       "daily": [
         {
           "date": "2025-07-01",

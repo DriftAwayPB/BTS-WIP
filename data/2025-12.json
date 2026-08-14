@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-14T09:35:29.735Z",
+  "generatedAt": "2026-08-14T10:18:42.907Z",
   "month": "2025-12",
   "isCurrentMonth": false,
-  "monthGoal": null,
+  "monthGoal": 20000,
   "weekdaysInMonth": 23,
   "weekdaysElapsed": 23,
   "weekdaysRemaining": 0,
@@ -113,7 +113,7 @@
     {
       "client": "Honeytree Early Learning Centers",
       "mtd": 3921,
-      "pctOfGoal": null,
+      "pctOfGoal": 19.6,
       "daily": [
         {
           "date": "2025-12-01",
@@ -235,7 +235,7 @@
     {
       "client": "McLeod Enterprises",
       "mtd": 2751,
-      "pctOfGoal": null,
+      "pctOfGoal": 13.8,
       "daily": [
         {
           "date": "2025-12-01",
@@ -362,7 +362,7 @@
     {
       "client": "Blink Optometry",
       "mtd": 2193,
-      "pctOfGoal": null,
+      "pctOfGoal": 11,
       "daily": [
         {
           "date": "2025-12-01",
@@ -419,7 +419,7 @@
     {
       "client": "McLeod Family Foundation",
       "mtd": 1246,
-      "pctOfGoal": null,
+      "pctOfGoal": 6.2,
       "daily": [
         {
           "date": "2025-12-01",
@@ -531,7 +531,7 @@
     {
       "client": "Elite Home Rentals",
       "mtd": 1181,
-      "pctOfGoal": null,
+      "pctOfGoal": 5.9,
       "daily": [
         {
           "date": "2025-12-01",
@@ -638,7 +638,7 @@
     {
       "client": "Williams Law Firm",
       "mtd": 935,
-      "pctOfGoal": null,
+      "pctOfGoal": 4.7,
       "daily": [
         {
           "date": "2025-12-01",
@@ -680,7 +680,7 @@
     {
       "client": "Fincastle Baptist Church",
       "mtd": 710,
-      "pctOfGoal": null,
+      "pctOfGoal": 3.5,
       "daily": [
         {
           "date": "2025-12-11",
@@ -722,7 +722,7 @@
     {
       "client": "Utilis Consulting",
       "mtd": 645,
-      "pctOfGoal": null,
+      "pctOfGoal": 3.2,
       "daily": [
         {
           "date": "2025-12-02",
@@ -764,7 +764,7 @@
     {
       "client": "John McCaleb",
       "mtd": 452,
-      "pctOfGoal": null,
+      "pctOfGoal": 2.3,
       "daily": [
         {
           "date": "2025-12-01",
@@ -796,7 +796,7 @@
     {
       "client": "TerraRoc",
       "mtd": 297,
-      "pctOfGoal": null,
+      "pctOfGoal": 1.5,
       "daily": [
         {
           "date": "2025-12-01",
@@ -918,7 +918,7 @@
     {
       "client": "Scott & Bond",
       "mtd": 258,
-      "pctOfGoal": null,
+      "pctOfGoal": 1.3,
       "daily": [
         {
           "date": "2025-12-02",
@@ -940,7 +940,7 @@
     {
       "client": "SWVA Settlement & Title",
       "mtd": 258,
-      "pctOfGoal": null,
+      "pctOfGoal": 1.3,
       "daily": [
         {
           "date": "2025-12-01",
@@ -957,7 +957,7 @@
     {
       "client": "Crenshaw Lighting",
       "mtd": 258,
-      "pctOfGoal": null,
+      "pctOfGoal": 1.3,
       "daily": [
         {
           "date": "2025-12-11",
@@ -984,7 +984,7 @@
     {
       "client": "Baird Drywall & Acoustic",
       "mtd": 218,
-      "pctOfGoal": null,
+      "pctOfGoal": 1.1,
       "daily": [
         {
           "date": "2025-12-01",
@@ -1101,7 +1101,7 @@
     {
       "client": "Venture Consulting",
       "mtd": 194,
-      "pctOfGoal": null,
+      "pctOfGoal": 1,
       "daily": [
         {
           "date": "2025-12-03",
@@ -1118,7 +1118,7 @@
     {
       "client": "Banks Technology Services",
       "mtd": 32,
-      "pctOfGoal": null,
+      "pctOfGoal": 0.2,
       "daily": [
         {
           "date": "2025-12-19",
@@ -1130,7 +1130,7 @@
     {
       "client": "Appalachian Bookkeeping",
       "mtd": 0,
-      "pctOfGoal": null,
+      "pctOfGoal": 0,
       "daily": [
         {
           "date": "2025-12-01",

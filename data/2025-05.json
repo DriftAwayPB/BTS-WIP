@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-14T09:35:23.117Z",
+  "generatedAt": "2026-08-14T10:18:37.040Z",
   "month": "2025-05",
   "isCurrentMonth": false,
-  "monthGoal": null,
+  "monthGoal": 17000,
   "weekdaysInMonth": 22,
   "weekdaysElapsed": 22,
   "weekdaysRemaining": 0,
@@ -101,7 +101,7 @@
     {
       "client": "McLeod Enterprises",
       "mtd": 3737,
-      "pctOfGoal": null,
+      "pctOfGoal": 22,
       "daily": [
         {
           "date": "2025-05-01",
@@ -218,7 +218,7 @@
     {
       "client": "Honeytree Early Learning Centers",
       "mtd": 3456,
-      "pctOfGoal": null,
+      "pctOfGoal": 20.3,
       "daily": [
         {
           "date": "2025-05-01",
@@ -335,7 +335,7 @@
     {
       "client": "TerraRoc",
       "mtd": 2155,
-      "pctOfGoal": null,
+      "pctOfGoal": 12.7,
       "daily": [
         {
           "date": "2025-05-08",
@@ -407,7 +407,7 @@
     {
       "client": "Elite Home Rentals",
       "mtd": 1755,
-      "pctOfGoal": null,
+      "pctOfGoal": 10.3,
       "daily": [
         {
           "date": "2025-05-01",
@@ -519,7 +519,7 @@
     {
       "client": "McLeod Family Foundation",
       "mtd": 1560,
-      "pctOfGoal": null,
+      "pctOfGoal": 9.2,
       "daily": [
         {
           "date": "2025-05-01",
@@ -631,7 +631,7 @@
     {
       "client": "Fincastle Baptist Church",
       "mtd": 1451,
-      "pctOfGoal": null,
+      "pctOfGoal": 8.5,
       "daily": [
         {
           "date": "2025-05-02",
@@ -688,7 +688,7 @@
     {
       "client": "Williams Law Firm",
       "mtd": 355,
-      "pctOfGoal": null,
+      "pctOfGoal": 2.1,
       "daily": [
         {
           "date": "2025-05-08",
@@ -725,7 +725,7 @@
     {
       "client": "Baird Drywall & Acoustic",
       "mtd": 327,
-      "pctOfGoal": null,
+      "pctOfGoal": 1.9,
       "daily": [
         {
           "date": "2025-05-01",
@@ -837,7 +837,7 @@
     {
       "client": "Hill of Dreams Equestrian  Center",
       "mtd": 278,
-      "pctOfGoal": null,
+      "pctOfGoal": 1.6,
       "daily": [
         {
           "date": "2025-05-05",
@@ -859,7 +859,7 @@
     {
       "client": "SWVA Settlement & Title",
       "mtd": 258,
-      "pctOfGoal": null,
+      "pctOfGoal": 1.5,
       "daily": [
         {
           "date": "2025-05-05",
@@ -876,7 +876,7 @@
     {
       "client": "Utilis Consulting",
       "mtd": 226,
-      "pctOfGoal": null,
+      "pctOfGoal": 1.3,
       "daily": [
         {
           "date": "2025-05-15",
@@ -898,7 +898,7 @@
     {
       "client": "Scott & Bond",
       "mtd": 161,
-      "pctOfGoal": null,
+      "pctOfGoal": 0.9,
       "daily": [
         {
           "date": "2025-05-16",
@@ -920,7 +920,7 @@
     {
       "client": "James P. Cargill, PC",
       "mtd": 149,
-      "pctOfGoal": null,
+      "pctOfGoal": 0.9,
       "daily": [
         {
           "date": "2025-05-08",
@@ -937,7 +937,7 @@
     {
       "client": "Venture Consulting",
       "mtd": 129,
-      "pctOfGoal": null,
+      "pctOfGoal": 0.8,
       "daily": [
         {
           "date": "2025-05-26",
@@ -949,7 +949,7 @@
     {
       "client": "Hall's Garage Doors",
       "mtd": 97,
-      "pctOfGoal": null,
+      "pctOfGoal": 0.6,
       "daily": [
         {
           "date": "2025-05-01",

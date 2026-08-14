@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-14T09:35:20.520Z",
+  "generatedAt": "2026-08-14T10:18:34.444Z",
   "month": "2025-02",
   "isCurrentMonth": false,
-  "monthGoal": null,
+  "monthGoal": 17000,
   "weekdaysInMonth": 20,
   "weekdaysElapsed": 20,
   "weekdaysRemaining": 0,
@@ -105,7 +105,7 @@
     {
       "client": "Honeytree Early Learning Centers",
       "mtd": 3878,
-      "pctOfGoal": null,
+      "pctOfGoal": 22.8,
       "daily": [
         {
           "date": "2025-02-01",
@@ -217,7 +217,7 @@
     {
       "client": "McLeod Enterprises",
       "mtd": 3759,
-      "pctOfGoal": null,
+      "pctOfGoal": 22.1,
       "daily": [
         {
           "date": "2025-02-01",
@@ -334,7 +334,7 @@
     {
       "client": "McLeod Family Foundation",
       "mtd": 2524,
-      "pctOfGoal": null,
+      "pctOfGoal": 14.8,
       "daily": [
         {
           "date": "2025-02-01",
@@ -446,7 +446,7 @@
     {
       "client": "Elite Home Rentals",
       "mtd": 1311,
-      "pctOfGoal": null,
+      "pctOfGoal": 7.7,
       "daily": [
         {
           "date": "2025-02-04",
@@ -538,7 +538,7 @@
     {
       "client": "Williams Law Firm",
       "mtd": 1000,
-      "pctOfGoal": null,
+      "pctOfGoal": 5.9,
       "daily": [
         {
           "date": "2025-02-03",
@@ -585,7 +585,7 @@
     {
       "client": "Fincastle Baptist Church",
       "mtd": 806,
-      "pctOfGoal": null,
+      "pctOfGoal": 4.7,
       "daily": [
         {
           "date": "2025-02-05",
@@ -632,7 +632,7 @@
     {
       "client": "Baird Drywall & Acoustic",
       "mtd": 436,
-      "pctOfGoal": null,
+      "pctOfGoal": 2.6,
       "daily": [
         {
           "date": "2025-02-03",
@@ -734,7 +734,7 @@
     {
       "client": "SWVA Settlement & Title",
       "mtd": 194,
-      "pctOfGoal": null,
+      "pctOfGoal": 1.1,
       "daily": [
         {
           "date": "2025-02-27",
@@ -751,7 +751,7 @@
     {
       "client": "Bozilla Corp",
       "mtd": 186,
-      "pctOfGoal": null,
+      "pctOfGoal": 1.1,
       "daily": [
         {
           "date": "2025-02-03",
@@ -768,7 +768,7 @@
     {
       "client": "Venture Consulting",
       "mtd": 129,
-      "pctOfGoal": null,
+      "pctOfGoal": 0.8,
       "daily": [
         {
           "date": "2025-02-28",
