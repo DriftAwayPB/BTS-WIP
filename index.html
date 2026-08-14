@@ -603,25 +603,27 @@
             )
       ),
       h(Panel, null,
-        h("div", { style: { display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 8, padding: "0 4px 10px", borderBottom: `1px solid ${colors.hairline}`, marginBottom: 6 } },
-          ["Client", "MTD Value", "% of Goal"].map((label, i) =>
+        h("div", { style: { display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 8, padding: "0 4px 10px", borderBottom: `1px solid ${colors.hairline}`, marginBottom: 6 } },
+          ["Client", "MTD Value", "% of Goal", "Projected"].map((label, i) =>
             h("div", { key: i, style: { fontFamily: FONT_MONO, fontSize: 10.5, color: colors.faint, textTransform: "uppercase", letterSpacing: "0.08em" } }, label)
           )
         ),
         monthData.clientBreakdown.slice().sort((a, b) => b.mtd - a.mtd).map((c, i) => {
           const isOpen = expandedClient === c.client;
+          const projected = monthData.weekdaysElapsed > 0 ? (c.mtd / monthData.weekdaysElapsed) * monthData.weekdaysInMonth : c.mtd;
           return h("div", { key: i },
             h("div", {
               className: "row-hover",
               onClick: () => setExpandedClient(isOpen ? null : c.client),
-              style: { display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 8, padding: "10px 4px", alignItems: "center", borderRadius: 6, fontSize: 14, cursor: "pointer" }
+              style: { display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 8, padding: "10px 4px", alignItems: "center", borderRadius: 6, fontSize: 14, cursor: "pointer" }
             },
               h("div", { style: { color: colors.hi, display: "flex", alignItems: "center", gap: 6 } },
                 h("span", { style: { fontSize: 10, color: colors.faint, transform: isOpen ? "rotate(90deg)" : "rotate(0deg)", transition: "transform 0.15s", display: "inline-block" } }, "›"),
                 c.client
               ),
               h("div", { style: { fontFamily: FONT_MONO, color: colors.muted } }, fmtCurrency(c.mtd)),
-              h("div", { style: { fontFamily: FONT_MONO, color: colors.muted } }, c.pctOfGoal + "%")
+              h("div", { style: { fontFamily: FONT_MONO, color: colors.muted } }, c.pctOfGoal + "%"),
+              h("div", { style: { fontFamily: FONT_MONO, color: colors.bar } }, fmtCurrency(projected))
             ),
             isOpen && h("div", { style: { padding: "4px 4px 14px 24px" } },
               (!c.daily || c.daily.length === 0)
