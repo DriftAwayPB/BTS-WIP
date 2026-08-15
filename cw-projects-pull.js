@@ -79,6 +79,11 @@ async function fetchProjectInvoicesInRange(startDate, endDate) {
   return fetchPaginated("/finance/invoices", `&conditions=${conditions}`);
 }
 
+async function fetchActiveProjects() {
+  const conditions = encodeURIComponent(`closedFlag=false`);
+  return fetchPaginated("/project/projects", `&conditions=${conditions}`);
+}
+
 async function fetchAllInvoicesForProject(projectId) {
   const conditions = encodeURIComponent(`applyToType="Project" and applyToId=${projectId}`);
   return fetchPaginated("/finance/invoices", `&conditions=${conditions}`);
@@ -205,6 +210,52 @@ async function main() {
 
   console.log(`Total project revenue this month: $${totalProjects} across ${projectRecords.length} projects`);
 
+  // In-progress snapshot: every currently open project, regardless of
+  // whether it had an invoice this specific month. This is what fixes
+  // the "project between invoices is invisible" gap — a Fixed Fee
+  // project sitting between its deposit and completion invoice would
+  // otherwise vanish from every month's view until the next invoice
+  // actually lands.
+  console.log("Pulling all currently open (non-closed) projects for the in-progress snapshot...");
+  let activeProjects = [];
+  try {
+    const openProjects = await fetchActiveProjects();
+    console.log(`  found ${openProjects.length} open projects`);
+    for (const project of openProjects) {
+      let invoicedToDate = 0;
+      try {
+        const allInvoices = await fetchAllInvoicesForProject(project.id);
+        invoicedToDate = allInvoices.reduce((s, inv) => s + (Number(inv.total) || 0), 0);
+      } catch (e) {
+        console.warn(`  ⚠ failed to fetch invoices for open project ${project.id}: ${e.message}`);
+      }
+      const category = categorize(project.billingMethod);
+      const contractValue = category === "Fixed Fee" ? Number(project.billingAmount) || null : null;
+      const remaining = contractValue !== null ? Number((contractValue - invoicedToDate).toFixed(2)) : null;
+      const percentInvoiced = contractValue ? Number(((invoicedToDate / contractValue) * 100).toFixed(1)) : null;
+
+      activeProjects.push({
+        id: project.id,
+        name: project.name,
+        company: project.company?.name || null,
+        billingMethod: project.billingMethod,
+        category,
+        status: project.status?.name || null,
+        percentComplete: project.percentComplete ?? null,
+        estimatedStart: project.estimatedStart || null,
+        estimatedEnd: project.estimatedEnd || null,
+        contractValue,
+        invoicedToDate: Number(invoicedToDate.toFixed(2)),
+        remaining,
+        percentInvoiced,
+      });
+    }
+  } catch (e) {
+    console.warn(`  ⚠ failed to fetch open projects list: ${e.message}`);
+  }
+  activeProjects.sort((a, b) => (a.estimatedEnd || "9999").localeCompare(b.estimatedEnd || "9999"));
+  console.log(`Built in-progress snapshot for ${activeProjects.length} open projects`);
+
   const snapshot = {
     generatedAt: new Date().toISOString(),
     isCurrentMonth: true,
@@ -213,6 +264,7 @@ async function main() {
     byCategory,
     byClient,
     projects: projectRecords,
+    activeProjects,
     flagged,
   };
 
