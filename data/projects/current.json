@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-08-15T20:50:10.134Z",
+  "isCurrentMonth": true,
+  "currentDate": "2026-08-15",
+  "totalProjects": 0,
+  "byCategory": {
+    "Fixed Fee": 0,
+    "Time & Materials": 0,
+    "Other": 0
+  },
+  "byClient": [],
+  "projects": [],
+  "flagged": []
+}
