@@ -1,0 +1,46 @@
+{
+  "generatedAt": "2026-08-15T21:50:59.154Z",
+  "isCurrentMonth": false,
+  "totalProjects": 2978.56,
+  "byCategory": {
+    "Fixed Fee": 2978.56,
+    "Time & Materials": 0,
+    "Other": 0
+  },
+  "byClient": [
+    {
+      "client": "Gemini Structural",
+      "fixedFeeTotal": 2978.56,
+      "tmTotal": 0,
+      "total": 2978.56
+    }
+  ],
+  "projects": [
+    {
+      "id": 32,
+      "name": "Gemini Structural Network Setup",
+      "company": "Gemini Structural",
+      "billingMethod": "FixedFee",
+      "category": "Fixed Fee",
+      "status": "In Progress",
+      "closedFlag": false,
+      "contractValue": null,
+      "invoicedToDate": null,
+      "remaining": null,
+      "percentInvoiced": null,
+      "thisMonthTotal": 2978.56,
+      "thisMonthInvoices": [
+        {
+          "id": 4296,
+          "invoiceNumber": "9277",
+          "type": "DownPayment",
+          "date": "2026-07-31T00:00:00Z",
+          "total": 2978.56
+        }
+      ]
+    }
+  ],
+  "activeProjects": [],
+  "flagged": [],
+  "historical": true
+}

@@ -1,0 +1,46 @@
+{
+  "generatedAt": "2026-08-15T21:50:58.724Z",
+  "isCurrentMonth": false,
+  "totalProjects": 3125,
+  "byCategory": {
+    "Fixed Fee": 3125,
+    "Time & Materials": 0,
+    "Other": 0
+  },
+  "byClient": [
+    {
+      "client": "TerraRoc",
+      "fixedFeeTotal": 3125,
+      "tmTotal": 0,
+      "total": 3125
+    }
+  ],
+  "projects": [
+    {
+      "id": 29,
+      "name": "Terraroc Tenant Migration",
+      "company": "TerraRoc",
+      "billingMethod": "FixedFee",
+      "category": "Fixed Fee",
+      "status": "Closed",
+      "closedFlag": true,
+      "contractValue": null,
+      "invoicedToDate": null,
+      "remaining": null,
+      "percentInvoiced": null,
+      "thisMonthTotal": 3125,
+      "thisMonthInvoices": [
+        {
+          "id": 3662,
+          "invoiceNumber": "8645",
+          "type": "DownPayment",
+          "date": "2025-04-28T00:00:00Z",
+          "total": 3125
+        }
+      ]
+    }
+  ],
+  "activeProjects": [],
+  "flagged": [],
+  "historical": true
+}

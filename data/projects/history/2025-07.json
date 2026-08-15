@@ -1,0 +1,46 @@
+{
+  "generatedAt": "2026-08-15T21:50:58.880Z",
+  "isCurrentMonth": false,
+  "totalProjects": 3125,
+  "byCategory": {
+    "Fixed Fee": 3125,
+    "Time & Materials": 0,
+    "Other": 0
+  },
+  "byClient": [
+    {
+      "client": "Honeytree Early Learning Centers",
+      "fixedFeeTotal": 3125,
+      "tmTotal": 0,
+      "total": 3125
+    }
+  ],
+  "projects": [
+    {
+      "id": 30,
+      "name": "New 460 Building",
+      "company": "Honeytree Early Learning Centers",
+      "billingMethod": "FixedFee",
+      "category": "Fixed Fee",
+      "status": "Closed",
+      "closedFlag": true,
+      "contractValue": null,
+      "invoicedToDate": null,
+      "remaining": null,
+      "percentInvoiced": null,
+      "thisMonthTotal": 3125,
+      "thisMonthInvoices": [
+        {
+          "id": 3785,
+          "invoiceNumber": "8768",
+          "type": "Progress",
+          "date": "2025-07-25T00:00:00Z",
+          "total": 3125
+        }
+      ]
+    }
+  ],
+  "activeProjects": [],
+  "flagged": [],
+  "historical": true
+}
