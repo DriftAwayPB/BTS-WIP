@@ -54,7 +54,7 @@
   const RELOAD_INTERVAL_MS = 60 * 60 * 1000;
 
   const TRIGGER_URL = "https://wip-dashbaord-trigger.pbanks.workers.dev/";
-  const TRIGGER_KEY = "B@nksT3ch"; // <-- fill this in with the TRIGGER_SECRET you set in Cloudflare
+  const TRIGGER_KEY = "PASTE_YOUR_TRIGGER_SECRET_HERE"; // <-- fill this in with the TRIGGER_SECRET you set in Cloudflare
   const FAST_POLL_MS = 10 * 1000;
   const FAST_POLL_MAX_TRIES = 12; // ~2 minutes of fast polling after a manual trigger
   // TRIGGER_URL now fires BOTH the WIP and MRR pull workflows (see the
@@ -1108,6 +1108,74 @@
     );
   }
 
+  // Projects trend — same stacked-bar, no-forecast pattern as Sales
+  // (project revenue is lumpy/one-off by nature, not a smooth recurring
+  // line — a trend-line forecast would be misleading here too).
+  function ProjectsTrendChart({ months, selectedMonth, onMonthClick }) {
+    const [hoverIdx, setHoverIdx] = useState(null);
+    const W = 900, H = 220, padL = 46, padR = 14, padT = 12, padB = 26;
+    const innerW = W - padL - padR;
+    const innerH = H - padT - padB;
+
+    const maxVal = Math.max(1, ...months.map((m) => m.total));
+    const step = months.length > 1 ? innerW / months.length : innerW;
+    const barWidth = Math.min(48, step * 0.55);
+
+    const xAt = (i) => padL + i * step + step / 2;
+    const yAt = (v) => padT + innerH - (v / maxVal) * innerH;
+    const gridLines = 4;
+    const gridVals = Array.from({ length: gridLines + 1 }, (_, i) => (maxVal / gridLines) * i);
+
+    const hovered = hoverIdx !== null ? months[hoverIdx] : null;
+    let tooltip = null;
+    if (hovered) {
+      const boxW = 165, boxH = 68, gap = 10;
+      const px = xAt(hoverIdx);
+      let bx = px + gap;
+      if (bx + boxW > W - padR) bx = px - gap - boxW;
+      let by = yAt(hovered.total) - boxH - gap;
+      if (by < padT) by = padT + gap;
+
+      tooltip = h("g", { style: { pointerEvents: "none" } },
+        h("rect", { x: bx, y: by, width: boxW, height: boxH, rx: 6, fill: colors.panel, stroke: colors.hairline, strokeWidth: "1" }),
+        h("text", { x: bx + 10, y: by + 18, fontFamily: FONT_MONO, fontSize: "11", fontWeight: "600", fill: colors.hi }, fmtMonthLabel(hovered.month)),
+        h("text", { x: bx + 10, y: by + 33, fontFamily: FONT_MONO, fontSize: "10", fill: colors.hi }, `Total: ${fmtCurrency(hovered.total)}`),
+        h("text", { x: bx + 10, y: by + 47, fontFamily: FONT_MONO, fontSize: "10", fill: colors.finance }, `Fixed Fee: ${fmtCurrency(hovered.fixedFee)}`),
+        h("text", { x: bx + 10, y: by + 61, fontFamily: FONT_MONO, fontSize: "10", fill: colors.bar }, `T&M: ${fmtCurrency(hovered.tm)}`)
+      );
+    }
+
+    return h("svg", { viewBox: `0 0 ${W} ${H}`, style: { width: "100%", height: "auto", display: "block" } },
+      gridVals.map((v, i) => h("g", { key: "grid" + i },
+        h("line", { x1: padL, x2: W - padR, y1: yAt(v), y2: yAt(v), stroke: colors.hairline, strokeWidth: "1" }),
+        h("text", { x: padL - 8, y: yAt(v) + 4, textAnchor: "end", fontFamily: FONT_MONO, fontSize: "10", fill: colors.faint }, Math.round(v / 1000) + "k")
+      )),
+      months.map((m, i) => {
+        const ffH = Math.max(0, yAt(0) - yAt(m.fixedFee));
+        const tmH = Math.max(0, yAt(m.fixedFee) - yAt(m.total));
+        const isSelected = m.month === selectedMonth;
+        const opacity = isSelected ? 0.9 : 0.55;
+        return h("g", { key: "bar" + i },
+          h("rect", { x: xAt(i) - barWidth / 2, y: yAt(m.fixedFee), width: barWidth, height: ffH, fill: colors.finance, opacity, rx: 2 }),
+          h("rect", { x: xAt(i) - barWidth / 2, y: yAt(m.total), width: barWidth, height: tmH, fill: colors.bar, opacity, rx: 2 }),
+          isSelected && h("rect", { x: xAt(i) - barWidth / 2 - 2, y: yAt(m.total) - 2, width: barWidth + 4, height: ffH + tmH + 4, fill: "none", stroke: colors.hi, strokeWidth: 1.5, rx: 3 })
+        );
+      }),
+      months.map((m, i) => h("text", {
+        key: "lbl" + i, x: xAt(i), y: H - 6, textAnchor: "middle", fontFamily: FONT_MONO, fontSize: "10",
+        fill: m.month === selectedMonth ? colors.hi : colors.faint
+      }, fmtMonthLabel(m.month).split(" ")[0].slice(0, 3))),
+      months.map((m, i) => h("rect", {
+        key: "hit" + i, x: xAt(i) - step / 2, y: padT, width: step, height: innerH, fill: "transparent",
+        style: { cursor: "pointer" },
+        onMouseEnter: () => setHoverIdx(i),
+        onMouseLeave: () => setHoverIdx((prev) => (prev === i ? null : prev)),
+        onClick: () => onMonthClick && onMonthClick(m.month),
+      })),
+      tooltip
+    );
+  }
+
   function SalesTab() {
     const [monthsMap, setMonthsMap] = useState(null);
     const [manifest, setManifest] = useState(null);
@@ -1421,6 +1489,16 @@
     const canPrevMonth = monthIdx > 0;
     const canNextMonth = monthIdx >= 0 && monthIdx < manifest.months.length - 1;
 
+    const trendMonths = manifest.months.map((key) => {
+      const m = monthsMap[key];
+      return {
+        month: key,
+        total: m?.totalProjects || 0,
+        fixedFee: m?.byCategory?.["Fixed Fee"] || 0,
+        tm: m?.byCategory?.["Time & Materials"] || 0,
+      };
+    });
+
     return h("div", { style: { background: colors.bg, minHeight: "100vh", padding: "28px 24px 60px", fontFamily: FONT_BODY, color: colors.hi } },
       h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14, flexWrap: "wrap", gap: 10 } },
         h("div", null,
@@ -1455,10 +1533,21 @@
         fontSize: 12, color: colors.muted, marginBottom: 22
       } }, "Revenue counted here comes from invoices tied directly to a project (any invoice type — DownPayment, Standard, or Progress), kept separate from WIP so a big project payment doesn't distort your day-to-day billing pace."),
 
-      manifest.months.length > 1 && h("div", { style: { display: "flex", alignItems: "center", gap: 10, marginBottom: 18 } },
-        h(NavArrow, { direction: "prev", disabled: !canPrevMonth, onClick: () => canPrevMonth && setSelectedMonth(manifest.months[monthIdx - 1]) }),
-        h("div", { style: { fontFamily: FONT_DISPLAY, fontSize: 15, fontWeight: 600, minWidth: 160, textAlign: "center" } }, fmtMonthLabel(selectedMonth)),
-        h(NavArrow, { direction: "next", disabled: !canNextMonth, onClick: () => canNextMonth && setSelectedMonth(manifest.months[monthIdx + 1]) })
+      manifest.months.length > 1 && h(Panel, { style: { marginBottom: 22 } },
+        h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14, flexWrap: "wrap", gap: 10 } },
+          h(SectionLabel, { accent: colors.finance }, "Project revenue by month"),
+          h("div", { style: { display: "flex", alignItems: "center", gap: 10 } },
+            h(NavArrow, { direction: "prev", disabled: !canPrevMonth, onClick: () => canPrevMonth && setSelectedMonth(manifest.months[monthIdx - 1]) }),
+            h("div", { style: { fontFamily: FONT_MONO, fontSize: 12.5, color: colors.muted, minWidth: 110, textAlign: "center" } }, fmtMonthLabel(selectedMonth)),
+            h(NavArrow, { direction: "next", disabled: !canNextMonth, onClick: () => canNextMonth && setSelectedMonth(manifest.months[monthIdx + 1]) })
+          )
+        ),
+        h(ProjectsTrendChart, { months: trendMonths, selectedMonth, onMonthClick: (m) => setSelectedMonth(m) }),
+        h("div", { style: { display: "flex", gap: 18, marginTop: 8, fontSize: 12, color: colors.muted } },
+          h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: colors.finance, opacity: 0.7 } }), "Fixed Fee"),
+          h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: colors.bar, opacity: 0.7 } }), "Time & Materials")
+        ),
+        h("div", { style: { marginTop: 6, fontSize: 10.5, fontFamily: FONT_MONO, color: colors.faint } }, "Zero months are normal — project revenue lands in lumps on invoice dates, not steadily like WIP")
       ),
 
       h("div", { className: "grid-4", style: { gridTemplateColumns: "repeat(3, 1fr)", marginBottom: 22 } },
@@ -1549,12 +1638,274 @@
     );
   }
 
+  // ---------- Revenue Tab (combined WIP + MRR + Sales + Projects) ----------
+  const REVENUE_MRR_COLOR = "#A3C765"; // a lighter brand-green tint, distinct from WIP's finance green
+
+  function RevenueTrendChart({ months, selectedMonth, onMonthClick }) {
+    const [hoverIdx, setHoverIdx] = useState(null);
+    const W = 900, H = 240, padL = 46, padR = 14, padT = 12, padB = 26;
+    const innerW = W - padL - padR;
+    const innerH = H - padT - padB;
+
+    const maxVal = Math.max(1, ...months.map((m) => m.total));
+    const step = months.length > 1 ? innerW / months.length : innerW;
+    const barWidth = Math.min(48, step * 0.55);
+
+    const xAt = (i) => padL + i * step + step / 2;
+    const yAt = (v) => padT + innerH - (v / maxVal) * innerH;
+    const gridLines = 4;
+    const gridVals = Array.from({ length: gridLines + 1 }, (_, i) => (maxVal / gridLines) * i);
+
+    const hovered = hoverIdx !== null ? months[hoverIdx] : null;
+    let tooltip = null;
+    if (hovered) {
+      const boxW = 165, boxH = 96, gap = 10;
+      const px = xAt(hoverIdx);
+      let bx = px + gap;
+      if (bx + boxW > W - padR) bx = px - gap - boxW;
+      let by = yAt(hovered.total) - boxH - gap;
+      if (by < padT) by = padT + gap;
+
+      tooltip = h("g", { style: { pointerEvents: "none" } },
+        h("rect", { x: bx, y: by, width: boxW, height: boxH, rx: 6, fill: colors.panel, stroke: colors.hairline, strokeWidth: "1" }),
+        h("text", { x: bx + 10, y: by + 18, fontFamily: FONT_MONO, fontSize: "11", fontWeight: "600", fill: colors.hi }, fmtMonthLabel(hovered.month)),
+        h("text", { x: bx + 10, y: by + 33, fontFamily: FONT_MONO, fontSize: "10", fill: colors.hi }, `Total: ${fmtCurrency(hovered.total)}`),
+        h("text", { x: bx + 10, y: by + 47, fontFamily: FONT_MONO, fontSize: "10", fill: colors.finance }, `WIP: ${fmtCurrency(hovered.wip)}`),
+        h("text", { x: bx + 10, y: by + 61, fontFamily: FONT_MONO, fontSize: "10", fill: REVENUE_MRR_COLOR }, `MRR: ${fmtCurrency(hovered.mrr)}`),
+        h("text", { x: bx + 10, y: by + 75, fontFamily: FONT_MONO, fontSize: "10", fill: colors.bar }, `Sales: ${fmtCurrency(hovered.sales)}`),
+        h("text", { x: bx + 10, y: by + 89, fontFamily: FONT_MONO, fontSize: "10", fill: colors.goalLine }, `Projects: ${fmtCurrency(hovered.projects)}`)
+      );
+    }
+
+    return h("svg", { viewBox: `0 0 ${W} ${H}`, style: { width: "100%", height: "auto", display: "block" } },
+      gridVals.map((v, i) => h("g", { key: "grid" + i },
+        h("line", { x1: padL, x2: W - padR, y1: yAt(v), y2: yAt(v), stroke: colors.hairline, strokeWidth: "1" }),
+        h("text", { x: padL - 8, y: yAt(v) + 4, textAnchor: "end", fontFamily: FONT_MONO, fontSize: "10", fill: colors.faint }, Math.round(v / 1000) + "k")
+      )),
+      months.map((m, i) => {
+        const isSelected = m.month === selectedMonth;
+        const opacity = isSelected ? 0.9 : 0.6;
+        let cum = 0;
+        const segs = [
+          { val: m.wip, color: colors.finance },
+          { val: m.mrr, color: REVENUE_MRR_COLOR },
+          { val: m.sales, color: colors.bar },
+          { val: m.projects, color: colors.goalLine },
+        ];
+        const rects = segs.map((seg, si) => {
+          const y0 = yAt(cum);
+          cum += seg.val;
+          const y1 = yAt(cum);
+          return h("rect", {
+            key: "seg" + si,
+            x: xAt(i) - barWidth / 2,
+            y: y1,
+            width: barWidth,
+            height: Math.max(0, y0 - y1),
+            fill: seg.color,
+            opacity,
+            rx: 2,
+          });
+        });
+        return h("g", { key: "bar" + i },
+          rects,
+          isSelected && h("rect", { x: xAt(i) - barWidth / 2 - 2, y: yAt(m.total) - 2, width: barWidth + 4, height: (yAt(0) - yAt(m.total)) + 4, fill: "none", stroke: colors.hi, strokeWidth: 1.5, rx: 3 })
+        );
+      }),
+      months.map((m, i) => h("text", {
+        key: "lbl" + i, x: xAt(i), y: H - 6, textAnchor: "middle", fontFamily: FONT_MONO, fontSize: "10",
+        fill: m.month === selectedMonth ? colors.hi : colors.faint
+      }, fmtMonthLabel(m.month).split(" ")[0].slice(0, 3))),
+      months.map((m, i) => h("rect", {
+        key: "hit" + i, x: xAt(i) - step / 2, y: padT, width: step, height: innerH, fill: "transparent",
+        style: { cursor: "pointer" },
+        onMouseEnter: () => setHoverIdx(i),
+        onMouseLeave: () => setHoverIdx((prev) => (prev === i ? null : prev)),
+        onClick: () => onMonthClick && onMonthClick(m.month),
+      })),
+      tooltip
+    );
+  }
+
+  function RevenueTab() {
+    const [sources, setSources] = useState(null); // { wip, mrr, sales, projects } each { manifest, monthsMap }
+    const [selectedMonth, setSelectedMonth] = useState(null);
+    const [error, setError] = useState(null);
+    const [updateState, setUpdateState] = useState("idle");
+    const [updateMessage, setUpdateMessage] = useState("");
+
+    async function fetchManifestAndMonths(manifestUrl, monthUrlFn) {
+      const manifestRes = await fetch(`${manifestUrl}?t=${Date.now()}`);
+      if (!manifestRes.ok) throw new Error(`HTTP ${manifestRes.status}`);
+      const manifest = await manifestRes.json();
+      const entries = await Promise.all(
+        manifest.months.map(async (key) => {
+          const res = await fetch(`${monthUrlFn(key)}?t=${Date.now()}`);
+          if (!res.ok) throw new Error(`HTTP ${res.status} for ${key}`);
+          return [key, await res.json()];
+        })
+      );
+      return { manifest, monthsMap: Object.fromEntries(entries) };
+    }
+
+    async function loadAll() {
+      try {
+        const [wip, mrr, sales, projects] = await Promise.all([
+          fetchManifestAndMonths(MANIFEST_URL, monthDataUrl),
+          fetchManifestAndMonths(MRR_MANIFEST_URL, mrrMonthUrl),
+          fetchManifestAndMonths(SALES_MANIFEST_URL, salesMonthUrl),
+          fetchManifestAndMonths(PROJECTS_MANIFEST_URL, projectsMonthUrl),
+        ]);
+        const combined = { wip, mrr, sales, projects };
+        setSources(combined);
+        const allMonths = Array.from(new Set([
+          ...wip.manifest.months, ...mrr.manifest.months, ...sales.manifest.months, ...projects.manifest.months,
+        ])).sort();
+        setSelectedMonth((prev) => (prev && allMonths.includes(prev)) ? prev : allMonths[allMonths.length - 1]);
+        setError(null);
+        return combined;
+      } catch (e) {
+        setError(e.message);
+        return null;
+      }
+    }
+
+    useEffect(() => { loadAll(); }, []);
+
+    async function handleUpdateClick() {
+      setUpdateState("triggering");
+      setUpdateMessage("Triggering WIP + MRR + Sales + Projects pulls…");
+      try {
+        const res = await fetch(TRIGGER_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-Trigger-Key": TRIGGER_KEY.trim() },
+        });
+        const body = await res.json().catch(() => ({}));
+        if (!res.ok || !body.ok) {
+          const detail = body.error || (body.results ? body.results.filter((r) => !r.ok).map((r) => `${r.workflowFile}: ${r.status}`).join(", ") : null);
+          throw new Error(detail || `HTTP ${res.status}`);
+        }
+        setUpdateState("waiting");
+        setUpdateMessage("Pulls running — refreshing combined revenue…");
+        let tries = 0;
+        const poll = setInterval(async () => {
+          tries += 1;
+          const fresh = await loadAll();
+          if (fresh || tries >= FAST_POLL_MAX_TRIES) {
+            clearInterval(poll);
+            setUpdateState(fresh ? "idle" : "error");
+            setUpdateMessage(fresh ? "" : "Still processing — check the Actions tab if this takes more than a few minutes.");
+          }
+        }, FAST_POLL_MS);
+      } catch (e) {
+        setUpdateState("error");
+        setUpdateMessage(`Couldn't trigger update: ${e.message}`);
+      }
+    }
+
+    if (!sources || !selectedMonth) {
+      return h("div", { style: { background: colors.bg, minHeight: "60vh", display: "flex", alignItems: "center", justifyContent: "center", color: colors.muted, fontFamily: FONT_MONO } },
+        error ? `Error loading Revenue data: ${error}` : "Loading combined revenue…"
+      );
+    }
+
+    const wipTotalForMonth = (key) => {
+      const m = sources.wip.monthsMap[key];
+      if (!m) return 0;
+      return (m.dailyAccrual || []).reduce((s, d) => s + d.accrued, 0);
+    };
+    const mrrTotalForMonth = (key) => sources.mrr.monthsMap[key]?.totalMRR || 0;
+    const salesTotalForMonth = (key) => sources.sales.monthsMap[key]?.totalSales || 0;
+    const projectsTotalForMonth = (key) => sources.projects.monthsMap[key]?.totalProjects || 0;
+
+    const allMonths = Array.from(new Set([
+      ...sources.wip.manifest.months, ...sources.mrr.manifest.months,
+      ...sources.sales.manifest.months, ...sources.projects.manifest.months,
+    ])).sort();
+
+    const trendMonths = allMonths.map((key) => {
+      const wip = wipTotalForMonth(key);
+      const mrr = mrrTotalForMonth(key);
+      const sales = salesTotalForMonth(key);
+      const projects = projectsTotalForMonth(key);
+      return { month: key, wip, mrr, sales, projects, total: wip + mrr + sales + projects };
+    });
+
+    const monthIdx = allMonths.indexOf(selectedMonth);
+    const canPrevMonth = monthIdx > 0;
+    const canNextMonth = monthIdx >= 0 && monthIdx < allMonths.length - 1;
+    const current = trendMonths.find((m) => m.month === selectedMonth) || { wip: 0, mrr: 0, sales: 0, projects: 0, total: 0 };
+
+    return h("div", { style: { background: colors.bg, minHeight: "100vh", padding: "28px 24px 60px", fontFamily: FONT_BODY, color: colors.hi } },
+      h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14, flexWrap: "wrap", gap: 10 } },
+        h("div", null,
+          h("div", { style: { fontFamily: FONT_DISPLAY, fontWeight: 700, fontSize: 22, letterSpacing: "-0.01em" } }, "Total Revenue — All Sources"),
+          h("div", { style: { fontFamily: FONT_MONO, fontSize: 11.5, color: colors.faint, marginTop: 3 } },
+            `WIP + MRR + SALES + PROJECTS · viewing ${fmtMonthLabel(selectedMonth)}${monthIdx === allMonths.length - 1 ? " (latest)" : ""}`
+          )
+        ),
+        h("div", { style: { display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 4 } },
+          h("button", {
+            onClick: handleUpdateClick,
+            disabled: updateState === "triggering" || updateState === "waiting",
+            style: {
+              display: "flex", alignItems: "center", gap: 6, padding: "6px 14px", borderRadius: 6,
+              background: colors.finance, color: colors.bg, border: "none", fontFamily: FONT_MONO,
+              fontSize: 11.5, fontWeight: 600, cursor: (updateState === "triggering" || updateState === "waiting") ? "default" : "pointer",
+              opacity: (updateState === "triggering" || updateState === "waiting") ? 0.6 : 1,
+            }
+          }, updateState === "triggering" ? "Triggering…" : updateState === "waiting" ? "Updating…" : "⟳ Update Now"),
+          updateMessage && h("div", { style: { fontFamily: FONT_MONO, fontSize: 10, color: updateState === "error" ? colors.behind : colors.muted, maxWidth: 220, textAlign: "right" } }, updateMessage)
+        )
+      ),
+
+      h("div", { style: {
+        display: "flex", gap: 10, alignItems: "flex-start", padding: "10px 14px",
+        background: colors.panelAlt || colors.panel, border: `1px solid ${colors.hairline}`, borderRadius: 8,
+        fontSize: 12, color: colors.muted, marginBottom: 22
+      } }, "A simple sum of the other four tabs — no new data pulled here. Each source keeps its own definition of \"revenue\" (invoiced, not collected), so that limitation carries through to this total too."),
+
+      h(Panel, { style: { marginBottom: 22, display: "flex", flexDirection: "column", gap: 8 } },
+        h(SectionLabel, { accent: colors.finance }, "Total Revenue"),
+        h("div", { style: { fontFamily: FONT_MONO, fontSize: 34, fontWeight: 600, color: colors.hi } }, fmtCurrency(current.total)),
+        h("div", { style: { fontSize: 12.5, color: colors.muted } }, fmtMonthLabel(selectedMonth))
+      ),
+
+      h("div", { className: "grid-4", style: { marginBottom: 22 } },
+        h(StatTile, { label: "WIP", value: fmtCurrency(current.wip), sub: current.total ? `${((current.wip / current.total) * 100).toFixed(0)}% of total` : "—", accent: colors.finance, glyph: "▣" }),
+        h(StatTile, { label: "MRR", value: fmtCurrency(current.mrr), sub: current.total ? `${((current.mrr / current.total) * 100).toFixed(0)}% of total` : "—", accent: REVENUE_MRR_COLOR, glyph: "◆" }),
+        h(StatTile, { label: "Sales", value: fmtCurrency(current.sales), sub: current.total ? `${((current.sales / current.total) * 100).toFixed(0)}% of total` : "—", accent: colors.bar, glyph: "◇" }),
+        h(StatTile, { label: "Projects", value: fmtCurrency(current.projects), sub: current.total ? `${((current.projects / current.total) * 100).toFixed(0)}% of total` : "—", accent: colors.goalLine, glyph: "■" })
+      ),
+
+      h(Panel, { style: { marginBottom: 22 } },
+        h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14, flexWrap: "wrap", gap: 10 } },
+          h(SectionLabel, { accent: colors.finance }, "Total revenue by month"),
+          allMonths.length > 1 && h("div", { style: { display: "flex", alignItems: "center", gap: 10 } },
+            h(NavArrow, { direction: "prev", disabled: !canPrevMonth, onClick: () => canPrevMonth && setSelectedMonth(allMonths[monthIdx - 1]) }),
+            h("div", { style: { fontFamily: FONT_MONO, fontSize: 12.5, color: colors.muted, minWidth: 110, textAlign: "center" } }, fmtMonthLabel(selectedMonth)),
+            h(NavArrow, { direction: "next", disabled: !canNextMonth, onClick: () => canNextMonth && setSelectedMonth(allMonths[monthIdx + 1]) })
+          )
+        ),
+        h(RevenueTrendChart, { months: trendMonths, selectedMonth, onMonthClick: (m) => setSelectedMonth(m) }),
+        h("div", { style: { display: "flex", gap: 18, marginTop: 8, fontSize: 12, color: colors.muted, flexWrap: "wrap" } },
+          h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: colors.finance, opacity: 0.7 } }), "WIP"),
+          h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: REVENUE_MRR_COLOR, opacity: 0.7 } }), "MRR"),
+          h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: colors.bar, opacity: 0.7 } }), "Sales"),
+          h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: colors.goalLine, opacity: 0.7 } }), "Projects")
+        ),
+        h("div", { style: { marginTop: 6, fontSize: 10.5, fontFamily: FONT_MONO, color: colors.faint } }, "Hover a month for the full breakdown · click a month to select it")
+      )
+    );
+  }
+
   // ---------- Tab bar + App shell ----------
   const TABS = [
     { key: "wip", label: "WIP" },
     { key: "mrr", label: "MRR" },
     { key: "sales", label: "Sales" },
     { key: "projects", label: "Projects" },
+    { key: "revenue", label: "Revenue" },
   ];
 
   function TabBar({ active, onChange }) {
@@ -1594,7 +1945,8 @@
       tab === "wip" && h(WipTab),
       tab === "mrr" && h(MrrTab),
       tab === "sales" && h(SalesTab),
-      tab === "projects" && h(ProjectsTab)
+      tab === "projects" && h(ProjectsTab),
+      tab === "revenue" && h(RevenueTab)
     );
   }
 
