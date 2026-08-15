@@ -1464,6 +1464,30 @@
         h(StatTile, { label: "Time & Materials", value: fmtCurrency(tm), sub: `${data.totalProjects ? ((tm / data.totalProjects) * 100).toFixed(0) : 0}% of total`, accent: colors.bar, glyph: "◇" })
       ),
 
+      (data.activeProjects && data.activeProjects.length > 0) && h(Panel, { style: { marginBottom: 22 } },
+        h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14, flexWrap: "wrap", gap: 10 } },
+          h(SectionLabel, { accent: colors.goalLine }, "In-progress projects"),
+          h("div", { style: { fontFamily: FONT_MONO, fontSize: 10.5, color: colors.faint } }, "every open project, regardless of month — sorted by estimated completion")
+        ),
+        h("div", { style: { display: "grid", gridTemplateColumns: "1.8fr 1fr 1fr 1fr 1fr", gap: 8, padding: "0 4px 8px", borderBottom: `1px solid ${colors.hairline}`, marginBottom: 4 } },
+          ["Project / Client", "Remaining", "% Invoiced", "Est. Completion", "Status"].map((label, i) =>
+            h("div", { key: i, style: { fontFamily: FONT_MONO, fontSize: 10.5, color: colors.faint, textTransform: "uppercase", letterSpacing: "0.08em" } }, label)
+          )
+        ),
+        data.activeProjects.map((p, i) =>
+          h("div", { key: i, className: "row-hover", style: { display: "grid", gridTemplateColumns: "1.8fr 1fr 1fr 1fr 1fr", gap: 8, padding: "8px 4px", alignItems: "center", borderRadius: 6, fontSize: 13.5 } },
+            h("div", { style: { minWidth: 0 } },
+              h("div", { style: { color: colors.hi, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" } }, p.name),
+              h("div", { style: { color: colors.faint, fontFamily: FONT_MONO, fontSize: 10.5 } }, `${p.company || "—"} · ${p.category}`)
+            ),
+            h("div", { style: { fontFamily: FONT_MONO, color: p.remaining > 0 ? colors.goalLine : colors.muted } }, p.remaining !== null ? fmtCurrency(p.remaining) : "—"),
+            h("div", { style: { fontFamily: FONT_MONO, color: colors.muted } }, p.percentInvoiced !== null ? `${p.percentInvoiced}%` : "—"),
+            h("div", { style: { fontFamily: FONT_MONO, color: colors.muted } }, p.estimatedEnd ? fmtMD(p.estimatedEnd) : "not set"),
+            h("div", { style: { fontFamily: FONT_MONO, color: colors.muted, fontSize: 11.5 } }, p.status || "—")
+          )
+        )
+      ),
+
       h(SectionLabel, { accent: colors.bar }, `Projects touched — ${fmtMonthLabel(selectedMonth)}`),
       h(Panel, null,
         h("div", { style: { display: "grid", gridTemplateColumns: "1.8fr 1fr 1fr 1fr 1fr", gap: 8, padding: "0 4px 10px", borderBottom: `1px solid ${colors.hairline}`, marginBottom: 6 } },
