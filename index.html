@@ -1329,11 +1329,205 @@
     );
   }
 
+  // ---------- Projects Tab ----------
+  const PROJECTS_MANIFEST_URL = `${BASE_URL}/data/projects/manifest.json`;
+  const projectsMonthUrl = (key) => `${BASE_URL}/data/projects/history/${key}.json`;
+
+  function ProjectsTab() {
+    const [monthsMap, setMonthsMap] = useState(null);
+    const [manifest, setManifest] = useState(null);
+    const [selectedMonth, setSelectedMonth] = useState(null);
+    const [error, setError] = useState(null);
+    const [expandedProject, setExpandedProject] = useState(null);
+    const [updateState, setUpdateState] = useState("idle");
+    const [updateMessage, setUpdateMessage] = useState("");
+
+    async function loadAll() {
+      try {
+        const manifestRes = await fetch(`${PROJECTS_MANIFEST_URL}?t=${Date.now()}`);
+        if (!manifestRes.ok) throw new Error(`HTTP ${manifestRes.status}`);
+        const manifestJson = await manifestRes.json();
+        setManifest(manifestJson);
+
+        const entries = await Promise.all(
+          manifestJson.months.map(async (key) => {
+            const res = await fetch(`${projectsMonthUrl(key)}?t=${Date.now()}`);
+            if (!res.ok) throw new Error(`HTTP ${res.status} for ${key}`);
+            return [key, await res.json()];
+          })
+        );
+        const map = Object.fromEntries(entries);
+        setMonthsMap(map);
+        setSelectedMonth((prev) => (prev && map[prev] ? prev : manifestJson.latest));
+        setError(null);
+        return map[manifestJson.latest];
+      } catch (e) {
+        setError(e.message);
+        return null;
+      }
+    }
+
+    useEffect(() => { loadAll(); }, []);
+
+    async function handleUpdateClick() {
+      setUpdateState("triggering");
+      setUpdateMessage("Triggering WIP + MRR + Sales + Projects pulls…");
+      try {
+        const res = await fetch(TRIGGER_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-Trigger-Key": TRIGGER_KEY.trim() },
+        });
+        const body = await res.json().catch(() => ({}));
+        if (!res.ok || !body.ok) {
+          const detail = body.error || (body.results ? body.results.filter((r) => !r.ok).map((r) => `${r.workflowFile}: ${r.status}`).join(", ") : null);
+          throw new Error(detail || `HTTP ${res.status}`);
+        }
+
+        setUpdateState("waiting");
+        setUpdateMessage("Pulls running — checking for fresh Projects data…");
+
+        const generatedAtBefore = monthsMap && manifest ? monthsMap[manifest.latest]?.generatedAt : null;
+        let tries = 0;
+        const poll = setInterval(async () => {
+          tries += 1;
+          const fresh = await loadAll();
+          const gotNewData = fresh && fresh.generatedAt !== generatedAtBefore;
+          if (gotNewData || tries >= FAST_POLL_MAX_TRIES) {
+            clearInterval(poll);
+            setUpdateState(gotNewData ? "idle" : "error");
+            setUpdateMessage(gotNewData ? "" : "Still processing — check the Actions tab if this takes more than a few minutes.");
+          }
+        }, FAST_POLL_MS);
+      } catch (e) {
+        setUpdateState("error");
+        setUpdateMessage(`Couldn't trigger update: ${e.message}`);
+      }
+    }
+
+    if (!monthsMap || !manifest || !selectedMonth) {
+      return h("div", { style: { background: colors.bg, minHeight: "60vh", display: "flex", alignItems: "center", justifyContent: "center", color: colors.muted, fontFamily: FONT_MONO } },
+        error ? `Error loading Projects data: ${error}` : "Loading Projects data…"
+      );
+    }
+
+    const data = monthsMap[selectedMonth];
+    const fixedFee = data.byCategory?.["Fixed Fee"] || 0;
+    const tm = data.byCategory?.["Time & Materials"] || 0;
+
+    const monthIdx = manifest.months.indexOf(selectedMonth);
+    const canPrevMonth = monthIdx > 0;
+    const canNextMonth = monthIdx >= 0 && monthIdx < manifest.months.length - 1;
+
+    return h("div", { style: { background: colors.bg, minHeight: "100vh", padding: "28px 24px 60px", fontFamily: FONT_BODY, color: colors.hi } },
+      h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14, flexWrap: "wrap", gap: 10 } },
+        h("div", null,
+          h("div", { style: { fontFamily: FONT_DISPLAY, fontWeight: 700, fontSize: 22, letterSpacing: "-0.01em" } }, "Projects — Fixed Fee & T&M Revenue"),
+          h("div", { style: { fontFamily: FONT_MONO, fontSize: 11.5, color: colors.faint, marginTop: 3 } },
+            `SOURCE: CONNECTWISE PROJECT-LINKED INVOICES · viewing ${fmtMonthLabel(selectedMonth)}${selectedMonth === manifest.latest ? " (latest)" : ""} · snapshot ${new Date(data.generatedAt).toLocaleString()}`
+          )
+        ),
+        h("div", { style: { display: "flex", alignItems: "center", gap: 10 } },
+          data.flagged && data.flagged.length > 0 && h("div", {
+            style: { display: "flex", alignItems: "center", gap: 6, padding: "5px 10px", borderRadius: 6, background: "#2A1414", border: `1px solid ${colors.behind}`, fontFamily: FONT_MONO, fontSize: 10.5, color: colors.behind }
+          }, `${data.flagged.length} items need review`),
+          h("div", { style: { display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 4 } },
+            h("button", {
+              onClick: handleUpdateClick,
+              disabled: updateState === "triggering" || updateState === "waiting",
+              style: {
+                display: "flex", alignItems: "center", gap: 6, padding: "6px 14px", borderRadius: 6,
+                background: colors.finance, color: colors.bg, border: "none", fontFamily: FONT_MONO,
+                fontSize: 11.5, fontWeight: 600, cursor: (updateState === "triggering" || updateState === "waiting") ? "default" : "pointer",
+                opacity: (updateState === "triggering" || updateState === "waiting") ? 0.6 : 1,
+              }
+            }, updateState === "triggering" ? "Triggering…" : updateState === "waiting" ? "Updating…" : "⟳ Update Now"),
+            updateMessage && h("div", { style: { fontFamily: FONT_MONO, fontSize: 10, color: updateState === "error" ? colors.behind : colors.muted, maxWidth: 220, textAlign: "right" } }, updateMessage)
+          )
+        )
+      ),
+
+      h("div", { style: {
+        display: "flex", gap: 10, alignItems: "flex-start", padding: "10px 14px",
+        background: colors.panelAlt || colors.panel, border: `1px solid ${colors.hairline}`, borderRadius: 8,
+        fontSize: 12, color: colors.muted, marginBottom: 22
+      } }, "Revenue counted here comes from invoices tied directly to a project (any invoice type — DownPayment, Standard, or Progress), kept separate from WIP so a big project payment doesn't distort your day-to-day billing pace."),
+
+      manifest.months.length > 1 && h("div", { style: { display: "flex", alignItems: "center", gap: 10, marginBottom: 18 } },
+        h(NavArrow, { direction: "prev", disabled: !canPrevMonth, onClick: () => canPrevMonth && setSelectedMonth(manifest.months[monthIdx - 1]) }),
+        h("div", { style: { fontFamily: FONT_DISPLAY, fontSize: 15, fontWeight: 600, minWidth: 160, textAlign: "center" } }, fmtMonthLabel(selectedMonth)),
+        h(NavArrow, { direction: "next", disabled: !canNextMonth, onClick: () => canNextMonth && setSelectedMonth(manifest.months[monthIdx + 1]) })
+      ),
+
+      h("div", { className: "grid-4", style: { gridTemplateColumns: "repeat(3, 1fr)", marginBottom: 22 } },
+        h(StatTile, { label: "Total Project Revenue", value: fmtCurrency(data.totalProjects), sub: `${data.projects?.length || 0} projects touched this month`, accent: colors.finance, glyph: "●" }),
+        h(StatTile, { label: "Fixed Fee", value: fmtCurrency(fixedFee), sub: `${data.totalProjects ? ((fixedFee / data.totalProjects) * 100).toFixed(0) : 0}% of total`, accent: colors.finance, glyph: "▣" }),
+        h(StatTile, { label: "Time & Materials", value: fmtCurrency(tm), sub: `${data.totalProjects ? ((tm / data.totalProjects) * 100).toFixed(0) : 0}% of total`, accent: colors.bar, glyph: "◇" })
+      ),
+
+      h(SectionLabel, { accent: colors.bar }, `Projects touched — ${fmtMonthLabel(selectedMonth)}`),
+      h(Panel, null,
+        h("div", { style: { display: "grid", gridTemplateColumns: "1.8fr 1fr 1fr 1fr 1fr", gap: 8, padding: "0 4px 10px", borderBottom: `1px solid ${colors.hairline}`, marginBottom: 6 } },
+          ["Project / Client", "This Month", "Invoiced to Date", "Remaining", "% Invoiced"].map((label, i) =>
+            h("div", { key: i, style: { fontFamily: FONT_MONO, fontSize: 10.5, color: colors.faint, textTransform: "uppercase", letterSpacing: "0.08em" } }, label)
+          )
+        ),
+        (data.projects || []).length === 0
+          ? h("div", { style: { fontFamily: FONT_MONO, fontSize: 12, color: colors.faint, padding: "8px 4px" } }, "No project invoices this month.")
+          : (data.projects || []).map((p, i) => {
+          const isOpen = expandedProject === p.id;
+          return h("div", { key: i },
+            h("div", {
+              className: "row-hover",
+              onClick: () => setExpandedProject(isOpen ? null : p.id),
+              style: { display: "grid", gridTemplateColumns: "1.8fr 1fr 1fr 1fr 1fr", gap: 8, padding: "10px 4px", alignItems: "center", borderRadius: 6, fontSize: 14, cursor: "pointer" }
+            },
+              h("div", { style: { display: "flex", alignItems: "center", gap: 6, minWidth: 0 } },
+                h("span", { style: { fontSize: 10, color: colors.faint, transform: isOpen ? "rotate(90deg)" : "rotate(0deg)", transition: "transform 0.15s", display: "inline-block", flexShrink: 0 } }, "›"),
+                h("div", { style: { minWidth: 0 } },
+                  h("div", { style: { color: colors.hi, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" } }, p.name),
+                  h("div", { style: { color: colors.faint, fontFamily: FONT_MONO, fontSize: 10.5 } }, `${p.company} · ${p.category}`)
+                )
+              ),
+              h("div", { style: { fontFamily: FONT_MONO, color: colors.finance } }, fmtCurrency(p.thisMonthTotal)),
+              h("div", { style: { fontFamily: FONT_MONO, color: colors.muted } }, fmtCurrency(p.invoicedToDate)),
+              h("div", { style: { fontFamily: FONT_MONO, color: p.remaining > 0 ? colors.goalLine : colors.muted } }, p.remaining !== null ? fmtCurrency(p.remaining) : "—"),
+              h("div", { style: { fontFamily: FONT_MONO, color: colors.muted } }, p.percentInvoiced !== null ? `${p.percentInvoiced}%` : "—")
+            ),
+            isOpen && h("div", { style: { padding: "4px 4px 16px 24px" } },
+              h("div", { style: { fontSize: 12, color: colors.muted, marginBottom: 8 } },
+                p.contractValue !== null
+                  ? `Fixed Fee contract: ${fmtCurrency(p.contractValue)} · ${p.status || "status unknown"}${p.closedFlag ? " (closed)" : ""}`
+                  : `Time & Materials — no fixed contract value · ${p.status || "status unknown"}${p.closedFlag ? " (closed)" : ""}`
+              ),
+              (p.thisMonthInvoices || []).length === 0
+                ? h("div", { style: { fontFamily: FONT_MONO, fontSize: 11.5, color: colors.faint } }, "No invoice detail available.")
+                : h("div", null,
+                    h("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8, padding: "6px 4px", borderBottom: `1px solid ${colors.hairline}`, marginBottom: 4 } },
+                      ["Invoice", "Type", "Amount"].map((label, li) =>
+                        h("div", { key: li, style: { fontFamily: FONT_MONO, fontSize: 9.5, color: colors.faint, textTransform: "uppercase", letterSpacing: "0.06em" } }, label)
+                      )
+                    ),
+                    p.thisMonthInvoices.map((inv, ii) =>
+                      h("div", { key: ii, style: { display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8, padding: "6px 4px", fontSize: 12.5 } },
+                        h("div", { style: { color: colors.hi, fontFamily: FONT_MONO } }, `#${inv.invoiceNumber || inv.id} (${fmtMD(inv.date)})`),
+                        h("div", { style: { color: colors.muted, fontFamily: FONT_MONO, fontSize: 10.5 } }, inv.type),
+                        h("div", { style: { fontFamily: FONT_MONO, color: colors.finance } }, fmtCurrency(inv.total))
+                      )
+                    )
+                  )
+            )
+          );
+        })
+      )
+    );
+  }
+
   // ---------- Tab bar + App shell ----------
   const TABS = [
     { key: "wip", label: "WIP" },
     { key: "mrr", label: "MRR" },
     { key: "sales", label: "Sales" },
+    { key: "projects", label: "Projects" },
   ];
 
   function TabBar({ active, onChange }) {
@@ -1372,7 +1566,8 @@
       h(TabBar, { active: tab, onChange: changeTab }),
       tab === "wip" && h(WipTab),
       tab === "mrr" && h(MrrTab),
-      tab === "sales" && h(SalesTab)
+      tab === "sales" && h(SalesTab),
+      tab === "projects" && h(ProjectsTab)
     );
   }
 
