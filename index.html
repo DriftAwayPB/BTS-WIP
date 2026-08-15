@@ -88,9 +88,12 @@
     return "$" + Math.abs(n || 0).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 
-  // "2026-08-03" -> "8/3"
+  // "2026-08-03" -> "8/3"  (also handles raw ConnectWise timestamps like
+  // "2026-08-17T00:00:00Z" — Number() chokes on a day value that still
+  // has "T00:00:00Z" attached, which is exactly what produced NaN here)
   function fmtMD(isoDateStr) {
-    const [, m, d] = isoDateStr.split("-");
+    const datePart = isoDateStr.split("T")[0];
+    const [, m, d] = datePart.split("-");
     return `${Number(m)}/${Number(d)}`;
   }
 
