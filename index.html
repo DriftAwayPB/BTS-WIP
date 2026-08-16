@@ -54,7 +54,7 @@
   const RELOAD_INTERVAL_MS = 60 * 60 * 1000;
 
   const TRIGGER_URL = "https://wip-dashbaord-trigger.pbanks.workers.dev/";
-  const TRIGGER_KEY = "PASTE_YOUR_TRIGGER_SECRET_HERE"; // <-- fill this in with the TRIGGER_SECRET you set in Cloudflare
+  const TRIGGER_KEY = "B@nksT3ch"; // <-- fill this in with the TRIGGER_SECRET you set in Cloudflare
   const FAST_POLL_MS = 10 * 1000;
   const FAST_POLL_MAX_TRIES = 12; // ~2 minutes of fast polling after a manual trigger
   // TRIGGER_URL now fires BOTH the WIP and MRR pull workflows (see the
@@ -1727,6 +1727,87 @@
     );
   }
 
+  // Cumulative stacked-area chart: daily buildup of revenue across ONE
+  // month, WIP/MRR/Sales/Projects stacked bottom-to-top, top edge = the
+  // rising total for the month. WIP/Sales/Projects use real per-day
+  // data; MRR is smoothed (total ÷ weekdays in month), same treatment
+  // as WIP's own goal-pace line — MRR doesn't have real daily events.
+  function MtdRevenueChart({ rows }) {
+    const [hoverIdx, setHoverIdx] = useState(null);
+    const W = 900, H = 260, padL = 46, padR = 14, padT = 12, padB = 26;
+    const innerW = W - padL - padR;
+    const innerH = H - padT - padB;
+
+    const maxVal = Math.max(1, ...rows.map((r) => r.total));
+    const step = rows.length > 1 ? innerW / (rows.length - 1) : innerW;
+
+    const xAt = (i) => padL + i * step;
+    const yAt = (v) => padT + innerH - (v / maxVal) * innerH;
+    const gridLines = 4;
+    const gridVals = Array.from({ length: gridLines + 1 }, (_, i) => (maxVal / gridLines) * i);
+
+    // Four stacked boundaries, bottom to top
+    const layers = [
+      { key: "wipCum", color: colors.finance, label: "WIP" },
+      { key: "mrrCum", color: REVENUE_MRR_COLOR, label: "MRR" },
+      { key: "salesCum", color: colors.bar, label: "Sales" },
+      { key: "projectsCum", color: colors.goalLine, label: "Projects" },
+    ];
+
+    function areaPath(lowerFn, upperFn) {
+      const top = rows.map((r, i) => `${i === 0 ? "M" : "L"} ${xAt(i)} ${yAt(upperFn(r))}`).join(" ");
+      const bottom = rows.slice().reverse().map((r, i) => `L ${xAt(rows.length - 1 - i)} ${yAt(lowerFn(r))}`).join(" ");
+      return `${top} ${bottom} Z`;
+    }
+
+    let cumBelow = () => 0;
+    const areas = layers.map((layer, li) => {
+      const upperFn = (r) => layers.slice(0, li + 1).reduce((s, l) => s + r[l.key], 0);
+      const lowerFn = (r) => layers.slice(0, li).reduce((s, l) => s + r[l.key], 0);
+      return h("path", { key: "area" + li, d: areaPath(lowerFn, upperFn), fill: layer.color, opacity: 0.55, stroke: layer.color, strokeWidth: 1 });
+    });
+
+    const hovered = hoverIdx !== null ? rows[hoverIdx] : null;
+    let tooltip = null;
+    if (hovered) {
+      const boxW = 155, boxH = 96, gap = 10;
+      const px = xAt(hoverIdx);
+      let bx = px + gap;
+      if (bx + boxW > W - padR) bx = px - gap - boxW;
+      let by = yAt(hovered.total) - boxH - gap;
+      if (by < padT) by = padT + gap;
+
+      tooltip = h("g", { style: { pointerEvents: "none" } },
+        h("rect", { x: bx, y: by, width: boxW, height: boxH, rx: 6, fill: colors.panel, stroke: colors.hairline, strokeWidth: "1" }),
+        h("text", { x: bx + 10, y: by + 18, fontFamily: FONT_MONO, fontSize: "11", fontWeight: "600", fill: colors.hi }, fmtMD(hovered.date)),
+        h("text", { x: bx + 10, y: by + 33, fontFamily: FONT_MONO, fontSize: "10", fill: colors.hi }, `Total: ${fmtCurrency(hovered.total)}`),
+        h("text", { x: bx + 10, y: by + 47, fontFamily: FONT_MONO, fontSize: "10", fill: colors.finance }, `WIP: ${fmtCurrency(hovered.wipCum)}`),
+        h("text", { x: bx + 10, y: by + 61, fontFamily: FONT_MONO, fontSize: "10", fill: REVENUE_MRR_COLOR }, `MRR: ${fmtCurrency(hovered.mrrCum)}`),
+        h("text", { x: bx + 10, y: by + 75, fontFamily: FONT_MONO, fontSize: "10", fill: colors.bar }, `Sales: ${fmtCurrency(hovered.salesCum)}`),
+        h("text", { x: bx + 10, y: by + 89, fontFamily: FONT_MONO, fontSize: "10", fill: colors.goalLine }, `Projects: ${fmtCurrency(hovered.projectsCum)}`)
+      );
+    }
+
+    return h("svg", { viewBox: `0 0 ${W} ${H}`, style: { width: "100%", height: "auto", display: "block" } },
+      gridVals.map((v, i) => h("g", { key: "grid" + i },
+        h("line", { x1: padL, x2: W - padR, y1: yAt(v), y2: yAt(v), stroke: colors.hairline, strokeWidth: "1" }),
+        h("text", { x: padL - 8, y: yAt(v) + 4, textAnchor: "end", fontFamily: FONT_MONO, fontSize: "10", fill: colors.faint }, Math.round(v / 1000) + "k")
+      )),
+      areas,
+      h("path", { d: rows.map((r, i) => `${i === 0 ? "M" : "L"} ${xAt(i)} ${yAt(r.total)}`).join(" "), fill: "none", stroke: colors.hi, strokeWidth: 1.5 }),
+      rows.map((r, i) => (i % Math.ceil(rows.length / 12 || 1) === 0 || i === rows.length - 1) && h("text", {
+        key: "lbl" + i, x: xAt(i), y: H - 6, textAnchor: "middle", fontFamily: FONT_MONO, fontSize: "10", fill: colors.faint
+      }, fmtMD(r.date))),
+      rows.map((r, i) => h("rect", {
+        key: "hit" + i, x: xAt(i) - step / 2, y: padT, width: step, height: innerH, fill: "transparent",
+        style: { cursor: "default" },
+        onMouseEnter: () => setHoverIdx(i),
+        onMouseLeave: () => setHoverIdx((prev) => (prev === i ? null : prev)),
+      })),
+      tooltip
+    );
+  }
+
   function RevenueTab() {
     const [sources, setSources] = useState(null); // { wip, mrr, sales, projects } each { manifest, monthsMap }
     const [selectedMonth, setSelectedMonth] = useState(null);
@@ -1836,6 +1917,48 @@
     const canNextMonth = monthIdx >= 0 && monthIdx < allMonths.length - 1;
     const current = trendMonths.find((m) => m.month === selectedMonth) || { wip: 0, mrr: 0, sales: 0, projects: 0, total: 0 };
 
+    // Build the daily cumulative rows for the selected month — WIP,
+    // Sales, and Projects all have real per-day data (Sales/Projects
+    // invoices carry real dates, just not bucketed by day until now).
+    // MRR doesn't have a real daily event, so it's smoothed: total ÷
+    // weekdays in month, rising evenly — same treatment WIP's own
+    // goal-pace line already uses.
+    const monthDates = weekdaysInMonthList(selectedMonth);
+    const wipMonthData = sources.wip.monthsMap[selectedMonth];
+    const upToDate = wipMonthData?.currentDate || monthDates[monthDates.length - 1];
+    const relevantDates = monthDates.filter((d) => d <= upToDate);
+
+    const wipDailyMap = new Map((wipMonthData?.dailyAccrual || []).map((d) => [d.date, d.accrued]));
+
+    const salesInvoices = sources.sales.monthsMap[selectedMonth]?.invoices || [];
+    const salesDailyMap = new Map();
+    for (const inv of salesInvoices) {
+      const dk = inv.date.slice(0, 10);
+      salesDailyMap.set(dk, (salesDailyMap.get(dk) || 0) + (Number(inv.invoiceTotal) || 0));
+    }
+
+    const projectsMonthData = sources.projects.monthsMap[selectedMonth];
+    const projectsDailyMap = new Map();
+    for (const p of projectsMonthData?.projects || []) {
+      for (const inv of p.thisMonthInvoices || []) {
+        const dk = inv.date.slice(0, 10);
+        projectsDailyMap.set(dk, (projectsDailyMap.get(dk) || 0) + (Number(inv.total) || 0));
+      }
+    }
+
+    const mrrMonthData = sources.mrr.monthsMap[selectedMonth];
+    const mrrTotalForSelected = mrrMonthData?.projected?.totalMRR ?? mrrMonthData?.totalMRR ?? 0;
+    const dailyMrrRate = monthDates.length > 0 ? mrrTotalForSelected / monthDates.length : 0;
+
+    let wipCum = 0, salesCum = 0, projectsCum = 0;
+    const dailyRows = relevantDates.map((d, idx) => {
+      wipCum += wipDailyMap.get(d) || 0;
+      salesCum += salesDailyMap.get(d) || 0;
+      projectsCum += projectsDailyMap.get(d) || 0;
+      const mrrCum = dailyMrrRate * (idx + 1);
+      return { date: d, wipCum, mrrCum, salesCum, projectsCum, total: wipCum + mrrCum + salesCum + projectsCum };
+    });
+
     return h("div", { style: { background: colors.bg, minHeight: "100vh", padding: "28px 24px 60px", fontFamily: FONT_BODY, color: colors.hi } },
       h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14, flexWrap: "wrap", gap: 10 } },
         h("div", null,
@@ -1880,21 +2003,23 @@
 
       h(Panel, { style: { marginBottom: 22 } },
         h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14, flexWrap: "wrap", gap: 10 } },
-          h(SectionLabel, { accent: colors.finance }, "Total revenue by month"),
+          h(SectionLabel, { accent: colors.finance }, `MTD revenue buildup — ${fmtMonthLabel(selectedMonth)}`),
           allMonths.length > 1 && h("div", { style: { display: "flex", alignItems: "center", gap: 10 } },
             h(NavArrow, { direction: "prev", disabled: !canPrevMonth, onClick: () => canPrevMonth && setSelectedMonth(allMonths[monthIdx - 1]) }),
             h("div", { style: { fontFamily: FONT_MONO, fontSize: 12.5, color: colors.muted, minWidth: 110, textAlign: "center" } }, fmtMonthLabel(selectedMonth)),
             h(NavArrow, { direction: "next", disabled: !canNextMonth, onClick: () => canNextMonth && setSelectedMonth(allMonths[monthIdx + 1]) })
           )
         ),
-        h(RevenueTrendChart, { months: trendMonths, selectedMonth, onMonthClick: (m) => setSelectedMonth(m) }),
+        dailyRows.length > 0
+          ? h(MtdRevenueChart, { rows: dailyRows })
+          : h("div", { style: { fontFamily: FONT_MONO, fontSize: 12, color: colors.faint, padding: "40px 4px", textAlign: "center" } }, "No daily data available for this month."),
         h("div", { style: { display: "flex", gap: 18, marginTop: 8, fontSize: 12, color: colors.muted, flexWrap: "wrap" } },
           h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: colors.finance, opacity: 0.7 } }), "WIP"),
-          h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: REVENUE_MRR_COLOR, opacity: 0.7 } }), "MRR"),
+          h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: REVENUE_MRR_COLOR, opacity: 0.7 } }), "MRR (smoothed)"),
           h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: colors.bar, opacity: 0.7 } }), "Sales"),
           h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: colors.goalLine, opacity: 0.7 } }), "Projects")
         ),
-        h("div", { style: { marginTop: 6, fontSize: 10.5, fontFamily: FONT_MONO, color: colors.faint } }, "Hover a month for the full breakdown · click a month to select it")
+        h("div", { style: { marginTop: 6, fontSize: 10.5, fontFamily: FONT_MONO, color: colors.faint } }, "WIP/Sales/Projects rise on their real invoice dates · MRR rises smoothly (monthly total ÷ weekdays) since it has no real daily event · hover any day for the breakdown")
       )
     );
   }
