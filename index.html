@@ -1732,14 +1732,15 @@
   // rising total for the month. WIP/Sales/Projects use real per-day
   // data; MRR is smoothed (total ÷ weekdays in month), same treatment
   // as WIP's own goal-pace line — MRR doesn't have real daily events.
-  function MtdRevenueChart({ rows }) {
+  function MtdRevenueChart({ rows, projectedRows }) {
     const [hoverIdx, setHoverIdx] = useState(null);
+    const allRows = [...rows, ...(projectedRows || [])];
     const W = 900, H = 260, padL = 46, padR = 14, padT = 12, padB = 26;
     const innerW = W - padL - padR;
     const innerH = H - padT - padB;
 
-    const maxVal = Math.max(1, ...rows.map((r) => r.total));
-    const step = rows.length > 1 ? innerW / (rows.length - 1) : innerW;
+    const maxVal = Math.max(1, ...allRows.map((r) => r.total));
+    const step = allRows.length > 1 ? innerW / (allRows.length - 1) : innerW;
 
     const xAt = (i) => padL + i * step;
     const yAt = (v) => padT + innerH - (v / maxVal) * innerH;
@@ -1767,10 +1768,11 @@
       return h("path", { key: "area" + li, d: areaPath(lowerFn, upperFn), fill: layer.color, opacity: 0.55, stroke: layer.color, strokeWidth: 1 });
     });
 
-    const hovered = hoverIdx !== null ? rows[hoverIdx] : null;
+    const hovered = hoverIdx !== null ? allRows[hoverIdx] : null;
     let tooltip = null;
     if (hovered) {
-      const boxW = 155, boxH = 96, gap = 10;
+      const isProjected = hoverIdx >= rows.length;
+      const boxW = 155, boxH = isProjected ? 110 : 96, gap = 10;
       const px = xAt(hoverIdx);
       let bx = px + gap;
       if (bx + boxW > W - padR) bx = px - gap - boxW;
@@ -1779,12 +1781,13 @@
 
       tooltip = h("g", { style: { pointerEvents: "none" } },
         h("rect", { x: bx, y: by, width: boxW, height: boxH, rx: 6, fill: colors.panel, stroke: colors.hairline, strokeWidth: "1" }),
-        h("text", { x: bx + 10, y: by + 18, fontFamily: FONT_MONO, fontSize: "11", fontWeight: "600", fill: colors.hi }, fmtMD(hovered.date)),
+        h("text", { x: bx + 10, y: by + 18, fontFamily: FONT_MONO, fontSize: "11", fontWeight: "600", fill: colors.hi }, fmtMD(hovered.date) + (isProjected ? " (proj.)" : "")),
         h("text", { x: bx + 10, y: by + 33, fontFamily: FONT_MONO, fontSize: "10", fill: colors.hi }, `Total: ${fmtCurrency(hovered.total)}`),
         h("text", { x: bx + 10, y: by + 47, fontFamily: FONT_MONO, fontSize: "10", fill: colors.finance }, `WIP: ${fmtCurrency(hovered.wipCum)}`),
         h("text", { x: bx + 10, y: by + 61, fontFamily: FONT_MONO, fontSize: "10", fill: REVENUE_MRR_COLOR }, `MRR: ${fmtCurrency(hovered.mrrCum)}`),
         h("text", { x: bx + 10, y: by + 75, fontFamily: FONT_MONO, fontSize: "10", fill: colors.bar }, `Sales: ${fmtCurrency(hovered.salesCum)}`),
-        h("text", { x: bx + 10, y: by + 89, fontFamily: FONT_MONO, fontSize: "10", fill: colors.goalLine }, `Projects: ${fmtCurrency(hovered.projectsCum)}`)
+        h("text", { x: bx + 10, y: by + 89, fontFamily: FONT_MONO, fontSize: "10", fill: colors.goalLine }, `Projects: ${fmtCurrency(hovered.projectsCum)}`),
+        isProjected && h("text", { x: bx + 10, y: by + 103, fontFamily: FONT_MONO, fontSize: "9", fill: colors.faint }, "WIP paced forward · Sales/Projects held flat")
       );
     }
 
@@ -1795,10 +1798,14 @@
       )),
       areas,
       h("path", { d: rows.map((r, i) => `${i === 0 ? "M" : "L"} ${xAt(i)} ${yAt(r.total)}`).join(" "), fill: "none", stroke: colors.hi, strokeWidth: 1.5 }),
-      rows.map((r, i) => (i % Math.ceil(rows.length / 12 || 1) === 0 || i === rows.length - 1) && h("text", {
-        key: "lbl" + i, x: xAt(i), y: H - 6, textAnchor: "middle", fontFamily: FONT_MONO, fontSize: "10", fill: colors.faint
+      projectedRows && projectedRows.length > 0 && h("path", {
+        d: [rows[rows.length - 1], ...projectedRows].map((r, i) => `${i === 0 ? "M" : "L"} ${xAt(rows.length - 1 + i)} ${yAt(r.total)}`).join(" "),
+        fill: "none", stroke: colors.hi, strokeWidth: 1.5, strokeDasharray: "4 3", opacity: 0.7,
+      }),
+      allRows.map((r, i) => (i % Math.ceil(allRows.length / 12 || 1) === 0 || i === allRows.length - 1) && h("text", {
+        key: "lbl" + i, x: xAt(i), y: H - 6, textAnchor: "middle", fontFamily: FONT_MONO, fontSize: "10", fill: i >= rows.length ? colors.faint : colors.faint
       }, fmtMD(r.date))),
-      rows.map((r, i) => h("rect", {
+      allRows.map((r, i) => h("rect", {
         key: "hit" + i, x: xAt(i) - step / 2, y: padT, width: step, height: innerH, fill: "transparent",
         style: { cursor: "default" },
         onMouseEnter: () => setHoverIdx(i),
@@ -1959,6 +1966,32 @@
       return { date: d, wipCum, mrrCum, salesCum, projectsCum, total: wipCum + mrrCum + salesCum + projectsCum };
     });
 
+    // Pace-based projection for the rest of the month — current month
+    // only. WIP paces forward using the same MTD÷weekdaysElapsed math
+    // as the WIP tab itself. MRR's line is already a full-month
+    // projection by construction (smoothed across every weekday), so
+    // it just continues its existing formula. Sales and Projects hold
+    // flat at today's actual — projecting lumpy one-off revenue forward
+    // would be misleading, same reasoning those tabs' own charts use.
+    const lastActual = dailyRows[dailyRows.length - 1] || { wipCum: 0, mrrCum: 0, salesCum: 0, projectsCum: 0, total: 0 };
+    const futureDates = wipMonthData?.isCurrentMonth ? monthDates.filter((d) => d > upToDate) : [];
+    const dailyWipPaceRate = relevantDates.length > 0 ? lastActual.wipCum / relevantDates.length : 0;
+    let projWip = lastActual.wipCum;
+    const projectedRows = futureDates.map((d, idx) => {
+      projWip += dailyWipPaceRate;
+      const globalIdx = relevantDates.length + idx;
+      const mrrCum = dailyMrrRate * (globalIdx + 1);
+      return {
+        date: d,
+        wipCum: projWip,
+        mrrCum,
+        salesCum: lastActual.salesCum,
+        projectsCum: lastActual.projectsCum,
+        total: projWip + mrrCum + lastActual.salesCum + lastActual.projectsCum,
+      };
+    });
+    const projectedMonthEndTotal = projectedRows.length > 0 ? projectedRows[projectedRows.length - 1].total : lastActual.total;
+
     return h("div", { style: { background: colors.bg, minHeight: "100vh", padding: "28px 24px 60px", fontFamily: FONT_BODY, color: colors.hi } },
       h("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14, flexWrap: "wrap", gap: 10 } },
         h("div", null,
@@ -2011,15 +2044,19 @@
           )
         ),
         dailyRows.length > 0
-          ? h(MtdRevenueChart, { rows: dailyRows })
+          ? h(MtdRevenueChart, { rows: dailyRows, projectedRows })
           : h("div", { style: { fontFamily: FONT_MONO, fontSize: 12, color: colors.faint, padding: "40px 4px", textAlign: "center" } }, "No daily data available for this month."),
+        projectedRows.length > 0 && h("div", { style: { display: "flex", alignItems: "baseline", gap: 8, marginTop: 10, marginBottom: 4 } },
+          h("div", { style: { fontFamily: FONT_MONO, fontSize: 11, color: colors.faint, textTransform: "uppercase", letterSpacing: "0.06em" } }, "Projected month-end:"),
+          h("div", { style: { fontFamily: FONT_MONO, fontSize: 16, fontWeight: 600, color: colors.hi } }, fmtCurrency(projectedMonthEndTotal))
+        ),
         h("div", { style: { display: "flex", gap: 18, marginTop: 8, fontSize: 12, color: colors.muted, flexWrap: "wrap" } },
           h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: colors.finance, opacity: 0.7 } }), "WIP"),
           h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: REVENUE_MRR_COLOR, opacity: 0.7 } }), "MRR (smoothed)"),
           h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: colors.bar, opacity: 0.7 } }), "Sales"),
           h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: colors.goalLine, opacity: 0.7 } }), "Projects")
         ),
-        h("div", { style: { marginTop: 6, fontSize: 10.5, fontFamily: FONT_MONO, color: colors.faint } }, "WIP/Sales/Projects rise on their real invoice dates · MRR rises smoothly (monthly total ÷ weekdays) since it has no real daily event · hover any day for the breakdown")
+        h("div", { style: { marginTop: 6, fontSize: 10.5, fontFamily: FONT_MONO, color: colors.faint } }, "WIP/Sales/Projects rise on their real invoice dates · MRR rises smoothly (monthly total ÷ weekdays) · dashed line = projected — WIP paced from MTD, MRR continues its smooth line, Sales/Projects held flat (too lumpy to trend-project) · hover any day for the breakdown")
       )
     );
   }
