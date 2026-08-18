@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T10:01:53.194Z",
+  "generatedAt": "2026-08-18T11:00:10.929Z",
   "month": "2026-08",
   "isCurrentMonth": true,
   "monthGoal": 21000,
@@ -50,14 +50,18 @@
     },
     {
       "date": "2026-08-17",
-      "accrued": 315
+      "accrued": 594
+    },
+    {
+      "date": "2026-08-18",
+      "accrued": 232
     }
   ],
   "clientBreakdown": [
     {
       "client": "Honeytree Early Learning Centers",
-      "mtd": 2050,
-      "pctOfGoal": 9.8,
+      "mtd": 2200,
+      "pctOfGoal": 10.5,
       "daily": [
         {
           "date": "2026-08-03",
@@ -108,13 +112,23 @@
           "date": "2026-08-14",
           "hours": 3.75,
           "billed": 188
+        },
+        {
+          "date": "2026-08-17",
+          "hours": 2,
+          "billed": 100
+        },
+        {
+          "date": "2026-08-18",
+          "hours": 1,
+          "billed": 50
         }
       ]
     },
     {
       "client": "McLeod Enterprises",
-      "mtd": 1963,
-      "pctOfGoal": 9.3,
+      "mtd": 2013,
+      "pctOfGoal": 9.6,
       "daily": [
         {
           "date": "2026-08-03",
@@ -165,50 +179,18 @@
           "date": "2026-08-14",
           "hours": 3,
           "billed": 150
-        }
-      ]
-    },
-    {
-      "client": "Fincastle Baptist Church",
-      "mtd": 935,
-      "pctOfGoal": 4.5,
-      "daily": [
-        {
-          "date": "2026-08-03",
-          "hours": 0.25,
-          "billed": 32
         },
         {
-          "date": "2026-08-05",
+          "date": "2026-08-18",
           "hours": 1,
-          "billed": 129
-        },
-        {
-          "date": "2026-08-10",
-          "hours": 1,
-          "billed": 129
-        },
-        {
-          "date": "2026-08-13",
-          "hours": 1.75,
-          "billed": 226
-        },
-        {
-          "date": "2026-08-14",
-          "hours": 1,
-          "billed": 129
-        },
-        {
-          "date": "2026-08-17",
-          "hours": 2.25,
-          "billed": 290
+          "billed": 50
         }
       ]
     },
     {
       "client": "Blink Optometry",
-      "mtd": 935,
-      "pctOfGoal": 4.5,
+      "mtd": 1064,
+      "pctOfGoal": 5.1,
       "daily": [
         {
           "date": "2026-08-03",
@@ -239,13 +221,18 @@
           "date": "2026-08-14",
           "hours": 1,
           "billed": 129
+        },
+        {
+          "date": "2026-08-17",
+          "hours": 1,
+          "billed": 129
         }
       ]
     },
     {
       "client": "McLeod Family Foundation",
-      "mtd": 875,
-      "pctOfGoal": 4.2,
+      "mtd": 975,
+      "pctOfGoal": 4.6,
       "daily": [
         {
           "date": "2026-08-03",
@@ -294,15 +281,57 @@
         },
         {
           "date": "2026-08-17",
-          "hours": 0.5,
-          "billed": 25
+          "hours": 1.5,
+          "billed": 75
+        },
+        {
+          "date": "2026-08-18",
+          "hours": 1,
+          "billed": 50
+        }
+      ]
+    },
+    {
+      "client": "Fincastle Baptist Church",
+      "mtd": 935,
+      "pctOfGoal": 4.5,
+      "daily": [
+        {
+          "date": "2026-08-03",
+          "hours": 0.25,
+          "billed": 32
+        },
+        {
+          "date": "2026-08-05",
+          "hours": 1,
+          "billed": 129
+        },
+        {
+          "date": "2026-08-10",
+          "hours": 1,
+          "billed": 129
+        },
+        {
+          "date": "2026-08-13",
+          "hours": 1.75,
+          "billed": 226
+        },
+        {
+          "date": "2026-08-14",
+          "hours": 1,
+          "billed": 129
+        },
+        {
+          "date": "2026-08-17",
+          "hours": 2.25,
+          "billed": 290
         }
       ]
     },
     {
       "client": "Elite Home Rentals",
-      "mtd": 400,
-      "pctOfGoal": 1.9,
+      "mtd": 450,
+      "pctOfGoal": 2.1,
       "daily": [
         {
           "date": "2026-08-03",
@@ -343,6 +372,11 @@
           "date": "2026-08-14",
           "hours": 1,
           "billed": 50
+        },
+        {
+          "date": "2026-08-18",
+          "hours": 1,
+          "billed": 50
         }
       ]
     },
@@ -370,8 +404,8 @@
     },
     {
       "client": "Scott & Bond",
-      "mtd": 161,
-      "pctOfGoal": 0.8,
+      "mtd": 194,
+      "pctOfGoal": 0.9,
       "daily": [
         {
           "date": "2026-08-05",
@@ -390,6 +424,11 @@
         },
         {
           "date": "2026-08-11",
+          "hours": 0.25,
+          "billed": 32
+        },
+        {
+          "date": "2026-08-18",
           "hours": 0.25,
           "billed": 32
         }
@@ -438,6 +477,11 @@
         {
           "date": "2026-08-14",
           "hours": 2,
+          "billed": 0
+        },
+        {
+          "date": "2026-08-18",
+          "hours": 1,
           "billed": 0
         }
       ]
@@ -510,5 +554,5 @@
     }
   ],
   "flagged": [],
-  "totalBilledHours": 122.25
+  "totalBilledHours": 130.5
 }
