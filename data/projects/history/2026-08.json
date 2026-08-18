@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-15T21:32:44.433Z",
+  "generatedAt": "2026-08-18T10:01:51.655Z",
   "isCurrentMonth": true,
-  "currentDate": "2026-08-15",
+  "currentDate": "2026-08-18",
   "totalProjects": 0,
   "byCategory": {
     "Fixed Fee": 0,
@@ -32,7 +32,7 @@
       "company": "McLeod Family Foundation",
       "billingMethod": "FixedFee",
       "category": "Fixed Fee",
-      "status": "New",
+      "status": "In Progress",
       "percentComplete": 0,
       "estimatedStart": "2026-08-03T00:00:00Z",
       "estimatedEnd": "2026-08-20T00:00:00Z",
