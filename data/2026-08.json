@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-17T11:01:21.337Z",
+  "generatedAt": "2026-08-18T10:01:53.194Z",
   "month": "2026-08",
   "isCurrentMonth": true,
   "monthGoal": 21000,
   "weekdaysInMonth": 21,
-  "weekdaysElapsed": 11,
-  "weekdaysRemaining": 10,
-  "currentDate": "2026-08-17",
+  "weekdaysElapsed": 12,
+  "weekdaysRemaining": 9,
+  "currentDate": "2026-08-18",
   "dailyAccrual": [
     {
       "date": "2026-08-03",
@@ -47,6 +47,10 @@
     {
       "date": "2026-08-14",
       "accrued": 721
+    },
+    {
+      "date": "2026-08-17",
+      "accrued": 315
     }
   ],
   "clientBreakdown": [
@@ -165,6 +169,43 @@
       ]
     },
     {
+      "client": "Fincastle Baptist Church",
+      "mtd": 935,
+      "pctOfGoal": 4.5,
+      "daily": [
+        {
+          "date": "2026-08-03",
+          "hours": 0.25,
+          "billed": 32
+        },
+        {
+          "date": "2026-08-05",
+          "hours": 1,
+          "billed": 129
+        },
+        {
+          "date": "2026-08-10",
+          "hours": 1,
+          "billed": 129
+        },
+        {
+          "date": "2026-08-13",
+          "hours": 1.75,
+          "billed": 226
+        },
+        {
+          "date": "2026-08-14",
+          "hours": 1,
+          "billed": 129
+        },
+        {
+          "date": "2026-08-17",
+          "hours": 2.25,
+          "billed": 290
+        }
+      ]
+    },
+    {
       "client": "Blink Optometry",
       "mtd": 935,
       "pctOfGoal": 4.5,
@@ -203,8 +244,8 @@
     },
     {
       "client": "McLeod Family Foundation",
-      "mtd": 850,
-      "pctOfGoal": 4,
+      "mtd": 875,
+      "pctOfGoal": 4.2,
       "daily": [
         {
           "date": "2026-08-03",
@@ -250,38 +291,11 @@
           "date": "2026-08-14",
           "hours": 1.5,
           "billed": 75
-        }
-      ]
-    },
-    {
-      "client": "Fincastle Baptist Church",
-      "mtd": 645,
-      "pctOfGoal": 3.1,
-      "daily": [
-        {
-          "date": "2026-08-03",
-          "hours": 0.25,
-          "billed": 32
         },
         {
-          "date": "2026-08-05",
-          "hours": 1,
-          "billed": 129
-        },
-        {
-          "date": "2026-08-10",
-          "hours": 1,
-          "billed": 129
-        },
-        {
-          "date": "2026-08-13",
-          "hours": 1.75,
-          "billed": 226
-        },
-        {
-          "date": "2026-08-14",
-          "hours": 1,
-          "billed": 129
+          "date": "2026-08-17",
+          "hours": 0.5,
+          "billed": 25
         }
       ]
     },
@@ -486,10 +500,15 @@
           "date": "2026-08-14",
           "hours": 0.25,
           "billed": 0
+        },
+        {
+          "date": "2026-08-17",
+          "hours": 0.75,
+          "billed": 0
         }
       ]
     }
   ],
   "flagged": [],
-  "totalBilledHours": 119.5
+  "totalBilledHours": 122.25
 }
