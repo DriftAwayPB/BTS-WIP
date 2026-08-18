@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-18T14:08:27.222Z",
+  "generatedAt": "2026-08-18T21:43:21.907Z",
   "isCurrentMonth": true,
   "currentDate": "2026-08-18",
-  "totalSales": 2256.65,
+  "totalSales": 2284.15,
   "byCategory": {
-    "Hardware/Equipment": 2256.65,
+    "Hardware/Equipment": 2284.15,
     "Cloud/Consumption": 0
   },
   "byClient": [
@@ -19,6 +19,12 @@
       "hardwareTotal": 216.56,
       "cloudTotal": 0,
       "total": 216.56
+    },
+    {
+      "client": "Gemini Structural",
+      "hardwareTotal": 27.5,
+      "cloudTotal": 0,
+      "total": 27.5
     }
   ],
   "invoices": [
@@ -170,6 +176,25 @@
         }
       ],
       "invoiceTotal": 35.7
+    },
+    {
+      "id": 4336,
+      "date": "2026-08-18T00:00:00Z",
+      "company": "Gemini Structural",
+      "invoiceNumber": "9317",
+      "reference": "Order #713",
+      "lineItems": [
+        {
+          "description": "Microsoft 365 Business Premium",
+          "productIdentifier": "365BusinessPremium",
+          "quantity": 1,
+          "unitPrice": 27.5,
+          "extPrice": 27.5,
+          "category": "Hardware/Equipment",
+          "amount": 27.5
+        }
+      ],
+      "invoiceTotal": 27.5
     }
   ],
   "flagged": []
