@@ -1485,6 +1485,18 @@
     const fixedFee = data.byCategory?.["Fixed Fee"] || 0;
     const tm = data.byCategory?.["Time & Materials"] || 0;
 
+    // Month-end projection: this month's actual + any open project's real
+    // remaining balance whose estimated completion falls within THIS
+    // month. Only meaningful on the current/latest month, since
+    // activeProjects is a "right now" snapshot the live pull computes —
+    // historical months don't carry it.
+    const isLatestMonth = selectedMonth === manifest.latest;
+    const projectedAdditions = isLatestMonth
+      ? (data.activeProjects || []).filter((p) => p.remaining > 0 && p.estimatedEnd && p.estimatedEnd.slice(0, 7) === selectedMonth)
+      : [];
+    const projectedAdditionsTotal = projectedAdditions.reduce((s, p) => s + p.remaining, 0);
+    const projectedMonthEndTotal = data.totalProjects + projectedAdditionsTotal;
+
     const monthIdx = manifest.months.indexOf(selectedMonth);
     const canPrevMonth = monthIdx > 0;
     const canNextMonth = monthIdx >= 0 && monthIdx < manifest.months.length - 1;
@@ -1550,8 +1562,20 @@
         h("div", { style: { marginTop: 6, fontSize: 10.5, fontFamily: FONT_MONO, color: colors.faint } }, "Zero months are normal — project revenue lands in lumps on invoice dates, not steadily like WIP")
       ),
 
-      h("div", { className: "grid-4", style: { gridTemplateColumns: "repeat(3, 1fr)", marginBottom: 22 } },
-        h(StatTile, { label: "Total Project Revenue", value: fmtCurrency(data.totalProjects), sub: `${data.projects?.length || 0} projects touched this month`, accent: colors.finance, glyph: "●" }),
+      h("div", { style: { display: "flex", gap: 16, marginBottom: 22, flexWrap: "wrap" } },
+        h(Panel, { style: { flex: "1 1 260px", display: "flex", flexDirection: "column", gap: 8 } },
+          h(SectionLabel, { accent: colors.finance }, "Total Project Revenue"),
+          h("div", { style: { fontFamily: FONT_MONO, fontSize: 34, fontWeight: 600, color: colors.hi } }, fmtCurrency(data.totalProjects)),
+          h("div", { style: { fontSize: 12.5, color: colors.muted } }, `${data.projects?.length || 0} projects touched · ${fmtMonthLabel(selectedMonth)}`)
+        ),
+        projectedAdditions.length > 0 && h(Panel, { style: { flex: "1 1 260px", display: "flex", flexDirection: "column", gap: 8, border: `1px dashed ${colors.hairline}` } },
+          h(SectionLabel, { accent: colors.goalLine }, "Projected Month-End"),
+          h("div", { style: { fontFamily: FONT_MONO, fontSize: 34, fontWeight: 600, color: colors.hi } }, fmtCurrency(projectedMonthEndTotal)),
+          h("div", { style: { fontSize: 12.5, color: colors.muted } }, `+${fmtCurrency(projectedAdditionsTotal)} from ${projectedAdditions.length} open project${projectedAdditions.length === 1 ? "" : "s"} est. completing this month`)
+        )
+      ),
+
+      h("div", { className: "grid-4", style: { gridTemplateColumns: "repeat(2, 1fr)", marginBottom: 22 } },
         h(StatTile, { label: "Fixed Fee", value: fmtCurrency(fixedFee), sub: `${data.totalProjects ? ((fixedFee / data.totalProjects) * 100).toFixed(0) : 0}% of total`, accent: colors.finance, glyph: "▣" }),
         h(StatTile, { label: "Time & Materials", value: fmtCurrency(tm), sub: `${data.totalProjects ? ((tm / data.totalProjects) * 100).toFixed(0) : 0}% of total`, accent: colors.bar, glyph: "◇" })
       ),
