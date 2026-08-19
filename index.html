@@ -2079,10 +2079,17 @@
         fontSize: 12, color: colors.muted, marginBottom: 22
       } }, "A simple sum of the other four tabs — no new data pulled here. Each source keeps its own definition of \"revenue\" (invoiced, not collected), so that limitation carries through to this total too."),
 
-      h(Panel, { style: { marginBottom: 22, display: "flex", flexDirection: "column", gap: 8 } },
-        h(SectionLabel, { accent: colors.finance }, "Total Revenue"),
-        h("div", { style: { fontFamily: FONT_MONO, fontSize: 34, fontWeight: 600, color: colors.hi } }, fmtCurrency(current.total)),
-        h("div", { style: { fontSize: 12.5, color: colors.muted } }, fmtMonthLabel(selectedMonth))
+      h("div", { style: { display: "flex", gap: 16, marginBottom: 22, flexWrap: "wrap" } },
+        h(Panel, { style: { flex: "1 1 260px", display: "flex", flexDirection: "column", gap: 8 } },
+          h(SectionLabel, { accent: colors.finance }, "Total Revenue"),
+          h("div", { style: { fontFamily: FONT_MONO, fontSize: 34, fontWeight: 600, color: colors.hi } }, fmtCurrency(current.total)),
+          h("div", { style: { fontSize: 12.5, color: colors.muted } }, fmtMonthLabel(selectedMonth))
+        ),
+        projectedRows.length > 0 && h(Panel, { style: { flex: "1 1 260px", display: "flex", flexDirection: "column", gap: 8, border: `1px dashed ${colors.hairline}` } },
+          h(SectionLabel, { accent: colors.goalLine }, "Projected Month-End"),
+          h("div", { style: { fontFamily: FONT_MONO, fontSize: 34, fontWeight: 600, color: colors.hi } }, fmtCurrency(projectedMonthEndTotal)),
+          h("div", { style: { fontSize: 12.5, color: colors.muted } }, `if current pace holds through ${fmtMonthLabel(selectedMonth)}`)
+        )
       ),
 
       h("div", { className: "grid-4", style: { marginBottom: 22 } },
@@ -2104,10 +2111,6 @@
         dailyRows.length > 0
           ? h(MtdRevenueChart, { rows: dailyRows, projectedRows })
           : h("div", { style: { fontFamily: FONT_MONO, fontSize: 12, color: colors.faint, padding: "40px 4px", textAlign: "center" } }, "No daily data available for this month."),
-        projectedRows.length > 0 && h("div", { style: { display: "flex", alignItems: "baseline", gap: 8, marginTop: 10, marginBottom: 4 } },
-          h("div", { style: { fontFamily: FONT_MONO, fontSize: 11, color: colors.faint, textTransform: "uppercase", letterSpacing: "0.06em" } }, "Projected month-end:"),
-          h("div", { style: { fontFamily: FONT_MONO, fontSize: 16, fontWeight: 600, color: colors.hi } }, fmtCurrency(projectedMonthEndTotal))
-        ),
         h("div", { style: { display: "flex", gap: 18, marginTop: 8, fontSize: 12, color: colors.muted, flexWrap: "wrap" } },
           h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: colors.finance, opacity: 0.7 } }), "WIP"),
           h("div", { style: { display: "flex", alignItems: "center", gap: 6 } }, h("div", { style: { width: 10, height: 10, background: REVENUE_MRR_COLOR, opacity: 0.7 } }), "MRR (smoothed)"),
