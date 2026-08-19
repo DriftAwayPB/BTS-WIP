@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T10:59:49.310Z",
+  "generatedAt": "2026-08-19T14:37:51.142Z",
   "month": "2026-08",
   "isCurrentMonth": true,
   "monthGoal": 21000,
@@ -55,6 +55,10 @@
     {
       "date": "2026-08-18",
       "accrued": 595
+    },
+    {
+      "date": "2026-08-19",
+      "accrued": 342
     }
   ],
   "clientBreakdown": [
@@ -127,8 +131,8 @@
     },
     {
       "client": "McLeod Enterprises",
-      "mtd": 2013,
-      "pctOfGoal": 9.6,
+      "mtd": 2063,
+      "pctOfGoal": 9.8,
       "daily": [
         {
           "date": "2026-08-03",
@@ -184,13 +188,18 @@
           "date": "2026-08-18",
           "hours": 1,
           "billed": 50
+        },
+        {
+          "date": "2026-08-19",
+          "hours": 1,
+          "billed": 50
         }
       ]
     },
     {
       "client": "McLeod Family Foundation",
-      "mtd": 1488,
-      "pctOfGoal": 7.1,
+      "mtd": 1650,
+      "pctOfGoal": 7.9,
       "daily": [
         {
           "date": "2026-08-03",
@@ -246,6 +255,11 @@
           "date": "2026-08-18",
           "hours": 8.25,
           "billed": 413
+        },
+        {
+          "date": "2026-08-19",
+          "hours": 3.25,
+          "billed": 163
         }
       ]
     },
@@ -435,6 +449,18 @@
       ]
     },
     {
+      "client": "Williams Law Firm",
+      "mtd": 129,
+      "pctOfGoal": 0.6,
+      "daily": [
+        {
+          "date": "2026-08-19",
+          "hours": 1,
+          "billed": 129
+        }
+      ]
+    },
+    {
       "client": "Baird Drywall & Acoustic",
       "mtd": 109,
       "pctOfGoal": 0.5,
@@ -554,5 +580,5 @@
     }
   ],
   "flagged": [],
-  "totalBilledHours": 139
+  "totalBilledHours": 144.25
 }
