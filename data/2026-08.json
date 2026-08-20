@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-20T03:22:57.005Z",
+  "generatedAt": "2026-08-20T03:35:53.414Z",
   "month": "2026-08",
   "isCurrentMonth": true,
   "monthGoal": 21000,
@@ -58,7 +58,7 @@
     },
     {
       "date": "2026-08-19",
-      "accrued": 392
+      "accrued": 692
     },
     {
       "date": "2026-08-20",
@@ -68,8 +68,8 @@
   "clientBreakdown": [
     {
       "client": "Honeytree Early Learning Centers",
-      "mtd": 2288,
-      "pctOfGoal": 10.9,
+      "mtd": 2438,
+      "pctOfGoal": 11.6,
       "daily": [
         {
           "date": "2026-08-03",
@@ -133,8 +133,8 @@
         },
         {
           "date": "2026-08-19",
-          "hours": 0.25,
-          "billed": 13
+          "hours": 3.25,
+          "billed": 163
         },
         {
           "date": "2026-08-20",
@@ -145,8 +145,8 @@
     },
     {
       "client": "McLeod Enterprises",
-      "mtd": 2163,
-      "pctOfGoal": 10.3,
+      "mtd": 2313,
+      "pctOfGoal": 11,
       "daily": [
         {
           "date": "2026-08-03",
@@ -205,8 +205,8 @@
         },
         {
           "date": "2026-08-19",
-          "hours": 1.5,
-          "billed": 75
+          "hours": 4.5,
+          "billed": 225
         },
         {
           "date": "2026-08-20",
@@ -619,5 +619,5 @@
     }
   ],
   "flagged": [],
-  "totalBilledHours": 150.25
+  "totalBilledHours": 156.25
 }
