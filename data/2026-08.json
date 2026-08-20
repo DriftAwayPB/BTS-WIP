@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T16:22:08.066Z",
+  "generatedAt": "2026-08-20T03:22:57.005Z",
   "month": "2026-08",
   "isCurrentMonth": true,
   "monthGoal": 21000,
@@ -58,14 +58,18 @@
     },
     {
       "date": "2026-08-19",
-      "accrued": 342
+      "accrued": 392
+    },
+    {
+      "date": "2026-08-20",
+      "accrued": 250
     }
   ],
   "clientBreakdown": [
     {
       "client": "Honeytree Early Learning Centers",
-      "mtd": 2200,
-      "pctOfGoal": 10.5,
+      "mtd": 2288,
+      "pctOfGoal": 10.9,
       "daily": [
         {
           "date": "2026-08-03",
@@ -126,13 +130,23 @@
           "date": "2026-08-18",
           "hours": 1,
           "billed": 50
+        },
+        {
+          "date": "2026-08-19",
+          "hours": 0.25,
+          "billed": 13
+        },
+        {
+          "date": "2026-08-20",
+          "hours": 1.5,
+          "billed": 75
         }
       ]
     },
     {
       "client": "McLeod Enterprises",
-      "mtd": 2063,
-      "pctOfGoal": 9.8,
+      "mtd": 2163,
+      "pctOfGoal": 10.3,
       "daily": [
         {
           "date": "2026-08-03",
@@ -191,15 +205,20 @@
         },
         {
           "date": "2026-08-19",
-          "hours": 1,
-          "billed": 50
+          "hours": 1.5,
+          "billed": 75
+        },
+        {
+          "date": "2026-08-20",
+          "hours": 1.5,
+          "billed": 75
         }
       ]
     },
     {
       "client": "McLeod Family Foundation",
-      "mtd": 1650,
-      "pctOfGoal": 7.9,
+      "mtd": 1713,
+      "pctOfGoal": 8.2,
       "daily": [
         {
           "date": "2026-08-03",
@@ -258,8 +277,13 @@
         },
         {
           "date": "2026-08-19",
-          "hours": 3.25,
-          "billed": 163
+          "hours": 3.5,
+          "billed": 175
+        },
+        {
+          "date": "2026-08-20",
+          "hours": 1,
+          "billed": 50
         }
       ]
     },
@@ -344,8 +368,8 @@
     },
     {
       "client": "Elite Home Rentals",
-      "mtd": 450,
-      "pctOfGoal": 2.1,
+      "mtd": 500,
+      "pctOfGoal": 2.4,
       "daily": [
         {
           "date": "2026-08-03",
@@ -389,6 +413,11 @@
         },
         {
           "date": "2026-08-18",
+          "hours": 1,
+          "billed": 50
+        },
+        {
+          "date": "2026-08-20",
           "hours": 1,
           "billed": 50
         }
@@ -509,6 +538,16 @@
           "date": "2026-08-18",
           "hours": 1,
           "billed": 0
+        },
+        {
+          "date": "2026-08-19",
+          "hours": 0.5,
+          "billed": 0
+        },
+        {
+          "date": "2026-08-20",
+          "hours": 0.5,
+          "billed": 0
         }
       ]
     },
@@ -580,5 +619,5 @@
     }
   ],
   "flagged": [],
-  "totalBilledHours": 144.25
+  "totalBilledHours": 150.25
 }
